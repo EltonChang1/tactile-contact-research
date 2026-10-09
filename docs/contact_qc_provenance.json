@@ -1,0 +1,2474 @@
+{
+  "review_id": "known_speed_training_qc_v1",
+  "config_hash": "40470ec0d981b8e7f6f5e4e9c8d721a698afb2076900f246fd5d9ea4898f1bfb",
+  "convention_id": "logged_coordinates_v1",
+  "convention_sha256": "a77234e6f5737720301d3087e29299cd5aea40f6d8d8c69760d15cde7e3fe21c",
+  "review_sha256": "990ab114900d824c078719a72a90fae3329163f7aa26d06ccfb5eaa31660afad",
+  "source_revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+  "source_hashes": {
+    "scripts/review_contact_qc.py": "93bc339f2a3e86379dd2d3a84de854e7643a1a81e2ad1bed2249bd5a970070ba",
+    "src/tactile_contact/qc_review.py": "025b238beede825746f2ab4cbdcc3f3db918d4d73cf695f06e994f84bb028bcd",
+    "src/tactile_contact/audit.py": "a85a5b21cf678d3e77eff120e6222fe516ce39574f54b64a40ffc6be2f945818"
+  },
+  "accessed_raw_files": [
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_40_500_0.parquet",
+      "sha256": "1233002c71ef4fde297d5082ca5148fa484456d6f897928bc69d5f92b623859e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_40_500_0.parquet",
+      "sha256": "36e093ef9f48858c8a8e1cfc2f07d328681cf44d4c274a801a4af20e3ec93293"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_40_500_0.parquet",
+      "sha256": "f533aaca9e13443a2a2cd9545d9878533cda57b762447be72c39c07e7314e315"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_40_500_1.parquet",
+      "sha256": "af555e4bb62ee96d1fdf9f7a69bdd4721ba19bda0801f54f33ffa0120bc5ad98"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_40_500_1.parquet",
+      "sha256": "61defcc6054d4c3cee44688f53c681c82df7cab3f494dc7e856fc18e0a51ef4c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_40_500_1.parquet",
+      "sha256": "f6e4d42666636f1ff5c602a4fc39a4aa8cc4e9b1a43a76009ea831d0337c55c1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_20_500_0.parquet",
+      "sha256": "1b903ccf1536dbece8b60a4646e72b0c49d7958f3c94a876ceb36909ecccf6f9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_20_500_0.parquet",
+      "sha256": "a55dd632892093c656d3393c00aacd5eb1c99d1a23225e0478ec13a508b9f529"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_20_500_0.parquet",
+      "sha256": "d7e0aba767fc39159ad40182a14cf72c090a4084319ffb395226b2a7bea0cbd8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_20_500_1.parquet",
+      "sha256": "e7503bc87d242f6cb37a6846741d662b17cd66c10f916f2f51fd71d343329735"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_20_500_1.parquet",
+      "sha256": "a6d68619831c710b1d9549437a4d7563cd080ef09f79a6a92f31ca8d72a5834d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_20_500_1.parquet",
+      "sha256": "dda2496c528d58f1f9eff19939c4fb500148a13113d73679c8b4a19409d2c4b4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_40_1000_0.parquet",
+      "sha256": "c9ae25fc69e98ad1b4443f9565edcbacea2c46bc270eb5bb6131a34b5d91e30a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_40_1000_0.parquet",
+      "sha256": "5b0f83a411d710302568da2c90bced3a6a19540202c5a1e2211a7a93cdcf8b5c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_40_1000_0.parquet",
+      "sha256": "6c54fcae9a0b339614e8efc45a67b0d8f43be16156c4da35340ffe6c4c858d42"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_0_40_1000_1.parquet",
+      "sha256": "317ee466b4b3a457203f2908577acd626a23a795572c56a31918773c39d1c166"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_0_40_1000_1.parquet",
+      "sha256": "3a1bcc994ab72a00e6bf8fee48c342f8cce3998efebbea45ae6a17fb2510ff72"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_0_40_1000_1.parquet",
+      "sha256": "5132856ad0e9ab1de1034b0f05a24361dec2e7d5cd9cd81b6706aa8e40207660"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_40_500_0.parquet",
+      "sha256": "e4d1cbef287f6883e719557f2a36817bec07f435449397d345cc83f448841b18"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_40_500_0.parquet",
+      "sha256": "4fa10e79ffe4b8ecb92e1e6d6ad06e214eae5084a494bbc5f81d8aff83238849"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_40_500_0.parquet",
+      "sha256": "64361a5c1d86e35dc41e30faec4f2eb77bb4d2a3fb75fb51817b7358c46ce108"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_40_500_1.parquet",
+      "sha256": "7e70ea4748dce26c8958d14973c53b8937aefaafa4ef59e3717032fe6e9ce316"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_40_500_1.parquet",
+      "sha256": "27cd8ba915529e3355c4380958442990b40e31e585c7c4aa0d2ac70dcce06d41"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_40_500_1.parquet",
+      "sha256": "ff4a597d25bd8b261a897a8730af4d8769121bcfc7039deab9befd5a97b165a1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_20_1000_0.parquet",
+      "sha256": "201bfa7a9f0d01fa8c697d3f6c05ce2fa46cff6246e64efdb035ee4ee0d8e77c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_20_1000_0.parquet",
+      "sha256": "04bc645e02ebd0cc968bfb8eadcf01cbdd3f3922f9012512b10adfea8aa3a049"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_20_1000_0.parquet",
+      "sha256": "86620224ab8a02e5d1b30d194cd52ce62632168451567621e639a847479a577f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_20_1000_1.parquet",
+      "sha256": "7bc8eeaccb20811ba764765c267297cede8b6e6f715c10ed5db2b063464fb5ee"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_20_1000_1.parquet",
+      "sha256": "11d0c37aec87dc308e55942ad80b5e564b585b5bc80d68c9a33d2f2241d30ac8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_20_1000_1.parquet",
+      "sha256": "195cb459f861fbce22cd216c89812585b750656f8f33cdf98d6c1993e2195468"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_40_1000_0.parquet",
+      "sha256": "8d33c2c1f3a3dfada8405b4b24ae17481c1e6a9f0da04070f894b16f0e436b32"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_40_1000_0.parquet",
+      "sha256": "3f70179da66ca24424322f647f66037a668a46e6682de4062baeaf0f2da5bded"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_40_1000_0.parquet",
+      "sha256": "1e28c2f3ed10353184b06460d904a63a040130c3e8db68b23e9dc1c3c61d684c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_40_1000_1.parquet",
+      "sha256": "e86e24e6b675316f255e769ec0f193f2c9333f6b775acb598c7a343f1a9d8762"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_40_1000_1.parquet",
+      "sha256": "e1e6ed06488aecfc3a45688ad4cdaee06565b9356dbf8972ca7f00d91144f1cd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_40_1000_1.parquet",
+      "sha256": "6579c2dd36b99876b9ac6f645d51560510a69ed6e25baab15a9718e4105b629c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_60_1000_0.parquet",
+      "sha256": "056296ee4052d3d587f3276491cdf2c2efdbd54236165e3a02f6c25d879e884e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_60_1000_0.parquet",
+      "sha256": "5f167001b5780368330157c7e50ea8e945c95422952a55116123fd9cc411ab87"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_60_1000_0.parquet",
+      "sha256": "86824a5abe131298535c36d0da97d376144a3b7f38f413987112fa910de412d5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_45_60_1000_1.parquet",
+      "sha256": "f23a28e0a93da5e589f75bd4d4f54653a304c221f2f7f2917c001999a53e3105"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_45_60_1000_1.parquet",
+      "sha256": "c2ab0ea639e33027e2e1db2317e8ac15582ca812ff3c01e1b768416cf8589631"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_45_60_1000_1.parquet",
+      "sha256": "06203771b9231fb168c40d5cafc18534580e29bdcc90d2b48d8ab228ee4b97d5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_20_1000_0.parquet",
+      "sha256": "86608e7d2acc81ec67184b9cd08db4ab2f13d0972d067d77d279fd1e3eb2001d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_20_1000_0.parquet",
+      "sha256": "f5fa6aafd7352975954aaf61b62c233346c4643ea1310b4de854abac35748396"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_20_1000_0.parquet",
+      "sha256": "a11d763cd61a1eff1e5708e7a9abf02c3aee183ece97dda93e9f67ee11396c23"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_20_1000_1.parquet",
+      "sha256": "7233f68b5fd12f64b010aa0945263e630d980e8f38b325f14bbfbe409908771b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_20_1000_1.parquet",
+      "sha256": "0be9f230eedaf3895b5b84ba74fab68930361b6d116cd438db457c0875c9598a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_20_1000_1.parquet",
+      "sha256": "0f6fe3d5896d94c20d367cc2dc061e746c48097c3126bf3416e7d8f683b0bd58"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_40_1000_0.parquet",
+      "sha256": "ee29d5537e93f06121867a6921f3428608af5559739f970f78364410a0e73dec"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_40_1000_0.parquet",
+      "sha256": "0624f9ade4f2cced22baf571e7c06232243227b7e2a69b2cd651ae07a3a0002a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_40_1000_0.parquet",
+      "sha256": "24770ed6b4842abb4c75601029cd49fd19f5e6c4791f0721cec6da2b7cb03371"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_40_1000_1.parquet",
+      "sha256": "e83165eedb22f6c8e99dcf64fe0686a51e070ec90ad167bfea37b7379cbb31e2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_40_1000_1.parquet",
+      "sha256": "3c9c3dc8359201afbed781c05c0a5cdc3cd8888b6da6f99beb1e984b5b62be06"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_40_1000_1.parquet",
+      "sha256": "495e7a0a55d0ee1c2e81af83d653ec2043e6fa661c5713be967a14dfed953da0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_60_1000_0.parquet",
+      "sha256": "2064838c14fd4bffbe01243bf17307a432e32ec7994fa7eb8cb2021ef0427119"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_60_1000_0.parquet",
+      "sha256": "a5c089b2774b4d00fe2df993d697a58fff0ccb243681954ed2af9e8c86b0bd7a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_60_1000_0.parquet",
+      "sha256": "ad13a6e974d42906e6d7bdacfe145a2022ef8eaaea396d1478b1127ede9e60db"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/0/0_90_60_1000_1.parquet",
+      "sha256": "9e08e8a212b766cef22f72f26d38a7b76d080979c6002f55c4bd0d589b905c44"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/0/0_90_60_1000_1.parquet",
+      "sha256": "a85614de5534a3a8c8e283ae2a6d2fd5e3691fc063d5fb42162b373f521d5d26"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/0/0_90_60_1000_1.parquet",
+      "sha256": "f2bb4789a042d83c792e3c62ab773eb3e1d4054782d0822adaaa8dd50e267d78"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_40_500_0.parquet",
+      "sha256": "0d1ff663ec8c33b72a676f1e684b4eceeaa53dedd97e5699fc153efcd82fce10"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_40_500_0.parquet",
+      "sha256": "94f68b59b6a6e4d0ad336ede6607b82342fa5bcd73adc479bc48deb16c31d0e6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_40_500_0.parquet",
+      "sha256": "f4a222ede69d500e7184e73217d0f6279eab1f14b9d62bd33a6d49a3ffe55ef3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_40_500_1.parquet",
+      "sha256": "a67b1e3e07dee1800aa9e69d264fcf4789383e65bec71977c39f3ee539844d63"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_40_500_1.parquet",
+      "sha256": "6b7e58b2182784c72a04782e3cecdeac0dc418e12dd12b75559edbdf16d4fa60"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_40_500_1.parquet",
+      "sha256": "b619b0a2e1e23b854deb737a3393bed1f04b62d402007000a41a582ee16bb202"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_20_500_0.parquet",
+      "sha256": "12156834e19f8250059a977d05f7f876440786f0a5003365dc01ac5af8c5a916"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_20_500_0.parquet",
+      "sha256": "8c4bd0ad9833325d4d0f649d656b5bb04543c6e7f2bf083c304b46f04ea4fbf4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_20_500_0.parquet",
+      "sha256": "5772263e2e39366f1c3d2ed06b50708e9ec774322d9870a429f5835bf5f70127"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_20_500_1.parquet",
+      "sha256": "bd748c0d57d87998e84acd878fe9c02f543d248733a9a073de7866dfcccc476e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_20_500_1.parquet",
+      "sha256": "1caf0eea61dcfa66ec5450fcdb6e59a18dc28863b8ea95f7cf9ceda945896302"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_20_500_1.parquet",
+      "sha256": "be167988e09b62192e485d4a98834d893819dde4b412d201a1915510267f182f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_40_1000_0.parquet",
+      "sha256": "515224fd3a2522dcecd3a5497c33c5d7e7f0255bb517ec0406658b36383edbe8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_40_1000_0.parquet",
+      "sha256": "b68fccb65b5ca3b992b4f3b9ae22a2d32f49302fdf0e46d7af71add8b0880465"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_40_1000_0.parquet",
+      "sha256": "046873f2ae9bdac3cb263f5b2454ebf095a00cd11801dba996b04cd4bd58968a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_0_40_1000_1.parquet",
+      "sha256": "0bdb4acd212c97a75243eb744dc8b8ae52a31a290373c948a65af14f544d18f8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_0_40_1000_1.parquet",
+      "sha256": "c1fec9b94be03f6918fd1fa9247db315b010c74c3aae407287587328c68f9ded"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_0_40_1000_1.parquet",
+      "sha256": "d3d574fb336eb82c8e026e2f135de97b1546fc30f6168aeba39ade1b9677dd92"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_40_500_0.parquet",
+      "sha256": "dd4d4b2ff7bab08188be901252a3606af1bffb1961d348439aaacd13df6c7628"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_40_500_0.parquet",
+      "sha256": "a09eb5752bd1a3b86d6656ddb0471fad0cb07fe3701eb7e3830ba92c313c5304"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_40_500_0.parquet",
+      "sha256": "656a9e56a753e515d7a1c329b6e0591906599767e20dc21ad0a50f286a8a9636"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_40_500_1.parquet",
+      "sha256": "fa89741c0899ffb13820ed73ff2d9cd4416c4241d64407567e57527a15fa98b4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_40_500_1.parquet",
+      "sha256": "5097fedbcaf7a149c977d2cbb8806cb359aadb6459ddd43249b04a26677f9584"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_40_500_1.parquet",
+      "sha256": "0ba68d19a56983447694577e054a81c8275ed2d5d361e929fb5b5c97e16a56eb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_20_1000_0.parquet",
+      "sha256": "e488a592c121662fdb66630ee0ea736d77e74a2afbeee5158740a1d36add0ecd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_20_1000_0.parquet",
+      "sha256": "8bd7bd1776300b4f7576ae8bd8780e647f8ad9f64c2130c1ab396e03547e8d0c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_20_1000_0.parquet",
+      "sha256": "e96a1c432daf3556bb6fafc9dd11338beef73857ab02ad497ab02979ba86456a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_20_1000_1.parquet",
+      "sha256": "17ddd13b97e729515f61a71255cd55c073f2ecdb787626362185a8ac0afa095c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_20_1000_1.parquet",
+      "sha256": "984735a49e6b2a921c77e95bc2ea945a048ba488e8ec1b070dfd52b39d41fa45"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_20_1000_1.parquet",
+      "sha256": "ce8473d8b98dbef8e250274d948747e09b7a0466ecda1db54ff98108361009a7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_40_1000_0.parquet",
+      "sha256": "869f64ffacc602eb9c39535ff1ba203429c5b63a2cbfff52482392d3b02eb1e8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_40_1000_0.parquet",
+      "sha256": "cc09b1916e0635cdee47677e4f79afe6931a6749e2fa8a92678b43a61b498b5b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_40_1000_0.parquet",
+      "sha256": "7a919e35d1571421d76d05f0a34aa4fd9096c59e22e6274352643a9e0da0343a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_40_1000_1.parquet",
+      "sha256": "a6e9afa5c9eb50f7bc474c114c2f5bf586e346a1d6e7664891d71fef072d0f54"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_40_1000_1.parquet",
+      "sha256": "5525526e355ab91d6531b9d0c58f0bfcf004cc02ee3b7cfb19f61f6e724119f1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_40_1000_1.parquet",
+      "sha256": "c329ee20e75862ec73d239e925f249cd71a81f1ac825f91aba0bbe80016bf792"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_60_1000_0.parquet",
+      "sha256": "5d7f16cd71efffd9498308973194d2e34df359550d200803d221837cae12638d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_60_1000_0.parquet",
+      "sha256": "1d428a23af3005e9bda11c81836c07b7f00a27a45eee5c82ef1d5933e72caa8e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_60_1000_0.parquet",
+      "sha256": "a8bc62a5d70c043e621ac8d691a173c251d5402b5f5dc8532203991b268f3e64"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_45_60_1000_1.parquet",
+      "sha256": "e7e1b5b4ffa61f09d85c382d18f72c90b18237813d6fa5b48b9b3381dcf12141"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_45_60_1000_1.parquet",
+      "sha256": "8ffb892cb85431b230f1f5090c33879b59e3c71be4f232eadb48cb151c20cb73"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_45_60_1000_1.parquet",
+      "sha256": "91eb49513175c728551117157c347c4bef0a7c54e17b9fda0a39b5bfb528eeab"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_20_1000_0.parquet",
+      "sha256": "c5b1556647e6cc28fe6fd4c9174f4edcd7f00611fe20c4209ce898a2819d7bcd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_20_1000_0.parquet",
+      "sha256": "e109ad648c7a869ad7a0549e85f0f7a59dbec0965508bc9ee54fc10da1296eae"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_20_1000_0.parquet",
+      "sha256": "2d213882d416d17dd8d793522f9dc0d999591596327c5b35e61c6c7fdbdd6173"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_20_1000_1.parquet",
+      "sha256": "3b898b726b594c9dd911d47d642e21c4d45936a2775656dedfa10f60c71feb88"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_20_1000_1.parquet",
+      "sha256": "860d73f70fbe3238bd67cbbf91bd31b306e0fa01b221f1c7d96a5e24c9d3838b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_20_1000_1.parquet",
+      "sha256": "d887aae608a1df8e56b0bd2cd9205547a411c4fb3af764f504f7759b555133a0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_40_1000_0.parquet",
+      "sha256": "7324febd285f4518a44d65a4d3ca880d3b5a20265ccd85f11abd2e22b9d6293c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_40_1000_0.parquet",
+      "sha256": "569d7015f1d0debd64fa1fda0fdf8ebd8d1393db17424b14346f3a3b63fc748b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_40_1000_0.parquet",
+      "sha256": "94d91525c2ac3fcbf2fd529f215556e65420174e5da65b4fd0678a825e1ad7cd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_40_1000_1.parquet",
+      "sha256": "b13ffaf655e69c36c31d1dcf921a53a40d70602929756236907313af8e33cd39"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_40_1000_1.parquet",
+      "sha256": "ab774bdb1d717fbe3a937221b82be86f730739bc95492c20b380e3f345af83b6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_40_1000_1.parquet",
+      "sha256": "9dc36e1438a600fe56e9f646b2f2089d50878090325b6eab11171aeba39fc772"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_60_1000_0.parquet",
+      "sha256": "9df55731d2cc1bd63bdad0cdc6796c60657eab7a846fda0a3fa121d8c6619850"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_60_1000_0.parquet",
+      "sha256": "f0b388544367acddd85d41de00deefafb1f678f84001f2a2615ba4bfca7c6a32"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_60_1000_0.parquet",
+      "sha256": "544c8b6eaca14442924080c7f59cd34e7aa4ebb9fc024a92e161d4322729861f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/38/38_90_60_1000_1.parquet",
+      "sha256": "6f336e88bb36c957e40411e678bdd121e0f81f9c4486a1a99e5d88664db587c7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/38/38_90_60_1000_1.parquet",
+      "sha256": "12689d3a2b309a05e5b82655b6e8a915944f489552f321457b976788dbde27e5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/38/38_90_60_1000_1.parquet",
+      "sha256": "3889d4d319dcdd95e7243b3021f062fd6acc43954a7fce71a9872b672e02d054"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_40_500_0.parquet",
+      "sha256": "df12a8d35cf212fd558c2f61fb9cd4129882ce483069790a722a9d44a3aed69e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_40_500_0.parquet",
+      "sha256": "e008e86c7a3d3b8587a11e5f42c998abb6184664f2d8273d9bf596fdd620bf44"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_40_500_0.parquet",
+      "sha256": "cb810e0174c9c195ff29f1f72cef74028cd8d13101b14b21f8416ec00410d530"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_40_500_1.parquet",
+      "sha256": "c9c34288ceca156d5157331ee0d36f76b28b78273fb6eb9d7ecaf75863b17f58"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_40_500_1.parquet",
+      "sha256": "ac82b942d9057f40e7a2f010b2596128056eabbce859a889781501ddd055b793"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_40_500_1.parquet",
+      "sha256": "e8ea7960f262de717f8c7a6b7ef9731c517377137dbb022dec87fb3c017342d6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_20_500_0.parquet",
+      "sha256": "6ae4e5041c9e124ce3c5d44b1470760e9fd173828f153267bb62a88d5388cf6e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_20_500_0.parquet",
+      "sha256": "096a8af84f477ea0d117c2de8c9cd3f6fd8ee36a955ac02ec9b38a6cd0fc7090"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_20_500_0.parquet",
+      "sha256": "eee2ec6fa9690744cb4ede9f8c60f22274dcfe6986293c4eaf2679c14c97d439"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_20_500_1.parquet",
+      "sha256": "063a7f3f0cba8ab8cf254c537c430c154c151d4de0dfd970da4f8d00b3492c24"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_20_500_1.parquet",
+      "sha256": "439bb74f9d1c7a94b4fb0005560ada84382f52e8726afea6dd4932006088bfd8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_20_500_1.parquet",
+      "sha256": "60ee5259c9f1be224e4a2cbed4a42b4849d8a74f632e4e9ccd3ab2aaf5f3659e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_40_1000_0.parquet",
+      "sha256": "734dc0e813401aa95e3c04bfe39cf483f4098f8a9e6646fa22db4cb40ba93806"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_40_1000_0.parquet",
+      "sha256": "3d6c99768f4b98cdbe62ba9108d99a798541fa14fb2100745b7bc0a50a851824"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_40_1000_0.parquet",
+      "sha256": "4e4da083054f2d7203efa713ce01e7c0ab8a31767c4668a3a4cf5e24a058654f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_0_40_1000_1.parquet",
+      "sha256": "6aec2d6f9b09f82addefe832267c9cde9549a639529c93ea93f1418342969c02"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_0_40_1000_1.parquet",
+      "sha256": "98ec03a0f1a40594129167b8ef2fd81e20a4cb3f016ef3958af543513fecd45c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_0_40_1000_1.parquet",
+      "sha256": "c7210724d4e59e070439112b2dd4902b02eb7159501f0acc79603fea7fc90f51"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_40_500_0.parquet",
+      "sha256": "5f7ab76826701b52c81135295113bbaf441dfcb31e71d5e1e863a7822514c533"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_40_500_0.parquet",
+      "sha256": "7767a643c4fb192c18581b855d97ef92cb82f2153dea6647467245538ee07b9f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_40_500_0.parquet",
+      "sha256": "4bea7f5d359b38fba66e93370228a6a8b471a0a0b35c8265941bca0be52c5df7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_40_500_1.parquet",
+      "sha256": "6d8b082784f7c8e8f3db1fc2df2ee628b3b345d31419187ee7017b1dc6536f9d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_40_500_1.parquet",
+      "sha256": "a1d351e8aba7fe0dc28fb94129304ae940a5a61e6526b0e91aad8434400807bc"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_40_500_1.parquet",
+      "sha256": "0c0b0a21d3c988633c886458bbbfb891cacb67ef41aaf330f44293ea3456f3bd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_20_1000_0.parquet",
+      "sha256": "ee84df19bcbdf291f73496e1e5b4971651b54fcc0f3d8b411d8e3541fcbfe9e1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_20_1000_0.parquet",
+      "sha256": "f641b6df5f204c0d0f0a9dd38370cd40ac92d7e076c9a0f9b1d4bf1045f44dc8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_20_1000_0.parquet",
+      "sha256": "feafde8f11f621c580f4dae743bb465c2926f6ac517b42ae93da8589f3686282"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_20_1000_1.parquet",
+      "sha256": "5b80b63e16ec52383fe18b97b26c0dbb231904bf7d44dc9cbd5bdd613c7f90c8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_20_1000_1.parquet",
+      "sha256": "8dc44e67847f140cea541086c83114eafe675051ca3203f06fe19ed83e0be868"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_20_1000_1.parquet",
+      "sha256": "eda5660c039720e296daf8572a1599b4e0d7436e44e87b3d5bfef32a5fbb6544"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_40_1000_0.parquet",
+      "sha256": "55166417e3107d06a0cb3a621633b74d1ccd9f865a50a73677efe75d5d0ab9dd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_40_1000_0.parquet",
+      "sha256": "e7fbd9537bdf7645645675412eff7bfa19f3963b0ceb0103f7db7220476a5972"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_40_1000_0.parquet",
+      "sha256": "577482edf8953a2ddaa72d353d2ecf674bca7ec5a485475027791b3a8c8e6b3d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_40_1000_1.parquet",
+      "sha256": "d27f49404e68ff7a6f85dcacd4ed802587944b1ccc34ab2b05ab9699ba1f0ec0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_40_1000_1.parquet",
+      "sha256": "52b69e970d0d9e2f8f0520a0e76f4f44c3826fa668a1f54ab2a2b37aa4b6dba1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_40_1000_1.parquet",
+      "sha256": "abe23814f82930494a214c83a487c191c175d00ef692d0898f409803254d4320"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_60_1000_0.parquet",
+      "sha256": "2157a28b84733668b81106609a549047b3b950408ef86f384e8104e6c3205085"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_60_1000_0.parquet",
+      "sha256": "2a5a92657ee1663788754f93ea1e0c21ce461e02bddab2d435994b74178053cf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_60_1000_0.parquet",
+      "sha256": "8ba4b779fd7f213b4ae19fbfdc25327b468628999243607a8ff08c1b40251897"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_45_60_1000_1.parquet",
+      "sha256": "b63158b7d4b5678cc7cf9058e5c962c623eb081848b3ee0bd9255105a289169e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_45_60_1000_1.parquet",
+      "sha256": "d8d27186cb44341ce8546baea1283995d9a762acb789417fec010f5dd424d042"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_45_60_1000_1.parquet",
+      "sha256": "89ba3d478e291da2d25809c505da47a41afe70dd2fc32568563e1e6b14f9fbd7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_20_1000_0.parquet",
+      "sha256": "daa6a0ed811c130d99ee433c20715fca4d0c9b41bb394df1618288e423fb70d1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_20_1000_0.parquet",
+      "sha256": "3a929bd434440a0d1cae2a60b31984a04291b445490c276162b4b2d626ba79b1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_20_1000_0.parquet",
+      "sha256": "11b4897a86515edf6ed03d5838e58d3e20cb671b00714d7e64545a81bd5c1eb9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_20_1000_1.parquet",
+      "sha256": "e53e1f1d86b4dc52ccba09d38e4dedcd17206f31041e9648ce446cb2f9347136"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_20_1000_1.parquet",
+      "sha256": "b803d91c5cbbf38edcd8c5286584283c17fd847e545ed1b69864d637cfd93eb5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_20_1000_1.parquet",
+      "sha256": "4da199d8dfbb57f2e3fdd9353f95805c832b341865ed3c9a769f0c840665550a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_40_1000_0.parquet",
+      "sha256": "43f6468993a427402f8c9d55e8a3aafa2593279456668d232499524f8c9bf8fe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_40_1000_0.parquet",
+      "sha256": "c0c82ee089a03cea0591e56be99e96965095645150cfb08d05f8fbccbebb6c1a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_40_1000_0.parquet",
+      "sha256": "33b638face69899f882f764a623f694741eacbcc20b6e448f45ba11e7d7324d4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_40_1000_1.parquet",
+      "sha256": "ffa66c2ba458bec2f19e66376b60571555829c239e3bb74584d67ca58daaecba"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_40_1000_1.parquet",
+      "sha256": "1bcc04f0129d8a17db9a62de4fcd0a27c2c8092895510c34f3ebcf7506c65891"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_40_1000_1.parquet",
+      "sha256": "3669c61742211be1029a6e79d7b344b50ae10a121e8f2e8490a8c851ddd2c165"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_60_1000_0.parquet",
+      "sha256": "3a400c0986e31f5065fc9989a5845395f7a8828fd0ec1869359867842e60783f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_60_1000_0.parquet",
+      "sha256": "91bdcd47319d624599d7d32e674ceda2ee7ba57e3514377ebfc0796a1a4d2795"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_60_1000_0.parquet",
+      "sha256": "208c331e78190998be0d8c39def63a0dbc182e75470b45f8c00298757330459e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/49/49_90_60_1000_1.parquet",
+      "sha256": "aaa2d121c6fa83ab9119821707eb6499ea776977bbed5bab4f1286b5d5e02758"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/49/49_90_60_1000_1.parquet",
+      "sha256": "abcff42cdd9e7f906dc94c53ec8de74ca296caeeee597a1361632b968f750b00"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/49/49_90_60_1000_1.parquet",
+      "sha256": "8823c706de5b26eda2589f656f189cca54301f97a29bb2c1ad869a7dbd48c20b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_40_500_0.parquet",
+      "sha256": "fc0fa9746621486f8025ddaabbb42c8bdfd3bd791d0c7dc7901883fa0cc46e34"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_40_500_0.parquet",
+      "sha256": "dbd5b8297bc09227c9e3cce2e0e3aa67f217dae6ac758a867a14b6bc73f1f41e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_40_500_0.parquet",
+      "sha256": "4ea0ceeee522c99a095065f589200288e712779c6c44fe59a20c1f22ab7cef5c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_40_500_1.parquet",
+      "sha256": "dc2f368fd840ec0d1451b21c0bc75e2947317423a03ea31b2dbe7b7668093ac7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_40_500_1.parquet",
+      "sha256": "6373785aa65014d1972e5d4c65631bd89599614c480b77bc518b1aa94bbe4b99"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_40_500_1.parquet",
+      "sha256": "c159d313d90d5376023a9e095e02a3145222b47c26da13e4368b80c9683fb67f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_20_500_0.parquet",
+      "sha256": "6969656a771c4d0d01a9c8b9f173fe17521705d5e2f79b172f320afbef91119c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_20_500_0.parquet",
+      "sha256": "5f787c64b934bc6f95903a0b8e2360d582ad2a49ffba60af83a417788a5ab03b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_20_500_0.parquet",
+      "sha256": "e5ded71d6802c070d9b0c84dcd3c79944582df07bd32dfbfa511d1540b05da5d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_20_500_1.parquet",
+      "sha256": "e438081609d5d0fb168813157c6d9fda4915d184fbe4f389840cf0b03db77d97"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_20_500_1.parquet",
+      "sha256": "67903b1e48d48804479d239f7e092bd464b892b0b3494ea2adc27e82c14b6285"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_20_500_1.parquet",
+      "sha256": "96c03f78be58f8dcac1854c854bd8f641f6a8be4f1ebd6f6f93799fd35ebb75a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_40_1000_0.parquet",
+      "sha256": "e457a24cc89567f51f16ef27f13c132e082852498502b4bd2e37e004648d5418"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_40_1000_0.parquet",
+      "sha256": "ee90edc8dbb13653232f9187691e74873028a5ea6d2e736e137cf26e15edd336"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_40_1000_0.parquet",
+      "sha256": "2a84e6a0f8001ac707f21f1dd13a57f86b593f917a1d710e9bd51ec0158ec036"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_0_40_1000_1.parquet",
+      "sha256": "b05115b35ba639ad469703fa9aa8dd761c76f3ca09f6166695d8f09243d1644c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_0_40_1000_1.parquet",
+      "sha256": "739fe352b5b0653b816466048092aaf0088bbbfc4255e0858c7d5fd965200a53"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_0_40_1000_1.parquet",
+      "sha256": "23c653d89f8703b70cef3799f4382fc6e0bc0da6faa5fe9043a4390348c29ddc"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_40_500_0.parquet",
+      "sha256": "48d644e84b4570eb46daa5221200ec21bf5e2f4ca141e233aa6ba9eb965da414"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_40_500_0.parquet",
+      "sha256": "faa3dff4d191315de8fb85f5cbc01d48f93ddc136a9fd8ef48e83c97c6a86c42"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_40_500_0.parquet",
+      "sha256": "d46d989915b070c7cb468c619630fed7bb80d3c9f2fc02bf8f8ced2c5ac0bbd6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_40_500_1.parquet",
+      "sha256": "ca6c6c2e26da7b7228f44d1f42359ef583b483e5ff8c92e635461626d1ee98db"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_40_500_1.parquet",
+      "sha256": "c212d434763556f8470e1390c66cbdac7a84ed822d690ec9c2e6717e5fe20188"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_40_500_1.parquet",
+      "sha256": "44865c092c64b2176d1e22107a311e670c7e8097b5b8f74c6600754304fa79c2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_20_1000_0.parquet",
+      "sha256": "32302db5bb91e6bf39d53010e2af8ef662c773e9c7448ca6e1fed9b4b99ca9f8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_20_1000_0.parquet",
+      "sha256": "9dc0353f8741c639307e6e54297315e660949f722853e11b5ea6529abbfba94e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_20_1000_0.parquet",
+      "sha256": "52c9abe9a4158e8a84798dd4d3c895c18a822b070c7d659fdc1ce7cb18ff47fe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_20_1000_1.parquet",
+      "sha256": "80b77d52f4a7b92464f4ff7ccb6dd59cd28e20687b2ca8c26be2871a8cfe93c9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_20_1000_1.parquet",
+      "sha256": "44c9136785a62453325bf6f229c7eae5c4fe0cb56de82020724cc5f03372aa62"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_20_1000_1.parquet",
+      "sha256": "b0083028ecf7287f07c5128c1cf09173f66d871158b130df1bea82846619d56d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_40_1000_0.parquet",
+      "sha256": "cce5add492c988107263e32f3ab79c57fd09a39f2f6447d89fe41b0bd5766d94"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_40_1000_0.parquet",
+      "sha256": "c61fd585da4c246198ffeb3db91ac9f85170ee700be6b7afa2e330f74882f3e6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_40_1000_0.parquet",
+      "sha256": "33ba2ccb761c61d20778d710a19f91de586cfe35969aec2380c38d95e0e5abe8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_40_1000_1.parquet",
+      "sha256": "9158a54cd6e054b735471e6fc498bd44de7f39ee1289e8af7d66c0be5255c6d4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_40_1000_1.parquet",
+      "sha256": "144aa5948c997664cf35d6ea9aac28fb70abc34a89a1fd3b147a0b9a288c428b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_40_1000_1.parquet",
+      "sha256": "a5f6908586f8e5f25ad8b86f1d72162f8ff0e98a04c4beb40535000fd71ffb3c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_60_1000_0.parquet",
+      "sha256": "b452dc9a80fed59d5c63857ecdd784e192f7aa2c857f13aad54327fd57a10cb2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_60_1000_0.parquet",
+      "sha256": "b420bf1c9e098f72b1ed592ca09b264b63a447269b7cb20f22f039d7e9c0f63e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_60_1000_0.parquet",
+      "sha256": "9b674e5431e27bd8790c07efba3c0c2f0844e5c4663f8e8a28bef0aed3e1aa6f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_45_60_1000_1.parquet",
+      "sha256": "7538abe193c38a445a7621edf4428449caafe8a35a0bd6de4bb866098b25c902"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_45_60_1000_1.parquet",
+      "sha256": "af1f37fa423f8e5dce2c02e618de00c00b7b1cca3047cd1ab8a085d6f8c1108a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_45_60_1000_1.parquet",
+      "sha256": "3464a08a584646568f8a7bc60a1702aaf6a8bf49e84791b6e70084051bbffa95"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_20_1000_0.parquet",
+      "sha256": "a9f25238ad354c62d1e893708220b1173a09906c535a710903dbe15e52bea2cd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_20_1000_0.parquet",
+      "sha256": "e3f227d3872dc40d067bcd10c20efca3e9e330b745a82746fd3013e2af51be6a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_20_1000_0.parquet",
+      "sha256": "4ae6eeed0c1862864361f65c65307ccfd2ae9621f105cf281c0c67a7fac0a893"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_20_1000_1.parquet",
+      "sha256": "b42b21b8a89e824f5d7082f58a6c49a71e4a39d0990176caf2bd3405631b8a01"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_20_1000_1.parquet",
+      "sha256": "bca4db32fa644897258c8f995e0c54374dcc9fa39b32bbb40ca09d0d18223e02"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_20_1000_1.parquet",
+      "sha256": "9f3e17f3bb22bafd29b5daec2d794417998cc9b0a8498cc78368a1ff9610ae52"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_40_1000_0.parquet",
+      "sha256": "6f4974960ce98cc891ed084f9a258db855792dc6e8315ed8b6eeec4ea3c5d73c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_40_1000_0.parquet",
+      "sha256": "43ea2f5c172ae0784a4d2f31e8f8ede350048c0f63c5e34d2f5cf04e54c9cf53"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_40_1000_0.parquet",
+      "sha256": "e385cae1f1beb2e93e33531424190ad384edb61505aa5771378bde6ef76becc2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_40_1000_1.parquet",
+      "sha256": "be281dc6e818703415d9cf6031e7762d17348215b00b2e090b9e50025ef35406"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_40_1000_1.parquet",
+      "sha256": "8f7587b2a40fe911f213868aaca8a8acb7ce89c15e6b07d9a54fab362c6c0ac2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_40_1000_1.parquet",
+      "sha256": "09d3c94b61818054209b02c978b69063725f64d904a97d9d149c05d0c5c3a6e3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_60_1000_0.parquet",
+      "sha256": "35ebbbf129b67bcfa753b3a1cb41ddf17e664c1874dc0b2be114ab8115ef7d6b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_60_1000_0.parquet",
+      "sha256": "251f88914decb227548dd6abf053748c360337dcbaad0858329e95c1b4c483de"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_60_1000_0.parquet",
+      "sha256": "821b801a4b431e0b82a0f417dd68d13de0762a84233ea0f50e28249dbb2af8ca"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/65/65_90_60_1000_1.parquet",
+      "sha256": "52ec94903faac5bf9c6e78a98a240780afd7d4a52070f4e4b0da6c2b8a182220"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/65/65_90_60_1000_1.parquet",
+      "sha256": "adbaa1bcf4a0550e12b74128fb81959b425c74248eb286beca6666b9217d02a1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/65/65_90_60_1000_1.parquet",
+      "sha256": "127d614a5629be956f8b2df30db601676f9c9dbd23f2602e2a26266ffe5ac899"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_40_500_0.parquet",
+      "sha256": "e30ceb07b296b3f92a940aa677071453f457162deb681bddf1a0d222fcb6494d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_40_500_0.parquet",
+      "sha256": "4da0fe4ded1470504a1e55cd53365ed74d41f89ebf6bcc2e4c14ccbee44ea1a7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_40_500_0.parquet",
+      "sha256": "02b71109f30d83f8ccc2cd40a91f04adc87801e572a6dabe0fc27098df387643"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_40_500_1.parquet",
+      "sha256": "af19d8b05a91102788981bbacb8ae1e07cfcc161dc851696cbe7900712110654"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_40_500_1.parquet",
+      "sha256": "5465a33fcff6c8896333d8fc8a689953838c41823b909b09e73b85eb0d53bbfe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_40_500_1.parquet",
+      "sha256": "9643cd29e2955b2199a174fde5c916bcfdc8f541900f88d290ffb46f1193f216"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_20_500_0.parquet",
+      "sha256": "df8e29ba95c491c0d220dd6436e4c80addef67961b54d4e62e34cda4c16752a8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_20_500_0.parquet",
+      "sha256": "9089635584e1aa978268368ef6ade91f45bde8dfda806ef6801b26292ceaf250"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_20_500_0.parquet",
+      "sha256": "cc3657c2d941ba0180e7fd8572b89fd2f4951b48fc26a53e5769885ea89513ce"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_20_500_1.parquet",
+      "sha256": "0ff02b1d5de1b341988523ce87176d15c454952e8ae572339005fc26d112f829"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_20_500_1.parquet",
+      "sha256": "5e2f1111d0984efacb980a5dc5cf9eabb61582ab3b2b4c0613c9e5fecd0141f4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_20_500_1.parquet",
+      "sha256": "df469805b7386a33ba373f3625d15b0502f8662b168c475a51229d305654a2a3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_40_1000_0.parquet",
+      "sha256": "62d16194f966df4e95f9dd16282d24b7c924fb9132622d8b94f0f55f84401abe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_40_1000_0.parquet",
+      "sha256": "204f4faba7aef2bed4847f64de1bcf7b798fcc7dff83e56610ffeb369ec78065"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_40_1000_0.parquet",
+      "sha256": "7a9421ea0533e9bf54c8d5877ae7e257b4d55e7c6586dd7d051fdb258456d76e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_0_40_1000_1.parquet",
+      "sha256": "705f61d02b62c697945ecff26b8e5505607703d913e6acb27e700665b74b87fd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_0_40_1000_1.parquet",
+      "sha256": "d512eb40a7fa7d32571f444e02d296e0dc786078df259f54ffc179268ff2ea64"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_0_40_1000_1.parquet",
+      "sha256": "e65631686c2a7f6fb19acd717b0c3c47c2a9f07b9667874bceb9bb6f81c06ef4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_40_500_0.parquet",
+      "sha256": "5fbb670769c29f817c1a29fd5775c461c1b6615d08deaf9f3f936b688a880f8f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_40_500_0.parquet",
+      "sha256": "e2a90012785da7f77bc67e0490aa9b79dd0028903b97c7b510686bb3a14b51f2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_40_500_0.parquet",
+      "sha256": "a6b8915236b961c9667e984df117aca9240ba96036ce0eba32347594158bca80"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_40_500_1.parquet",
+      "sha256": "6945600b27fdc0052ba5b70037ea862691d405b048895394b31e6aaf863f02bd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_40_500_1.parquet",
+      "sha256": "11ae1259ef3d3195180d7c022317f6cd3e0f03b829e42458cc6952197c8c519c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_40_500_1.parquet",
+      "sha256": "3b2a400c6124700c558c1cf0c797d8b05d035a6eb082d618f02de289bc4265ff"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_20_1000_0.parquet",
+      "sha256": "63e7f2422afca1d297102bc1ce2118bb9bc3541361b03fd43ab526b9ac83d88d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_20_1000_0.parquet",
+      "sha256": "e028a6331ae5e676c8378f16d294772036369cc7a7589b84960a971e9acd0d58"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_20_1000_0.parquet",
+      "sha256": "4cf54e5bfb5497d342a8343069b7e41c707aa477111ed07f53e1cb0ce840741f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_20_1000_1.parquet",
+      "sha256": "37f20ed9d2520a1c7831721b38faa28bbbe68a01042ddf890ed19dae7b6a6b2a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_20_1000_1.parquet",
+      "sha256": "b04be094c875396a083e857d2ff957e73bf52ef3a3937c6ecc58afc1f86eb0fa"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_20_1000_1.parquet",
+      "sha256": "466149865b2ded202f92e74c7d5364c4d16389d672dba42304a87edca5f6dcd8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_40_1000_0.parquet",
+      "sha256": "219e50ddb4a3981c4e176bb5a1b8df300c7707b538737d46388c678d362dcebe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_40_1000_0.parquet",
+      "sha256": "41c6d03cb164ec62b60239a74b23a820ad2f1c5e75a4f0927f08938376c74b3d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_40_1000_0.parquet",
+      "sha256": "a49aabe20d0643334133ce0c2ab7e5cdcef7c9d1e9702695c1011087ff3c50f8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_40_1000_1.parquet",
+      "sha256": "77731422b385a024bf41c49d3f4d8155f073c6f29ce0c54f0a70079e27e16ac9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_40_1000_1.parquet",
+      "sha256": "57c7151cd83bbbd8980ba155d98e72f65a1aa72eb31021d8688702e6f3d9a7a4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_40_1000_1.parquet",
+      "sha256": "310d41d6bf8f6e414cf7c84f2d7ec32945330ec19aa271264ca40d3f9c205a2a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_60_1000_0.parquet",
+      "sha256": "49912dcfa2a9480caf4f94af7af011ad184589954a2070bb062691fe68fa95d9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_60_1000_0.parquet",
+      "sha256": "f417a757f94dc7159f0e1014793278bd57dfca66af94f9aa06a461e2cfe7c7f3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_60_1000_0.parquet",
+      "sha256": "b788e6f7f88e2fa6d0a4b8f56a3b07b46d704bce37d6b45cc3a2e2338fa02b5a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_45_60_1000_1.parquet",
+      "sha256": "9047d2e9d4d280689247494a9a6f4ddd9dba0697ea19403f4af8cd006f878e02"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_45_60_1000_1.parquet",
+      "sha256": "91832ad5dd3f4f94d9ac068adaac305507c4b3904eb0084fa8aa18e47fc5b68b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_45_60_1000_1.parquet",
+      "sha256": "2dcc2a9ed610fd7f279f38eb8de400c5f9669767b105b62d0191d12de469d589"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_20_1000_0.parquet",
+      "sha256": "9000a186b0b0ab07fa18f3e1562cb81089593dc749da54f828f9a0edf56a9f4f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_20_1000_0.parquet",
+      "sha256": "896928b17aed11e903914879caf05d06a3ad272bb241e7b01c7b637c9de5c1ad"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_20_1000_0.parquet",
+      "sha256": "e355ea86d575ddbc13e3691b12bbce6109b0fb6855a7d4b3f108d18b3107d289"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_20_1000_1.parquet",
+      "sha256": "87e0f9399ac733d5af1a6e96730f9bbe87164a47e8d3f8664ba7def45e4d6fb2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_20_1000_1.parquet",
+      "sha256": "b34839d50234c2033fcba69a67f3545623d8c4ac0612454dd55aa1677291ac04"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_20_1000_1.parquet",
+      "sha256": "44d8e4b9c621a6228242188ceefd6d4acdd613fd9ca13be4a4616016637d3fc7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_40_1000_0.parquet",
+      "sha256": "2f66db8493616eee347bdb9625df69a3a5f2c451411f8e3d90af52e9a16fd475"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_40_1000_0.parquet",
+      "sha256": "0f357cc31c046494e6284ce0026cccc361ee0709fae1d6aab671788b07895fec"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_40_1000_0.parquet",
+      "sha256": "af159b3da99c4842683f4e603316285770631785f06b2ee92d99aef894205524"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_40_1000_1.parquet",
+      "sha256": "7636c988043f12986fbeb04e9d0767bfb6bcdd358f3ad6c1ffde6af40d3c1477"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_40_1000_1.parquet",
+      "sha256": "82333e893ec818f25ef4d4d83ce91b85957735ef11282ef9b63492740af68b52"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_40_1000_1.parquet",
+      "sha256": "274fb4a9a7b1af3df1e8c3e90d65c54bda6c0c46f204b3957db931f928d361e5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_60_1000_0.parquet",
+      "sha256": "82f6eac7b79c4e06e1b47e33879d764bd28bf11e7b1edd9e3d18b2c62f075a92"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_60_1000_0.parquet",
+      "sha256": "3bcf6ec15357827bb7332f287207d40cf772e95d31466b5d914a46f85cf954a3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_60_1000_0.parquet",
+      "sha256": "5c8cba1f8f291e5599719b5c2e503ae371499444e23a851d6a5e53a0b86b5d2c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/74/74_90_60_1000_1.parquet",
+      "sha256": "c8bc07ec2e00be54e30adf9012d37e27ae9f1f7451e74cd27b408444e38e0ca2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/74/74_90_60_1000_1.parquet",
+      "sha256": "1ca36dd60ebcb5ef861ae1492ebf7c49abde9213a2b92df8d20e11daaf4fa4bc"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/74/74_90_60_1000_1.parquet",
+      "sha256": "59cfc2f7f9a2ac5066108def4aa76bfbd0020dc204ea615b714c9dbef158dc8b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_40_500_0.parquet",
+      "sha256": "cbb828c0b08b427b9bcc7e43a07dc231bbdcc7f0ed31e69735c6837142273df4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_40_500_0.parquet",
+      "sha256": "f98a341e0be5e9b244b3b760386b354fd5f2b5312ee39b7656b1d6e2797c39b9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_40_500_0.parquet",
+      "sha256": "e362b4fcc7e048d5d6705abcfeed0bf0a5201cd05f49be494ab3e3ec4c818528"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_40_500_1.parquet",
+      "sha256": "78884533ba9e0393528dce290292d694a6b25436a86ae4c6399748d00c348635"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_40_500_1.parquet",
+      "sha256": "ec74f5aa9aa845d08d1482f482ac39bdcf146a0ef5e402416a9a98e0608e8ee7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_40_500_1.parquet",
+      "sha256": "7e428530aa161885db7af4f0591120535d2e1e92f2c4f4f5b99e5cd9679416ad"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_20_500_0.parquet",
+      "sha256": "b60e4b7ffa377b254e0c63b8001d50e8c2fb7a654da2c159a21d63effdfc6c63"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_20_500_0.parquet",
+      "sha256": "6df4282bcde372b17d10d75ec4cc531d913d460f11104a4f306cb9f03faf4dc4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_20_500_0.parquet",
+      "sha256": "4e801fe560ff5ec06d4dccb6fc8a16249856dbad892f7c23be2e2f15eb740b8d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_20_500_1.parquet",
+      "sha256": "376c58ba13b08907fe474891abb8555b3e05f816c69febc93ecf37665c63ba78"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_20_500_1.parquet",
+      "sha256": "de73f73518cb71650af561b51f448fa93aa231dc3ec5c99c6c77dd94172f6fca"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_20_500_1.parquet",
+      "sha256": "1bc47aa22aaf4436588d723f5a64c26d38aa5e1e5e432039317d2a7ccb19be9d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_40_1000_0.parquet",
+      "sha256": "24acbe223ab281f28934a0b2e9fa631f2c78f437658994ecdfc5e7045563d670"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_40_1000_0.parquet",
+      "sha256": "99f321a83fe364fb200523221a132164afdbcc5a62adfcd0319e52c5a86abede"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_40_1000_0.parquet",
+      "sha256": "fcf6097cc39d957a05ce9b91302b74e016443c2db3d47f3e156306fa1e6e7c6b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_0_40_1000_1.parquet",
+      "sha256": "cde6eeb7bf1eb0e4697d8168ddfe520cee941874e68fa7701a8ab134b34d0792"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_0_40_1000_1.parquet",
+      "sha256": "d77323bf6ca5604f58fcc83dc387c19dba21931269ac85ac56bb8e4f444e576f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_0_40_1000_1.parquet",
+      "sha256": "c75823dd54cab8728cee2f8947179f63a588589dad714a9e95d991d9712b350c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_40_500_0.parquet",
+      "sha256": "30ac93fed4f3e1a637d0ef61c64883f7b64c8a4b44a7768084144266b308248f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_40_500_0.parquet",
+      "sha256": "ee0948cac681d6ce03fa224ef0fdfb81eab6e0e8655b1cd1f34036cec1f122db"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_40_500_0.parquet",
+      "sha256": "bd03f4befb8fb750b12c0d34fda8fa75de4b04973f20f63aa27954bd0543f813"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_40_500_1.parquet",
+      "sha256": "7048592e59bf23d1b8ce80feefb8274e3f34f4576be247c01200e867e0d3228e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_40_500_1.parquet",
+      "sha256": "36cc8727a03a3183eb90c35af52b971d607a87ff9e8e90a14722c4495501e4f5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_40_500_1.parquet",
+      "sha256": "601cb83a2775559cc8b71f41d657615ac3b3ddd6ae7d746e3219f6ae8ba37e88"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_20_1000_0.parquet",
+      "sha256": "4f379c84b44dce63917efb5a9f6f9c1a98c00f77d76096f925aa3c8cd11cea57"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_20_1000_0.parquet",
+      "sha256": "b77d57feefeb0753985f30bf00cd7f93f81c5f834d5a4a58473689036df15ebb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_20_1000_0.parquet",
+      "sha256": "46708e8a7444c742a6fb3617148b3babeecb99dc408f37926ca29a8245bafbc3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_20_1000_1.parquet",
+      "sha256": "98c62e24bc8476b22415954e478f132723d8358a6ad7b5b328b3bd6e9c8edffe"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_20_1000_1.parquet",
+      "sha256": "b92a1d9162e96f5220fd58022dad6dff733220485e575c2641f77a67377381ee"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_20_1000_1.parquet",
+      "sha256": "f99cf85469f146d0adbb799d3a7c5935763aa03d071b8ace7c718ae7365fa527"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_40_1000_0.parquet",
+      "sha256": "a4d8e544218710724ff81dd4058f9f07e7959c915b2d2c3bb01dc14deac7ecb8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_40_1000_0.parquet",
+      "sha256": "86919f645ea2be2ee01c3b2387b366e0f09d50eacdf216f5b81f1494d5520fab"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_40_1000_0.parquet",
+      "sha256": "b2c817f9eba19d8ac2ee58e5d62148882a28cce475fe6916ed1341896cd46333"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_40_1000_1.parquet",
+      "sha256": "e8e964207bd45da5530506958c6ab07b5fbca07c0bcfb926b00710383a9388e5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_40_1000_1.parquet",
+      "sha256": "eb058713ee42c64493184a621e7dc9aaa14d5c8d095c67e0504e4a7ce7e75346"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_40_1000_1.parquet",
+      "sha256": "3eb8c1daddb7bd05e113f2b3287557e28cb2301e8c55c482bf2b114e7f43acc0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_60_1000_0.parquet",
+      "sha256": "4083641ad73a4359bcde31c7d7e030572137b19680204f53d53c39cf42e6b68b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_60_1000_0.parquet",
+      "sha256": "83d776722c37fb0e3873072a2f6dbbe707c0c1ee49441c7540e4cd86072772ad"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_60_1000_0.parquet",
+      "sha256": "80d81a1ace6f8bae729ba4eea976ba0d7f25d27d170a984f61d53df30825d4b4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_45_60_1000_1.parquet",
+      "sha256": "7cd96fafc0f9debefd175215f924c592c28b1b31515a73acb12c0ad66b286fc7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_45_60_1000_1.parquet",
+      "sha256": "bfcd76ffb8cc9107ef21c136b67bfb9e3ce10602d361c1d9d51cedc33b0d7c1a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_45_60_1000_1.parquet",
+      "sha256": "4a54fedf52b8a0e509c40edca3d86c205aa53feb5bffde9ef564f37c79fa138e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_20_1000_0.parquet",
+      "sha256": "26030adb8652e894c70d68c3bf063270f20299a3990c7bf287af9f33c7baf0d3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_20_1000_0.parquet",
+      "sha256": "fe2a8e8fbb7f415dd3f68c17b63635d2cb43fc57a3b67e2405efd0c03175990d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_20_1000_0.parquet",
+      "sha256": "7383ef28c84158a3eeb49e9e540941ed4cabdf3b4513288c98f34d6188f680e1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_20_1000_1.parquet",
+      "sha256": "4e1d1f9c0d2ba1f2ae65875c51d99eb09f0b33ce73368023a8a0b8862ed96fff"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_20_1000_1.parquet",
+      "sha256": "b5199c8c169a3f39c9af280bbbb156214d896089cf0ff4c62c269bef78721bdd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_20_1000_1.parquet",
+      "sha256": "dadf1f42e03ec9f08f72f3b0907ae37472a5aff35c5b373704c056f0b0164eb0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_40_1000_0.parquet",
+      "sha256": "d749d6eb2c848eae88acbdaa16b6a6bf3ecd768b8c8fc90184db8152c7d56ec1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_40_1000_0.parquet",
+      "sha256": "00534e005a822884f315f598c7f8240983e582c5d94d510bba2f8fa729a49bc2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_40_1000_0.parquet",
+      "sha256": "75a9f51bb83a85d35f34e1ac28da9e8b7c67535afcde986aace86f440d4870a2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_40_1000_1.parquet",
+      "sha256": "dfabcf16066d036f75099e9907d58d73f59f84b0d503c8ae908c83dc83f9edfa"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_40_1000_1.parquet",
+      "sha256": "2adc8bfa2769a3782c969a1053d9310740288c65fe72a48852ccbb02c76da7c8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_40_1000_1.parquet",
+      "sha256": "6758bef8bc9b3153c23d0bbc2022990378a1ec2a6e82a59538618e08f821843a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_60_1000_0.parquet",
+      "sha256": "e8449324da1cf175beb6541a091e51ae1b8abe8afff231a7c936b77459ab213e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_60_1000_0.parquet",
+      "sha256": "830d0d848fe2446b61495a089b92cf0dbb7f2b1f5ee72d713bcdc1ec1a582f56"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_60_1000_0.parquet",
+      "sha256": "2c7a18f5ac7a4c0c387d413f5f748b6955575862ca39262ef74ecf0116fca51c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/79/79_90_60_1000_1.parquet",
+      "sha256": "32e50c78f90302d09b8592ae04b750e95f74a1ce99b5fe7f1bd1c91a1102db5b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/79/79_90_60_1000_1.parquet",
+      "sha256": "b163090e0ae5fe3390b38f368a07962504da0155203c9c51372e9ce4a8fb3e8f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/79/79_90_60_1000_1.parquet",
+      "sha256": "af3449ace6a7c0fbe70f23d76cc1651852b4b8610654273f1383e15b841c14b2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_40_500_0.parquet",
+      "sha256": "e89ba26f4d4679b5a9098186713a874a012007d6cfadea534b97f01e3b6d14a1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_40_500_0.parquet",
+      "sha256": "15c7f6594506986d5c9eb9cb2d13f263c64e37655c7af01898fe6ac917645d58"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_40_500_0.parquet",
+      "sha256": "7f4bdbdfa1d90622c718f0796374df61594ac6081d7c791cc52385f358869ee0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_40_500_1.parquet",
+      "sha256": "6d1b75a81b314f067116c4e2a32c9adae3a364b8cb0d65f5c5a60f63edcfc1da"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_40_500_1.parquet",
+      "sha256": "ca53ad6b221ad4303aaa3595914f5cbd83f0e95b17304728893328d08075013a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_40_500_1.parquet",
+      "sha256": "37b6fdf023e911d8b9ce900fcf96adb76182638258d8724bbe99a5418cb2c7ca"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_20_500_0.parquet",
+      "sha256": "23f1dc04b8679236a508183da6d45d112e12a4676211200cebe76e0fb01c6c9f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_20_500_0.parquet",
+      "sha256": "bea06a5f96f7304ab259287f99ab3032016114308b68e64d9f8d26b1c093d509"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_20_500_0.parquet",
+      "sha256": "3d5334d3992dbef7bf376c0007e7dbbf6bee8cab426b3549f867ed5ae420dd95"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_20_500_1.parquet",
+      "sha256": "1561b03545e872515898aedd18a948c70108455b64b5aa9232fe3ff7f7d68363"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_20_500_1.parquet",
+      "sha256": "12969c525bbcb46cc6294a25e49175097db666cc7a1ca3a74dae5a3bbdf762bf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_20_500_1.parquet",
+      "sha256": "2c4fb1b6bb3adfbee72374d7b98e2911b161bfc50c9aaf289e20c495a9f47c1b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_40_1000_0.parquet",
+      "sha256": "529dc9758eb2304453bf670f2022886f4844d396e7a02c11a081509d4d412b71"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_40_1000_0.parquet",
+      "sha256": "0850f4c526e1e604254af35b18b8046c78dfd0569d4f8bb8b0702ae2be84fee5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_40_1000_0.parquet",
+      "sha256": "2f4aad7052665eba20d74656ebaee7c43d1e7ad94d0f80a0e8495ce5682405e0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_0_40_1000_1.parquet",
+      "sha256": "d72f22e93050f4950b296e90e72c0998d5a7ca473b6fa6b2c88364ab9760ac55"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_0_40_1000_1.parquet",
+      "sha256": "21ffc31230db9233dbcd3ba8c55f82c3b13e37eaeb4f75e5cf2e034ede64ffa0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_0_40_1000_1.parquet",
+      "sha256": "95c3f8b9009e375a639052e6451230224c9f4eee977946e16657186e159fad36"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_40_500_0.parquet",
+      "sha256": "20196be7600c8d57771f978c6cbe8b00424151755b51fdce580edd92ec1746b3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_40_500_0.parquet",
+      "sha256": "11c9d216d45b9f6d0cf49e4eb6fb7a6579f5024b12ec81284757a79953afe04c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_40_500_0.parquet",
+      "sha256": "5630221c1179ef6c05b60de4a4da18e9f8fe5198bc806a3f0ec028134c9b970c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_40_500_1.parquet",
+      "sha256": "b74b8c8d4a1464692a8d04d02b6ccad52bcfd8db9ab38149869e2390ebbda7cb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_40_500_1.parquet",
+      "sha256": "d12465be97231a6ac2bd7aea771fbd9cce1351112d9b269bba7d91dc93040158"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_40_500_1.parquet",
+      "sha256": "4b68572c1bf46c292f2c6af9cac797766b19d026ec38b1163fd0de9b2d841b47"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_20_1000_0.parquet",
+      "sha256": "d865b4cf96f7e4d96b5927cab1ed89b0a45f5453a311742935fb103526085c19"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_20_1000_0.parquet",
+      "sha256": "39e8613e0481ad3e58c38f6a6c4b4c177867b9160d904d09c9b09dc4199d0f08"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_20_1000_0.parquet",
+      "sha256": "99c0dd2303090474fd378e91ad1fd6907ef5d78e70d7ca1cd24fe6c70a8ff2f7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_20_1000_1.parquet",
+      "sha256": "5bb40046d193a185a7df571c4b789512448feadac60dc37605d9542abcdc449c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_20_1000_1.parquet",
+      "sha256": "131a812e0a9bcc79d9ed3776614b070f6335bb5be887daef04f587fe891c54b7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_20_1000_1.parquet",
+      "sha256": "fbe692f1af832eacaa5c09163469b01a0100b3085735f71831025fc2fa177770"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_40_1000_0.parquet",
+      "sha256": "7c5bcdd0060d19f9700f9e79953f137710e925d68d94581b842dde1787a0db55"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_40_1000_0.parquet",
+      "sha256": "81959ec58b1d6747d12f80239f50745c111f5e52b31b82b9d0be005521adb1f8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_40_1000_0.parquet",
+      "sha256": "f72429fc9685e50bdd9060b5e6bff77a9714c8fbdc7a5dd9132497517b22d2d9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_40_1000_1.parquet",
+      "sha256": "7e37581025bc556482733457cbf18914162bf2b2cda2d37e6c2973ad7330b73a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_40_1000_1.parquet",
+      "sha256": "deaac570b6419b897ccb0f19c577537784ba8a6b94d5298badb02c3ec07607d3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_40_1000_1.parquet",
+      "sha256": "cde6f88771766590163d95d1624efe943b19d35e8a9bfbf973742b7c8e933756"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_60_1000_0.parquet",
+      "sha256": "fbceacc8373aed49d0578897ba5894ae6738f3e54da084d995642f7cd9aa0aaf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_60_1000_0.parquet",
+      "sha256": "99cb5c13f5336721f12bbb6080e7d589cc8bf238e25b955f15386ac8eb5ada05"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_60_1000_0.parquet",
+      "sha256": "f44646276558fddc77f903fd3501933681165d070a09fb2635690cfe102485c0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_45_60_1000_1.parquet",
+      "sha256": "762c722e882f0ab3465f92553c8694b9ff519852cc174cc55cb8a3d21a07e910"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_45_60_1000_1.parquet",
+      "sha256": "e054f83d578632d93cec2e43f27018d8452c92019bcba26361ae2996071a38c6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_45_60_1000_1.parquet",
+      "sha256": "24e476ffce99e248467e9b1fcd69692b9f70a86cae3755ea94bfaa2357c4d80e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_20_1000_0.parquet",
+      "sha256": "81608c6380489ab8fe138584d4dafb2fda32fb8d03056bd7bef90a3cf9ffde16"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_20_1000_0.parquet",
+      "sha256": "62c35b6ee434a08d411bc6c9c935af4c3cdf229719c35441d4f32949a2a31714"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_20_1000_0.parquet",
+      "sha256": "4a09300717e5190231e68af566233ef83b2f556cf2176f5e62bac14acd42a5ea"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_20_1000_1.parquet",
+      "sha256": "8405f52ca3a9d954feec372372e4b740ecb31f6c24cfe2d3ec73903456059f39"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_20_1000_1.parquet",
+      "sha256": "ae98211881f9c8b8732a2a74e6e0f733c606f0b6c4f25a9fd1d968f2ee206240"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_20_1000_1.parquet",
+      "sha256": "3eb7e2ff97c00e8693694c79bbbc37abeaaf8176d7ac21f2205bfba420fd9392"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_40_1000_0.parquet",
+      "sha256": "6e0f0f406a58ad9b4552592d366fee53f6476f5d8c601fd114baa4377073049b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_40_1000_0.parquet",
+      "sha256": "dd13af145bb89151aff93355544dcc6c5b1a67af5637fccc3488c632f30e29f1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_40_1000_0.parquet",
+      "sha256": "b3493feed0fc7e3717d212a0c84c8339f12379c18a79f33fc867a958ccc4a20e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_40_1000_1.parquet",
+      "sha256": "3371c8e6f2e8dfe7d2e702be3df2e3c657ffb64398d9e791d5618b0d62266449"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_40_1000_1.parquet",
+      "sha256": "239b5e813cc3f31d3c75b1e4ec8454179a0570a03a8efa227e173099c72cb00b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_40_1000_1.parquet",
+      "sha256": "137d3273b6605527f9c2e4fd6ddb8c01d43add376a2dcb412fa7875488588ee1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_60_1000_0.parquet",
+      "sha256": "3f929c522b7663d45a9a7429521d96d05c0878e3f678e329fdbd200fe9b57358"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_60_1000_0.parquet",
+      "sha256": "7ac46feaa74c25d819ac3c03423f042830fadbb5debaa69ff0cd2eb0ad3febc4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_60_1000_0.parquet",
+      "sha256": "770c2300b88513a0a5484e5c53716db3feaca4b017e507d5d69b41030ca45b05"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/82/82_90_60_1000_1.parquet",
+      "sha256": "07c724ad3b02f985481976fa87ec45d88743a0a055651c5bd067dfacbe3049df"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/82/82_90_60_1000_1.parquet",
+      "sha256": "0cf1d4bf9bb53b845e7d96546f38648332b6993e930ff6da653f948ccf5ec017"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/82/82_90_60_1000_1.parquet",
+      "sha256": "f063ca24b77899883c9a7fd55e97f7fbfa9651cbf60f406edd4b6c4458ad8c2c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_40_500_0.parquet",
+      "sha256": "0fc4cf7680c8c9c00b385545d87d0a0d66bdf5c43f49c9e1a669caf40f77f29b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_40_500_0.parquet",
+      "sha256": "51de208c921e8a5de143644fa460e1a80e0449af3425fbbb48dfd7a006bd9d0b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_40_500_0.parquet",
+      "sha256": "08a8e0e38dc2422a78a8a2f6d141a3effe40412a9dd9d1d745b0bcce455e8b6f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_40_500_1.parquet",
+      "sha256": "6c7b4e03e91e4fdbf0ff8b989bd835f04204c3c754f9d4bec9146e55602f095f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_40_500_1.parquet",
+      "sha256": "889b330174daefd46345fbbb1e6c78ea83e23cbe4f7ba1f15651128b0efc5f7f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_40_500_1.parquet",
+      "sha256": "925fdec4423ad26476cc9e3a526f0eb22343abae0b2a4e9d49a965a5b1acf0e1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_20_500_0.parquet",
+      "sha256": "891c6a61ec3f4c873b01cadc786b77372592105f985fd4395662cd944a8548f1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_20_500_0.parquet",
+      "sha256": "51d2187b8ce0946db229351d000f55a38dcad1d57c2a0474bf99b244cf47eaf7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_20_500_0.parquet",
+      "sha256": "b2c23e668ec3654641cdb0dfbb9fed52c990953463a84f5dbab085b83c8c870d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_20_500_1.parquet",
+      "sha256": "b335f25430c18c33e57a3cc27f3e630e9be60fa0d7d63f6ed360999e6d3eb586"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_20_500_1.parquet",
+      "sha256": "2c9fc188014c535a5ec38dbe1c19c1765e9171e8d0859c60140dd4fa805ff786"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_20_500_1.parquet",
+      "sha256": "64e1e74254b5fac2f67d5f280de5b6466646ad6d588eaef39ab6e0b95a2309b7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_40_1000_0.parquet",
+      "sha256": "29d5d0881e27f33620ab0f54de0a412a4548022e6097d5540b484bb19b86b992"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_40_1000_0.parquet",
+      "sha256": "ebb85431969c9d313c4d886b95b3aead28a94d29967f20361cb4d82fdd30b3b6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_40_1000_0.parquet",
+      "sha256": "f9b3b8436be1ea0e6daffbf5d71b577988a290b45bd35cb4ad8b25353b54f0eb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_0_40_1000_1.parquet",
+      "sha256": "59e86aa5f182df621fd32f9778a8df2e108223e3381777c09544d5126a35cad6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_0_40_1000_1.parquet",
+      "sha256": "f1cae96b4bad8631989e93b933da27bbb737a4b1def6840d28dec2726795765e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_0_40_1000_1.parquet",
+      "sha256": "ccc6bb7899ed2e9f6780a08b42cd508a733d1beb05222454eee372999e836782"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_40_500_0.parquet",
+      "sha256": "eea90f48a38be1693c6a1ede39a2a17b8e01b9317cd9b3ec92fed8451c6ee89b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_40_500_0.parquet",
+      "sha256": "10641e2f40ede926c67ad8048155e8597cee8b745bd5ed9a36e82299cc759ec2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_40_500_0.parquet",
+      "sha256": "5d8b27087107bab462c842ed8eb305cd461943c61b753d93808fd9a1a2f50c58"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_40_500_1.parquet",
+      "sha256": "f4fd882f6cfa885cb09882d1b7b729477982252dbe008a9e091670e79ae57e19"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_40_500_1.parquet",
+      "sha256": "ae71ff8bd559a0218b4e7c9777ea7e40614e472c2889ac8ee09d059c6d0ac3e2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_40_500_1.parquet",
+      "sha256": "07c5a15baf066b2115a3e9fa08500b05e3378a99d0fb32fe82f34efc2825dfc8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_20_1000_0.parquet",
+      "sha256": "8473d79f2a613673f2b364a01edd171ba94f079d924a5fa0abf04db85a49c7f3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_20_1000_0.parquet",
+      "sha256": "8996b28631f23278b9eb7e96fcd922c7e304193c5cb68ffc22e9738ed31027de"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_20_1000_0.parquet",
+      "sha256": "23b5e1a9526b997dff744824ff51e7e7e512ae77f088f58e40e7c84b996ce438"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_20_1000_1.parquet",
+      "sha256": "1d95ed462563c1e180bfbf6d67b3ca94516adc86b26f50ce75f791a858a2dc55"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_20_1000_1.parquet",
+      "sha256": "58d15227ae93cc2ed9953a7e6e298c4c38734323dc4fbb0b206a198b04f30c48"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_20_1000_1.parquet",
+      "sha256": "7e1d2689d18e284ea979c2e54dacf2bd3675878f81b4f0970ba185883df2e31c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_40_1000_0.parquet",
+      "sha256": "51bc97ac8a0a75efc6719ef7d703d04f3dfbf7c048d63a5ff3a4b67fef552344"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_40_1000_0.parquet",
+      "sha256": "8243f7b4bea84b9cfba92188a256947d1df403793963c309f1b3b79ba2bb8224"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_40_1000_0.parquet",
+      "sha256": "e61b3ee1aa66fc9d49b8872d8f7bb4d34dcf39a812a8c473963978dac328fdd2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_40_1000_1.parquet",
+      "sha256": "ac151f01e6ba47ff8eb38ca5f7f02dcb59c78edaf4e1d6fa20627a466dd0f55d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_40_1000_1.parquet",
+      "sha256": "68aa74235d154d66fb39aac4c69df43fd525abbd20836f012b950481fb13b2a9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_40_1000_1.parquet",
+      "sha256": "fec1c2e7e09dc9091306cff687e2a936cdb9a0707906a9e83139882b8c001479"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_60_1000_0.parquet",
+      "sha256": "d9e411514dde5f31775821ea013b305f31acb3e63b44eaeee66e143b1b7f5ff4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_60_1000_0.parquet",
+      "sha256": "0eb7b9fdc7831dd88403d0b52eb433cd8a625c7de0db7b08b4c67a7d6a60a69e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_60_1000_0.parquet",
+      "sha256": "15b03fb788faee69becb376e6baf406ced5af00afd736b0bd9b59146cea22462"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_45_60_1000_1.parquet",
+      "sha256": "8f8b6f698fbb1f2a3ffe2899f04a616aad690b79efbec95c67770d27fd78d05b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_45_60_1000_1.parquet",
+      "sha256": "ab17c3914aab72267b1837611c9a3295296b821f332123f0c85419cc7ce914fa"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_45_60_1000_1.parquet",
+      "sha256": "b72faf9d3b893d3c05bbbc2627d5070f4930fdb63fdd8113ff4c51820072d6bf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_20_1000_0.parquet",
+      "sha256": "bf0fbe408fbf837a91bd5f54a0527f4fe715a47525f082f7ec9f7714c80dc814"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_20_1000_0.parquet",
+      "sha256": "f4da78032399171064ea7e68c42d80ef7efb5aecc8fc4615f394792ea8ca5867"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_20_1000_0.parquet",
+      "sha256": "a1110b6f168a60a489e226e74cae699c85ad8a405370a3e68be5248527614535"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_20_1000_1.parquet",
+      "sha256": "aca1401ccd1b681050662aaeb48bc12e8c63ec1a327fe0faa33d5686b32f9737"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_20_1000_1.parquet",
+      "sha256": "b570761ab011e56385f573884364065e952d943800212e777ba7beb7131863a7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_20_1000_1.parquet",
+      "sha256": "eb5679d809d84ca65fb6137334e1b9863ff5de26f06f69b59815c91c05192736"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_40_1000_0.parquet",
+      "sha256": "1ce452f613fdea2538b9a6592756234c3b265ea256c94d94119b5e6d2f585d43"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_40_1000_0.parquet",
+      "sha256": "ce658b63ed88a998ef2511bcdcd81786c30efe621d1f6c2f5dc637f9e329a240"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_40_1000_0.parquet",
+      "sha256": "714e0a6d6c5ac69abd14d929a4dc7a08a8a1f8053b0f8030b276eb12221811f5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_40_1000_1.parquet",
+      "sha256": "e720bf8cba498720f5919d0bf76e39f6448a265d1b654237d796b65572c2eb1d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_40_1000_1.parquet",
+      "sha256": "3f6abea9fd42b93a3385001a5120870027ca15c6a5e5a82cd7beaeca991e10b3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_40_1000_1.parquet",
+      "sha256": "d24b76b28518479cb7aae10f93f16188528b7459456d9017d3ccf5fb0d4f13b1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_60_1000_0.parquet",
+      "sha256": "218961e05c5fb3c1bbb42e2d754356285f0cbfc6e79b3f45597792c2b9730784"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_60_1000_0.parquet",
+      "sha256": "5ebfe06889b2175d2763f83c1a6eb2ab59e3c092d732541280e1e1bb118c0534"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_60_1000_0.parquet",
+      "sha256": "48b08106d7e3ce54d0ee863c63e325464e167147be5a742da7c8fa482c14624e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/87/87_90_60_1000_1.parquet",
+      "sha256": "d4789e0918d11cd7d7f0fe6949914f847196ee4ce405305e5e049faba0151bbf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/87/87_90_60_1000_1.parquet",
+      "sha256": "39b445036e6cfa98f61801b273e25bebb6b0bb1c885dc5b10ab26f69db8ae313"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/87/87_90_60_1000_1.parquet",
+      "sha256": "bf439276105bcaa97875959b73672df5009897a4ec66e5268450d9468691d89b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_40_500_0.parquet",
+      "sha256": "798c059804fd4f774981b6240cbdad5df92165ac6db3d1859c12c5e9b6e6b96e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_40_500_0.parquet",
+      "sha256": "5e8b33ac7b5a9bf0cc0933df74face8014501bbc14202d7c8297bb836100d5f4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_40_500_0.parquet",
+      "sha256": "10fcd5f5063e89d32e2f5ba0d24a27017bf63efe98cb50751595d3e9b1fd8a2a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_40_500_1.parquet",
+      "sha256": "335bcd63a7a4d9dbbe0f41d34d1a9e3b5b0a276bf7651e09ca273b1bf756b90f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_40_500_1.parquet",
+      "sha256": "c8776149a9c4d128ab78d9f213dbc384abb1dbf0bef40950db8f020ed3b12704"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_40_500_1.parquet",
+      "sha256": "a87ac035ed7054b13dcb9909ed1364ea145a1bec6a3e88d34ed97aab210acb81"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_20_500_0.parquet",
+      "sha256": "b4cd62314e4c9bce146c2ab547c715dccbe6bf6f4494b33c55cce4786811257e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_20_500_0.parquet",
+      "sha256": "310ef7508e0bfea2cd594267470550c36e44d355013c52bf99d7f3c616250f88"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_20_500_0.parquet",
+      "sha256": "368491437526b9d2a861a03218a45d44d177f16c042e6268db500babbd963640"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_20_500_1.parquet",
+      "sha256": "33d502f529433ae237315d2ecd622f96c757b51cae2ae157311e376bccf3b781"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_20_500_1.parquet",
+      "sha256": "c9d0185a2a5bf60c2256b8bf25641a8b1358940c59f90acdd8a507fb8166948b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_20_500_1.parquet",
+      "sha256": "5a3d86e5d3266da18f8a84db39a0b9171b8a4e89f47d2dcfa35d2f1eb452a654"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_40_1000_0.parquet",
+      "sha256": "1b6710c04ba4ce0b7631749e30360dd36a8b225fdf74e8bacdd8ecb29ba5b3af"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_40_1000_0.parquet",
+      "sha256": "6c79d470ac95c931f8c0c444f99c2a4abe50d139f69d4b43baba1d470d05bdd1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_40_1000_0.parquet",
+      "sha256": "d38aeffe945bf20680f8f4846cf4c80899b119c43110acb6b5f971638503653b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_0_40_1000_1.parquet",
+      "sha256": "22880a6ab4786f84f0cbe3b668fda90d43475dfe750ef2d7a2f184ce2b3fefba"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_0_40_1000_1.parquet",
+      "sha256": "b67c37952d1acf4ae3c34810d68c43f84eb0450aef78474e9a248987f756f876"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_0_40_1000_1.parquet",
+      "sha256": "674fe040a22c638e4865356d9facea1c322d23d50fbae91d745dad712a45077f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_40_500_0.parquet",
+      "sha256": "f65e9e6aa8c834e719d59f0272bb8eee0a473aa4651a3a6e4a790e3a0d66f3e1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_40_500_0.parquet",
+      "sha256": "b13fe54eae3f8a18b729238c9eeec585be93039c4b4131ec32f5b82c826b94d1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_40_500_0.parquet",
+      "sha256": "23ad6c9763fbcad09c151b2be8323eb8abf4bc51489a1cba073c3aef79e8de51"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_40_500_1.parquet",
+      "sha256": "feb4f3c429220c03b06b531ca545e25e76c39c7306ad8182d256f416f34df80c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_40_500_1.parquet",
+      "sha256": "4c0f30021cde84d9b0caf0eed739413b54a7c81bba5bb1211d5b63b2f2647dca"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_40_500_1.parquet",
+      "sha256": "0d85c866f11a49da85395420fcb5e55c6572ad7dd5ce2e994703c095a623a512"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_20_1000_0.parquet",
+      "sha256": "07a06006f75fad78379df837363837a3929e627981f0b5872f41fed9bf7d4fec"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_20_1000_0.parquet",
+      "sha256": "06bbaad4f42c1d7903e79d85b2c1d897feb6bc97a261fcbd5b629c94379f8e0a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_20_1000_0.parquet",
+      "sha256": "0360b80b111a58a5bb47e5dc679cb367c745a027c1f64d27ede1050eaf1ccb6e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_20_1000_1.parquet",
+      "sha256": "ffa8a6880699ae147f07be686c6c67687c93156a6dc317c39fe7b75fcfd94139"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_20_1000_1.parquet",
+      "sha256": "fc4da449ec61b0f46919eb995e97a02e4832f455e03cc208604d3a7b0258f29c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_20_1000_1.parquet",
+      "sha256": "44c39e3bd3552c82ce33ee228a8096e5f58c8275268d02924106ae39ccc978ff"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_40_1000_0.parquet",
+      "sha256": "818b61a64753aac8cd0e69dd946bac0d0b694d92220e14b9d48550dbf0eb5bc1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_40_1000_0.parquet",
+      "sha256": "2ddb26139ad0b625d2ec952c18ba9f964ab4860c905778cf4981e1ae52b5e1fa"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_40_1000_0.parquet",
+      "sha256": "76c66aa81e82bbb55d069d1439ee524c9473ec6228dd30f543b60dbce44c1ff6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_40_1000_1.parquet",
+      "sha256": "7ace7885369cfc7487579a6124d09decec8bfc37f6bc570505f9d0d9ec3aabc9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_40_1000_1.parquet",
+      "sha256": "42bdba7a7df1e9ef3f1d39b749373bfaba4e98ccc879f6464714d3c82c18a8b4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_40_1000_1.parquet",
+      "sha256": "cd9ec1775554a440b0ac7d6e97823d26fc0d3a7953b9744eebe890f7cee523c6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_60_1000_0.parquet",
+      "sha256": "5cec9093dbc3bba704f7ad73bde2b8a8d29775ac2624a52a56b27498d64e9d34"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_60_1000_0.parquet",
+      "sha256": "023c5fa34d6281dbef67b110c4e31f82400a8482e19942a3fcaf3e96eef98aa3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_60_1000_0.parquet",
+      "sha256": "45e43d6ffc448362a2b3522cc65609a8115c6aa7979ee8bbcf101e7c7f49b45e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_45_60_1000_1.parquet",
+      "sha256": "f5a92d44504501fc61e3b0ba60f8f6907d0e632dc017afa91fa7a2f86cf598de"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_45_60_1000_1.parquet",
+      "sha256": "db26219bb9431b04ba718703dc37f2de2938fe4424a305278b9b45b75e033b94"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_45_60_1000_1.parquet",
+      "sha256": "66fde0c084618cc9545188260f0c49d538ead85ef3b4b81215029cb5917c0e92"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_20_1000_0.parquet",
+      "sha256": "aadd99c060aa7f4d16ff2ea1b24032a74f3ac4223ba6f45e9d47d172c60e67a1"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_20_1000_0.parquet",
+      "sha256": "0049481375af36d04f5c64a3ee2f9388031eb6282544d2e726aba3a720c18af2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_20_1000_0.parquet",
+      "sha256": "e9b541ab7eadcb8c90dc2fbddb290e3a6ff2a4b974bb437592a770c7cb002142"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_20_1000_1.parquet",
+      "sha256": "bbee81da04ed3eb026a2d5ffd870c7f028148bc681fd33c67c8c142d5cb1f520"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_20_1000_1.parquet",
+      "sha256": "e0fa1f14ba38aeffe7c9855a43c3f179fe6b8117a936009b51fc3a12dd259ae0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_20_1000_1.parquet",
+      "sha256": "749516f8044f8cbf8509c2f803bba616b1386f9c762b94635e37dc641eac5bf3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_40_1000_0.parquet",
+      "sha256": "578758144e645c373cabd61e487c8248c7ef529a3294a027307481165a882b9e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_40_1000_0.parquet",
+      "sha256": "75ee37fbe0ef82b0e0692dc77e0b4e5385f5c966ebbc1f68b9f75c809ed71a43"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_40_1000_0.parquet",
+      "sha256": "767a46caf5ae42a4eb61d941a022720d879759087b46acce77ee1d67ebe73bec"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_40_1000_1.parquet",
+      "sha256": "be7f080673619a615115b3c624431705db4a6c0e6094ef7d06ae70db41612e38"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_40_1000_1.parquet",
+      "sha256": "6a1c94b0685ff85d6997ed1a831ea507468119817a17e9d46936963f532e3c19"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_40_1000_1.parquet",
+      "sha256": "14d4e01cd1fe387c35201380529959f6156044f839ce7ea5502e38b6aed42506"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_60_1000_0.parquet",
+      "sha256": "273c621b002882fb39a59009a2550e0950013819b620e77152ae1e37c32de176"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_60_1000_0.parquet",
+      "sha256": "01047e71ac1175943cbc7686cdc6b11b1f69d45738607c81de2a721daca90121"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_60_1000_0.parquet",
+      "sha256": "e9cd3ab8ea3b6b9c1067f32c9145364e16eb535ad685999eb483ac9c91a36803"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/102/102_90_60_1000_1.parquet",
+      "sha256": "fccf72c3ef74a9f76d786c2720b64c8f4c328230ebff132235b9ebb431bba0c0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/102/102_90_60_1000_1.parquet",
+      "sha256": "6f89ad7430b7ab72159b7af045ce1a3ae1d5817199b3ebc9d88de8ab47babf36"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/102/102_90_60_1000_1.parquet",
+      "sha256": "2444558ddd5485380e50ab1af58c3d2c1da06d8f5d3cb2fa63ea5c5982bc83ee"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_40_500_0.parquet",
+      "sha256": "137c179362a6c26255e38bd9830c4cce74b4cbd9de061a5ec0295be61ba4b49e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_40_500_0.parquet",
+      "sha256": "de7351741475516da729922d376edace5c56e9bf65909e2786fb77d50b45c6fb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_40_500_0.parquet",
+      "sha256": "9d279acfc7a2a0189abd3838a7ed064b7d704c515e7848859f5009828de1b504"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_40_500_1.parquet",
+      "sha256": "1610a33daaca6a26aba220e4b68d1a78c42187bd7e2ee2ad6b3d17864f89a29e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_40_500_1.parquet",
+      "sha256": "37dd0da5d69a471c0817e6c5d81722a38a3287617ea378c76487cc7e60e8b8fd"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_40_500_1.parquet",
+      "sha256": "c6e22e0692d2b8d16e37c4709ec452894bc9f043a6088e021ca22221d11c4627"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_20_500_0.parquet",
+      "sha256": "ffb6f6ee2b4e252893b3ab2ab5c0c231b81b1f8d909fe4320fcd9843b2a52526"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_20_500_0.parquet",
+      "sha256": "c0f676b89edd1db3647fb889ce294ae1eb31d302df95c2639889a38c08c576c5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_20_500_0.parquet",
+      "sha256": "7612b96e2fb82f5156f3cdf5a0fec43a413648e3d8ffd6d2b3c1704489b0c09a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_20_500_1.parquet",
+      "sha256": "b1bf8486cca2aba4670ce64adcd5ec6ce64c50b990282d428705d2776bfef3e7"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_20_500_1.parquet",
+      "sha256": "d836ab35c6509081de714093428b0da98f30a8810a6d6d3e70fbaae50adcaa5c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_20_500_1.parquet",
+      "sha256": "7911f2be02fd7cfe70352a9118034b53c0ab857015dd56c1e91e85b5152493d3"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_40_1000_0.parquet",
+      "sha256": "6f6bec9586361db003ad0efabbc392207ed21a315379df5c2d1f836049ade2e9"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_40_1000_0.parquet",
+      "sha256": "df4c2927ee690564b627b80de58a3ca406fd3050cfc38f8a6efbafed5ed224e5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_40_1000_0.parquet",
+      "sha256": "c26dbf54b7f0721f0f64d67c307fb1ebd6e3783ce6c87b4559aef9c621c96b31"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_0_40_1000_1.parquet",
+      "sha256": "51d59311f9c7798adcdfcb9bf92cb6c0878faf0affec80a6b8890d1c72e46840"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_0_40_1000_1.parquet",
+      "sha256": "f8be21c772479b0e804bd092b183ee126f77342a84b74e9bc36a51bd3c966048"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_0_40_1000_1.parquet",
+      "sha256": "30bcc29ca3ff42e6d5cc6010b840d164dbc4b6774725e019ee9dcea6df95c709"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_40_500_0.parquet",
+      "sha256": "5172d01cc6b5c5e0f9f27001e1dfe651fed85db67c87202f6324b0446118f676"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_40_500_0.parquet",
+      "sha256": "a30f5a0aaa793b96ce970117b0cb138314afe900b130cc7ba2ff74272a5f4595"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_40_500_0.parquet",
+      "sha256": "0b86c5b8e1513bfbfbdac8184ce6c0e3396cf1054feabab85b455b9a080a22b5"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_40_500_1.parquet",
+      "sha256": "9a2ee5acd19807d4bdf9442c8dd771689f539c356b11c8b35209505689b6fd9f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_40_500_1.parquet",
+      "sha256": "899e86b14845a5df181b3b8f3b0c1f807fea8a3f515ff7a9d0864cc3804a9f68"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_40_500_1.parquet",
+      "sha256": "23f652e75c90e36957bcb0b0ea3e7287e6f0bc3375d074c039d2ab991e404ca4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_20_1000_0.parquet",
+      "sha256": "daf403b9b60d7e9bd6055c5d57784b8e28b975c464e35767eb175669e4cf1bc4"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_20_1000_0.parquet",
+      "sha256": "c98c9b6898ca79cc665210c5591da1f8bf6d3ed54977ec0dde0208c141b80dd2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_20_1000_0.parquet",
+      "sha256": "2eed752cdc1ff9552ec7e697b207ab7b83874c8a2ee47bda47971e1e1beb5a8f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_20_1000_1.parquet",
+      "sha256": "f49e3c73516474ae8aaad78bece31dec71aa561a5ec88597019d436629bc07b6"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_20_1000_1.parquet",
+      "sha256": "9f61b53d0143c9b89217f84a80ef4e7c9142628edc3def6689fb77cda008f5de"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_20_1000_1.parquet",
+      "sha256": "b6df1abb6155302c73f3d8b1643f1e91813c27637115098146d145a11727c70c"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_40_1000_0.parquet",
+      "sha256": "ff061973723ded4817a38a0b79ab58e5a4679974e4ccc8c6e3719f3c79f784f8"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_40_1000_0.parquet",
+      "sha256": "ccf480ef05e7f3c51dc06343b9426a694807a1c9003cdea37eaa0eef509e4947"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_40_1000_0.parquet",
+      "sha256": "2d55a61726ccbf91470fc909df87806db6177789081d83247e2dc0d30e9c880b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_40_1000_1.parquet",
+      "sha256": "d69c03d29912924ea0db756f60bc6aaf4e81a94d82d44179d3ace8fb443c847d"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_40_1000_1.parquet",
+      "sha256": "aec9d1e5bf394214dc05912d7acb7343d9d1e45103b31d72e1f5f2964f1ef42e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_40_1000_1.parquet",
+      "sha256": "2cb0a0789e1b8e997f48bb99ee346a758df3a2db7e99726479c16679b291618e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_60_1000_0.parquet",
+      "sha256": "2fda2a5f8e72f4eac61877c82b68a3ccbd33592ec1044ea6855ea9c3e9931ed2"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_60_1000_0.parquet",
+      "sha256": "547460a62fe3e987df9cf8175ada5196b79860bd8e67fc217027b03b7eb82880"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_60_1000_0.parquet",
+      "sha256": "e371fcc51e10ac738dbaa32af864b0c876d61ad615d1d508d2c44ccac6e2a929"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_45_60_1000_1.parquet",
+      "sha256": "1f8a9264e1734e7ed48f12ace55752926e2d3d95b792cf0585bc8d8f4641ae9b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_45_60_1000_1.parquet",
+      "sha256": "d3b2f52fb4d7b5236ffc5738a5273e4cf92f492d28fc2e015e9ed76a20db5c38"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_45_60_1000_1.parquet",
+      "sha256": "cd6075083ab1a7dac166adef4e8f9c98d691cbc447cb85e48463dd75f5cc57ae"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_20_1000_0.parquet",
+      "sha256": "d300330ee95be52d23d6a04b255d501671c1e7509ddc85820581d5d662a479cf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_20_1000_0.parquet",
+      "sha256": "8a8fb607174187082a7ce671a1172dde69b4718615adad73eac608bc27b60ebb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_20_1000_0.parquet",
+      "sha256": "7972b71bdda83f40081038d1bbcee8b996e74f490eb4d3654277e66ac687ef14"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_20_1000_1.parquet",
+      "sha256": "b63ea79e7b8f74379e9faaed1487b8e00a9dbde64d0339b14fe2d0ade124347b"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_20_1000_1.parquet",
+      "sha256": "45cc0408c6cdfc309c55e6abb27b3e034656ea411c3fad2a2197f5ff35feba31"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_20_1000_1.parquet",
+      "sha256": "4546f5d206b3294f7e559b965170bbdb4645efaae3b7dd3076e7f0d3250ddcc0"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_40_1000_0.parquet",
+      "sha256": "f8b67bf49fb2615b0c8164972146e660c0cbb5de49bce80484f3d8d05ac48c71"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_40_1000_0.parquet",
+      "sha256": "5a573e52677176ed1705fb3787dd660700dd69f16594e3109af2ed56b2c520ac"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_40_1000_0.parquet",
+      "sha256": "7e5e74a14c0907c5b8ab8b43708fc690cfac8526a2e4e30822c12982f0b26fbf"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_40_1000_1.parquet",
+      "sha256": "36766642344d04a1d2785c728d0e8dba3f0ec263f09079db2b396cac31e7d88a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_40_1000_1.parquet",
+      "sha256": "cb4b054a422aadf32aadaae10093536ae14905f1c75b24d42f32d2ce63b21f6f"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_40_1000_1.parquet",
+      "sha256": "7ca6be2259b184cb65a57142495037d5ed632d013e287d01fcb47f11ddaafceb"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_60_1000_0.parquet",
+      "sha256": "619947c167dc12c1c71af3f0570889b881d0d0837b821cb0702a8d3a9d35bc9e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_60_1000_0.parquet",
+      "sha256": "b168ed7d157d3bd625c5a4dda200954542aae29e7cd1d79cdd6595fc0ef10754"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_60_1000_0.parquet",
+      "sha256": "ddc464696eda1ecf31dc5cd52efd321c1d9c453f3e9ce844e70aea592df4201e"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/accel/103/103_90_60_1000_1.parquet",
+      "sha256": "b96e2a825f11042286d26f2631093ada3b91c0028a2d2e171bbd8c4b541769ff"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/force/103/103_90_60_1000_1.parquet",
+      "sha256": "3b5b443a1efa5ffec74490428eb7ba857c50506c3333af74fc4b93c2cf266b7a"
+    },
+    {
+      "path": "data/raw/cluster/sensor_data/position/103/103_90_60_1000_1.parquet",
+      "sha256": "5676b2ad12c86ab920ce238ef28dc780dca54925bd03748a4d678b8be623ff2e"
+    }
+  ],
+  "accessed_surface_ids": [
+    0,
+    38,
+    49,
+    65,
+    74,
+    79,
+    82,
+    87,
+    102,
+    103
+  ],
+  "accessed_speeds_mm_s": [
+    20,
+    40,
+    60
+  ],
+  "selected_heading_frame": {
+    "sign": -1,
+    "offset_deg": -90.00048375902101,
+    "mean_absolute_residual_deg": 0.003976372621299617
+  },
+  "heading_frame_candidates": [
+    {
+      "sign": -1,
+      "offset_deg": -90.00048375902101,
+      "mean_absolute_residual_deg": 0.003976372621299617
+    },
+    {
+      "sign": 1,
+      "offset_deg": 161.56359915008838,
+      "mean_absolute_residual_deg": 66.68679641092658
+    }
+  ],
+  "diagnostic_recordings": 200,
+  "requested_recordings": 200.0,
+  "outputs": [
+    {
+      "path": "docs/contact_qc_records.csv",
+      "sha256": "81fefa379ed70fdee13e76d2433fa4abf292beb07d11f19f476e6fb09d1fc468"
+    },
+    {
+      "path": "docs/contact_qc_sensitivity_records.csv",
+      "sha256": "d3319a131d208123703d192754c01454fda7bf8d55311d033391bbd188d84383"
+    },
+    {
+      "path": "docs/contact_qc_sensitivity.csv",
+      "sha256": "bf7bdcb01a0122dd64b7db08100c6dad6005df3067aada6a9856f18e02d7f025"
+    },
+    {
+      "path": "docs/contact_qc_conditions.csv",
+      "sha256": "7bb50c6fb12301b3944c3adfb1102a409c713fc0cc58ca37d70ccfc322d07096"
+    },
+    {
+      "path": "docs/figures/contact_qc_review.png",
+      "sha256": "6bc5c2c56357abeaf03f521d0c183cf8c50fe6340f08be9dec65142193c0617a"
+    }
+  ],
+  "limitations": "Training-only 10 conditions, 0/45/90 degrees. Global heading frame is diagnostic, not calibration or a new eligibility filter. Force rows are not independent. Logged time remains uncalibrated. Pipeline QC and model fits unchanged."
+}

@@ -2,7 +2,7 @@
 
 A working development pipeline for the public-data stage of the [research plan](docs/research_plan.md) and [refined guide](docs/implementation_guide.md). It predicts vibration band power from brief observed contacts and requested interaction conditions.
 
-The implementation downloads bounded, revision-pinned Cluster subsets, audits synchronized channels, extracts nested support prefixes, constructs matched episodes, fits five baselines and a small masked encoder, and saves validation predictions and provenance. The expanded pilot covers five probe protocols and three durations. Sensor timing and manufacturing-family relationships still require review before a scientific evaluation.
+The implementation downloads bounded, revision-pinned Cluster subsets, audits synchronized channels, extracts nested support prefixes, constructs matched episodes, fits five baselines and a small masked encoder, and saves validation predictions and provenance. The expanded pilot covers five probe protocols and three durations. Continued development uses declared logged coordinates; physical timing calibration, manufacturing-family relationships and a fresh scientific test remain unresolved.
 
 ## Current result
 
@@ -10,9 +10,11 @@ The expanded real pilot uses ten training surfaces, two provisional validation s
 
 The separately fitted [omitted-speed experiment](docs/omitted_speed_report.md) now evaluates 30/50 mm/s after fitting and selecting only on 20/40/60 mm/s. In its single 0.5-second cell, fixed-feature regression scores 0.310 MAE, encoder 0.316, and interpolated retrieval 0.330. The encoder/retrieval difference is inconclusive on two specimens. This experiment uses different query conditions from the earlier pilot; its raw MAE is not a direct before/after comparison.
 
-The [boundary correction](docs/window_boundary_report.md) now crops raw acceleration before interpolation/filtering, with local padding and dependency provenance. All 53 tests pass, and outside-sample perturbations leave all 688 measured prepared windows bit-for-bit unchanged. Three fresh reruns preserve the original cohorts/episodes. Expanded retrieval/encoder MAE is 0.1726/0.2513; omitted fixed features/encoder/retrieval is 0.3096/0.3141/0.3300. The main findings are unchanged. Logged timing remains provisional; all 12 specimens stay development-exposed.
+The [boundary correction](docs/window_boundary_report.md) now crops raw acceleration before interpolation/filtering, with local padding and dependency provenance. At that milestone, 53 tests passed and outside-sample perturbations left all 688 measured prepared windows bit-for-bit unchanged. Three fresh reruns preserve the original cohorts/episodes. Expanded retrieval/encoder MAE is 0.1726/0.2513; omitted fixed features/encoder/retrieval is 0.3096/0.3141/0.3300. The main findings are unchanged. Physical timing remains unverified; all 12 specimens stay development-exposed.
 
 Synthetic fixtures also exercise all five probe protocols and 0.25/0.5/1-second supports. They check engineering behavior, not physical accuracy. Locked test evaluation, mechanics, and simulation are later milestones.
+
+The [clock/QC review](docs/clock_qc_review.md) compared 15 original CSVs with the mirror: rounded timestamps and float32 signals match exactly. The acquisition-rate discrepancy persists, so [logged_coordinates_v1](configs/clock_convention.json) explicitly limits duration/frequency claims. Across 200 training records, current QC retains every half-second and 199 one-second intervals; mean force is typically about 5% above nominal. Nearby smoothing changes coverage considerably. No model or eligibility rule changed. The current suite has 62 passing tests.
 
 ## Install
 
@@ -77,6 +79,17 @@ This comparison also requires the retained historical local roots: the project r
 
 Synthetic data must use their own output root when measured data already exist. Configuration paths are relative to the shell's current directory; `--root` selects where data and outputs live.
 
+## Reproduce clock and contact review
+
+After the omitted-speed download above, from the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/audit_source_clock.py
+.\.venv\Scripts\python.exe scripts/review_contact_qc.py
+```
+
+The source comparison fetches selected original archive members with validated HTTP ranges under a 32 MiB cap. Contact diagnostics use only cached known-speed training records, with a [prespecified sensitivity review](configs/qc_review.json). Both export derived tables/provenance in `docs/`; original CSVs stay ignored under `runs/clock_qc_review/source`. See the report for scope, rates, global heading frame, load/travel diagnostics and limitations.
+
 ## Outputs
 
 | Location | Contents |
@@ -107,4 +120,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml --root runs/b
 
 ## Next implementation milestone
 
-The raw acceleration boundary, outside-window guards and isolated matched reruns are complete. Next justify the clock or explicitly narrow the study to logged coordinates, review QC/coverage/exposure, and add repeatability/convergence diagnostics and a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.
+The raw acceleration boundary and bounded clock/QC review are complete. The study now explicitly uses logged coordinates while physical clock calibration remains unresolved. Next complete metadata/exposure and wider QC/coverage review, add repeatability/convergence and floor sensitivity diagnostics, then a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

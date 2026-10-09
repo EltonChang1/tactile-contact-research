@@ -1,6 +1,6 @@
 # Brief Contact Probes for Predicting Texture and Sliding Contact
 
-Prepared for Elton Chang — original plan 7 October 2026; revised after implementation review 8 October and boundary correction 9 October 2026, America/Los_Angeles
+Prepared for Elton Chang — original plan 7 October 2026; revised after implementation review 8 October and boundary/clock/QC review 9 October 2026, America/Los_Angeles
 
 **Status:** A public [development repository](https://github.com/EltonChang1/tactile-contact-research) and three bounded real-data experiments are complete. These establish implementation behavior and provisional comparisons. No locked scientific test, calibrated mechanical identification, real motion validation, or control experiment has been completed. Hardware access, novelty, and publication acceptance remain unestablished. This revision separates observed evidence from proposed work and preserves the original long-term objective.
 
@@ -16,7 +16,7 @@ The main candidate contribution is a careful study of contact information, gener
 
 The first mechanical scope is **sliding friction with a fixed contact geometry**. Add compliance after measuring indentation and calibrating fixture and probe deformation. A complete engine, full-body touch, universal material properties, and large world-model training are longer-term objectives.
 
-The immediate deliverable is a defensible study of information in brief contacts, including a result in which retrieval or fixed-feature regression wins. Keep the primary method comparison as encoder versus retrieval with one 0.5-second support, and the primary probe comparison as direction versus repetition with two 0.5-second contacts. The duration labels describe the current logged-time selection convention until the information-budget and clock gates below are met. Do not redefine the primary cell around a favorable development result.
+The immediate deliverable is a defensible study of information in brief contacts, including a result in which retrieval or fixed-feature regression wins. Keep the primary method comparison as encoder versus retrieval with one 0.5-second support, and the primary probe comparison as direction versus repetition with two 0.5-second contacts. Duration labels refer to logged-time extent under the declared [logged-coordinate convention](../configs/clock_convention.json); physical duration and frequency remain uncalibrated. Do not redefine the primary cell around a favorable development result.
 
 ## 2. Why the previous idea needs refinement
 
@@ -66,13 +66,13 @@ The development implementation includes pinned downloads and hashes, recording/Q
 
 The two experiments use different query grids and cannot isolate the effect of speed withholding by comparing their scores. Add a familiar-condition comparator on the identical grid, support/query definitions, specimens, and budgets before attributing a change to omitted-speed training.
 
-The review identified three limits. The acceleration-boundary correction is now completed; timing and scientific scope remain open:
+The review identified three limits. The acceleration-boundary correction and bounded clock investigation are complete; physical timing and scientific evaluation remain unresolved:
 
 1. **Strict acceleration information budget, corrected 9 October:** raw samples are now cropped before interpolation/filtering, with locally derived padding and rate estimates. Nine new checks pass in a 53-test suite; all 688 real windows are invariant to outside-acceleration perturbations. All methods/seeds were refitted in separate roots with matched raw intervals and episode inputs. Median mean log-feature changes are approximately 0.0038–0.0039 and include local-rate/edge effects. The [boundary report](window_boundary_report.md) preserves before/after results: retrieval still leads the expanded familiar pilot, and fixed features still lead omitted-speed MAE. This closes the acceleration-input boundary with retrospective QC held fixed, not physical clock or causal onset validation.
-2. **Clock interpretation:** the logged acceleration rate differs from the documented acquisition rate. The latest training-only sensitivity gives an approximately 1.44 median ratio of acquisition-index to logged duration and a median per-window mean absolute log-power difference of 0.3915. These numbers show consequential sensitivity; they do not identify the correct clock. See [timing_audit.md](timing_audit.md).
+2. **Clock interpretation, scoped 9 October:** fifteen original CSVs match the mirror exactly after nanosecond rounding and float32 conversion. Their original acceleration/force rows still average roughly 8.6 kHz against documented roughly 6 kHz acquisition/transmission. Acquisition timing remains unverified. Use `logged_coordinates_v1` for the limited observational study: logged-time windows and inverse-logged-time frequency coordinates, without calibrated physical-duration/frequency claims. A training-only 200-record contact review reports heading, force, travel and smoothing/gap sensitivity; it changes no QC/model setting. See the [clock/QC decision](clock_qc_review.md) and preserved [timing sensitivity](timing_audit.md).
 3. **Scope and exposure:** all twelve current specimens are development-exposed. The available-name review has scope `metadata_names_only`; fabrication-family independence is unknown. The full condition grid and a fresh scientific test have not been evaluated.
 
-Retain the verified budget guards and complete the timing/claim, coverage, and exposure decisions below before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
+Retain the verified budget guards and declared logged-coordinate scope; complete wider coverage, exposure, repeatability and feature/convergence review before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
 
 ### 4.1 Dataset and access
 
@@ -101,7 +101,9 @@ The current longest steady interval is selected retrospectively using motion and
 
 The acceleration-budget correction now selects each raw support/query interval before local interpolation, anti-aliasing and spectra. Manifests record allowed/dependency indices, local timestamps/grid/padding, zero extra observed context and output counts. Targeted perturbation checks plus the 688-window measured audit hold starts/QC fixed and confirm unchanged processed inputs; prediction-input guards then keep query labels separate. All caches, scalers, libraries, baselines and model seeds were rebuilt in isolated roots. Retain this convention and the historical results. A future causal variant must explicitly charge its observed history and detection/initialization overhead.
 
-Resolve acquisition versus delivery timing from authoritative acquisition/transport information when available. Choose the convention without using validation/test response errors to favor a clock. If the physical interpretation remains unavailable, explicitly scope a limited report to logged-coordinate windows and spectra, with both assumptions and their sensitivities disclosed. Do not present its absolute frequency or physical contact-time labels as calibrated. Such a fallback completes a limited observational study rather than proving the original physical-duration question.
+The bounded acquisition/delivery investigation now adopts [logged_coordinates_v1](../configs/clock_convention.json) without using predictor errors. Original-CSV agreement establishes preservation on five training records; available documentation does not calibrate acquisition timestamps. Continue a limited report on logged-coordinate windows and spectra with assumptions and sensitivity disclosed. Absolute physical frequency and physical contact-time labels remain uncalibrated. New authoritative transport/acquisition evidence requires a versioned decision and fresh matched preparation/comparisons; preserve the present results. This scope supports a limited observational study rather than proving the original physical-duration question.
+
+The [200-training-record QC review](clock_qc_review.md) retains all 0.5-second intervals and 199/200 one-second intervals at current settings. Eleven-point smoothing retains only 166 and 57 respectively; 31 points retain all, without proving higher accuracy. Tighter/doubled gap limits leave this bounded selection unchanged. Logged headings agree under a single global frame; median time-weighted force is 1.04865 times nominal. Keep settings and nominal input labels, disclose deviations, and audit wider intended/retained denominators before freezing scientific QC. Do not turn diagnostic heading/load results into post-hoc exclusions or predictor inputs.
 
 ### 4.3 Split and test protocol
 
@@ -311,7 +313,7 @@ The initial setup and bounded development milestones are complete. Continue from
 | Next gate | Work | Concrete output or decision |
 | --- | --- | --- |
 | Completed 9 October: strict acceleration budget | Raw-window-first processing, dependency provenance, perturbation checks and matched reruns | 53 passing tests; 688 invariant real windows; preserved historical results and [boundary report](window_boundary_report.md) |
-| Timing and claim scope | Investigate acquisition/delivery metadata without choosing a clock from response errors | Justified convention, or an explicit logged-coordinate study with calibrated physical-frequency/time claims deferred |
+| Completed 9 October: bounded timing/claim and contact review | Original-CSV comparison, declared logged-coordinate convention, training-only heading/loading/travel and seven-setting sensitivity | Fifteen preserved CSVs; 200 reviewed records; [decision/report](clock_qc_review.md); physical calibration deferred; 62 current tests |
 | Coverage, grouping, and error review | Review complete metadata with unknowns recorded; audit wider grids; inspect repeatability, convergence, floor sensitivity, and residuals | Coverage/exclusion tables, exposure ledger, conservative groups, practical-effect rationale, and matched-grid familiar/omitted-speed designs |
 | Scientific protocol freeze | Reserve fresh test groups; freeze features, QC, budgets, methods, tuning, comparisons, margins, and access rules; implement locked evaluation support | Immutable manifests and executable preflight; current twelve specimens remain development-exposed |
 | Locked evaluation and report | Run frozen models on reserved queries; report the full method/probe matrix, uncertainty, limitations, and reproducibility | Completed Stage A report, including negative/inconclusive results; clearly bounded claims |
@@ -322,8 +324,8 @@ The initial setup and bounded development milestones are complete. Continue from
 Immediate next actions:
 
 1. Retain the completed raw-boundary guards and matched reruns; use the new bounded roots for development and preserve historical pilots.
-2. Record the clock evidence and a time-bounded investigation outcome; select a justified convention or explicitly limited logged-coordinate scope.
-3. Extend metadata/QC coverage and the exposure ledger; inspect repeat variability, floor sensitivity, convergence, and specimen/condition errors before changing the model.
+2. Retain the completed clock evidence and explicitly limited logged-coordinate scope; reopen through versioned comparisons only if new authoritative timing evidence appears.
+3. Extend metadata/QC coverage and the exposure ledger beyond the completed 200-record training review; inspect repeat variability, floor sensitivity, convergence, and specimen/condition errors before changing the model.
 4. Specify the 76-condition familiar grid, 44 permitted-speed query grid, and 26 endpoint-safe omitted-speed grid, with matched-grid familiar comparators and prespecified QC intersections.
 5. Freeze fresh test groups and implement the scientific evaluation path only after the preceding decisions. Prepare the technical report and hardware capability/outreach drafts in parallel; do not imply that outreach has been authorized or sent.
 

@@ -1,0 +1,17 @@
+{
+  "convention_id": "logged_coordinates_v1",
+  "status": "Chosen for continued development and a limited observational report; scientific protocol freeze remains pending",
+  "decision_date": "2026-10-09",
+  "time_base": "timestamp_resample",
+  "sampling_rate_hz": 6000,
+  "raw_timestamp_units": "integer nanoseconds, preserved from original CSV logged seconds",
+  "processing_boundary": "raw_window_v1",
+  "support_durations_logged_s": [0.25, 0.5, 1.0],
+  "query_duration_logged_s": 0.5,
+  "spectral_band_edges_coordinate_hz": [24, 1000],
+  "interpretation": "Duration is logged-time extent. Frequency is inverse logged-time coordinate after local resampling. The 6000 Hz grid is computational, not verified acquisition rate.",
+  "physical_acquisition_clock_verified": false,
+  "selection_basis": "Original CSV conversion checks and documented ambiguity; no predictor error used to choose clock",
+  "deferred_claims": ["calibrated physical contact duration", "calibrated physical frequency", "online onset detection", "calibrated force mechanics"],
+  "reopening_rule": "New authoritative acquisition/transport evidence requires a versioned convention and fresh preparation/comparisons; preserve existing results."
+}

@@ -2,7 +2,7 @@
 
 ## Brief contact probes for predicting texture and sliding contact
 
-Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October and updated after the boundary correction 9 October 2026, America/Los_Angeles.
+Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October and updated after the boundary/clock/QC review 9 October 2026, America/Los_Angeles.
 
 **Purpose:** an implementation guide for the maintained [research plan](research_plan.md), originally supplied as `Tactile_Contact_Research_Plan_2026-10-07.md`. Use the stage gates below to decide which steps are ready to begin. The first completed study uses public data; later milestones add measured contact forces, simulation, and control.
 
@@ -19,7 +19,9 @@ These experiments use different query grids, so their errors do not isolate the 
 
 **Boundary correction completed 9 October:** `windows.py` now crops raw acceleration before interpolation/filtering and derives padding only from allowed samples. Nine new checks passed in a 53-test suite, and outside-sample perturbations left all 688 real prepared windows bit-for-bit unchanged. All methods/seeds were rerun in new roots. Expanded retrieval/encoder MAE is now 0.1726/0.2513; omitted fixed-feature/encoder/retrieval MAE is 0.3096/0.3141/0.3300, with the encoder/retrieval difference still inconclusive. See the [boundary report](window_boundary_report.md) for exact dependency provenance, feature changes, before/after scores and limitations. Historical reports remain intact.
 
-The next work is to justify or explicitly limit the clock interpretation, review QC/coverage/exposure and repeatability/convergence, then expand development comparisons and freeze a fresh test. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
+**Clock/QC review completed 9 October:** fifteen original CSVs preserve mirror timestamps/signals after declared conversion. Physical acquisition timing remains unverified, so [logged_coordinates_v1](../configs/clock_convention.json) explicitly scopes continued development to logged-time windows and frequency coordinates. Seven prespecified QC settings were reviewed on 200 known-speed training records: current settings retain every half-second interval and 199 one-second intervals; heading/load/travel diagnostics are exported. Settings and models remain unchanged. See the [decision/report](clock_qc_review.md). The current suite has 62 tests.
+
+Next complete wider metadata/QC coverage and exposure review, repeatability/convergence and floor sensitivity, then matched-grid development comparisons and a fresh test freeze. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
 
 ## Scope and stage gates
 
@@ -38,13 +40,13 @@ Investigate rig capabilities while Stage A runs. Stage B depends on calibrated i
 
 The first executable pipeline and both bounded comparisons are complete. Use the steps as contracts and checkpoints, not instructions to restart the project.
 
-1. The Step 8 raw boundary and matched reruns are complete. Revisit Step 6 next for clock evidence/claim scope and retrospective QC robustness.
+1. The Step 8 raw boundary and matched reruns, plus Step 6 bounded clock/QC review, are complete. Retain the declared logged-coordinate scope; physical calibration remains unresolved.
 2. Complete the exposure/coverage review in Steps 5–7; all 12 existing specimens remain in the development pool.
 3. Use Steps 11–17 for broader development diagnostics, a matched-grid familiar/omitted comparison, and a fresh locked test after modest selection and convergence review.
 4. Investigate Step 18 in parallel. Start measured mechanics only when its calibration and measurement gate is satisfied; Steps 23–25 retain their additional validation gates.
 5. Maintain Step 26 throughout. Preserve historical results and label revisions so the original negative and inconclusive findings remain visible.
 
-The 8 October reassessment changed documentation and priorities; the 9 October implementation now completes the raw-window correction and matched development reruns. A scientific test remains pending.
+The 8 October reassessment changed documentation and priorities; the 9 October implementation completes the raw-window correction, matched development reruns and bounded clock/QC review. Wider coverage and a scientific test remain pending.
 
 ## Step 1. Define one primary scientific question
 
@@ -209,13 +211,13 @@ Current measured QC fits a local quadratic to **21 native position samples at th
 
 The fixed query duration is now **0.5 seconds** for every method. Support durations are 0.25/0.5/1 seconds. The initial, expanded and omitted runs passed QC for all 120/192/256 requested recording triplets respectively. That success applies to bounded selections, not the whole grid.
 
-The logged acceleration rate averages about 8.63 kHz. The current provisional path interpolates at the rounded median logged rate and anti-alias resamples to 6 kHz. Training-only sensitivity compares timestamp-selected raw spans against contiguous nominal-6-kHz index timing: the omitted run's median nominal-duration ratio is 1.44 and median log-feature difference 0.3915. Different nominal budgets make this a sensitivity diagnostic, not a matched-budget proof or clock calibration. See [timing audit](timing_audit.md).
+The logged acceleration rate averages about 8.63 kHz. The adopted logged-coordinate path interpolates at the rounded median local logged rate and anti-alias resamples to a computational 6 kHz grid. Training-only sensitivity compares timestamp-selected raw spans against contiguous nominal-6-kHz index timing: the omitted run's median nominal-duration ratio is 1.44 and median log-feature difference about 0.3914. Different nominal budgets make this a sensitivity diagnostic, not a matched-budget proof or clock calibration. See [timing audit](timing_audit.md) and the [corrected timing comparison](window_boundary_report.md).
 
-**Next timing decision:** compare representative mirror records with original CSVs and inspect available acquisition/transport metadata. Record evidence for the selected coordinate system, including unresolved delay/jitter. If no authoritative acquisition clock can be established, explicitly define a logged-time/nominal-frequency benchmark and limit claims accordingly. It can become a completed empirical study; it cannot establish calibrated physical frequency, physical probe duration or causal online latency. Changing the convention requires rebuilding all features, training statistics, libraries and methods on matched episodes.
+**Completed timing decision:** `scripts/audit_source_clock.py` compared five preselected training records across three channels with original Figshare version-6 CSVs using 18.6 MB of exact bounded ZIP ranges. All fifteen CSVs match rounded nanoseconds and float32 signals. The discrepancy persists in originals; acquisition/transport timing remains unexplained. [logged_coordinates_v1](../configs/clock_convention.json) adopts logged-time windows and inverse-logged-time spectra for a limited empirical study, with physical frequency, physical probe duration and causal online latency uncalibrated. No predictor errors chose the clock. Changing the convention requires a versioned decision and rebuilt features, training statistics, libraries and methods on matched episodes. See [clock/source provenance and limitations](clock_qc_review.md).
 
-**Next QC review:** inspect native versus fitted motion and window boundaries at several speeds/directions/loads and both repeats. Check measured heading against the dataset convention and nominal load against measured force separately; the current magnitude/contact threshold does not verify either. Evaluate predeclared nearby smoothing/gap settings without selecting by predictor error. Report attrition by specimen/category/condition/duration and characterize position paths. Existing synchronized plots cover reference examples; the broader cross-condition/repeat review is pending.
+**Completed bounded QC review:** `scripts/review_contact_qc.py` uses the [prespecified seven-setting review](../configs/qc_review.json) on 200 known-speed training records, ten conditions, both repeats. Current/11-point/31-point smoothing retains 200/166/200 full half-second and 199/57/200 full one-second intervals. Neighboring gap thresholds change no coverage here. A single global heading frame fits the three logged headings with maximum residual 0.0653 degrees; this is not independently tracked motion. Median time-weighted recorded force is 1.04865 × nominal and logged-position travel is 0.99062 × nominal distance. Retrospective diagnostic smoothing may use neighboring position samples; these quantities never enter predictor inputs. Retain current settings, publish deviations and continue wider category/condition/duration attrition review. No heading/load exclusion or setting selected by model error is introduced.
 
-**Output:** current `audit_summary.json`, `motion_qc_comparison.json`, timing tables and audit plots; next, a timing decision record and QC/coverage review.
+**Output:** current `audit_summary.json`, `motion_qc_comparison.json`, timing tables and audit plots; now also [clock/contact review](clock_qc_review.md), hashed source comparisons and per-record/per-condition QC diagnostics. Wider metadata/coverage/exposure review remains next.
 
 **Checkpoint:** the chosen time convention has evidence or an explicit limitation; frozen QC defines valid targets without implying causal onset detection.
 

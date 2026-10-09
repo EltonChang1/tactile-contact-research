@@ -1,0 +1,16 @@
+{
+  "review_id": "known_speed_training_qc_v1",
+  "source_config": "configs/omitted_speed.yaml",
+  "scope": "All requested training records permitted by source config; no validation or omitted-speed raw records",
+  "diagnostic_support_duration_s": 0.5,
+  "variants": [
+    {"name": "current", "overrides": {}},
+    {"name": "smoother_11", "overrides": {"motion_smoothing_samples": 11}},
+    {"name": "smoother_31", "overrides": {"motion_smoothing_samples": 31}},
+    {"name": "accel_gap_half", "overrides": {"max_accel_gap_s": 0.005}},
+    {"name": "accel_gap_double", "overrides": {"max_accel_gap_s": 0.02}},
+    {"name": "aux_gap_half", "overrides": {"max_aux_gap_s": 0.025}},
+    {"name": "aux_gap_double", "overrides": {"max_aux_gap_s": 0.1}}
+  ],
+  "decision_rule": "Diagnostic sensitivity only. Do not select settings by model scores or automatically exclude by heading/load. Freeze full-grid QC after wider coverage review."
+}
