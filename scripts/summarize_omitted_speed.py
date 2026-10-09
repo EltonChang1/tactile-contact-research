@@ -20,6 +20,8 @@ def main():
     def read(path):
         return json.loads(path.read_text(encoding="utf-8"))
     manifest = read(root/"results/run_manifest.json")
+    if manifest.get("processing_boundary"):
+        raise ValueError("This exporter preserves the historical pilot; use summarize_window_boundary.py for corrected runs")
     episodes = read(root/"data/manifests/episode_summary.json")
     audit = read(root/"data/manifests/audit_summary.json")
     fit = read(tables/"fit_selection_manifest.json")

@@ -1,6 +1,6 @@
 # Brief Contact Probes for Predicting Texture and Sliding Contact
 
-Prepared for Elton Chang — original plan 7 October 2026; revised after implementation review 8 October 2026, America/Los_Angeles
+Prepared for Elton Chang — original plan 7 October 2026; revised after implementation review 8 October and boundary correction 9 October 2026, America/Los_Angeles
 
 **Status:** A public [development repository](https://github.com/EltonChang1/tactile-contact-research) and three bounded real-data experiments are complete. These establish implementation behavior and provisional comparisons. No locked scientific test, calibrated mechanical identification, real motion validation, or control experiment has been completed. Hardware access, novelty, and publication acceptance remain unestablished. This revision separates observed evidence from proposed work and preserves the original long-term objective.
 
@@ -66,13 +66,13 @@ The development implementation includes pinned downloads and hashes, recording/Q
 
 The two experiments use different query grids and cannot isolate the effect of speed withholding by comparing their scores. Add a familiar-condition comparator on the identical grid, support/query definitions, specimens, and budgets before attributing a change to omitted-speed training.
 
-Three unresolved issues limit the current interpretation:
+The review identified three limits. The acceleration-boundary correction is now completed; timing and scientific scope remain open:
 
-1. **Strict acceleration information budget:** the implementation interpolates/filters a whole recording before cropping the selected window. Acceleration outside the nominal window can therefore influence its input features. The amount is unquantified. This is preprocessing context beyond the stated support budget, rather than query-label access. Fix and verify it before claiming strict 0.25/0.5/1-second observation budgets.
+1. **Strict acceleration information budget, corrected 9 October:** raw samples are now cropped before interpolation/filtering, with locally derived padding and rate estimates. Nine new checks pass in a 53-test suite; all 688 real windows are invariant to outside-acceleration perturbations. All methods/seeds were refitted in separate roots with matched raw intervals and episode inputs. Median mean log-feature changes are approximately 0.0038–0.0039 and include local-rate/edge effects. The [boundary report](window_boundary_report.md) preserves before/after results: retrieval still leads the expanded familiar pilot, and fixed features still lead omitted-speed MAE. This closes the acceleration-input boundary with retrospective QC held fixed, not physical clock or causal onset validation.
 2. **Clock interpretation:** the logged acceleration rate differs from the documented acquisition rate. The latest training-only sensitivity gives an approximately 1.44 median ratio of acquisition-index to logged duration and a median per-window mean absolute log-power difference of 0.3915. These numbers show consequential sensitivity; they do not identify the correct clock. See [timing_audit.md](timing_audit.md).
 3. **Scope and exposure:** all twelve current specimens are development-exposed. The available-name review has scope `metadata_names_only`; fabrication-family independence is unknown. The full condition grid and a fresh scientific test have not been evaluated.
 
-Complete the budget, timing/claim, coverage, and exposure decisions below before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
+Retain the verified budget guards and complete the timing/claim, coverage, and exposure decisions below before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
 
 ### 4.1 Dataset and access
 
@@ -99,7 +99,7 @@ Document possible machine vibration and sensor resonances. Wrong-material and ac
 
 The current longest steady interval is selected retrospectively using motion and force over a recording. This is an offline benchmark selection rule, not an online detector that knows when a usable probe has begun. Keep query force confined to offline QC and hidden from prediction inputs. Audit how QC changes coverage by specimen, speed, direction, load, and duration; publish the intended and retained denominators rather than reporting only successful windows.
 
-Close the acceleration-budget gate before extending scientific duration claims: select the exact raw support interval first and perform interpolation, anti-aliasing, and spectral estimation using only its permitted raw samples, or use an explicitly causal method whose required observed history is charged to the budget. Record raw sample indices, timestamps, observed history, boundary treatment, and output sample counts. With the interval and QC decisions fixed, perturb acceleration before and after its permitted samples and verify that its features and predictions do not change. Apply the documented window rule to query targets as well. Rebuild caches and refit/rescore every method, including retrieval libraries and rescaling, on aligned episodes; preserve the existing development results as a separate version.
+The acceleration-budget correction now selects each raw support/query interval before local interpolation, anti-aliasing and spectra. Manifests record allowed/dependency indices, local timestamps/grid/padding, zero extra observed context and output counts. Targeted perturbation checks plus the 688-window measured audit hold starts/QC fixed and confirm unchanged processed inputs; prediction-input guards then keep query labels separate. All caches, scalers, libraries, baselines and model seeds were rebuilt in isolated roots. Retain this convention and the historical results. A future causal variant must explicitly charge its observed history and detection/initialization overhead.
 
 Resolve acquisition versus delivery timing from authoritative acquisition/transport information when available. Choose the convention without using validation/test response errors to favor a clock. If the physical interpretation remains unavailable, explicitly scope a limited report to logged-coordinate windows and spectra, with both assumptions and their sensitivities disclosed. Do not present its absolute frequency or physical contact-time labels as calibrated. Such a fallback completes a limited observational study rather than proving the original physical-duration question.
 
@@ -310,7 +310,7 @@ The initial setup and bounded development milestones are complete. Continue from
 
 | Next gate | Work | Concrete output or decision |
 | --- | --- | --- |
-| Strict acceleration budget | Prepare raw-window-first or causal-history-charged support; verify outside-window perturbation invariance and sample provenance | Quantified permitted inputs; rebuilt features/episodes; all methods refitted and rescored on aligned budgets |
+| Completed 9 October: strict acceleration budget | Raw-window-first processing, dependency provenance, perturbation checks and matched reruns | 53 passing tests; 688 invariant real windows; preserved historical results and [boundary report](window_boundary_report.md) |
 | Timing and claim scope | Investigate acquisition/delivery metadata without choosing a clock from response errors | Justified convention, or an explicit logged-coordinate study with calibrated physical-frequency/time claims deferred |
 | Coverage, grouping, and error review | Review complete metadata with unknowns recorded; audit wider grids; inspect repeatability, convergence, floor sensitivity, and residuals | Coverage/exclusion tables, exposure ledger, conservative groups, practical-effect rationale, and matched-grid familiar/omitted-speed designs |
 | Scientific protocol freeze | Reserve fresh test groups; freeze features, QC, budgets, methods, tuning, comparisons, margins, and access rules; implement locked evaluation support | Immutable manifests and executable preflight; current twelve specimens remain development-exposed |
@@ -321,7 +321,7 @@ The initial setup and bounded development milestones are complete. Continue from
 
 Immediate next actions:
 
-1. Correct the outside-window acceleration dependency, verify raw-boundary provenance and perturbation invariance, then rebuild and rerun the development comparisons without overwriting the published pilots.
+1. Retain the completed raw-boundary guards and matched reruns; use the new bounded roots for development and preserve historical pilots.
 2. Record the clock evidence and a time-bounded investigation outcome; select a justified convention or explicitly limited logged-coordinate scope.
 3. Extend metadata/QC coverage and the exposure ledger; inspect repeat variability, floor sensitivity, convergence, and specimen/condition errors before changing the model.
 4. Specify the 76-condition familiar grid, 44 permitted-speed query grid, and 26 endpoint-safe omitted-speed grid, with matched-grid familiar comparators and prespecified QC intersections.

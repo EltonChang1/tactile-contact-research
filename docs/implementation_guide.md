@@ -2,24 +2,24 @@
 
 ## Brief contact probes for predicting texture and sliding contact
 
-Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October 2026, America/Los_Angeles.
+Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October and updated after the boundary correction 9 October 2026, America/Los_Angeles.
 
 **Purpose:** an implementation guide for the maintained [research plan](research_plan.md), originally supplied as `Tactile_Contact_Research_Plan_2026-10-07.md`. Use the stage gates below to decide which steps are ready to begin. The first completed study uses public data; later milestones add measured contact forces, simulation, and control.
 
 The public study develops the **tactile observation model**: what a robot should sense under a requested contact. The mechanical study develops the **contact law**: forces that influence motion. A useful world model ultimately needs both. Starting with public data lets you test whether brief observations contain transferable information and establish reliable evaluation methods before investing in a force rig. Vibration prediction alone does not identify an intrinsic material law.
 
-**Status as of 8 October 2026:** an executable [public repository](https://github.com/EltonChang1/tactile-contact-research) now supports bounded real-data and synthetic development experiments. The initial pilot, expanded five-protocol/three-duration comparison, and separately fitted omitted-speed experiment have completed. Numerical results and provenance are in [development status](development_status.md), [expanded results](expanded_pilot_report.md), and [omitted-speed results](omitted_speed_report.md). No locked scientific test, force identification, simulator validation, or control experiment has run.
+**Status as of 9 October 2026:** an executable [public repository](https://github.com/EltonChang1/tactile-contact-research) now supports bounded real-data and synthetic development experiments. The initial pilot, expanded five-protocol/three-duration comparison, and separately fitted omitted-speed experiment have completed. Numerical results and provenance are in [development status](development_status.md), [expanded results](expanded_pilot_report.md), and [omitted-speed results](omitted_speed_report.md). No locked scientific test, force identification, simulator validation, or control experiment has run.
 
-| Development result, single 0.5-second support | Retrieval MAE | Fixed-feature MAE | Encoder MAE | Interpretation |
+| Historical development result, single 0.5-second support | Retrieval MAE | Fixed-feature MAE | Encoder MAE | Interpretation |
 | --- | --- | --- | --- | --- |
 | Expanded familiar-condition pilot | 0.1724 | 0.2006 | 0.2492 | Retrieval leads; wrong support worsens encoder MAE to 0.5837 |
 | Separately fitted omitted-speed pilot | 0.3298 | 0.3098 | 0.3158 | Encoder/retrieval difference is inconclusive on two specimens |
 
 These experiments use different query grids, so their errors do not isolate the effect of omitting speeds. The repeatedly used specimens are development data. The [name-based specimen review](specimen_group_audit.md) does not verify manufacturing-family independence. Current timing sensitivity demonstrates a consequential clock ambiguity, rather than resolving it.
 
-**New preparation finding:** `windows.py` interpolates and anti-alias filters the whole acceleration recording before cropping the declared support interval. Outside-window raw acceleration can therefore influence support features. The magnitude has not been measured; this is unaccounted temporal context, not evidence of hidden query-label input. Existing prefix checks establish interval bookkeeping, not a strict information boundary. Step 8 specifies the correction and verification required before interpreting the curves as strict probe-duration results. Existing reports remain historical, provisional development results.
+**Boundary correction completed 9 October:** `windows.py` now crops raw acceleration before interpolation/filtering and derives padding only from allowed samples. Nine new checks passed in a 53-test suite, and outside-sample perturbations left all 688 real prepared windows bit-for-bit unchanged. All methods/seeds were rerun in new roots. Expanded retrieval/encoder MAE is now 0.1726/0.2513; omitted fixed-feature/encoder/retrieval MAE is 0.3096/0.3141/0.3300, with the encoder/retrieval difference still inconclusive. See the [boundary report](window_boundary_report.md) for exact dependency provenance, feature changes, before/after scores and limitations. Historical reports remain intact.
 
-The next work is to repair and verify that boundary, justify or explicitly limit the clock interpretation, then expand development coverage and freeze a fresh test. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
+The next work is to justify or explicitly limit the clock interpretation, review QC/coverage/exposure and repeatability/convergence, then expand development comparisons and freeze a fresh test. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
 
 ## Scope and stage gates
 
@@ -38,13 +38,13 @@ Investigate rig capabilities while Stage A runs. Stage B depends on calibrated i
 
 The first executable pipeline and both bounded comparisons are complete. Use the steps as contracts and checkpoints, not instructions to restart the project.
 
-1. Revisit Steps 6–9 first: strict acceleration boundaries, timing, retrospective QC robustness, and regenerated features/results.
+1. The Step 8 raw boundary and matched reruns are complete. Revisit Step 6 next for clock evidence/claim scope and retrospective QC robustness.
 2. Complete the exposure/coverage review in Steps 5–7; all 12 existing specimens remain in the development pool.
 3. Use Steps 11–17 for broader development diagnostics, a matched-grid familiar/omitted comparison, and a fresh locked test after modest selection and convergence review.
 4. Investigate Step 18 in parallel. Start measured mechanics only when its calibration and measurement gate is satisfied; Steps 23–25 retain their additional validation gates.
 5. Maintain Step 26 throughout. Preserve historical results and label revisions so the original negative and inconclusive findings remain visible.
 
-This revision changes documentation and priorities. It does not implement the preparation correction or execute a new benchmark.
+The 8 October reassessment changed documentation and priorities; the 9 October implementation now completes the raw-window correction and matched development reruns. A scientific test remains pending.
 
 ## Step 1. Define one primary scientific question
 
@@ -134,7 +134,7 @@ For Linux/macOS use `python3 -m venv .venv`, then `.venv/bin/python -m pip insta
 | `src/tactile_contact/cli.py`, `pipeline.py`, `config.py` | CLI orchestration, configuration validation, provenance/reuse guards |
 | `download.py`, `records.py` | Bounded pinned HTTPS downloads, raw hashes, recording keys |
 | `audit.py`, `timing.py` | Recording/specimen manifests, retrospective motion QC, clock sensitivity |
-| `windows.py`, `signal.py` | Window preparation, full PSD and spectral bands; boundary correction remains pending |
+| `windows.py`, `signal.py` | Raw-window-bounded preparation, full PSD and spectral bands |
 | `episodes.py` | Cohort/episode construction, prediction-input whitelist, train-only scaler |
 | `baselines.py`, `models.py`, `training.py` | Five baselines, masked encoder, balanced training and checkpoint selection |
 | `evaluation.py`, `metrics.py` | Partitioned scores, paired contrasts, diagnostics and group bootstrap |
@@ -166,10 +166,9 @@ Force and position use corresponding paths. Configuration and source inventory, 
 For example, from the repository root:
 
 ```powershell
-.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe scripts/summarize_expanded_pilot.py --root runs/expanded_pilot
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
 ```
 
 `--root` isolates prepared features, models and results; `--data-root .` shares the pinned measured raw cache. Config paths resolve from the shell's working directory. `run` prepares fresh unless `--reuse` is supplied; reuse verifies configuration and preparation-code hashes. After changing preparation, rebuild and rerun all methods in a new output root, retaining historical results.
@@ -238,29 +237,29 @@ Keep seeds `[0,1,2]` and declare any additional group-split or reverse-repeat ro
 
 Define one start from a retrospectively selected steady interval and nested **raw** support intervals of 0.25/0.5/1 seconds. Query duration is fixed at 0.5 seconds in a different condition recording. Approach, stabilization, repositioning and retrospective start selection are outside the current observation budget. This is an offline steady-contact prediction experiment; online use would require causal detection and charged overhead.
 
-**Current defect:** `extract_windows` calls `uniform_acceleration` on the full recording, then crops a processed prefix. Interpolation may bracket with a raw sample outside the allowed interval, and the centered polyphase filter may use neighboring raw acceleration before/after it. Recorded `raw_start_index`/`raw_end_index_exclusive` describe the nominal interval, not every filter dependency. Metadata prefix checks therefore do not establish strict bounded observations. SciPy documents the [zero-phase FIR and padding behavior](https://docs.scipy.org/doc/scipy-1.15.1/reference/generated/scipy.signal.resample_poly.html). The size of the resulting feature effect is still unquantified.
+**Historical defect, corrected 9 October:** preparation previously interpolated/filtered a full recording before cropping a processed prefix. Interpolation may bracket with a raw sample outside the allowed interval, and the centered polyphase filter may use neighboring raw acceleration before/after it. The historical raw indices described only the nominal interval. Current manifests additionally record processing-dependency indices, zero observed context before/after, endpoint padding, source-grid scope/count, output count and polyphase factors/filter design. The new tests verify isolation beyond metadata prefix bookkeeping. SciPy documents the [zero-phase FIR and padding behavior](https://docs.scipy.org/doc/scipy-1.15.1/reference/generated/scipy.signal.resample_poly.html). Across 688 matched windows, median per-window mean log-feature change is approximately 0.0038–0.0039 across experiments; this includes both local edges and locally estimated grid rates, rather than isolating outside-context influence.
 
-**Required correction before widening the benchmark:** choose and document either raw-window-first interpolation/filtering with padding derived only from allowed samples, or causal processing with every history/initialization sample and latency explicitly included in the budget. Do not silently borrow a bracket sample, filter margin or another repetition. Preserve exactly `round(duration_s * fs)` output samples where the declared local-processing convention supports them, reject insufficient intervals and record the local padding/grid rule. Keep physical amplitude and anti-alias filtering; interpolation alone is not an anti-alias filter.
+**Implemented convention:** select raw samples in `[start, start + duration)`, estimate the source rate from allowed timestamps, interpolate a local grid with endpoint holding, and anti-alias resample with local line padding. Each output has exactly `round(duration * fs)` samples. Causal processing is a separate future experiment requiring fully charged history/initialization and latency. Do not silently borrow a bracket sample, filter margin or another repetition. Preserve exactly `round(duration_s * fs)` output samples where the declared local-processing convention supports them, reject insufficient intervals and record the local padding/grid rule. Keep physical amplitude and anti-alias filtering; interpolation alone is not an anti-alias filter.
 
 Nested raw observations are mandatory for duration comparisons. Independently filtered shorter windows may differ at their edges from a longer window's processed prefix. Do not enforce processed-prefix identity if achieving it requires future acceleration.
 
-Required verification/artifacts:
+Verification/artifacts completed for this convention (retain these guards on future changes):
 
 1. Hold the selected interval and motion metadata fixed, perturb raw acceleration outside **each** allowed support interval, and confirm its processed feature vector does not change. Cover the first/last samples and interpolation/filter boundaries at every duration. Test interval selection separately.
 2. Save exact allowed raw indices, actual processing dependencies, padding/history/filter margins and time convention. Require every dependency to lie inside the allowed interval or be explicitly charged.
 3. Invalidate old caches and rerun scalers, response libraries, baseline selection, every encoder seed and metrics on aligned episodes. Preserve old reports as provisional; report the measured before/after effect without assuming its magnitude.
 
-Current `windows.csv` stores IDs, split/role, duration, `start_s`/`end_s`, nominal conditions/repeat, `feature_path`, `source_grid_hz`, nominal raw indices, `window_config_hash` and `time_base_id`. Support-window force summaries and a processing-dependency manifest are **not implemented**. Recording-level force remains offline QC; future force-informed input variants must use only force within the observed support. Hidden query force may define target QC or a labeled oracle analysis, never normal prediction input.
+Current `windows.csv` stores IDs, split/role, duration, `start_s`/`end_s`, nominal conditions/repeat, `feature_path`, `source_grid_hz`, nominal raw indices, `window_config_hash` and `time_base_id`. Processing dependencies are now stored per window. Support-window force summaries remain **unimplemented**. Recording-level force remains offline QC; future force-informed input variants must use only force within the observed support. Hidden query force may define target QC or a labeled oracle analysis, never normal prediction input.
 
 Current training and evaluation use deterministic cached starts; random-start augmentation and centered-window sensitivity are optional, unimplemented additions. Query QC is a frozen offline target definition and does not imply a deployed predictor knows future force/motion validity.
 
-**Output:** corrected bounded preparation, dependency provenance, verification and regenerated deterministic windows/results.
+**Output completed:** corrected bounded preparation, dependency provenance, nine boundary tests, a 688-window real audit and regenerated deterministic windows/results in isolated roots.
 
 **Checkpoint:** outside-window acceleration cannot change a support feature except through explicitly budgeted observations; raw-duration nesting and target-input separation both hold.
 
 ## Step 9. Implement spectral features with physical amplitude preserved
 
-Spectral extraction is implemented in `src/tactile_contact/signal.py`; use that authoritative helper rather than copying another guide implementation. After correcting Step 8, current settings are 6000 Hz in the declared coordinate system, 0.125-second Hann Welch segments, 50% overlap and 32 linear bands from 24 to 1000 Hz per axis. Absolute physical Hz remains conditional on Step 6's clock evidence.
+Spectral extraction is implemented in `src/tactile_contact/signal.py`; use that authoritative helper rather than copying another guide implementation. With Step 8's correction implemented, current settings are 6000 Hz in the declared coordinate system, 0.125-second Hann Welch segments, 50% overlap and 32 linear bands from 24 to 1000 Hz per axis. Absolute physical Hz remains conditional on Step 6's clock evidence.
 
 Convert g to SI with 9.80665, demean each local window and preserve amplitude; do not normalize each contact to unit variance. Cache full PSD, actual frequency grid, band edges and bin counts, linear powers, `log10(power + 1e-10)` and modeled-band RMS. Integrate with rectangular sums of PSD-bin centers times bin width, assigning every modeled bin once and including the final 1000 Hz bin. Use this same convention for targets and rescaled PSDs. Changes require matched regeneration of all methods.
 
@@ -509,14 +508,14 @@ Before real training, set Python, NumPy, and PyTorch seeds. If using CUDA, docum
 
 ## Step 14. Perform engineering checks before scientific evaluation
 
-The last source-code verification completed **44 tests** plus compilation. See [implementation checks](implementation_checks.md). Tests cover spectra/units, motion fitting, split and query exclusions, cached prefix bookkeeping, masked/order-invariant prediction inputs, train-only fitting, retrieval aggregation, wrong support, bootstrap guards, checkpoint restoration, tiny-fit optimization, provenance/reuse and omitted-speed isolation. Synthetic behavior is an engineering check, not physical contact validation.
+The latest source-code verification completed **53 tests** plus compilation, including nine new boundary checks. See [implementation checks](implementation_checks.md). Tests cover spectra/units, motion fitting, split and query exclusions, cached prefix bookkeeping, masked/order-invariant prediction inputs, train-only fitting, retrieval aggregation, wrong support, bootstrap guards, checkpoint restoration, tiny-fit optimization, provenance/reuse and omitted-speed isolation. Synthetic behavior is an engineering check, not physical contact validation.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m compileall -q src tests scripts
 ```
 
-**Remaining required checks:** Step 8's outside-window perturbation/dependency tests; exposure-aware fresh-test exclusion; full-grid condition-mask counts/coverage and matched-grid identity; and a frozen scoring path that cannot select/refit from test labels. Current configuration deliberately rejects `stage: test`. The locked-test interface has not been implemented. Existing tests do not certify calibrated acquisition timing, measured distance, heading/force control or manufacturing-family independence.
+**Remaining required checks:** exposure-aware fresh-test exclusion; full-grid condition-mask coverage and matched-grid identity; and a frozen scoring path that cannot select/refit from test labels. Step 8's targeted tests and real outside-window audit now pass. Current configuration deliberately rejects `stage: test`. The locked-test interface has not been implemented. Existing tests do not certify calibrated acquisition timing, measured distance, heading/force control or manufacturing-family independence.
 
 Keep tiny-fit/debugging results separate from scientific comparisons. Inspect gradient flow, raw loss scale and support variation if mean predictions persist; a functioning model is not evidence it outperforms retrieval.
 
@@ -1017,7 +1016,7 @@ The credible evidence is your scientific question, experimental ownership, valid
 
 | Next gate | Concrete action | Exit evidence |
 | --- | --- | --- |
-| 1. Strict observation boundary | Correct window-local or charged causal preparation; perturb outside samples; rebuild every method in new roots | Dependency provenance, passing boundary checks, revised aligned pilot tables |
+| Completed 9 October: strict acceleration boundary | Raw-window-first preparation, outside-sample tests/audit, every method rerun in new roots | 53 passing tests, 688 invariant real windows, [aligned before/after report](window_boundary_report.md) |
 | 2. Timing and QC scope | Compare original/mirror evidence, freeze justified or limited time convention, review motion/heading/load and attrition | Timing decision, QC sensitivity and coverage matrix |
 | 3. Development diagnostics | Exposure/name-group review, repeat differences, primary/equal-cell convergence, floor/range checks, broader cohort and exact masks | Recorded modest choices; matched-grid familiar/omitted comparison |
 | 4. Fresh-test freeze | Reserve unexposed groups, implement frozen scoring, set primary margin/secondary policy and planned robustness | Versioned freeze bundle and test-interface checks |
@@ -1040,7 +1039,7 @@ These are dependency gates, not a restart of completed download/training work or
 | Mechanical pilot, when feasible | Global coefficient, brief-force fit, modest extension, richer calibration | Held-out force error and parameter stability |
 | Restricted real dynamics, when feasible | Global, brief-contact, richer calibration | Motion error without future-state inputs |
 
-The development slice and bounded expanded/omitted matrix have run. Correct strict support preparation and regenerate the comparisons before expanding their scientific interpretation. Timing, broader coverage, repeatability and a fresh locked test are remaining gates. Category exclusion and globally omitted directions are optional exploratory stress tests. Adaptive next-probe selection, waveform synthesis, compliance, and sensor transfer need separately scoped experiments after the planned study is complete.
+The development slice and bounded expanded/omitted matrix have now been rerun with verified raw-window preparation. Keep the historical versions visible and preserve the current dependency guards before wider evaluation. Timing, broader coverage, repeatability and a fresh locked test are remaining gates. Category exclusion and globally omitted directions are optional exploratory stress tests. Adaptive next-probe selection, waveform synthesis, compliance, and sensor transfer need separately scoped experiments after the planned study is complete.
 
 ## Troubleshooting guide
 
@@ -1073,8 +1072,8 @@ The development slice and bounded expanded/omitted matrix have run. Correct stri
 
 ## Refinement and validation record
 
-The initial 8 October refinement checked source acquisition/schema statements, prior retrieval work, illustrative numerical/model/mechanics behavior, the 76-condition grid and 26 guide steps. Those syntax/synthetic checks were guide verification, not research findings. The implemented repository subsequently completed the initial, expanded and omitted-speed development runs; its last source-code suite passed 44 tests and compilation. Actual historical runtimes/results are recorded in [implementation checks](implementation_checks.md) and the three milestone reports.
+The initial 8 October refinement checked source acquisition/schema statements, prior retrieval work, illustrative numerical/model/mechanics behavior, the 76-condition grid and 26 guide steps. Those syntax/synthetic checks were guide verification, not research findings. The implemented repository subsequently completed the initial, expanded and omitted-speed development runs; the 8 October source-code suite passed 44 tests and compilation. Actual historical runtimes/results are recorded in [implementation checks](implementation_checks.md) and the three milestone reports.
 
 This reassessment reads the current package, configurations, manifests and saved results. It replaces hypothetical scripts with executed CLI/module contracts; fixes the 0.5-second query specification, nominal-distance terminology and 76/44/26 condition domains; reserves all exposed specimens for development; preserves negative/inconclusive comparisons; and makes strict processing boundaries, timing/claim scope, coverage/repeatability/convergence and frozen-test infrastructure the next gates. Mechanical/calibration stages remain future work and do not depend on a learned-model victory.
 
-The outside-window preparation dependence was identified by source inspection and SciPy's documented zero-phase filtering; no effect magnitude or correction is claimed. Existing prefix checks do not test it. This documentation-only revision runs no new scientific experiment and changes no model code, scores or historical run provenance. Updated Markdown structure, CLI/schema references and grid enumeration are checked before publication. The plan and guide describe required next implementation, not completed fixes.
+The 8 October inspection identified whole-record interpolation/filtering dependence. On 9 October, raw-window-first processing and dependency metadata were implemented, nine targeted tests passed within a 53-test suite, and all three development pipelines were refitted in separate roots. The real audit verifies 688 invariant windows and unchanged raw intervals/episode inputs. Local preparation changes are measured in the boundary report; historical run provenance remains preserved. Clock calibration, fresh-test evaluation and mechanics remain uncompleted. Documentation structure, CLI references, local links and example syntax are checked before publication.

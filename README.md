@@ -10,7 +10,7 @@ The expanded real pilot uses ten training surfaces, two provisional validation s
 
 The separately fitted [omitted-speed experiment](docs/omitted_speed_report.md) now evaluates 30/50 mm/s after fitting and selecting only on 20/40/60 mm/s. In its single 0.5-second cell, fixed-feature regression scores 0.310 MAE, encoder 0.316, and interpolated retrieval 0.330. The encoder/retrieval difference is inconclusive on two specimens. This experiment uses different query conditions from the earlier pilot; its raw MAE is not a direct before/after comparison.
 
-The [reassessed plan](docs/research_plan.md) and [guide](docs/implementation_guide.md) identify a preparation limitation: interpolation and anti-alias filtering currently precede cropping, so raw acceleration outside the declared support interval can influence features. Its magnitude is unquantified; strict duration claims require bounded preparation and aligned reruns. Logged timing also remains provisional. All 12 used specimens are development-exposed and will stay outside a future fresh scientific test.
+The [boundary correction](docs/window_boundary_report.md) now crops raw acceleration before interpolation/filtering, with local padding and dependency provenance. All 53 tests pass, and outside-sample perturbations leave all 688 measured prepared windows bit-for-bit unchanged. Three fresh reruns preserve the original cohorts/episodes. Expanded retrieval/encoder MAE is 0.1726/0.2513; omitted fixed features/encoder/retrieval is 0.3096/0.3141/0.3300. The main findings are unchanged. Logged timing remains provisional; all 12 specimens stay development-exposed.
 
 Synthetic fixtures also exercise all five probe protocols and 0.25/0.5/1-second supports. They check engineering behavior, not physical accuracy. Locked test evaluation, mechanics, and simulation are later milestones.
 
@@ -25,13 +25,12 @@ py -3.12 -m venv .venv
 
 For a particular CPU/CUDA PyTorch build, install it in that environment using the [official selector](https://pytorch.org/get-started/locally/) before installing the package. The local bootstrap reused installed numerical packages through `--system-site-packages`; the run's `results/environment.lock.txt` records that actual environment. A clean environment can use the commands above. Downloads use Python's HTTPS client and require no Hugging Face credentials.
 
-## Run the bounded real pilot
+## Run the current bounded real pilot
 
 ```powershell
-.\.venv\Scripts\python.exe -m tactile_contact download --config configs/pilot.yaml
-.\.venv\Scripts\python.exe -m tactile_contact audit --config configs/pilot.yaml
-.\.venv\Scripts\python.exe -m tactile_contact prepare --config configs/pilot.yaml
-.\.venv\Scripts\python.exe -m tactile_contact run --config configs/pilot.yaml --reuse
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/pilot.yaml --root runs/bounded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact prepare --config configs/pilot.yaml --root runs/bounded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/pilot.yaml --root runs/bounded_pilot --data-root . --reuse
 ```
 
 `run` without `--reuse` regenerates preparation first. `--reuse` requires matching configuration hashes. After changing preparation or feature code, run `prepare` again rather than reusing older caches. Raw downloads are immutable; hashes are checked on subsequent downloads. The default selection is 362 files, approximately 35 MB, rather than the full dataset.
@@ -39,26 +38,34 @@ For a particular CPU/CUDA PyTorch build, install it in that environment using th
 ## Run the expanded comparison
 
 ```powershell
-.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
-.\.venv\Scripts\python.exe scripts/summarize_expanded_pilot.py --root runs/expanded_pilot
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/bounded_expanded_pilot --data-root .
 ```
 
-The expanded selection has 578 files, approximately 62.5 MB. `--data-root .` shares pinned raw downloads with the initial pilot; preparation, fitted models, and results stay under `runs/expanded_pilot`. Reuse now also checks preparation source-code hashes. The four query conditions remain fixed while three additional support conditions enable the other protocols. This is a bounded development expansion; the full 76-condition scientific grid is still pending.
+The expanded selection has 578 files, approximately 62.5 MB. `--data-root .` shares pinned raw downloads with the initial pilot; preparation, fitted models, and results stay under `runs/bounded_expanded_pilot`. Reuse now also checks preparation source-code hashes. The four query conditions remain fixed while three additional support conditions enable the other protocols. This is a bounded development expansion; the full 76-condition scientific grid is still pending.
 
 ## Run the globally omitted-speed experiment
 
 ```powershell
-.\.venv\Scripts\python.exe -m tactile_contact download --config configs/omitted_speed.yaml --root runs/omitted_speed --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact run --config configs/omitted_speed.yaml --root runs/omitted_speed --data-root .
-.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/omitted_speed.yaml --root runs/omitted_speed --data-root .
-.\.venv\Scripts\python.exe scripts/summarize_omitted_speed.py --root runs/omitted_speed
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/omitted_speed.yaml --root runs/bounded_omitted_speed --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/omitted_speed.yaml --root runs/bounded_omitted_speed --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/omitted_speed.yaml --root runs/bounded_omitted_speed --data-root .
 ```
 
 This selection verifies 770 files (91.9 MB). Training 30/50 mm/s recordings are skipped even if present in a shared cache. Known-speed responses select models; omitted-speed targets are read only after all methods and checkpoints are selected. The 2,100 episodes are labeled `fit` (1,800), `selection` (180), and `transfer` (120). Endpoint queries use 45/90 degrees and nominal 1 N so they stay outside the excluded support conditions.
 
 Selection and transfer each have their own tables/figures under `results/tables/<partition>/` and `results/figures/<partition>/`. The combined summary and raw prediction arrays retain partition labels. Retrieval interpolates log band power from 20/40 or 40/60 mm/s using same-direction/load training endpoints, with exact source IDs and weights saved in `retrieval_prediction_sources.json`.
+
+## Regenerate the boundary audit/report
+
+After the three corrected runs and the two timing commands above:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/summarize_window_boundary.py
+```
+
+This comparison also requires the retained historical local roots: the project root for the initial run, `runs/expanded_pilot`, and `runs/omitted_speed`. A clean clone can reproduce corrected runs, but before/after auditing requires historical runs reconstructed with their recorded code/environment. Historical report exporters reject corrected runs to prevent mixing versions. Current outputs use `runs/bounded_*`; previous outputs and aggregate reports remain intact. The new report exports all method matrices, paired contrasts, a 688-window dependency/perturbation audit, feature changes and provenance.
 
 ## Run the synthetic check separately
 
@@ -84,7 +91,7 @@ Synthetic data must use their own output root when measured data already exist. 
 | `results/figures/` | Synchronized pilot plots and validation error figure |
 | `results/run_manifest.json`, `environment.lock.txt` | Configuration, data/software hashes, seeds/checkpoints, runtime |
 
-Run `python -m tactile_contact figures --config configs/pilot.yaml` with the environment interpreter to regenerate the validation figure from the saved summary table. Generated data, models, and results are ignored by Git; the source, configurations, protocol, and tests are versionable.
+Run `python -m tactile_contact figures --config configs/pilot.yaml --root runs/bounded_pilot` with the environment interpreter to regenerate the validation figure from the saved summary table. Generated data, models, and results are ignored by Git; the source, configurations, protocol, and tests are versionable.
 
 ## Evaluation contract
 
@@ -100,4 +107,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml` with the env
 
 ## Next implementation milestone
 
-First correct the raw support-information boundary and verify outside-window perturbation invariance; regenerate every method in new output roots. Then justify the clock or explicitly narrow the study to logged coordinates, review QC/coverage/exposure, and add repeatability/convergence diagnostics and a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.
+The raw acceleration boundary, outside-window guards and isolated matched reruns are complete. Next justify the clock or explicitly narrow the study to logged coordinates, review QC/coverage/exposure, and add repeatability/convergence diagnostics and a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

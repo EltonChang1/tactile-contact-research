@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from .audit import build_manifest
-from .windows import extract_windows
+from .windows import extract_windows, PROCESSING_BOUNDARY
 from .episodes import build_episodes,FeatureStore
 from .config import write_json,file_hash,validate_source,omitted_speed,validate_fit_pool
 
@@ -25,7 +25,8 @@ def prepare(root,cfg):
     windows = extract_windows(root,cfg,manifest)
     episodes = build_episodes(root,cfg,windows)
     write_json(Path(root)/"data/manifests/preparation.json",{
-        "config_hash":cfg["config_hash"],"software_hashes":preparation_hashes()})
+        "config_hash":cfg["config_hash"],"software_hashes":preparation_hashes(),
+        "processing_boundary":PROCESSING_BOUNDARY})
     print(f"Prepared {len(windows)} windows and {len(episodes)} episodes",flush=True)
     return windows,episodes
 
@@ -134,8 +135,8 @@ def run(root,cfg,reuse=False):
     software_hashes = {p.name:file_hash(p) for p in Path(__file__).parent.glob("*.py")}
     write_json(root/"results/run_manifest.json",{"stage":"development","source":source,"config":cfg,
         "manifest_hashes":manifests,"software_hashes":software_hashes,"checkpoints":checkpoints,"python":platform.python_version(),
-        "platform":platform.platform(),"device":"cpu",
-        "claim_limit":"Provisional time base; specimen grouping scope limited to available metadata; development validation only."})
+        "platform":platform.platform(),"device":"cpu","processing_boundary":PROCESSING_BOUNDARY,
+        "claim_limit":"Raw-window-bounded acceleration; retrospective onset/QC and provisional logged time base; specimen grouping limited to available metadata; development validation only."})
     freeze = subprocess.run([sys.executable,"-m","pip","freeze"],capture_output=True,text=True,check=True)
     (root/"results/environment.lock.txt").write_text(freeze.stdout,encoding="utf-8")
     primary_protocol = "single" if "single" in cfg["protocols"] else cfg["protocols"][0]

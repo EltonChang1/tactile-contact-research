@@ -1,8 +1,12 @@
 # Clock interpretation and sensitivity
 
+## Update after bounded preparation — 9 October 2026
+
+Window-local preparation is now implemented: crop allowed acceleration first, estimate the grid rate only from allowed timestamps, hold local interpolation endpoints and use polyphase line padding derived only from local values. Raw observations nest; filtered shorter arrays need not equal long prefixes. All 688 prepared windows pass outside-sample invariance checks. This closes the acceleration information boundary, rather than proving a physical clock or causal QC/onset rule. The corrected expanded/omitted timing audits retain median nominal-index/logged-duration ratios 1.4388/1.44 and median log-feature differences 0.3523/0.3914. The earlier numbers below remain historical. See [boundary report](window_boundary_report.md).
+
 The [authors' dataset documentation](https://github.com/cluster-lab/Cluster-Haptic-Texture-Dataset/blob/main/documents/dataset_details.md) reports acceleration at 6 kHz and position at 100 Hz. The [dataset paper](https://arxiv.org/html/2407.16206v4) describes PC timestamps and separate acquisition threads. The pinned mirror preserves the time values as integer nanoseconds. The measured pilot's acceleration rows occur at roughly 8.63 kHz on average in those timestamps. These observations do not establish whether row intervals represent acquisition time or delivery time.
 
-The current development pipeline uses a provisional delivery-clock interpretation: interpolate onto the rounded median logged-rate grid, then use polyphase anti-aliasing to convert to 6 kHz. Motion and force determine retrospective steady intervals in the logged time coordinate. Uniform support prefixes remain nested and contain exactly the configured sample count.
+The development pipeline uses a provisional delivery-clock interpretation: interpolate onto a rounded median logged-rate grid, then use polyphase anti-aliasing to convert to 6 kHz. Motion and force determine retrospective steady intervals in the logged time coordinate. Current raw support intervals nest and each locally processed array has exactly the configured sample count; processed edge values need not nest. The historical version filtered a whole recording first, as documented in the correction report.
 
 `python -m tactile_contact timing` compares training windows only. It selects the same raw rows inside each prepared window's logged interval, then computes a second spectrum by treating those rows as contiguous 6 kHz samples. That alternate path changes both spectral coordinates and nominal acquisition duration. It is a sensitivity check, rather than an alternate matched-budget model evaluation. No validation response errors are used to choose a clock convention.
 

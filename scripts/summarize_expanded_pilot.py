@@ -18,6 +18,8 @@ def main():
     tables = root/"results/tables"
     destination.mkdir(parents=True,exist_ok=True)
     manifest = json.loads((root/"results/run_manifest.json").read_text())
+    if manifest.get("processing_boundary"):
+        raise ValueError("This exporter preserves the historical pilot; use summarize_window_boundary.py for corrected runs")
     episode = json.loads((root/"data/manifests/episode_summary.json").read_text())
     timing = json.loads((tables/"timing_sensitivity.json").read_text())
     fixed = json.loads((tables/"fixed_features_selection.json").read_text())

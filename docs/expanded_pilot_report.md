@@ -1,5 +1,7 @@
 # Expanded development pilot — 8 October 2026
 
+**Correction completed 9 October:** the [bounded rerun report](window_boundary_report.md) now documents the fixed raw-window preparation and matched comparisons. The original scores and provenance below remain historical.
+
 **Later reassessment:** scores and provenance below are preserved from this historical run. Whole-record interpolation/filtering occurs before support cropping, so outside-window raw acceleration can affect features; the amount is unquantified. Duration labels are provisional, and recorded distance is nominal speed times duration. Strict information-budget claims require corrected bounded preparation and aligned reruns. Timing and fresh-test gates remain open; see the [revised plan](research_plan.md).
 
 The expanded pipeline completed five support protocols and 0.25/0.5/1-second observations on the original ten training and two development validation specimens. All 192 recordings passed QC. Preparation produced 268 windows and 1,320 episodes (1,200 training, 120 validation). Four distinct query conditions per specimen remain fixed across every method and protocol; validation uses repeat 1. These are development results, with no locked test evaluated.

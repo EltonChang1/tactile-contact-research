@@ -1,10 +1,14 @@
 # Development protocol and intended primary study
 
+## Boundary gate completed — 9 October 2026
+
+The historical review below identified the acceleration-context issue. It is now corrected with raw-window-local interpolation/filtering/padding, local timestamp-rate estimation and dependency fields. All 53 tests pass, including nine new guards; all 688 measured windows are bit-for-bit invariant to outside acceleration. Three isolated reruns preserve raw intervals/configs/episode inputs and refit all methods/seeds. The [boundary report](window_boundary_report.md) records exact changes and unchanged main findings. Timing, retrospective QC/online scope, nominal distance, exposure, coverage and locked-test gates remain as stated below; the first support-boundary repair/rebuild gate is complete.
+
 Question: How much brief sliding-contact information supports vibration-response prediction on unseen specimens, and does a second direction, speed, or load help more than repeating the contact at the same time budget?
 
 The primary target is 32 log10 spectral band powers on each of three acceleration axes. The starter range is 24–1000 Hz, with 0.125-second Welch segments and 50% overlap. Acceleration is converted from g to SI before estimation. The `log10(power + 1e-10)` floor is numerical and has not been established as a sensor noise floor. Bin-center integration and modeled-band RMS follow the supplied guide.
 
-## Reassessment and next gates — 8 October 2026
+## Historical reassessment and gates — 8 October 2026
 
 The [plan](research_plan.md) and [guide](implementation_guide.md) distinguish completed bounded development from a future scientific evaluation. The records below preserve the executed protocols; their duration labels remain provisional. No new model code or experiment is part of this documentation reassessment.
 

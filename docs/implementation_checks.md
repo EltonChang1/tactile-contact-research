@@ -1,6 +1,12 @@
-# Implementation checks — 8 October 2026
+# Implementation checks — updated 9 October 2026
 
-`python -m pytest -q`: **44 passed**. The ten omitted-speed checks also passed independently. `python -m compileall -q src tests scripts` completed successfully.
+## Boundary implementation verification — 9 October 2026
+
+Latest suite: **53 passed in 29.98 seconds**; compilation passed. Nine added tests cover before/after/both-side perturbations at all durations, inside-signal sensitivity, exact sample counts/dependency indices, raw nesting with different processed edges, invalid intervals and the production extractor. The real [audit](window_boundary_report.md) additionally verifies all **688** prepared windows: processed arrays remain bit-for-bit invariant under outside-acceleration perturbations; reconstructed features equal caches; historical raw coordinates, sample intervals and episode inputs match; original recording hashes are unchanged. Dependency/padding/grid provenance is stored per window and preparation/run manifest. All methods/seeds were refitted in new roots. This closes the processing boundary while holding retrospective QC/start selection fixed; it does not validate the acquisition clock, online detection, physical distance or manufacturing-family independence.
+
+The 44-test record and unresolved-boundary review below are historical. Their remaining timing/exposure/coverage/fresh-test gates still apply.
+
+Historical 8 October verification: `python -m pytest -q`: **44 passed**. The ten omitted-speed checks also passed independently. `python -m compileall -q src tests scripts` completed successfully.
 
 ## Reassessment of check scope — 8 October 2026
 

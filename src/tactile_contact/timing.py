@@ -42,7 +42,7 @@ def timing_sensitivity(root,cfg):
                 result = compare_raw_span(frames["accel"],times["accel"],row.start_s,row.end_s,
                                           feature,cfg["sampling_rate_hz"],cfg["power_floor"])
             rows.append({"window_id":row.window_id,"surface_id":row.surface_id,"role":row.role,
-                         "duration_s":row.duration_s,**result})
+                         "duration_s":row.duration_s,"processing_boundary":getattr(row,"processing_boundary","historical_whole_record"),**result})
     table = pd.DataFrame(rows)
     target = root/"results/tables"
     target.mkdir(parents=True,exist_ok=True)
@@ -51,7 +51,8 @@ def timing_sensitivity(root,cfg):
         "surfaces":int(table.surface_id.nunique()),
         "median_index_to_logged_duration_ratio":float((table.index_duration_at_reported_rate_s/table.logged_span_s).median()),
         "median_log_power_mae_between_paths":float(table.log_power_mae_between_paths.median()),
-        "comparison":"Same raw timestamp-selected span: delivery-clock resampling versus contiguous samples interpreted at reported 6000 Hz.",
+        "processing_boundaries":sorted(table.processing_boundary.unique().tolist()),
+        "comparison":"Same raw timestamp-selected span: the prepared logged-grid path (including its recorded local padding) versus contiguous samples interpreted at reported 6000 Hz.",
         "limitation":"Sample-index windows contain more nominal acquisition time and different frequency coordinates; this is sensitivity, not matched-budget evaluation or clock verification."}
     write_json(target/"timing_sensitivity.json",summary)
     print(summary,flush=True)

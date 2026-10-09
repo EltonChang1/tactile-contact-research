@@ -1,5 +1,7 @@
 # Globally omitted-speed development experiment — 8 October 2026
 
+**Correction completed 9 October:** the [bounded rerun report](window_boundary_report.md) now documents the fixed raw-window preparation and matched comparisons. The original scores and provenance below remain historical.
+
 **Later reassessment:** this report preserves its original scores and run provenance. Whole-record interpolation/filtering before support cropping can use outside-budget raw acceleration; its feature effect is unquantified. Strict duration claims require bounded preparation and aligned reruns, and physical timing remains unresolved. All 12 specimens stay development-exposed. Full-grid scope would be 44 permitted-speed triples and 26 endpoint-safe transfer triples out of 32 before QC; a matched-grid familiar comparator is still pending. See the [revised plan](research_plan.md) and [guide](implementation_guide.md).
 
 This experiment refits every learned comparator using 20/40/60 mm/s responses only. Those same permitted speeds select regularization and encoder checkpoints on development validation specimens. The 30/50 mm/s targets are read for scoring only after all methods and all three checkpoints are selected. This is a new-condition development evaluation on the existing validation specimens, not a locked scientific test.
