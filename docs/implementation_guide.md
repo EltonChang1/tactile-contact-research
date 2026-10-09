@@ -4,15 +4,22 @@
 
 Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October 2026, America/Los_Angeles.
 
-**Purpose:** an implementation guide for the research described in `Tactile_Contact_Research_Plan_2026-10-07.md`. Use the stage gates below to decide which steps are ready to begin. The first completed study uses public data; later milestones add measured contact forces, simulation, and control.
+**Purpose:** an implementation guide for the maintained [research plan](research_plan.md), originally supplied as `Tactile_Contact_Research_Plan_2026-10-07.md`. Use the stage gates below to decide which steps are ready to begin. The first completed study uses public data; later milestones add measured contact forces, simulation, and control.
 
 The public study develops the **tactile observation model**: what a robot should sense under a requested contact. The mechanical study develops the **contact law**: forces that influence motion. A useful world model ultimately needs both. Starting with public data lets you test whether brief observations contain transferable information and establish reliable evaluation methods before investing in a force rig. Vibration prediction alone does not identify an intrinsic material law.
 
-**Status as of 8 October 2026:** the specification now has a working bounded development implementation in [tactile-contact-research](https://github.com/EltonChang1/tactile-contact-research). The expanded pilot runs all five support protocols, three durations, five baselines, three encoder seeds, wrong-support controls, matched-budget contrasts, and named diagnostics. See [expanded pilot results](https://github.com/EltonChang1/tactile-contact-research/blob/main/docs/expanded_pilot_report.md) and [implementation checks](https://github.com/EltonChang1/tactile-contact-research/blob/main/docs/implementation_checks.md). Current commands use the package CLI documented in the [README](https://github.com/EltonChang1/tactile-contact-research/blob/main/README.md); individual script names below remain the intended file contracts. Timing, manufacturing-family independence, the full condition grid, and a locked scientific test remain unfinished. The public-data stage has not yet met its scientific completion gate.
+**Status as of 8 October 2026:** an executable [public repository](https://github.com/EltonChang1/tactile-contact-research) now supports bounded real-data and synthetic development experiments. The initial pilot, expanded five-protocol/three-duration comparison, and separately fitted omitted-speed experiment have completed. Numerical results and provenance are in [development status](development_status.md), [expanded results](expanded_pilot_report.md), and [omitted-speed results](omitted_speed_report.md). No locked scientific test, force identification, simulator validation, or control experiment has run.
 
-The separately fitted [omitted-speed development experiment](https://github.com/EltonChang1/tactile-contact-research/blob/main/docs/omitted_speed_report.md) is also implemented. Fitting and checkpoint selection use only 20/40/60 mm/s; 30/50 mm/s targets remain excluded until scoring. Retrieval interpolates permitted endpoint log spectra, with exact source IDs and weights audited. This bounded experiment still uses provisional development specimens and timing, rather than a locked scientific test.
+| Development result, single 0.5-second support | Retrieval MAE | Fixed-feature MAE | Encoder MAE | Interpretation |
+| --- | --- | --- | --- | --- |
+| Expanded familiar-condition pilot | 0.1724 | 0.2006 | 0.2492 | Retrieval leads; wrong support worsens encoder MAE to 0.5837 |
+| Separately fitted omitted-speed pilot | 0.3298 | 0.3098 | 0.3158 | Encoder/retrieval difference is inconclusive on two specimens |
 
-The numerical defaults are starting choices. Finalize them after a training-data audit, record the decision, and then freeze the evaluation protocol. A result can be scientifically useful even when a simple baseline wins.
+These experiments use different query grids, so their errors do not isolate the effect of omitting speeds. The repeatedly used specimens are development data. The [name-based specimen review](specimen_group_audit.md) does not verify manufacturing-family independence. Current timing sensitivity demonstrates a consequential clock ambiguity, rather than resolving it.
+
+**New preparation finding:** `windows.py` interpolates and anti-alias filters the whole acceleration recording before cropping the declared support interval. Outside-window raw acceleration can therefore influence support features. The magnitude has not been measured; this is unaccounted temporal context, not evidence of hidden query-label input. Existing prefix checks establish interval bookkeeping, not a strict information boundary. Step 8 specifies the correction and verification required before interpreting the curves as strict probe-duration results. Existing reports remain historical, provisional development results.
+
+The next work is to repair and verify that boundary, justify or explicitly limit the clock interpretation, then expand development coverage and freeze a fresh test. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
 
 ## Scope and stage gates
 
@@ -20,22 +27,24 @@ The plan is feasible as a staged project. Its first deliverable is a completed p
 
 | Plan stage | Guide steps | Evidence required before the next stage |
 | --- | --- | --- |
-| A: tactile-response prediction | 1–17, with packaging in 26 | Locked held-out evaluation, strong baselines, probe-budget results, and a report |
+| A: tactile-response prediction | 1–17, with packaging in 26 | Bounded preprocessing, declared time convention, fresh held-out evaluation, baselines, and a scoped report |
 | B: measured sliding mechanics | 18–22 | Independent calibrated force measurements and held-out force predictions |
 | C: forward dynamics and engine integration | 23–24 | A dynamically responsive experiment and motion predictions from initial state/actions |
 | D: planning or robot learning | 25 | Matched task evaluation after the relevant model has been validated |
 
-Investigate rig access while Stage A runs. Stage A has its own completion point even if hardware remains unavailable. Do Step 26 throughout the project. Static friction, compliance, waveform generation, new sensors, category exclusion, and large policy training are follow-ups whose scope must be justified separately.
+Investigate rig capabilities while Stage A runs. Stage B depends on calibrated independent force measurements, not an encoder victory or Stage A publication. Stage A has its own completion point even if hardware remains unavailable. Do Step 26 throughout the project. Static friction, compliance, waveform generation, new sensors, category exclusion, and large policy training are follow-ups whose scope must be justified separately.
 
 ## How to use this guide
 
-1. Complete Steps 1–7 to define the question and audit trustworthy data.
-2. Build the first complete pipeline through Steps 8–14: `single`, 0.5-second support, the fixed query duration, conditions-only/copy/retrieval baselines, and the small model. Use pilot training surfaces and validation surfaces; leave test targets closed.
-3. Verify that this slice produces traceable per-query and per-surface validation scores. Then add fixed-feature regression, rescaling, the remaining durations/protocols, and the wrong-support control.
-4. Complete Steps 15–17 to evaluate and finish the planned Stage A study. Keep globally omitted conditions in a separately fitted experiment.
-5. Begin Steps 18–22 when suitable force measurements are available. Begin Steps 23–25 only after their additional stage gates are met.
+The first executable pipeline and both bounded comparisons are complete. Use the steps as contracts and checkpoints, not instructions to restart the project.
 
-Every step gives an action, an output, and a completion checkpoint. The first complete pipeline is an engineering milestone; the full Stage A comparisons are needed to answer the plan's duration and probe-selection questions.
+1. Revisit Steps 6–9 first: strict acceleration boundaries, timing, retrospective QC robustness, and regenerated features/results.
+2. Complete the exposure/coverage review in Steps 5–7; all 12 existing specimens remain in the development pool.
+3. Use Steps 11–17 for broader development diagnostics, a matched-grid familiar/omitted comparison, and a fresh locked test after modest selection and convergence review.
+4. Investigate Step 18 in parallel. Start measured mechanics only when its calibration and measurement gate is satisfied; Steps 23–25 retain their additional validation gates.
+5. Maintain Step 26 throughout. Preserve historical results and label revisions so the original negative and inconclusive findings remain visible.
+
+This revision changes documentation and priorities. It does not implement the preparation correction or execute a new benchmark.
 
 ## Step 1. Define one primary scientific question
 
@@ -110,373 +119,158 @@ Your candidate gap is a systematic, matched-budget investigation of brief moving
 
 ## Step 3. Set up a reproducible workspace
 
-Use Python 3.12 if available. Start on CPU; the first model is deliberately small. Install a PyTorch build suitable for your operating system from the [official installation instructions](https://pytorch.org/get-started/locally/). CUDA is optional.
-
-Example Bash setup on Linux/macOS:
-
-```bash
-mkdir tactile-contact-research
-cd tactile-contact-research
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install numpy scipy pandas pyarrow openpyxl scikit-learn matplotlib pyyaml huggingface_hub jupyterlab
-```
-
-Equivalent PowerShell setup on Windows:
+The workspace is already implemented. Use Python 3.12, initially on CPU. From the repository directory in PowerShell, a clean installation is:
 
 ```powershell
-New-Item -ItemType Directory -Path tactile-contact-research
-Set-Location tactile-contact-research
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install numpy scipy pandas pyarrow openpyxl scikit-learn matplotlib pyyaml huggingface_hub jupyterlab
+.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m tactile_contact --help
 ```
 
-Install PyTorch separately using the official selector and the same environment's interpreter. Calling the interpreter directly avoids an activation dependency. Use `.\.venv\Scripts\python.exe` for subsequent Python commands on Windows; use the activated `python` on Linux/macOS.
+For Linux/macOS use `python3 -m venv .venv`, then `.venv/bin/python -m pip install -e ".[dev]"`. If a particular CPU/CUDA build is needed, install it with the [official PyTorch selector](https://pytorch.org/get-started/locally/) before installing the package. The existing Windows bootstrap reused numerical packages through `--system-site-packages`; actual run environments are saved in `results/environment.lock.txt` under each output root. Current measured runs used Python 3.12.6, NumPy 1.26.4, SciPy 1.15.1, and PyTorch 2.6.0+cu118 on CPU. A clean install may resolve different versions; record them and check numerical compatibility before comparing results.
 
-Create directories with Python:
-
-```python
-from pathlib import Path
-
-for name in [
-    "configs", "docs", "notebooks", "scripts", "src/tactile_contact",
-    "data/raw/cluster", "data/manifests", "data/features",
-    "runs", "results/tables", "results/figures", "checks",
-]:
-    Path(name).mkdir(parents=True, exist_ok=True)
-```
-
-Record the environment after installation (use the virtual-environment interpreter on Windows):
-
-```bash
-python -m pip freeze > requirements.lock.txt
-python --version
-```
-
-Suggested code contracts:
-
-| File to create | Responsibility |
+| Implemented package module | Responsibility |
 | --- | --- |
-| `scripts/download_cluster.py` | Pin the dataset revision; download selected modalities/specimens |
-| `scripts/build_manifest.py` | Enumerate files and record conditions and quality information |
-| `scripts/audit_signals.py` | Produce synchronized plots and timing/quality summaries |
-| `scripts/make_splits.py` | Build specimen-group-aware material splits |
-| `scripts/build_features.py` | Select valid windows and cache spectral features |
-| `scripts/build_episodes.py` | Construct fixed support/query records and enforce exclusions |
-| `scripts/run_baselines.py` | Fit and score baseline methods without accessing test labels during fitting |
-| `scripts/train_model.py` | Train a small model; choose checkpoints using validation data |
-| `scripts/evaluate.py` | Score frozen predictors; write per-query and per-surface results |
-| `scripts/make_figures.py` | Generate figures from saved numerical results |
-| `src/tactile_contact/signal.py` | Signal preparation and PSD/band-power helpers |
-| `src/tactile_contact/episodes.py` | Episode construction and feature access |
-| `src/tactile_contact/models.py` | Encoder, pooling, and predictor |
-| `src/tactile_contact/metrics.py` | Metrics, aggregation, and paired bootstrap |
+| `src/tactile_contact/cli.py`, `pipeline.py`, `config.py` | CLI orchestration, configuration validation, provenance/reuse guards |
+| `download.py`, `records.py` | Bounded pinned HTTPS downloads, raw hashes, recording keys |
+| `audit.py`, `timing.py` | Recording/specimen manifests, retrospective motion QC, clock sensitivity |
+| `windows.py`, `signal.py` | Window preparation, full PSD and spectral bands; boundary correction remains pending |
+| `episodes.py` | Cohort/episode construction, prediction-input whitelist, train-only scaler |
+| `baselines.py`, `models.py`, `training.py` | Five baselines, masked encoder, balanced training and checkpoint selection |
+| `evaluation.py`, `metrics.py` | Partitioned scores, paired contrasts, diagnostics and group bootstrap |
+| `synthetic.py` | Separate engineering fixtures |
+| `scripts/summarize_expanded_pilot.py`, `summarize_omitted_speed.py` | Public aggregate reports and audit exports |
 
-A notebook is fine for the first plots. Move decisions and final computations into scripts or reusable functions before the locked evaluation.
+CLI subcommands are `download`, `audit`, `prepare`, `run`, `synth`, `figures`, and `timing`. They operate on existing modules; the old placeholder scripts are no longer implementation contracts. Downloads use Python HTTPS, requiring neither `huggingface_hub` nor Jupyter. Notebooks remain optional for inspection.
 
-**Output:** workspace, environment lock, and file-contract list.
+**Output:** installable package, declared dependencies in `pyproject.toml`, and per-run environment/provenance.
 
-**Checkpoint:** another environment can install the recorded dependencies and import your numerical packages.
+**Checkpoint:** a clean environment can import the package and reproduce a configuration's recorded workflow.
 
 ## Step 4. Download a small, versioned data subset
 
-Use the [Cluster Parquet mirror](https://huggingface.co/datasets/tamago117/cluster-haptic-texture-dataset). The documented naming convention is:
+The current source is the [Cluster Parquet mirror](https://huggingface.co/datasets/tamago117/cluster-haptic-texture-dataset), pinned to revision `b7c2fb70ed2d68219389478660f35c2cd49c69fb`. Filename convention:
 
 ```text
 sensor_data/accel/<surface_id>/<surface_id>_<direction>_<speed>_<force_mN>_<repeat>.parquet
 ```
 
-Force and position use corresponding paths. Check the repository listing instead of assuming the layout remains unchanged.
+Force and position use corresponding paths. Configuration and source inventory, rather than a fresh latest-revision lookup, define each reproducible selection. Existing configurations are bounded development runs:
 
-The following starter script belongs in `scripts/download_cluster.py`. It downloads only a pilot subset and saves the revision. Its selected IDs are example audit specimens distributed across the published categories; verify the metadata and keep pilot specimens in the eventual training set.
+| Config | Raw files | Requested recording triplets | Scope |
+| --- | --- | --- | --- |
+| `configs/pilot.yaml` | 362 | 120 | Single 0.5-second support, four familiar queries |
+| `configs/expanded_pilot.yaml` | 578 | 192 | Five protocols, three durations, same four queries |
+| `configs/omitted_speed.yaml` | 770 | 256 | Six permitted-speed queries, four omitted-speed queries |
 
-```python
-from pathlib import Path
-import json
-from huggingface_hub import HfApi, snapshot_download
+For example, from the repository root:
 
-REPO = "tamago117/cluster-haptic-texture-dataset"
-SOURCE_FILE = Path("configs/data_source.json")
-PILOT_IDS = [0, 38, 49, 65, 74, 79, 82, 87, 102, 103]
-MODALITIES = ["accel", "force", "position"]
-
-SOURCE_FILE.parent.mkdir(parents=True, exist_ok=True)
-api = HfApi(token=False)
-
-if SOURCE_FILE.exists():
-    source = json.loads(SOURCE_FILE.read_text())
-    if source["repo_id"] != REPO or source.get("repo_type") != "dataset":
-        raise ValueError("Saved source does not match the requested dataset")
-    revision = source["revision"]
-else:
-    revision = api.repo_info(REPO, repo_type="dataset").sha
-    if not revision:
-        raise RuntimeError("Could not resolve a dataset revision")
-    SOURCE_FILE.write_text(json.dumps({
-        "repo_id": REPO,
-        "repo_type": "dataset",
-        "revision": revision,
-        "pilot_ids": PILOT_IDS,
-    }, indent=2))
-
-files = api.list_repo_files(REPO, repo_type="dataset", revision=revision)
-prefixes = [f"sensor_data/{m}/{i}/" for m in MODALITIES for i in PILOT_IDS]
-selected = [p for p in files if any(p.startswith(s) for s in prefixes)]
-if not selected:
-    raise RuntimeError("Expected sensor directories were not found; inspect the listing")
-
-print("Revision:", revision)
-print("Selected sensor files:", len(selected))
-print("Example paths:", selected[:5])
-
-patterns = [f"{s}*.parquet" for s in prefixes]
-patterns += ["texture_list.xlsx", "README.md"]
-snapshot_download(
-    repo_id=REPO,
-    repo_type="dataset",
-    revision=revision,
-    allow_patterns=patterns,
-    local_dir="data/raw/cluster",
-    max_workers=4,
-    token=False,
-)
+```powershell
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe scripts/summarize_expanded_pilot.py --root runs/expanded_pilot
 ```
 
-Run after copying the block:
+`--root` isolates prepared features, models and results; `--data-root .` shares the pinned measured raw cache. Config paths resolve from the shell's working directory. `run` prepares fresh unless `--reuse` is supplied; reuse verifies configuration and preparation-code hashes. After changing preparation, rebuild and rerun all methods in a new output root, retaining historical results.
 
-```bash
-python scripts/download_cluster.py
-```
+The omitted-speed config skips training 30/50 mm/s records even when they are present in the shared cache. Synthetic fixtures use their own root (`runs/synthetic_check`) and are never mixed with measured data. See the [README](../README.md) for all executed command sequences.
 
-For the full study, expand the selected specimens to all IDs found in the metadata after the audit. Reuse the saved revision. Record each download selection separately from the original pilot list, so `configs/data_source.json` remains a truthful record of the pinned source and pilot. Download acceleration, force, and position; leave audio/images out of the first experiment.
+**Output:** `data/source.json`, `data/raw_inventory.json`, immutable raw files and hashes at the configured raw-data root.
 
-Treat downloaded sensor records as immutable. Save transformations under `data/features`, and record hashes or a revision-backed file inventory. Check the original dataset's reuse terms before publishing redistributed data.
-
-**Output:** raw pilot files and `configs/data_source.json`.
-
-**Checkpoint:** you can load one acceleration, force, and position record for the same filename key. No unpinned update occurs when rerunning the download.
+**Checkpoint:** each selected recording is tied to a fixed source revision and original content hash; downloading more files does not silently change derived runs.
 
 ## Step 5. Build the recording and specimen manifests
 
-Parse filenames; do not encode their material IDs as model inputs. Starter parser:
+Filename parsing is implemented in `records.py`; do not encode material IDs as predictor inputs. The measured mirror uses acceleration `time_ns,X,Y,Z` in g, force `time_ns,force` in N, and position `time_ns,X,Y` in mm. [R3]
 
-```python
-from pathlib import Path
-import re
+`data/manifests/recordings.csv` contains the common recording key and paths; nominal conditions/repeat; `qc_status`, `qc_reason`, steady interval and duration; `config_hash`, shared `origin_ns`; each channel's row count, median logged rate, mean rate, maximum gap, interval coefficient of variation and duration; acceleration clipping fraction; and measured-force mean/std over the selected longest steady interval. Duplicate/reset timestamps, invalid values and missing channels are checked during loading. These record-level force summaries are offline audit fields, not statistics of each support-duration window or predictor inputs.
 
-RECORD_NAME = re.compile(
-    r"^(?P<surface_id>\d+)_(?P<direction_deg>\d+)_(?P<speed_mm_s>\d+)_"
-    r"(?P<force_mN>\d+)_(?P<repeat_id>\d+)\.parquet$"
-)
-
-def parse_record_name(path):
-    match = RECORD_NAME.fullmatch(Path(path).name)
-    if match is None:
-        raise ValueError(f"Unrecognized sensor filename: {Path(path).name}")
-    row = {k: int(v) for k, v in match.groupdict().items()}
-    if row["direction_deg"] not in range(0, 360, 45):
-        raise ValueError("Unexpected direction")
-    if row["speed_mm_s"] not in [20, 30, 40, 50, 60]:
-        raise ValueError("Unexpected speed")
-    if row["force_mN"] not in [500, 1000]:
-        raise ValueError("Unexpected nominal load")
-    if row["repeat_id"] not in [0, 1]:
-        raise ValueError("Unexpected repeat")
-    row["nominal_force_N"] = row["force_mN"] / 1000.0
-    row["recording_id"] = Path(path).stem
-    return row
-```
-
-Create `data/manifests/recordings.csv` with one row per recording key:
+`data/manifests/surfaces.csv` currently contains:
 
 ```text
-recording_id,surface_id,direction_deg,speed_mm_s,nominal_force_N,repeat_id,
-accel_path,force_path,position_path,accel_rows,force_rows,position_rows,
-start_ns,end_ns,missing_channels,nonfinite_values,time_reset,
-steady_start_s,steady_end_s,usable_duration_s,qc_status,qc_reason
+surface_id,name,category,family_group,grouping_reason,grouping_reviewed,split,grouping_scope
 ```
 
-Read channel schemas directly. The mirror documents acceleration `time_ns,X,Y,Z` in g, force `time_ns,force` in newtons, and position `time_ns,X,Y` in millimeters. [R3]
+Inspect `texture_list.xlsx` and preserve the evidence and scope of each grouping decision. The 12-specimen review has `grouping_scope=metadata_names_only`: reviewed names do not imply reviewed manufacturing provenance. Group known related variants conservatively; mark unavailable lot/source/fabrication relationships unknown. Do not merge a whole category automatically. A specimen-level study can proceed with documented limits; an unseen-manufacturing-family claim requires stronger evidence.
 
-Create `data/manifests/surfaces.csv`:
+**Required addition:** an exposure ledger recording which specimens/groups have contributed to training, selection, inspected predictions or reported transfer results. All existing IDs `[0,38,49,65,74,79,82,87,102,103,10,57]` are development-exposed. IDs 10 and 57 have repeatedly selected models and their transfer outcomes are known; neither may later become an untouched scientific test. Known related groups must follow this restriction.
 
-```text
-surface_id,name,category,family_group,grouping_reason,pilot_surface,notes
-```
+Verify coverage across 80 condition triples and two repetitions without assuming all files/windows survive. Cluster's specimen friction metadata were measured with another counterface/protocol; they are not synchronized tangential-force labels for these scans. [R3]
 
-Inspect `texture_list.xlsx` rather than guessing its column names. Group variants that clearly share a source, fabrication, or closely related specimen type where metadata justify this. Preserve a rationale; do not group everything in a broad category together automatically.
+**Output:** current recording/surface manifests; next, exposure ledger, broader metadata review and a coverage/attrition matrix.
 
-The complete published design has 80 distinct conditions per surface and two repetitions. Verify actual coverage rather than assuming every expected file is present. Cluster's specimen-level friction measurements use a separate slider/counterface and much slower motion; they are not synchronized tangential-force labels for these tactile scans. Do not train or score scan-force prediction as if they were. [R3]
-
-**Output:** recording and surface manifests plus a missing-file summary.
-
-**Checkpoint:** each modality's file maps to exactly one common recording key; IDs and conditions agree across channels.
+**Checkpoint:** each channel maps to one recording key; group scope and development exposure are explicit rather than inferred from a review flag.
 
 ## Step 6. Audit time alignment, contact quality, and usable motion
 
-Load the three channels for each pilot recording. Retain integer nanosecond timestamps. If timestamps share a common origin, subtract one joint origin before converting to floating-point seconds:
+Keep integer nanosecond timestamps and subtract one joint origin across acceleration, force and position before converting to seconds. Independently zeroing each channel can erase offsets; sorting cannot repair a reset. Audit synchronized plots, gaps, duplicates and interval variation. Acceleration is documented around 6 kHz, position around 100 Hz, and force acquisition at 80 Hz despite faster transmission. Repeated force values do not create independent high-frequency force samples. [R3]
 
-```python
-origin_ns = min(accel.time_ns.min(), force.time_ns.min(), position.time_ns.min())
-accel_time_s = (accel.time_ns.to_numpy() - origin_ns) / 1e9
-force_time_s = (force.time_ns.to_numpy() - origin_ns) / 1e9
-position_time_s = (position.time_ns.to_numpy() - origin_ns) / 1e9
-```
+Current measured QC fits a local quadratic to **21 native position samples at their actual timestamps**. It selects the longest interval with speed magnitude within `max(2 mm/s, 10% of nominal)` and measured normal force above 0.05 N; maximum logged gaps are 0.01 s for acceleration and 0.05 s for auxiliary channels. The 21-point choice was the smallest tested setting retaining full 0.5-second intervals on all 100 initial training recordings (11 points retained 80; 21/31 retained 100). This was a coverage decision, not proof of motion accuracy. Smoothing and interval selection are retrospective.
 
-Do not subtract each channel's first timestamp independently; that can erase real offsets. Verify the common-clock interpretation using synchronized plots and acquisition documentation; inspect collection code if it is available. Sorting a record cannot repair a clock reset.
+The fixed query duration is now **0.5 seconds** for every method. Support durations are 0.25/0.5/1 seconds. The initial, expanded and omitted runs passed QC for all 120/192/256 requested recording triplets respectively. That success applies to bounded selections, not the whole grid.
 
-For each channel, record the mean and median sample interval, duplicate timestamps, gaps, interval variability, and duration. Acceleration is documented around 6 kHz; force is transmitted at 6 kHz but acquired at 80 Hz; position is around 100 Hz. Repeated force values do not constitute independent high-frequency force measurements. [R3]
+The logged acceleration rate averages about 8.63 kHz. The current provisional path interpolates at the rounded median logged rate and anti-alias resamples to 6 kHz. Training-only sensitivity compares timestamp-selected raw spans against contiguous nominal-6-kHz index timing: the omitted run's median nominal-duration ratio is 1.44 and median log-feature difference 0.3915. Different nominal budgets make this a sensitivity diagnostic, not a matched-budget proof or clock calibration. See [timing audit](timing_audit.md).
 
-Estimate sliding speed from smoothed position. A starting implementation smooths at the position channel's native rate and differentiates with respect to its actual time. Do not create new information by upsampling the position channel first.
+**Next timing decision:** compare representative mirror records with original CSVs and inspect available acquisition/transport metadata. Record evidence for the selected coordinate system, including unresolved delay/jitter. If no authoritative acquisition clock can be established, explicitly define a logged-time/nominal-frequency benchmark and limit claims accordingly. It can become a completed empirical study; it cannot establish calibrated physical frequency, physical probe duration or causal online latency. Changing the convention requires rebuilding all features, training statistics, libraries and methods on matched episodes.
 
-Identify the longest contact interval with approximately steady nonzero speed. Initial candidate rules include: speed within `max(2 mm/s, 10% of nominal speed)`, nonzero normal contact, no timing reset, and finite values. Choose smoothing and gap thresholds from training/pilot records and publish them. Large load variation should be flagged for analysis; do not silently discard challenging surfaces to improve scores.
+**Next QC review:** inspect native versus fitted motion and window boundaries at several speeds/directions/loads and both repeats. Check measured heading against the dataset convention and nominal load against measured force separately; the current magnitude/contact threshold does not verify either. Evaluate predeclared nearby smoothing/gap settings without selecting by predictor error. Report attrition by specimen/category/condition/duration and characterize position paths. Existing synchronized plots cover reference examples; the broader cross-condition/repeat review is pending.
 
-The author paper specifies 80 mm passes, giving about 1.33 seconds of nominal travel at 60 mm/s before considering transients. [R3] Audit whether a one-second **steady** query window is actually available at each speed. If that window excludes too many otherwise valid fast scans, choose a shorter fixed query duration, initially 0.5 seconds, using training/pilot data before locking the benchmark. Apply it to every query and method; do not shorten windows selectively after seeing errors.
+**Output:** current `audit_summary.json`, `motion_qc_comparison.json`, timing tables and audit plots; next, a timing decision record and QC/coverage review.
 
-Produce these plots for every pilot surface at several conditions:
-
-1. Acceleration axes, force, and position/speed against the same time axis.
-2. Nominal versus measured loading and its variation.
-3. Acceleration spectra at different speeds, loads, and directions.
-4. The two repetitions at identical conditions.
-
-Decide and document the time interpretation for spectra. PC timestamps may include delivery jitter. If they accurately describe sampling intervals, interpolate within valid observed intervals onto a uniform grid; if they mainly describe serial delivery jitter, an acquisition-rate sample-index grid may be more appropriate. Compare these interpretations on pilot data. Inspect author acquisition code if available; the public repository contains processing/viewer code, and acquisition-code access has not been established. OS timestamps alone do not verify sensor acquisition timing. Record unresolved delivery delays and clock behavior, retain a time-base sensitivity analysis where relevant, and seek clarification if conclusions depend on absolute frequency precision. [R3] Do not extrapolate across missing intervals or beyond a recording.
-
-**Output:** `docs/data_audit.md`, QC rules, and audit figures.
-
-**Checkpoint:** you can explain the chosen fixed query duration and valid support durations, their loading variation, and the evidence for the selected spectral time base.
+**Checkpoint:** the chosen time convention has evidence or an explicit limitation; frozen QC defines valid targets without implying causal onset detection.
 
 ## Step 7. Lock material splits and eligible evaluation surfaces
 
-Use approximately 80 training, 18 validation, and 20 test surfaces, allowing counts to change for justified specimen groups. Keep pilot specimens and related groups in training. Aim for useful category coverage without breaking family groups.
+Current configs use ten training IDs and development validation IDs 10/57, with no scientific test. First maintain the exposure ledger from Step 5, review known specimen relationships and full-grid coverage, then allocate fresh, unexposed test groups. Existing pilot specimens stay in development; they need not all be reassigned to model training. Approximate 80/18/20 counts are an optional capacity target after grouping/coverage, not a fixed split or guarantee of 118 eligible surfaces.
 
-Create `data/manifests/split_materials.csv` with:
+The implemented `split_materials.csv` records IDs, group IDs and split. A future frozen split must also retain selection rationale, exposure/grouping scope and split seed. Assert disjoint IDs and known groups across train/validation/test, and split records before windows or fitted statistics. Unknown fabrication relationships limit the claim; do not relabel name-only review as family independence.
 
-```text
-surface_id,family_group,split,split_seed,reason
-```
+For matched durations/protocols, require all declared supports at the longest duration and a common query set, with both training query repeats where retrieval averages them. A full-cohort intersection may remove many conditions; inspect the coverage matrix before freezing a cohort/mask. Predeclare any revised mask or narrower duration comparison using development coverage, report excluded specimens/cells with reasons, and apply it equally to every method. Never choose eligibility by model error.
 
-Mandatory assertions:
+Keep seeds `[0,1,2]` and declare any additional group-split or reverse-repeat robustness checks prospectively. Selection/transfer targets on 10/57 are now development outcomes and cannot be reopened as a new test.
 
-```python
-assert set(train_ids).isdisjoint(val_ids)
-assert set(train_ids).isdisjoint(test_ids)
-assert set(val_ids).isdisjoint(test_ids)
-assert set(train_groups).isdisjoint(val_groups)
-assert set(train_groups).isdisjoint(test_groups)
-assert set(val_groups).isdisjoint(test_groups)
-```
+**Output:** exposure ledger, reviewed split scope, eligibility/condition masks with exclusions, and eventually a frozen fresh-test manifest.
 
-Build splits before constructing overlapping windows or fitting normalization. Performance-driven selection of test specimens is prohibited by the experiment definition.
-
-For matched duration and probe comparisons, define a common eligible cohort with all necessary support records valid at the longest compared duration. If one-second support is insufficient, revise the compared duration set using training/pilot coverage before evaluation; keep the same viable choices for every method. Report how the resulting cohort differs from the full dataset. Define a common query set using fixed QC rules. Record excluded specimens and reasons. Do not change the cohort for whichever model happens to perform poorly.
-
-Lock three initialization seeds, initially `[0, 1, 2]`. Choose whether later robustness checks use additional predeclared material splits. Record that choice before the main test evaluation.
-
-**Output:** split manifest, eligibility manifest, and a protocol revision with the evaluation cohort.
-
-**Checkpoint:** a specimen group never crosses splits; every compared protocol is scored on the same eligible cohort and query conditions.
+**Checkpoint:** test groups are untouched by fitting, selection and inspected outcomes; every paired comparison uses the same cohort and queries.
 
 ## Step 8. Extract support and query windows
 
-For each valid steady interval, define the valid start once and extract nested 0.25-, 0.5-, and 1-second support windows from that start. The shorter observation must be the prefix of the longer observation. This compares increasing observed steady-contact time at one start location. The steady interval and its start are selected retrospectively using frozen QC rules on the complete recording, so this benchmark does not validate online contact-onset detection. Centered windows are an optional sensitivity analysis with a different spatial sampling pattern.
+Define one start from a retrospectively selected steady interval and nested **raw** support intervals of 0.25/0.5/1 seconds. Query duration is fixed at 0.5 seconds in a different condition recording. Approach, stabilization, repositioning and retrospective start selection are outside the current observation budget. This is an offline steady-contact prediction experiment; online use would require causal detection and charged overhead.
 
-Identify support onset using motion/contact metadata and fixed rules rather than acceleration amplitude or later prediction errors. The reference experiment assumes established steady sliding; approach, stabilization, and repositioning time are outside its observation budget. A future online experiment must use a causal onset rule, count detection/stabilization overhead, and avoid future samples in smoothing or window selection.
+**Current defect:** `extract_windows` calls `uniform_acceleration` on the full recording, then crops a processed prefix. Interpolation may bracket with a raw sample outside the allowed interval, and the centered polyphase filter may use neighboring raw acceleration before/after it. Recorded `raw_start_index`/`raw_end_index_exclusive` describe the nominal interval, not every filter dependency. Metadata prefix checks therefore do not establish strict bounded observations. SciPy documents the [zero-phase FIR and padding behavior](https://docs.scipy.org/doc/scipy-1.15.1/reference/generated/scipy.signal.resample_poly.html). The size of the resulting feature effect is still unquantified.
 
-Use the fixed query duration chosen in Step 6, initially one second. The observed support and hidden query must belong to different condition recordings. Do not extract both from overlapping pieces of one scan for the main cross-condition result.
+**Required correction before widening the benchmark:** choose and document either raw-window-first interpolation/filtering with padding derived only from allowed samples, or causal processing with every history/initialization sample and latency explicitly included in the budget. Do not silently borrow a bracket sample, filter margin or another repetition. Preserve exactly `round(duration_s * fs)` output samples where the declared local-processing convention supports them, reject insufficient intervals and record the local padding/grid rule. Keep physical amplitude and anti-alias filtering; interpolation alone is not an anti-alias filter.
 
-Training may sample different starts within allowed steady intervals as augmentation. Validation and test starts are fixed, with longer durations sharing the same start. Save each selected window's start/end times and a unique `window_id`.
+Nested raw observations are mandatory for duration comparisons. Independently filtered shorter windows may differ at their edges from a longer window's processed prefix. Do not enforce processed-prefix identity if achieving it requires future acceleration.
 
-Each window manifest row should include:
+Required verification/artifacts:
 
-```text
-window_id,recording_id,surface_id,split,role,duration_s,
-start_s,end_s,speed_mm_s,direction_deg,nominal_force_N,
-measured_support_force_mean_N,measured_support_force_std_N,feature_path,
-window_config_hash,time_base_id
-```
+1. Hold the selected interval and motion metadata fixed, perturb raw acceleration outside **each** allowed support interval, and confirm its processed feature vector does not change. Cover the first/last samples and interpolation/filter boundaries at every duration. Test interval selection separately.
+2. Save exact allowed raw indices, actual processing dependencies, padding/history/filter margins and time convention. Require every dependency to lie inside the allowed interval or be explicitly charged.
+3. Invalidate old caches and rerun scalers, response libraries, baseline selection, every encoder seed and metrics on aligned episodes. Preserve old reports as provisional; report the measured before/after effect without assuming its magnitude.
 
-Actual force summaries are permitted only from the observed support when used as inputs. Store query force for QC and separate diagnostic analyses; the normal prediction interface does not receive future measured query force. Query-window QC is an offline definition of the recorded evaluation target, using frozen rules. It does not show that a deployed predictor can select future valid windows or know the future force. Keep QC metadata separate from prediction tensors, and report the fraction of conditions that pass.
+Current `windows.csv` stores IDs, split/role, duration, `start_s`/`end_s`, nominal conditions/repeat, `feature_path`, `source_grid_hz`, nominal raw indices, `window_config_hash` and `time_base_id`. Support-window force summaries and a processing-dependency manifest are **not implemented**. Recording-level force remains offline QC; future force-informed input variants must use only force within the observed support. Hidden query force may define target QC or a labeled oracle analysis, never normal prediction input.
 
-Before spectral extraction, produce a uniform acceleration array according to the timing decision in Step 6. If reducing the sampling rate, apply a documented anti-alias filter before decimation; interpolation alone is not an anti-alias filter. Preserve the source-frequency range needed by the full-PSD rescaling baseline as well as the modeled query band. Keep acceleration in consistent units; the starter helper below converts g to meters per second squared. Do not normalize each contact to unit variance.
+Current training and evaluation use deterministic cached starts; random-start augmentation and centered-window sensitivity are optional, unimplemented additions. Query QC is a frozen offline target definition and does not imply a deployed predictor knows future force/motion validity.
 
-At the selected sampling rate, extract exactly `round(duration_s * fs)` samples per window. If using timestamp interpolation, construct that many uniformly spaced sample times and require the entire grid to lie within a valid observed interval. If using acquisition-rate indices, select the corresponding contiguous sample count. This avoids accidentally extracting 1499 rather than 1500 samples for a nominal 0.25-second contact.
+**Output:** corrected bounded preparation, dependency provenance, verification and regenerated deterministic windows/results.
 
-**Output:** deterministic evaluation windows and training-window rules.
-
-**Checkpoint:** every result can be traced to raw records and exact intervals; shorter support observations are prefixes of the longer contact at the same start.
+**Checkpoint:** outside-window acceleration cannot change a support feature except through explicitly budgeted observations; raw-duration nesting and target-input separation both hold.
 
 ## Step 9. Implement spectral features with physical amplitude preserved
 
-Starter settings: sampling rate 6000 Hz after the documented time-base handling; Welch segments of 0.125 seconds; 50% overlap; 32 linear bands from 24 to 1000 Hz. These settings avoid empty narrow low-frequency bands at the starter spectral resolution. Verify the range against the real signal and sensor noise before freezing it.
+Spectral extraction is implemented in `src/tactile_contact/signal.py`; use that authoritative helper rather than copying another guide implementation. After correcting Step 8, current settings are 6000 Hz in the declared coordinate system, 0.125-second Hann Welch segments, 50% overlap and 32 linear bands from 24 to 1000 Hz per axis. Absolute physical Hz remains conditional on Step 6's clock evidence.
 
-Cache both the full PSD and 32 band powers. The full PSD supports a stronger speed-rescaling baseline without requiring another contact. The encoder can initially use the compact bands, with a dense-spectrum input ablation if compression proves limiting.
+Convert g to SI with 9.80665, demean each local window and preserve amplitude; do not normalize each contact to unit variance. Cache full PSD, actual frequency grid, band edges and bin counts, linear powers, `log10(power + 1e-10)` and modeled-band RMS. Integrate with rectangular sums of PSD-bin centers times bin width, assigning every modeled bin once and including the final 1000 Hz bin. Use this same convention for targets and rescaled PSDs. Changes require matched regeneration of all methods.
 
-Put this function in `src/tactile_contact/signal.py`:
+Flatten in band-major X/Y/Z order to 96 features/targets. The numerical floor is not a measured sensor-noise floor. Audit training magnitudes, floor occupancy and predeclared floor/range sensitivity before freezing. A dense encoder or a force-summary variant remains optional and unimplemented; the full PSD already supports the rescaling baseline at the same raw-contact budget.
 
-```python
-import numpy as np
-from scipy.signal import welch
+Existing numerical checks verify spectral peaks, amplitude doubling (fourfold power; log10 change about 0.60206), offset removal, duration handling and modeled-band RMS. They verify the spectral helper, not acquisition timing or Step 8's processing boundary.
 
-def spectral_features(accel_g, fs=6000.0, floor=1e-10):
-    """Uniformly sampled acceleration, shape (samples, 3), in g.
+**Output:** full-PSD/band cache and declared spectral convention, rebuilt after preparation correction.
 
-    Return full PSD and 32x3 band powers/log10 powers.
-    Band-power units: (m/s^2)^2. Log floor has those same units.
-    """
-    a = np.asarray(accel_g, dtype=np.float64)
-    if a.ndim != 2 or a.shape[1] != 3 or not np.isfinite(a).all():
-        raise ValueError("Expected a finite samples-by-3 acceleration array")
-    if not np.isfinite(fs) or fs <= 2000:
-        raise ValueError("Sampling rate must place 1000 Hz strictly below Nyquist")
-    nperseg = int(round(0.125 * fs))
-    if len(a) < 2 * nperseg:
-        raise ValueError("Window is shorter than the starter minimum of 0.25 s")
-    if not np.isfinite(floor) or floor <= 0:
-        raise ValueError("Power floor must be finite and positive")
-    a = a * 9.80665
-    a = a - a.mean(axis=0, keepdims=True)
-    frequency_hz, psd = welch(
-        a, fs=fs, window="hann", nperseg=nperseg,
-        noverlap=nperseg // 2, detrend=False,
-        scaling="density", axis=0,
-    )
-    edges = np.linspace(24.0, 1000.0, 33)
-    df = frequency_hz[1] - frequency_hz[0]
-    band_power = np.empty((32, 3), dtype=np.float64)
-    for j, (lo, hi) in enumerate(zip(edges[:-1], edges[1:])):
-        mask = (frequency_hz >= lo) & (
-            (frequency_hz <= hi) if j == 31 else (frequency_hz < hi)
-        )
-        if not mask.any():
-            raise ValueError("Empty frequency band; revise the spectral settings")
-        band_power[j] = psd[mask].sum(axis=0) * df
-    log_band_power = np.log10(band_power + floor)
-    rms_by_axis = np.sqrt(band_power.sum(axis=0))
-    return {
-        "frequency_hz": frequency_hz,
-        "psd": psd,
-        "band_edges_hz": edges,
-        "band_power": band_power,
-        "log_band_power": log_band_power,
-        "rms_by_axis": rms_by_axis,
-        "floor": float(floor),
-    }
-```
-
-The helper uses rectangular sums over PSD-bin centers, assigning each bin to exactly one band; the final band includes the 1000 Hz bin. Save the actual frequency grid and per-band bin counts as well as the nominal edges. This is a discrete spectral convention, with small differences from exact continuous band-edge integration. Use the same convention in targets, rescaled spectra, and RMS reconstruction; changing integration rules requires regenerating every feature and result.
-
-Flatten `log_band_power` in band-major order: band 0 X/Y/Z, then band 1 X/Y/Z, and so on. Input and output dimensions are initially 96. Preserve this ordering in caches and checkpoints.
-
-The suggested floor is an initial numerical setting, not a measured sensor-noise floor. Review it against training-data magnitudes and lock it before evaluation. Report sensitivity if substantial portions of the signal are floor-limited.
-
-Before using the helper on real data, verify with a synthetic sinusoid: the peak is near its input frequency; doubling amplitude multiplies power by four; the corresponding log10 power difference is about 0.60206; adding a constant offset does not alter the spectrum after demeaning. Also check approximate agreement between integrated in-range power and waveform variance when the synthetic signal lies within the modeled range.
-
-**Output:** feature cache, feature configuration, and numerical verification notes.
-
-**Checkpoint:** all durations produce finite 96-dimensional vectors with preserved amplitude, and spectral settings are identical across compared protocols.
+**Checkpoint:** finite 96-vectors preserve physical amplitude within the declared time convention, with consistent estimator settings across methods and durations.
 
 ## Step 10. Fit preprocessing using training surfaces only
 
@@ -510,7 +304,7 @@ One default support vector contains:
 = 101 input features per support contact
 ```
 
-The query vector contains four requested condition features. An optional experiment adds two support-force statistics, changing support dimension to 103. Evaluate that addition separately; the future measured query force remains excluded.
+The query vector contains four requested condition features. An optional, unimplemented experiment adds two support-window force statistics, changing support dimension to 103. Evaluate that addition separately; the future measured query force remains excluded. The current scaler uses each unique training support-window ID once and records those IDs; omitted-speed fit guards are implemented.
 
 For the globally omitted-speed experiment, rebuild the scaler from allowed training speeds only. A scaler fitted using 30/50 mm/s data would contaminate that experiment even if the neural-network training omitted those speeds.
 
@@ -543,15 +337,14 @@ FORBIDDEN_QUERY_CONDITIONS = {
 
 The fully observed condition grid contains 80 triples, so a complete primary query grid has 76 triples before QC exclusions. Use repeat 1 for the fixed validation/test primary query response. Training may sample query repeat 0 or 1 outside the forbidden condition union, giving every fitted method access to the same allowed training response pool. A predeclared reverse-repeat check swaps repeat assignments consistently and is reported separately. The repeat-control protocol observes both reference repeats, but that reference condition is excluded from all queries.
 
-Distinguish **per-contact duration** from **total observed time**. The second-probe comparison uses two contacts of equal duration for every two-probe protocol. To compare one versus two contacts at equal total time, score `single` at 1 second against each two-probe protocol at 0.5 seconds per contact; similarly compare 0.5 seconds against two 0.25-second contacts. Keep the cohort and queries identical. Record observed sliding distance as well: equal time at different speeds does not mean equal traversed area. Repositioning time is not represented in this dataset, so these are observation-budget comparisons rather than complete robot execution-time comparisons.
+Distinguish **per-contact duration** from **total observed time**. The second-probe comparison uses two contacts of equal duration for every two-probe protocol. To compare one versus two contacts at equal total time, score `single` at 1 second against each two-probe protocol at 0.5 seconds per contact; similarly compare 0.5 seconds against two 0.25-second contacts. Keep the cohort and queries identical. The current `total_support_distance_mm` is **nominal sliding distance**, computed as nominal speed times duration for each support; it is not integrated measured travel. Add measured path length from position before claiming a physical distance budget. Equal time or nominal distance does not imply equal traversed area. Repositioning time is not represented in this dataset, so these are observation-budget comparisons rather than complete robot execution-time comparisons.
 
 Episode schema:
 
 ```text
-episode_id,surface_id,split,protocol,duration_s,
-support_window_ids,query_window_id,query_speed_mm_s,
-query_direction_deg,query_nominal_force_N,
-total_support_time_s,total_support_distance_mm,condition_subset
+episode_id,surface_id,family_group,experiment,evaluation_partition,split,protocol,duration_s,
+support_window_ids,query_window_id,query_speed_mm_s,query_direction_deg,
+query_nominal_force_N,query_repeat_id,total_support_time_s,total_support_distance_mm,config_hash
 ```
 
 For every episode, assert:
@@ -560,12 +353,12 @@ For every episode, assert:
 - All support windows match the allowed protocol and duration.
 - No support window or recording ID equals the query's.
 - Query condition is outside the union of observed support conditions.
-- Actual observation time is accounted for; no hidden extra repetitions are averaged into a test support feature.
+- Declared raw observation time and processing context are accounted for after Step 8 is corrected; no hidden extra repetitions are averaged into a held-out support feature.
 - The prediction input includes support measurements, their conditions, and requested query conditions only.
 
 Maintain two access functions: `make_prediction_inputs(episode)` returns support and query-condition tensors; `get_target(episode)` returns the hidden query response for training loss or scoring. This separation makes accidental target access easier to notice.
 
-For training, sample surfaces uniformly, then a protocol and duration uniformly, then an allowed query condition. Randomize training support/query starts only within their saved valid intervals. Define an epoch as a fixed number of episodes per surface, initially 64; this balances materials rather than allowing long scans to dominate.
+The implemented sampler balances surfaces and protocol/duration cells with 64 episodes per surface per epoch, using fixed cached support/query starts. Random-start augmentation is optional future work. `evaluation_partition` is `fit`, `selection` or `transfer`; fitting APIs reject transfer episodes and omitted speeds even if a partition label is forged. Transfer targets are accessed only after every method and seed checkpoint is selected. They are now known development outcomes on 10/57.
 
 For validation/test, store a fixed episode list. Use all common eligible queries and identical episode ordering for all methods. Cache targets once rather than letting each predictor rebuild its own favorable evaluation set.
 
@@ -579,7 +372,7 @@ For validation/test, store a fixed episode list. Use all common eligible queries
 
 Fit a small regression model from the four query-condition features to the 96-dimensional query log spectrum, using training episodes. This estimates the average response of training surfaces. It receives no test surface observation.
 
-Use a ridge regression first; if helpful, also use a small conditions-only MLP with the same training/validation rules as the proposed model.
+The implemented conditions-only method is float64 ridge with alpha 1. A conditions-only MLP is optional, unimplemented work. All fitted regressions give each training specimen total weight one, independent of repeated protocol/duration cells.
 
 ### Baseline B: reuse the observed spectrum
 
@@ -599,7 +392,7 @@ Here `p` is a power-scaling exponent and `b` is a load-scaling exponent. They ar
 
 Implement interpolation of `S_s(f/s)`, then integrate over the same target bands. Reject unsupported frequency extrapolation or report it explicitly. With the starter query band up to 1000 Hz and this dataset's speed ratios, retaining the full 6 kHz-sampled support PSD provides the needed source-frequency range, subject to the data audit confirming its validity.
 
-Fit exponents using training observations; choose among fitted candidates using validation surfaces. Never optimize them on test spectra. Freeze the following rule so the baseline returns predictions for the complete primary grid: choose the support with the smallest circular angular difference to the query, break ties by the smallest absolute log speed ratio, then by its canonical protocol order. Rescale that support PSD and ignore any remaining angular mismatch. Label this the direction-agnostic rescaling baseline; it cannot model directional variation.
+The implementation fits above-floor training log powers with ridge candidates `[0,0.1,1]`, bounds `p` to [-4,8] and `b` to [-4,4], and selects on validation surfaces. Never optimize them on test spectra. Freeze the following rule so the baseline returns predictions for the complete primary grid: choose the support with the smallest circular angular difference to the query, break ties by the smallest absolute log speed ratio, then by its canonical protocol order. Rescale that support PSD and ignore any remaining angular mismatch. Label this the direction-agnostic rescaling baseline; it cannot model directional variation.
 
 Also report a same-direction diagnostic subset, where the selected support and query directions match exactly. Score every compared method on that same subset, and give its condition/specimen count. This subset does not replace the common-grid primary evaluation.
 
@@ -615,13 +408,13 @@ At inference:
 2. Find the nearest training fingerprint using training-fitted feature scaling.
 3. Retrieve that training surface's spectrum at the requested condition. Default to both permitted training repeats: average linear band powers, then take `log10(power + floor)`. Training response records are offline calibration, distinct from the held-out surface's brief-support budget. Make the same training-record pool available to all fitted methods. Save the exact source records and aggregation.
 
-For the globally omitted-speed experiment, **do not retrieve the training surface's recorded 30/50 mm/s response**. Those labels are omitted from that entire experiment. Instead interpolate from permitted 20/40/60 mm/s spectra using a declared rule, initially linear interpolation of log band power.
+For the globally omitted-speed experiment, **do not retrieve the training surface's recorded 30/50 mm/s response**. Interpolate log powers from same-direction/load 20/40 endpoints for 30 and 40/60 endpoints for 50, with weights 0.5/0.5 after repeat responses are averaged in linear power. This geometric-power approximation is predictive, not a validated physical law. Exact endpoint IDs/weights are saved; missing or forbidden endpoints and extrapolation fail. Step 15 specifies the 26-cell endpoint-safe full-grid scope.
 
 Restrict each library to training surfaces with valid fingerprints and the required response coverage, using fixed QC rules; report its size. Break equal distances by a fixed sorted training ID. Never put validation or test surfaces in the retrieval library. Save the retrieved training ID as a diagnostic, not a prediction input to the learned model.
 
 ### Baseline E: measured features plus regression
 
-Use the mean and standard deviation of permitted support vectors, probe count, requested conditions, and optional support-by-query interaction features. Fit a regularized multi-output regression. Choose its regularization on validation surfaces.
+Implemented fixed-feature ridge uses mean/std of the permitted 101-dimensional support vectors, probe count and requested conditions. Its scaler is fitted on weighted training episodes; alpha candidates `[0.01,0.1,1,10,100]` are selected by equal-cell validation MAE. Support-by-query interactions are optional and unimplemented.
 
 This asks whether a learned bottleneck provides value beyond ordinary spectral features.
 
@@ -692,7 +485,7 @@ class ContactPredictor(nn.Module):
 
 Use finite zero padding; multiplying an encoded NaN by a zero mask would still propagate NaN. Mean pooling makes the support-set representation invariant to probe order. The encoder sees each observation's condition, so speed/load-dependent changes can be interpreted. Probe count is explicit rather than hidden in zero padding.
 
-Starter training choices: Adam at `1e-3`, batch size 128, at most 60 epochs, gradient-norm clipping at 1, and early stopping after 10 epochs without improved **validation per-surface raw log-power MAE**. Use training-only sampling, the same three initialization seeds, and a fixed validation episode manifest. For checkpoint selection, first average queries per surface in each protocol/duration cell, then average surfaces, then give each declared cell equal weight. Save both that aggregate and the primary-cell validation score. A large query subset must not dominate selection merely because it has more rows. These are starting choices, not optimized results.
+Starter training choices: Adam at `1e-3`, batch size 128, at most 60 epochs, gradient-norm clipping at 1, and early stopping after 10 epochs without improved **validation per-surface raw log-power MAE**. Use training-only sampling, the same three initialization seeds, and a fixed validation episode manifest. For checkpoint selection, first average queries per surface in each protocol/duration cell, then average surfaces, then give each declared cell equal weight. The current history saves the equal-cell aggregate only. Add the separate primary-cell validation history before the next model-selection freeze. A large query subset must not dominate selection merely because it has more rows. These are the implemented choices. Expanded checkpoints were selected at epochs 55/59/60 and omitted-speed checkpoints at 59/60/58. Review training/selection curves and a modest predeclared development training-budget extension if needed; near-cap selection alone proves neither convergence nor underfitting. Do not choose checkpoints or architectures from now-known transfer outcomes and describe that as a fresh test.
 
 Minimal training-step example:
 
@@ -716,61 +509,60 @@ Before real training, set Python, NumPy, and PyTorch seeds. If using CUDA, docum
 
 ## Step 14. Perform engineering checks before scientific evaluation
 
-Run these meaningful checks:
+The last source-code verification completed **44 tests** plus compilation. See [implementation checks](implementation_checks.md). Tests cover spectra/units, motion fitting, split and query exclusions, cached prefix bookkeeping, masked/order-invariant prediction inputs, train-only fitting, retrieval aggregation, wrong support, bootstrap guards, checkpoint restoration, tiny-fit optimization, provenance/reuse and omitted-speed isolation. Synthetic behavior is an engineering check, not physical contact validation.
 
-1. **Numerical spectrum check:** amplitude doubling changes power fourfold and log10 power by about 0.60206.
-2. **Split check:** training, validation, and test material/family sets are disjoint.
-3. **Episode check:** no common query condition appears in the support-condition union.
-4. **Mask check:** changing a padded support slot does not change prediction; swapping two observed slots preserves prediction.
-5. **Tiny training check:** a small model can fit a few training episodes with different targets. Failure suggests code, scaling, or optimization problems.
-6. **Prediction-input check:** two calls with identical permitted inputs produce identical outputs in evaluation mode, regardless of attached target fields.
-7. **Retrieval check:** every retrieved ID belongs to the training set and its output came from allowed condition labels.
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m compileall -q src tests scripts
+```
 
-The tiny fit is a debugging result, not evidence of generalization. Keep debugging figures separate from research result figures.
+**Remaining required checks:** Step 8's outside-window perturbation/dependency tests; exposure-aware fresh-test exclusion; full-grid condition-mask counts/coverage and matched-grid identity; and a frozen scoring path that cannot select/refit from test labels. Current configuration deliberately rejects `stage: test`. The locked-test interface has not been implemented. Existing tests do not certify calibrated acquisition timing, measured distance, heading/force control or manufacturing-family independence.
 
-If the network only predicts a mean spectrum, inspect gradient flow, loss scale, query conditioning, support masking, and sampling before changing architecture. If force or timing QC excludes many records, inspect the exclusion rules before trusting the benchmark cohort.
+Keep tiny-fit/debugging results separate from scientific comparisons. Inspect gradient flow, raw loss scale and support variation if mean predictions persist; a functioning model is not evidence it outperforms retrieval.
 
-**Output:** `docs/implementation_checks.md` and relevant numerical/assertion results.
+**Output:** updated implementation checks for each source change and explicit unverified physical/scientific assumptions.
 
-**Checkpoint:** you have eliminated basic implementation and leakage failures without using test outcomes to redesign the model.
+**Checkpoint:** relevant engineering guards pass, and the remaining scientific assumptions are not presented as established by the test count.
 
 ## Step 15. Freeze choices using validation data, then run the test
 
-Use validation data for a small, recorded set of choices: latent sizes 8/16/32 if necessary, regularization, spectral floor/range after audit, and optional measured support-force inputs. Record every attempted configuration and why it was retained or rejected.
+**Current status:** only development is supported. Implement and verify a separate frozen prediction/scoring path before adding scientific test IDs; it must load frozen preprocessing, libraries and checkpoints without fitting or selecting on test targets. All 12 existing specimens remain development data. Keep architecture/feature exploration modest and recorded; do not promote the current winning fixed-feature baseline to a retrospectively chosen primary comparison.
 
-Keep model selection modest. An elaborate model search would change this into an architecture-optimization project without necessarily improving the scientific question.
+Retain the intended primary cell: **encoder versus retrieval, `single`, 0.5-second support, familiar conditions**. Retain direction versus repetition at two 0.5-second contacts as the main probe-choice contrast. Decide a practical margin from development scales/repeat context and a descriptive or multiplicity-adjusted secondary policy before opening fresh-test results. These decisions are not yet frozen.
 
-Before testing, freeze:
+Separate condition experiments and their pre-QC candidate domains:
+
+| Experiment | Fit/selection speeds | Candidate query triples | Retrieval-safe scope |
+| --- | --- | --- | --- |
+| Familiar conditions | 20/30/40/50/60 | 80 minus four support triples = **76** | Same permitted training condition |
+| Omitted-speed known-condition selection | 20/40/60 | 48 minus four support triples = **44** | Permitted training endpoints only |
+| Omitted-speed transfer | 30/50 | **32** possible triples | **26** same-direction/load bracketable triples |
+
+For each omitted speed, transfer at `(direction,load)=(0,0.5),(0,1.0),(90,0.5)` lacks at least one permitted retrieval endpoint because the endpoint is in the excluded support union. These six cells are excluded from the matched 26-cell comparator domain. Publish exact masks and reasons; do not restore coverage by retrieving excluded support responses or hidden 30/50 labels. An additional six-cell analysis requires a separately predeclared comparator/contract. Further QC may reduce all counts.
+
+Current omitted evidence covers only six fit/selection triples and four transfer triples at 45/90 degrees, 1 N. Its query grid differs from the familiar pilot. Before attributing differences to global speed withholding, run a **matched-grid familiar development comparator** on identical 30/50 direction/load targets, with the additional permitted familiar-speed training responses, identical raw budgets/cohort and declared selection rules. Refit scalers, exponents, libraries and models separately; changing the response pool is the intended treatment. Transfer results on existing specimens stay developmental.
+
+Before test scoring freeze and hash:
 
 ```text
-dataset revision and raw-data inventory
-QC rules and window/time-base configuration
-material split and specimen grouping
-eligible comparison cohort and episode manifests
-feature/scaler definitions and spectral floor
-baseline definitions and fitted choices
-model configuration and validation-selected checkpoints
-primary analysis cell, metric, comparison, and aggregation rules
-practical effect margin and secondary-comparison/multiplicity policy
-load/direction subgroup definitions and predictive-uncertainty plan, if used
+source revision, raw inventory and environment
+strict support-processing boundary/dependencies, timing convention and claim scope
+QC rules, coverage/attrition, nominal versus measured budgets
+exposure ledger, known groups, fresh split, eligible cohort and exact condition masks
+support/query repetitions, starts, feature/scaler definitions and floor
+baseline contracts/fitted choices, model configuration and selected checkpoints
+primary comparison, practical effect margin, seed/group aggregation
+secondary policy, load/direction subsets, reverse-repeat and other planned robustness
+locked prediction/scoring interface and reproducible release artifacts
 ```
 
-Run the frozen test once as the main evaluation, then only predeclared robustness checks. If a genuine implementation bug is found, document it, fix it, and rerun all affected methods consistently; label the revised evaluation. Do not change architecture or QC to rescue a disappointing score.
+Load transfer is 1 N queries for protocols observing only 0.5 N (`single`, `repeat`, `speed`, `direction`). The `load` protocol observes both loads. Define unobserved directions per protocol and their intersection for matched comparisons. Publish exact masks/counts. Neither two loads nor the available speed range establishes arbitrary extrapolation.
 
-Separate two condition experiments:
+Run the frozen main test once and only predeclared robustness checks afterward. If a genuine software bug is found, record it and rerun every affected method consistently. Do not redesign QC, cohorts or architecture to rescue test scores.
 
-| Experiment | Training/validation speeds | Test query speeds | Main interpretation |
-| --- | --- | --- | --- |
-| Familiar conditions | 20/30/40/50/60 | All allowed common-grid speeds | Generalization to new surfaces |
-| Speed interpolation | 20/40/60 only | 30/50 | New surfaces and globally omitted intermediate speeds |
+**Output:** frozen bundle and fresh-test raw predictions, after the preceding development gates are met.
 
-For both experiments, the support protocols use only 20/40 mm/s. Omitted 30/50 mm/s recordings never enter model fitting, preprocessing statistics, exponent fitting, or retrieval outputs in the interpolation experiment.
-
-Evaluate load transfer and direction transfer as named subsets of the fixed query set. Define unobserved-load transfer as 1 N queries for protocols whose supports all use 0.5 N (`single`, `repeat`, `speed`, `direction`). Report `load` separately as observing both loads. Define unobserved-direction queries per protocol as directions absent from its support set; use their intersection when comparing protocols on a matched angular subset. Publish the exact condition lists and surface counts. A one-load support protocol predicting 1 N tests unobserved-load transfer. A two-load support protocol tests the benefit of observing both loads; do not describe it as predicting a completely unobserved load.
-
-**Output:** frozen configuration bundle and raw prediction tables for three seeds.
-
-**Checkpoint:** a test result identifies its exact material split, support budget, condition experiment, and permitted input interface.
+**Checkpoint:** fitting/selection cannot read test targets; claims identify exact held-out groups, condition domain and accounted observation budget.
 
 ## Step 16. Compute metrics and confidence intervals correctly
 
@@ -779,11 +571,11 @@ Save one row per query:
 ```text
 experiment,model,seed,episode_id,surface_id,family_group,protocol,duration_s,
 query_speed_mm_s,query_direction_deg,query_nominal_force_N,
-log_power_mae,rms_error_X,rms_error_Y,rms_error_Z,total_rms_error,
-retrieved_training_id,checkpoint_id,config_hash
+log_power_mae,rms_error_X,rms_error_Y,rms_error_Z,modeled_band_total_rms_error,
+retrieved_training_id,config_hash
 ```
 
-Primary error for a query is the mean absolute difference across its 96 log10 band-power entries. First average over query conditions within a surface, then average across surfaces. This prevents surfaces with more valid windows from dominating.
+Current `per_query.csv` also carries `evaluation_partition`; checkpoint paths are recorded in the run manifest and can be mapped by seed/configuration, rather than stored in each score row. Per-axis log-power diagnostics can be derived from saved prediction arrays and remain part of the required analysis. Primary error for a query is the mean absolute difference across its 96 log10 band-power entries. First average over query conditions within a surface, then average across surfaces. This prevents surfaces with more valid windows from dominating.
 
 Recover modeled-band amplitude from spectra:
 
@@ -802,7 +594,7 @@ Keep this metric limited to the modeled frequency band. Do not call it total phy
 
 Compare methods using paired surface errors, averaging initialization seeds within each surface for the main paired comparison and reporting seed variation separately. Treat specimen families as bootstrap clusters where appropriate. Supply homogeneous, nonmissing group IDs from the frozen manifest. The helper resamples whole families and retains a surface-weighted mean within each draw; large families contain more surfaces and therefore more weight. Use a different, predeclared estimator if the question calls for equal weight per family.
 
-Starter bootstrap helper for `src/tactile_contact/metrics.py`:
+The following bootstrap illustration describes the estimator; the implemented helper in `src/tactile_contact/metrics.py` is authoritative:
 
 ```python
 import numpy as np
@@ -858,7 +650,7 @@ Report absolute paired improvement in log10-power MAE units, its interval, and i
 
 These intervals concern mean method differences. If predictive uncertainty for individual responses is added, fit/calibrate it using training/validation groups and evaluate coverage and interval width on held-out surfaces. Ensemble disagreement alone does not establish calibrated prediction uncertainty.
 
-Two repetitions provide only limited information about repeatability. Use their differences as context, not a precise irreducible-error estimate. Additional windows from a repetition are correlated observations rather than extra independent specimens.
+Repeat-difference tables and the reverse-repeat sensitivity are still required. The present two-validation-group intervals are descriptive engineering diagnostics even when an individual interval excludes zero. Two repetitions provide only limited information about repeatability. Use their differences as context, not a precise irreducible-error estimate. Additional windows from a repetition are correlated observations rather than extra independent specimens.
 
 **Output:** per-query/per-surface tables, paired improvements, bootstrap intervals, and seed variability.
 
@@ -866,7 +658,7 @@ Two repetitions provide only limited information about repeatability. Use their 
 
 ## Step 17. Make figures, interpret failures, and finish the public study
 
-Required figures:
+Existing public figures include duration curves and reference audit examples. The complete figure set below, including condition/specimen failures and repeatability, is still required:
 
 1. Paired support/query panels, each with synchronized acceleration, force, and motion channels and the selected window marked.
 2. Predicted and measured spectra for successes and failures, using the same selection rule for all models.
@@ -890,13 +682,13 @@ Interpretation rules:
 | Spectra improve but amplitudes remain wrong | Shape similarity is insufficient for physically scaled response | Inspect normalization, floors, and force dependence |
 | All methods are poor and repeats disagree strongly | Target variability or measurement limits may dominate | Revisit the prediction target and need for more independent trials |
 
-Direction changes can alter the scanned path and surface patch as well as heading. Equal time and recorded distance do not isolate intrinsic anisotropy; use position metadata to characterize coverage and preserve these alternatives in the conclusion.
+Direction changes can alter the scanned path and surface patch as well as heading. Equal declared time and nominal speed-times-duration distance do not isolate intrinsic anisotropy; use position metadata to characterize coverage and preserve these alternatives in the conclusion.
 
 Write a short report with: question, related work, data/protocol, baselines/method, results, ablations/failures, limitations, and mechanical extension. A 6–8-page main report plus appendix is a practical target, not an admissions requirement.
 
 Use an accurate title, initially **Brief Contact Probes for Predicting Texture Responses Across Interaction Conditions**. Describe the completed work as an independent tactile-response study. Include mechanical identification and robot learning as future work until those experiments are completed.
 
-**Stage A completion gate:** save the primary paired comparison, duration curves, all declared second-probe contrasts, wrong-support result, load/direction subsets, the separately fitted omitted-speed experiment, exclusions, and repeatability context. Package them with the report and code. If data coverage prevents a planned contrast, explain that limitation and narrow the answered question. A simple baseline winning is a valid completed result.
+**Stage A completion gate:** correct/verify bounded preparation; justify the clock or explicitly narrow to a logged-coordinate study; complete exposure/coverage review and fresh locked evaluation; save the primary paired comparison, declared duration/probe contrasts, wrong-support and load/direction results, separately fitted omitted-speed analysis, exclusions, repeatability and convergence context. Package the report and reproducible artifacts. A logged-coordinate completion answers an empirical feature-prediction question; calibrated physical frequency/duration claims remain open. If coverage prevents a contrast, explain the limitation and narrow the answered question. A simple baseline winning is a valid completed result.
 
 **Output:** report, figures, configurations, code, and a concise completed-work description.
 
@@ -904,7 +696,7 @@ Use an accurate title, initially **Brief Contact Probes for Predicting Texture R
 
 ## Step 18. Decide whether the mechanical milestone is currently feasible
 
-While completing the public study, ask a potential mentor or partner about an existing calibrated contact rig. Provide your one-page protocol and preliminary figures. Identify actual capabilities rather than assuming a tactile kit includes independent force ground truth.
+While completing the public study, draft a capability inquiry for a potential mentor or partner, supported by the protocol and provisional figures. Sending an inquiry requires separate user authorization. Identify actual calibrated rig capabilities rather than assuming a tactile kit includes independent force ground truth. Stage B can proceed with suitable measurements even if retrieval wins Stage A; an encoder advantage is not its gate. No rig access or mechanical dataset adequacy is currently confirmed. Steps 19–25 below remain future-work specifications and illustrative mechanics code.
 
 Required measurements/capabilities:
 
@@ -1194,7 +986,7 @@ A planning/control result establishes decision-making usefulness. Claims about r
 
 ## Step 26. Package the research so another person can assess it
 
-Create a top-level `README.md` explaining the question, supported claims, dataset revision, environment, data preparation, experiment configurations, figure regeneration, and limitations. Include the exact commands for the scripts you implemented, not hypothetical commands for missing files.
+Create a top-level `README.md` explaining the question, supported claims, dataset revision, environment, data preparation, experiment configurations, figure regeneration, and limitations. Include the actual package CLI and report commands. The current public repository contains source/configs/tests, documentation and aggregate reports; downloaded raw data, feature caches, checkpoints and full per-query outputs are ignored by Git. Public aggregates alone are not the complete reproducibility package. Before scientific release, choose an allowed artifact distribution or verified reconstruction recipe, preserving data revision, environment, manifests, hashes and all outputs needed to reproduce principal tables. Historical report hashes refer to their recorded source commits, not necessarily the current checkout.
 
 The research record should contain:
 
@@ -1221,21 +1013,19 @@ The credible evidence is your scientific question, experimental ownership, valid
 
 **Checkpoint:** someone can reproduce the principal tables and understand your contribution without reading this conversation.
 
-## Recommended execution order and time budget
+## Recommended execution order from the current milestone
 
-| Period | Focus | Milestone |
+| Next gate | Concrete action | Exit evidence |
 | --- | --- | --- |
-| First 2–3 days | Steps 1–5 | Protocol, closest-work matrix, pilot data, and manifest |
-| Rest of week 1 | Steps 6–9 | Synchronized plots, QC/window decisions, spectral features |
-| Week 2 | Steps 10–12 | Locked splits/episodes and functioning baselines |
-| Week 3 | Steps 13–15 | Small model, engineering checks, validation decisions |
-| Week 4 | Steps 15–16 | Locked evaluation and paired numerical comparisons |
-| Week 5 | Steps 17 and 26 | Finished public-data report and reproducible record |
-| Weeks 6–8 or later, depending on rig access | Steps 18–22 | Calibrated sliding-force pilot; revise timing to match actual collection capacity |
-| Later, with dynamically responsive hardware | Steps 23–24 | Restricted real motion validation and engine integration |
-| After model validation | Step 25 | Matched downstream task |
+| 1. Strict observation boundary | Correct window-local or charged causal preparation; perturb outside samples; rebuild every method in new roots | Dependency provenance, passing boundary checks, revised aligned pilot tables |
+| 2. Timing and QC scope | Compare original/mirror evidence, freeze justified or limited time convention, review motion/heading/load and attrition | Timing decision, QC sensitivity and coverage matrix |
+| 3. Development diagnostics | Exposure/name-group review, repeat differences, primary/equal-cell convergence, floor/range checks, broader cohort and exact masks | Recorded modest choices; matched-grid familiar/omitted comparison |
+| 4. Fresh-test freeze | Reserve unexposed groups, implement frozen scoring, set primary margin/secondary policy and planned robustness | Versioned freeze bundle and test-interface checks |
+| 5. Complete Stage A | Score frozen models, run declared checks, produce failure figures and scoped report | Honest completed study and reproducible release |
+| Parallel: Stage B access | Prepare capability inquiry and verify actual available measurements | Calibrated independent force/motion gate; outreach only when authorized |
+| Later stages | Measured mechanics, responsive motion validation, engine integration, matched control | The distinct gates in Steps 18–25 |
 
-These are planning estimates, not promises. Seek rig access during the public study. If hardware takes longer, complete and report the public-data milestone rather than keeping all work indefinitely in progress.
+These are dependency gates, not a restart of completed download/training work or a calendar promise. Clock uncertainty can limit a completed empirical report; it cannot be erased by a sensitivity curve. Hardware delays need not keep Stage A indefinitely unfinished.
 
 ## Stage A experiment matrix and conditional extensions
 
@@ -1246,11 +1036,11 @@ These are planning estimates, not promises. Seek rig access during the public st
 | One versus two probes at equal total time | Single 1 s versus two 0.5 s; single 0.5 s versus two 0.25 s | Benefit of probe diversity beyond additional observation time |
 | Second-probe choice | Repetition/speed/load/direction, fixed 0.5-second contact duration for the main contrast; other durations secondary | Same-budget comparison; count time and distance |
 | Wrong-support control | Proposed predictor with correct and substituted support | Evidence of surface-specific conditioning |
-| Globally omitted speeds | Refit relevant methods with 20/40/60 only | 30/50 predictions without hidden-label retrieval |
+| Globally omitted speeds | Refit all relevant methods with 20/40/60 only; add matched-grid familiar comparator | 44 known-speed /26 endpoint-safe transfer triples before QC; current development covers 6/4 |
 | Mechanical pilot, when feasible | Global coefficient, brief-force fit, modest extension, richer calibration | Held-out force error and parameter stability |
 | Restricted real dynamics, when feasible | Global, brief-contact, richer calibration | Motion error without future-state inputs |
 
-Run the `single`, 0.5-second development slice end to end on training/validation surfaces before expanding this matrix. Category exclusion and globally omitted directions are optional exploratory stress tests. Adaptive next-probe selection, waveform synthesis, compliance, and sensor transfer need separately scoped experiments after the planned study is complete.
+The development slice and bounded expanded/omitted matrix have run. Correct strict support preparation and regenerate the comparisons before expanding their scientific interpretation. Timing, broader coverage, repeatability and a fresh locked test are remaining gates. Category exclusion and globally omitted directions are optional exploratory stress tests. Adaptive next-probe selection, waveform synthesis, compliance, and sensor transfer need separately scoped experiments after the planned study is complete.
 
 ## Troubleshooting guide
 
@@ -1259,7 +1049,7 @@ Run the `single`, 0.5-second development slice end to end on training/validation
 | All test errors are exceptionally small | Material splits, same-record overlap, query labels, retrieval omitted-speed access | Universal material representation |
 | All amplitude errors are large | g-to-SI conversion, per-record normalization, PSD density integration, log inversion | Insufficient network size |
 | Frequency shifts look wrong | Sampling/time base, speed units, interpolation scaling factor | Material physics is unpredictable |
-| More contact always helps enormously | Hidden query-condition observations, unmatched time/distance, cohort changes | A special information-theoretic benefit |
+| More contact always helps enormously | Outside-window preprocessing context, hidden query observations, unmatched time/nominal distance, cohort changes | A special information-theoretic benefit |
 | Wrong surface performs equally well | Support ignored, query-condition dominance, machine signal | Surface identification |
 | Force model fits support but fails elsewhere | Confirmed sliding, load control, calibration drift, parameter ambiguity | Intrinsic friction has been recovered |
 | Simulation matches a scan exactly | Whether measured future motion was replayed | Forward dynamics accuracy |
@@ -1275,7 +1065,7 @@ Run the `single`, 0.5-second development slice end to end on training/validation
 - **[R6] Si et al. DiffTactile: A Physics-based Differentiable Tactile Simulator for Contact-rich Robotic Manipulation. ICLR 2024.** [Paper](https://arxiv.org/abs/2403.08716), [project](https://difftactile.github.io/), [code](https://github.com/Genesis-Embodied-AI/DiffTactile).
 - **[R7] TacTID: High-Performance Visuo-Tactile Sensor-Based Terrain Identification for Legged Robots. IEEE Sensors Journal, 2024.** [Author-hosted paper](https://charon-bo.github.io/assets/PDF/TacTID.pdf).
 - **[R8] Gao et al. Tactile DreamFusion: Exploiting Tactile Sensing for 3D Generation. NeurIPS 2024.** [Paper](https://arxiv.org/abs/2412.06785). Useful for a later 3D texture-generation direction, rather than a dependency of this first benchmark.
-- **Hugging Face Hub download API.** [Official download guide](https://huggingface.co/docs/huggingface_hub/guides/download), [HfApi reference](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api).
+- **SciPy polyphase resampling and boundary behavior.** [Version 1.15.1 documentation](https://docs.scipy.org/doc/scipy-1.15.1/reference/generated/scipy.signal.resample_poly.html). Relevant to the strict-window correction; the repository uses Python HTTPS rather than the Hugging Face Hub client.
 - **SciPy Welch estimation.** [Official documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html).
 - **PyTorch installation.** [Official selector](https://pytorch.org/get-started/locally/).
 - **MuJoCo contact model.** [Official computation documentation](https://mujoco.readthedocs.io/en/stable/computation/index.html), [XML contact-pair reference](https://mujoco.readthedocs.io/en/stable/XMLreference.html#contact-pair).
@@ -1283,10 +1073,8 @@ Run the `single`, 0.5-second development slice end to end on training/validation
 
 ## Refinement and validation record
 
-This revision preserves the plan's stages and research question while making the primary analysis, development milestone, baseline contracts, support-prefix budgets, and mechanical trial roles explicit. It also distinguishes statistical inconclusiveness from equivalence and orthogonal-probe benefit from intrinsic anisotropy. Source checks on 8 October 2026 confirmed the cited Cluster acquisition/schema facts, Heravi's retrieval precedent, and HaptoFlow's reported status; sensor acquisition timing and access to mechanical recordings remain unresolved.
+The initial 8 October refinement checked source acquisition/schema statements, prior retrieval work, illustrative numerical/model/mechanics behavior, the 76-condition grid and 26 guide steps. Those syntax/synthetic checks were guide verification, not research findings. The implemented repository subsequently completed the initial, expanded and omitted-speed development runs; its last source-code suite passed 44 tests and compilation. Actual historical runtimes/results are recorded in [implementation checks](implementation_checks.md) and the three milestone reports.
 
-All 15 Python blocks were syntax-checked and the contact-pair XML fragment was parsed. Synthetic checks passed for filename/condition validation; spectral peaks, amplitude scaling, offset removal, all three support durations, and modeled-band RMS reconstruction; grouped bootstrap determinism and missing/mixed-ID rejection; sliding-friction fitting for both velocity signs and invalid thresholds; and coasting motion with both velocity signs, within-step stopping, and zero friction. The 76-condition common query grid and all 26 step headings were checked.
+This reassessment reads the current package, configurations, manifests and saved results. It replaces hypothetical scripts with executed CLI/module contracts; fixes the 0.5-second query specification, nominal-distance terminology and 76/44/26 condition domains; reserves all exposed specimens for development; preserves negative/inconclusive comparisons; and makes strict processing boundaries, timing/claim scope, coverage/repeatability/convergence and frozen-test infrastructure the next gates. Mechanical/calibration stages remain future work and do not depend on a learned-model victory.
 
-The PyTorch model was executed for forward/backward sanity checks, output dimensions, finite masked-padding invariance, support-order invariance, and invalid-input guards. Runtime: Python 3.12.6, NumPy 1.26.4, SciPy 1.15.1, PyTorch 2.6.0+cu118; model checks ran on CPU. This is example verification, not a trained-model evaluation.
-
-These checks establish example behavior, not research results. Dataset download, real-data windowing, scientific model training/evaluation, physical force calibration, and full MuJoCo integration require the experiments described above. Script names remain implementation contracts, not a delivered executable research repository.
+The outside-window preparation dependence was identified by source inspection and SciPy's documented zero-phase filtering; no effect magnitude or correction is claimed. Existing prefix checks do not test it. This documentation-only revision runs no new scientific experiment and changes no model code, scores or historical run provenance. Updated Markdown structure, CLI/schema references and grid enumeration are checked before publication. The plan and guide describe required next implementation, not completed fixes.

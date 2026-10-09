@@ -1,8 +1,8 @@
 # Brief Contact Probes for Predicting Texture and Sliding Contact
 
-Prepared for Elton Chang — 7 October 2026, America/Los_Angeles
+Prepared for Elton Chang — original plan 7 October 2026; revised after implementation review 8 October 2026, America/Los_Angeles
 
-**Status:** Proposed independent research. No experiments, results, hardware access, novelty claim, or publication acceptance are implied by this plan. Numerical choices below are starting specifications to finalize after a data audit and mentor review.
+**Status:** A public [development repository](https://github.com/EltonChang1/tactile-contact-research) and three bounded real-data experiments are complete. These establish implementation behavior and provisional comparisons. No locked scientific test, calibrated mechanical identification, real motion validation, or control experiment has been completed. Hardware access, novelty, and publication acceptance remain unestablished. This revision separates observed evidence from proposed work and preserves the original long-term objective.
 
 ## 1. Objective and research scope
 
@@ -15,6 +15,8 @@ The initial public-data study predicts vibration spectra. The mechanical extensi
 The main candidate contribution is a careful study of contact information, generalization, and probe selection. An encoder and decoder alone are not the contribution. Any claim of novelty requires checking the closest prior work and obtaining expert feedback.
 
 The first mechanical scope is **sliding friction with a fixed contact geometry**. Add compliance after measuring indentation and calibrating fixture and probe deformation. A complete engine, full-body touch, universal material properties, and large world-model training are longer-term objectives.
+
+The immediate deliverable is a defensible study of information in brief contacts, including a result in which retrieval or fixed-feature regression wins. Keep the primary method comparison as encoder versus retrieval with one 0.5-second support, and the primary probe comparison as direction versus repetition with two 0.5-second contacts. The duration labels describe the current logged-time selection convention until the information-budget and clock gates below are met. Do not redefine the primary cell around a favorable development result.
 
 ## 2. Why the previous idea needs refinement
 
@@ -53,6 +55,25 @@ Contact parameters describe a specified probe, surface, mounting, and operating 
 
 ## 4. Stage A: public-data study
 
+### 4.0 Current evidence and remaining scientific gates
+
+The development implementation includes pinned downloads and hashes, recording/QC manifests, spectral features, matched episodes, five baselines, a small encoder/predictor, wrong-support controls, three initialization seeds, and result provenance. The initial single-probe pilot is retained in [development_status.md](development_status.md). Subsequent experiments are summarized below; episode counts do not represent independent specimens.
+
+| Development experiment | Coverage | Observed primary-cell behavior | Interpretation |
+| --- | --- | --- | --- |
+| [Expanded familiar-condition pilot](expanded_pilot_report.md) | Ten training/two validation specimens; five protocols; three durations; four common query triples; 1,320 episodes | Single 0.5-second log-power MAE: retrieval 0.1724, fixed features 0.2006, encoder 0.2492; wrong support 0.5837 | Retrieval leads; the encoder uses specimen-dependent information within this development cohort. No learned-model advantage or preferred probe is established. |
+| [Separately fitted omitted-speed experiment](omitted_speed_report.md) | Same twelve specimens; fit/select on 20/40/60 mm/s; score 30/50 mm/s; two query directions/one load; 2,100 episodes | Transfer MAE: fixed features 0.3098, encoder 0.3158, interpolated retrieval 0.3298; wrong support 0.4975. Retrieval has lower transfer RMS error than the encoder. | Different metrics favor different methods. The paired retrieval-minus-encoder MAE difference is 0.0140 with a two-group diagnostic interval spanning zero. This remains exploratory development evidence. |
+
+The two experiments use different query grids and cannot isolate the effect of speed withholding by comparing their scores. Add a familiar-condition comparator on the identical grid, support/query definitions, specimens, and budgets before attributing a change to omitted-speed training.
+
+Three unresolved issues limit the current interpretation:
+
+1. **Strict acceleration information budget:** the implementation interpolates/filters a whole recording before cropping the selected window. Acceleration outside the nominal window can therefore influence its input features. The amount is unquantified. This is preprocessing context beyond the stated support budget, rather than query-label access. Fix and verify it before claiming strict 0.25/0.5/1-second observation budgets.
+2. **Clock interpretation:** the logged acceleration rate differs from the documented acquisition rate. The latest training-only sensitivity gives an approximately 1.44 median ratio of acquisition-index to logged duration and a median per-window mean absolute log-power difference of 0.3915. These numbers show consequential sensitivity; they do not identify the correct clock. See [timing_audit.md](timing_audit.md).
+3. **Scope and exposure:** all twelve current specimens are development-exposed. The available-name review has scope `metadata_names_only`; fabrication-family independence is unknown. The full condition grid and a fresh scientific test have not been evaluated.
+
+Complete the budget, timing/claim, coverage, and exposure decisions below before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
+
 ### 4.1 Dataset and access
 
 Use the Cluster Haptic Texture Dataset. It offers 118 surfaces, five speeds (20–60 mm/s), eight scan directions, two nominal loads (0.5 and 1 N), and two repetitions. Sliding recordings include acceleration, normal force, and in-plane position. [5]
@@ -70,25 +91,33 @@ The normal-load setting is obtained by selecting a contact height; it should not
 
 Create an inventory with material ID, category, specimen/family notes, speed, direction, nominal load, repeat ID, duration, sampling intervals, and missing or unusable channels.
 
-For ten pilot surfaces, plot acceleration, normal force, and position together. Check steady sliding, actual loading variation, timestamps, clipping, and differences between repetitions. Record exclusions using a rule defined without looking at model test errors.
+The original ten-surface audit and two-specimen development validation are complete for bounded selections. Expand synchronized acceleration/force/position review and condition coverage using development specimens. Check steady sliding, actual loading variation, timestamps, clipping, differences between repetitions, and specimen-level failures. Record exclusions using a rule defined without looking at scientific test errors.
 
 Determine the number of usable windows per condition after removing approach, acceleration, and stopping phases. Keep track of observations that cannot provide a full requested duration. Do not silently shorten long probes or fabricate extra independent trials.
 
 Document possible machine vibration and sensor resonances. Wrong-material and action-only controls help detect whether performance is dominated by the apparatus, but a single apparatus cannot establish sensor transfer.
 
+The current longest steady interval is selected retrospectively using motion and force over a recording. This is an offline benchmark selection rule, not an online detector that knows when a usable probe has begun. Keep query force confined to offline QC and hidden from prediction inputs. Audit how QC changes coverage by specimen, speed, direction, load, and duration; publish the intended and retained denominators rather than reporting only successful windows.
+
+Close the acceleration-budget gate before extending scientific duration claims: select the exact raw support interval first and perform interpolation, anti-aliasing, and spectral estimation using only its permitted raw samples, or use an explicitly causal method whose required observed history is charged to the budget. Record raw sample indices, timestamps, observed history, boundary treatment, and output sample counts. With the interval and QC decisions fixed, perturb acceleration before and after its permitted samples and verify that its features and predictions do not change. Apply the documented window rule to query targets as well. Rebuild caches and refit/rescore every method, including retrieval libraries and rescaling, on aligned episodes; preserve the existing development results as a separate version.
+
+Resolve acquisition versus delivery timing from authoritative acquisition/transport information when available. Choose the convention without using validation/test response errors to favor a clock. If the physical interpretation remains unavailable, explicitly scope a limited report to logged-coordinate windows and spectra, with both assumptions and their sensitivities disclosed. Do not present its absolute frequency or physical contact-time labels as calibrated. Such a fallback completes a limited observational study rather than proving the original physical-duration question.
+
 ### 4.3 Split and test protocol
 
-Use approximately 80 training surfaces, 18 validation surfaces, and 20 test surfaces, adjusted after grouping closely related specimens. Balance category coverage where feasible; group related variants rather than splitting them merely to meet exact counts.
+Use approximately 80 training, 18 validation, and 20 test specimens as a planning target, adjusted after conservative grouping and prespecified coverage/QC rules. These are not locked counts. Balance category coverage where feasible; keep known related variants together rather than splitting them to meet exact numbers. Review the complete metadata list, record unknown fabrication relationships, and distinguish name-based grouping from verified manufacturing-family independence. If additional provenance is unavailable, retain an explicitly specimen-level claim rather than indefinitely requiring proof of unknown families.
+
+All twelve current specimens are development-exposed: training IDs 0, 38, 49, 65, 74, 79, 82, 87, 102, 103; development validation IDs 10 and 57. None may become a fresh scientific test. IDs 10 and 57 have repeatedly supported model selection and exploratory evaluation even though their records did not fit model weights. Maintain an exposure ledger showing what metadata, signals, targets, scores, and decisions were inspected for each specimen. Reserve fresh test groups before further response-driven design changes.
 
 All recordings from a held-out surface remain outside model training and preprocessing-statistic fitting. Material IDs are used to pair records and construct splits, never as encoder or predictor inputs. Split records before creating windows.
 
-Publish the fixed split manifest and evaluation configuration. Use validation surfaces for architecture, feature, and stopping decisions. Run the locked test after these choices. Use three model initialization seeds; additional group splits are a predeclared robustness check, not an opportunity to choose the best result.
+Publish the fixed split manifest and evaluation configuration. Use development/training/validation specimens for architecture, feature, and stopping decisions. Freeze timing, budget handling, groups, exclusions, features, methods, margins, and analyses before scientific test scoring. Use three model initialization seeds; additional group splits are a predeclared robustness check, not an opportunity to choose the best result. The existing CLI enforces development runs; locked-test creation, access control, and scoring still require implementation and review. A configuration labeled test is not sufficient evidence of an untouched evaluation.
 
 A test surface is observed through a limited support set at evaluation time. This is adaptation from brief contact, not prediction with zero observations. The query recordings remain hidden until scoring. Model weights stay frozen unless a separately labeled adaptation baseline specifies otherwise.
 
 ### 4.4 Probe conditions and budgets
 
-Start with a reference contact: 40 mm/s, direction 0 degrees, nominal load 0.5 N. Compare observed durations of 0.25, 0.5, and 1 second, subject to the audit confirming usable windows.
+The implemented reference contact is 40 mm/s, direction 0 degrees, nominal load 0.5 N. Compare observed durations of 0.25, 0.5, and 1 second after the strict information-budget and timing/claim decisions. Keep the query target duration fixed at 0.5 seconds so that support-duration comparisons change observation information rather than target-estimation duration. The current five protocols and three durations have run on a bounded grid; full-grid coverage remains proposed.
 
 Then compare these two-probe protocols, using the same duration per contact:
 
@@ -99,9 +128,13 @@ Then compare these two-probe protocols, using the same duration per contact:
 | Load | 40 mm/s, 0 degrees, 1 N | Does observing another load reduce loading uncertainty? |
 | Direction | 40 mm/s, 90 degrees, 0.5 N | Does an orthogonal contact reveal directional behavior? |
 
-Compare second-probe alternatives at the same total observation duration and number of contacts. Report total time and travel distance separately; different speeds imply different scanned distances.
+Compare second-probe alternatives at the same total observation duration and number of contacts. Retain the primary direction-versus-repetition contrast at two 0.5-second contacts; report speed/load contrasts as declared secondary analyses. Also compare a single 1-second contact with two 0.5-second contacts, and a single 0.5-second contact with two 0.25-second contacts. Report total selected observation time and nominal distance (requested speed multiplied by duration) separately. Nominal distance is not measured travel; calculate measured displacement from synchronized position if that quantity is reported. These budgets exclude approach, stabilization, and repositioning.
+
+Select nested raw prefixes from one canonical steady interval per recording. Raw-prefix nesting does not require a shorter independently filtered array to equal the prefix of a longer filtered array: valid boundary treatments can differ. Verify nesting from raw sample provenance and verify the absence of outside-budget influence separately. Do not use full-record filtering merely to make processed arrays nest exactly.
 
 Score all protocols on a common query set that excludes the union of support conditions. This prevents a protocol from receiving credit for having directly observed its evaluation condition. A condition's other repetition should not serve as a query for that same observed condition in the primary cross-condition result.
+
+The intended familiar-condition grid has 80 speed/direction/load triples minus the four support-condition triples: **76 queries before QC**. Use a cohort and query intersection matched across methods, protocols, and durations; report lost conditions and specimens with reasons. The four-query development pilot does not establish behavior over this full grid.
 
 Use a fixed support repetition and the other repetition for query evaluation where possible, then reverse the assignment as a sensitivity check. Both repetitions may be used as support for the repetition-control protocol, so queries for that protocol must come from other conditions. The dataset contains only two repetitions; do not invent a three-repeat control.
 
@@ -111,11 +144,13 @@ Begin with three-axis acceleration, preserving amplitude in consistent units. Re
 
 Use Welch power spectral density estimates and integrated power in fixed frequency bands. A workable starting configuration is 32 bands over a validated acceleration frequency range, per axis, with a log transform and a documented numerical floor. Choose the band range and window settings from the audit; exclude empty or unreliable bins. Keep the spectral-estimation procedure consistent across durations.
 
-The encoder receives the observed spectral features and observed contact conditions. It can also receive measured normal-force summaries from the support contact, with an ablation that removes them. The predictor receives the inferred representation and the **requested speed, direction, and nominal load** for the query.
+The implemented encoder receives observed spectral features, observed contact conditions, duration, and probe mask/count. The predictor receives the inferred representation and the **requested speed, direction, and nominal load** for the query. Measured normal force is currently used only for offline QC. A support-force variant is optional future work: declare it separately, give every comparator the same permitted information, and retain a tactile-only comparison if tactile-only inference is claimed.
 
 Never use query acceleration, query material identity, or future measured query force as deployable prediction inputs. Any optional future-force-conditioned analysis must be labeled as an oracle diagnostic and reported separately.
 
 The primary target is log spectral band power. A secondary target is vibration amplitude, computed from consistently band-limited data. This avoids requiring an exact phase-aligned waveform from a short contact on a heterogeneous surface.
+
+Current development features use 32 linear bands from 24–1000 Hz on each of three axes, 0.125-second Welch segments with 50% overlap, SI acceleration, and `log10(power + 1e-10)`. The floor is numerical, not a calibrated sensor noise floor. Confirm bin integration, repeat variability, above-floor coverage, and floor sensitivity on development/training data before freezing the scientific features. Absolute frequency labels remain conditional on the clock decision.
 
 ### 4.6 Models and baselines
 
@@ -133,16 +168,24 @@ Start with a small MLP encoder and predictor; a 16-dimensional representation is
 
 Use the same observable inputs and observation budgets for compared methods. Heravi-style models are related work; changing their sensor modality or training protocol creates an adapted baseline, not an exact reproduction of published results.
 
+All listed comparators are implemented for the bounded development runs. Fixed-feature regression and speed/load rescaling select declared regularization candidates on permitted validation conditions; their scalers, coefficients, exponents, and retrieval response libraries fit only training data. Rescaling exponents are empirical predictive approximations, not identified material laws. The omitted-speed retrieval baseline uses permitted same-direction/load endpoint responses, rather than hidden omitted-speed labels.
+
+Before any architecture expansion, inspect per-condition/per-specimen residuals, feature conditioning, repeat disagreement, retrieval identity stability across budgets, and optimization histories. Several latest encoder checkpoints lie near the 60-epoch development limit; inspect convergence under a declared development-only training policy before locking it. Preserve failed approaches and all required baseline comparisons. The current results do not justify replacing strong simple methods with a larger preferred model.
+
 ### 4.7 Generalization experiments
 
 Separate the following claims rather than averaging them into one score:
 
 1. **New surfaces, familiar conditions:** training includes the condition grid but not test surfaces.
-2. **New surfaces and speed interpolation:** a separate model uses only 20, 40, and 60 mm/s for training and validation; evaluation includes 30 and 50 mm/s. These omitted speeds are not support conditions for this experiment.
+2. **New surfaces and speed interpolation:** separately refit every relevant method using only 20, 40, and 60 mm/s for fitting and validation selection; score 30 and 50 mm/s after all choices are frozen. Omitted speeds are not support conditions. The bounded development experiment already implements these partitions and retrieval endpoint provenance; scientific expansion remains proposed.
 3. **Load transfer:** a one-load support contact predicts the other available nominal load. A two-load support protocol answers a different question: the value of observing both loads.
 4. **Direction transfer:** evaluate held-out directions relative to the support set; optionally add a separate model with globally omitted directions.
 
 Category exclusion is an exploratory stress test. Holding out a specimen does not establish transfer to an entirely new material family. Two load levels do not establish arbitrary-load extrapolation. A single probe and apparatus do not establish sensor-independent material properties.
+
+For the intended full-grid omitted-speed design, the permitted-speed response grid has 48 triples minus the same four support triples: **44 fit/selection queries before QC**. The two omitted speeds provide 32 potential transfer triples. Under the current same-direction/load interpolation contract, necessary endpoints are excluded at 0 degrees/0.5 N, 0 degrees/1 N, and 90 degrees/0.5 N. Their six omitted-speed triples are therefore outside the matched retrieval domain, leaving **26 endpoint-safe transfer triples before QC**. Publish these denominators and condition lists before scoring; do not silently admit observed support-condition responses into the retrieval library. Other transfer domains require a separately declared prediction rule and aligned comparators.
+
+Fit a familiar-condition comparator on the identical transfer grid and specimen/budget definitions before attributing a change to withholding speeds. Keep omitted-speed models, features, tuning, and outputs separately versioned. Familiar-condition selection scores and transfer scores answer different questions and must not be pooled.
 
 ### 4.8 Metrics, uncertainty, and interpretation
 
@@ -152,17 +195,21 @@ Secondary metrics: amplitude error, per-axis spectral error, category-level erro
 
 Report paired differences between methods on the same held-out surfaces, confidence intervals obtained by resampling surfaces or specimen groups, and variation across initialization seeds. Thousands of windows are not thousands of independent materials. Compare errors with differences between the two repeated recordings as context, while acknowledging that two repeats provide a limited estimate of variability.
 
+Current intervals based on two development validation groups are engineering diagnostics, not scientific uncertainty estimates. Average seeds within each specimen for the primary paired comparison; preserve seed variation separately. Complete repeatability, support/query repetition reversal, convergence, and numerical-floor checks before choosing a practical effect margin. Keep every required method and declared cell in the final tables.
+
 If uncertainty is added, evaluate interval coverage and width on held-out surfaces. Ensemble disagreement alone is not evidence of calibrated uncertainty.
 
 Predeclare interpretation rules:
 
-- If wrong-surface support does not worsen predictions, do not claim useful surface identification.
-- If retrieval performs equally well, report that a continuous learned representation has not demonstrated an advantage.
-- If a second direction improves prediction more than repeated contact at the same budget, this supports direction-specific information in probing.
+- If wrong-surface support does not worsen predictions, do not claim useful surface conditioning. If it does worsen predictions, this supports dependence on specimen-specific observations within the tested cohort, not intrinsic material identification.
+- If retrieval is competitive or uncertainty does not resolve an advantage, report that a continuous learned representation has not demonstrated an advantage. A nonsignificant difference does not establish equivalence.
+- If a second direction improves prediction more than repeated contact at the same verified budget, this supports direction-specific predictive information under the tested apparatus. It does not independently establish intrinsic anisotropy or an adaptive probe-selection policy.
 - If speed transfer works while load transfer fails, investigate loading variation and whether the support data constrain load dependence.
 - If all methods fail, inspect repeat variability, apparatus signals, and observability before expanding network size.
 
 Do not select a desired percentage improvement in advance and call it a scientific success criterion. Choose a practically meaningful effect after auditing signal scales and repeat variability, before opening the test results.
+
+Declare whether secondary comparisons are descriptive or use a specified multiplicity procedure. Isolated unadjusted intervals over many protocols, durations, metrics, and subsets cannot establish every apparent benefit. A complete negative or inconclusive comparison with sound budgets and a bounded claim is a valid study outcome.
 
 ## 5. Stage B: measured contact mechanics
 
@@ -174,11 +221,15 @@ Required capabilities: independently calibrated normal and tangential force meas
 
 Hardware access is unconfirmed. Seek a mentor or existing rig while completing Stage A. Reuse an existing dataset only after checking that it exposes the required forces, motion, independent records, and surface variation. A paper describing collection does not guarantee those recordings are downloadable. DiffTactile's code is available, but access and adequacy of its real system-identification recordings must be checked. Its paper's two real surfaces would not alone support a broad unseen-material benchmark. [3]
 
+The mechanical gate is suitable calibrated measurements and a declared force experiment, not an encoder victory in Stage A. A completed observation-model result favoring retrieval can coexist with a justified mechanical pilot. Prepare a capability checklist and any outreach draft in parallel; sending messages requires separate user authorization. No mechanical data collection or hardware calibration is established by the existing repository.
+
 ### 5.2 Calibration and collection
 
 Begin with known geometry and rigid flat surfaces to reduce deformation confounds. Keep probe construction and mounting fixed. Calibrate force axes, zero offsets, cross-axis sensitivity, sensor delay, fixture drag, and probe/fixture deformation as needed. Record reference contacts before and after sessions.
 
 A pilot design is 8–12 distinct surface specimens, three usable speeds, three normal-load levels, and at least five independent repetitions per condition, collected across more than one session where feasible. Exact ranges depend on sensor resolution and rig capabilities. This is a small pilot, not a universal material study. Distinct specimens and groups—not windows—determine the strength of generalization evidence.
+
+Use independently initiated contacts/trials rather than treating crops of one scan as extra repetitions. Report actual measurement update rates and synchronized timing, not transmission frequency as an independent force sample rate. Record collection session, specimen provenance, calibration checks, and repeated-contact ordering so drift and wear can be inspected.
 
 Record approach, contact establishment, steady sliding, and release. Preserve raw timestamps and calibration information. Use independent force measurements as labels. Define whether the inference inputs contain measured support forces or only tactile signals and actions. If support forces are used, describe the method as force-informed contact inference; evaluate tactile-only inference separately if claimed.
 
@@ -220,7 +271,7 @@ Two different validations must be distinguished:
 
 For a motion experiment, keep the counterface, geometry, mounting, and known mass consistent with calibration. Measure or characterize additional carriage/fixture drag. A free-body validation is an additional hardware capability, not something assumed from a servo-controlled scan.
 
-Compare global/default parameters, brief-contact calibration, learned inference if useful, and a richer per-surface calibration reference. Score multi-step velocity/position error and force error on unseen surfaces and withheld actions. Include stopping or slip metrics only after defining the necessary static/contact-transition model.
+Compare global/default parameters, brief-contact calibration, learned inference if useful, and a richer per-surface calibration reference. Score multi-step velocity/position error and force error on unseen surfaces and withheld actions. Unforced Coulomb coasting can include stopping distance under the restricted no-reversal law in the guide. Slip onset, sticking under applied forces, or more general contact-transition metrics require a separately defined and validated static/transition model.
 
 Keep texture observations and mechanics separate in the implementation. A spectrum renderer can generate tactile observations, while a validated friction law affects dynamics. Attaching vibration noise to an engine does not validate a texture-dependent contact force law. Avoid double-counting friction if adding a custom force term to an engine that already computes friction.
 
@@ -255,24 +306,26 @@ No project design can guarantee publication or admission. The achievable goal is
 
 ## 9. Schedule, milestones, and decisions
 
-The following is a six-to-eight-week first-project target, assuming concentrated work. Hardware-dependent stages may take longer and should not delay completing an honest public-data report.
+The initial setup and bounded development milestones are complete. Continue from the gates below rather than restarting the original week-by-week schedule. The order reflects dependencies; dates depend on available acquisition information, retained coverage, and hardware access. Do not let an unavailable manufacturing history or rig indefinitely prevent an explicitly limited public-data report.
 
-| Period | Work | Concrete output or decision |
+| Next gate | Work | Concrete output or decision |
 | --- | --- | --- |
-| Week 1 | Read closest papers, audit ten surfaces, review scope with a researcher if available | Related-work matrix, data audit, draft protocol; investigate rig access |
-| Week 2 | Finalize groups, features, support/query definitions, and baselines | Locked manifests and a reproducible baseline pipeline |
-| Weeks 3–4 | Train the small model; evaluate duration, second-probe choice, and transfer | Main quantitative tables, material-level uncertainty, interpretation of failures |
-| Week 5 | Complete required robustness checks; write the first report | Completed Stage A report and code; mechanical extension decision |
-| Weeks 6–8 | If a calibrated rig is available, collect the force pilot and test a minimal friction model; otherwise pursue a focused public-data extension or verify reuse of suitable recordings | Measured force results when feasible; otherwise an explicitly limited completed public-data study |
-| Later | Validate simulator motion, then one control/learning task | Evidence for stronger physical-simulation and robot-learning claims |
+| Strict acceleration budget | Prepare raw-window-first or causal-history-charged support; verify outside-window perturbation invariance and sample provenance | Quantified permitted inputs; rebuilt features/episodes; all methods refitted and rescored on aligned budgets |
+| Timing and claim scope | Investigate acquisition/delivery metadata without choosing a clock from response errors | Justified convention, or an explicit logged-coordinate study with calibrated physical-frequency/time claims deferred |
+| Coverage, grouping, and error review | Review complete metadata with unknowns recorded; audit wider grids; inspect repeatability, convergence, floor sensitivity, and residuals | Coverage/exclusion tables, exposure ledger, conservative groups, practical-effect rationale, and matched-grid familiar/omitted-speed designs |
+| Scientific protocol freeze | Reserve fresh test groups; freeze features, QC, budgets, methods, tuning, comparisons, margins, and access rules; implement locked evaluation support | Immutable manifests and executable preflight; current twelve specimens remain development-exposed |
+| Locked evaluation and report | Run frozen models on reserved queries; report the full method/probe matrix, uncertainty, limitations, and reproducibility | Completed Stage A report, including negative/inconclusive results; clearly bounded claims |
+| Parallel hardware capability review | Verify normal/tangential force, synchronized motion, geometry, calibration, and independent-trial access; draft any outreach | Stage B go/no-go based on measurements, independent of the Stage A baseline winner; no messages sent without authorization |
+| Hardware-dependent mechanics | If the rig or suitable recordings pass the gate, collect/analyze the force pilot and minimal law | Held-out force results and parameter-ambiguity analysis; otherwise explicitly deferred Stage B |
+| Later dynamics and control | Verify a dynamically responsive experiment, integrate the validated law, then one matched task | Separate evidence for forward motion and decision-making; robot-learning claims only if that evaluation is actually completed |
 
 Immediate next actions:
 
-1. Write a one-page protocol with the primary question, probe budgets, observable inputs, and paired comparison to retrieval.
-2. Read Heravi 2020/2024 and DiffTactile before claiming a gap; include TacTID in the mechanical comparison.
-3. Download ten Cluster surfaces and make synchronized signal plots and cross-condition spectral plots.
-4. Identify which calibration and force-measurement capabilities a mentor or partner can actually provide.
-5. Finalize the scope based on the audit and access; complete the public study regardless of the hardware decision.
+1. Correct the outside-window acceleration dependency, verify raw-boundary provenance and perturbation invariance, then rebuild and rerun the development comparisons without overwriting the published pilots.
+2. Record the clock evidence and a time-bounded investigation outcome; select a justified convention or explicitly limited logged-coordinate scope.
+3. Extend metadata/QC coverage and the exposure ledger; inspect repeat variability, floor sensitivity, convergence, and specimen/condition errors before changing the model.
+4. Specify the 76-condition familiar grid, 44 permitted-speed query grid, and 26 endpoint-safe omitted-speed grid, with matched-grid familiar comparators and prespecified QC intersections.
+5. Freeze fresh test groups and implement the scientific evaluation path only after the preceding decisions. Prepare the technical report and hardware capability/outreach drafts in parallel; do not imply that outreach has been authorized or sent.
 
 ## 10. Software and resources
 
@@ -300,4 +353,4 @@ Useful documentation:
 9. **Jonathan Aldrich. Advice on writing a Ph.D. statement of purpose for CMU.** [Faculty guidance](https://www.cs.cmu.edu/~aldrich/essay-advice.html). Research communication and evidence relevant to applications.
 10. **Gao et al. Tactile DreamFusion: Exploiting Tactile Sensing for 3D Generation. NeurIPS 2024.** [Paper](https://arxiv.org/abs/2412.06785). Longer-term link to tactile surface detail in 3D generation; not a prerequisite for the first sliding-contact experiment.
 
-Source statements above are brief summaries; the experimental protocol, architecture choices, budgets, milestones, and interpretation rules are recommendations for this proposed project.
+Source statements above are brief summaries. Reported development outcomes link to the completed experiment records; remaining protocol choices, budget corrections, full-grid evaluations, and hardware stages are proposed work. The public repository does not establish physical calibration, novel material identification, publication acceptance, or robot-learning benefit.

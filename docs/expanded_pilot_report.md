@@ -1,5 +1,7 @@
 # Expanded development pilot — 8 October 2026
 
+**Later reassessment:** scores and provenance below are preserved from this historical run. Whole-record interpolation/filtering occurs before support cropping, so outside-window raw acceleration can affect features; the amount is unquantified. Duration labels are provisional, and recorded distance is nominal speed times duration. Strict information-budget claims require corrected bounded preparation and aligned reruns. Timing and fresh-test gates remain open; see the [revised plan](research_plan.md).
+
 The expanded pipeline completed five support protocols and 0.25/0.5/1-second observations on the original ten training and two development validation specimens. All 192 recordings passed QC. Preparation produced 268 windows and 1,320 episodes (1,200 training, 120 validation). Four distinct query conditions per specimen remain fixed across every method and protocol; validation uses repeat 1. These are development results, with no locked test evaluated.
 
 ## Primary development cell
@@ -20,7 +22,7 @@ The encoder improves on the initial pilot's approximately 0.791 MAE, but retriev
 
 ## Matched budgets and probe choice
 
-The exports compare single 1-second contact against two 0.5-second contacts, single 0.5-second contact against two 0.25-second contacts, and repetition against alternative second probes at 0.5 seconds per contact. Query identities are checked before pairing. Total observed time and sliding distance are recorded; setup and repositioning are excluded.
+The exports compare single 1-second contact against two 0.5-second contacts, single 0.5-second contact against two 0.25-second contacts, and repetition against alternative second probes at 0.5 seconds per contact. Query identities are checked before pairing. Declared observation time and nominal sliding distance are recorded; setup and repositioning are excluded.
 
 | Method | Repeat 2×0.5 s | Direction 2×0.5 s | Speed 2×0.5 s | Load 2×0.5 s |
 | --- | ---: | ---: | ---: | ---: |

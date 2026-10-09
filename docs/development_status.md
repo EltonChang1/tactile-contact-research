@@ -1,10 +1,12 @@
 # First implementation milestone — 8 October 2026
 
+**Latest assessment:** the milestone sections below preserve their original development decisions and scores. The current [plan](research_plan.md) and [guide](implementation_guide.md) replace their next-work lists. First correct whole-record interpolation/filtering before support cropping, verify outside-window isolation, and regenerate aligned comparisons. The strict support-context effect is unquantified. Resolve or explicitly limit the clock, label existing distance as nominal, and complete coverage/exposure/repeatability/convergence review. All 12 used specimens remain development; fresh test scoring is not implemented. Candidate full-grid counts are 76 familiar, 44 permitted-speed and 26 endpoint-safe omitted-speed triples before QC. A matched-grid familiar comparator is still needed. No mechanical stage has begun.
+
 This section retains the initial pilot record. The subsequent expanded comparison is documented below and in [expanded_pilot_report.md](expanded_pilot_report.md).
 
 Completed: installable Python package and CLI; bounded pinned downloads with hash checking; recording/specimen manifests; synchronized audit figures; retrospective motion QC; anti-aliased acceleration preparation; PSD and band-power caching; deterministic prefix windows; matched episodes; training-only scaling; conditions/copy/retrieval baselines; masked encoder training; per-query/per-surface scoring; wrong-support control; checkpoint and result provenance.
 
-The source numerical helpers came from the user-provided refined guide. The surrounding I/O, preparation, evaluation, CLI, and checks were implemented for this project. Original plan and guide copies are stored in `docs/`.
+The source numerical helpers came from the user-provided refined guide. The surrounding I/O, preparation, evaluation, CLI, and checks were implemented for this project. The maintained plan and guide are stored in `docs/`; the original supplied documents remain in Downloads.
 
 ## Real pilot coverage
 

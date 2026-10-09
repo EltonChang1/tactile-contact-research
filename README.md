@@ -10,6 +10,8 @@ The expanded real pilot uses ten training surfaces, two provisional validation s
 
 The separately fitted [omitted-speed experiment](docs/omitted_speed_report.md) now evaluates 30/50 mm/s after fitting and selecting only on 20/40/60 mm/s. In its single 0.5-second cell, fixed-feature regression scores 0.310 MAE, encoder 0.316, and interpolated retrieval 0.330. The encoder/retrieval difference is inconclusive on two specimens. This experiment uses different query conditions from the earlier pilot; its raw MAE is not a direct before/after comparison.
 
+The [reassessed plan](docs/research_plan.md) and [guide](docs/implementation_guide.md) identify a preparation limitation: interpolation and anti-alias filtering currently precede cropping, so raw acceleration outside the declared support interval can influence features. Its magnitude is unquantified; strict duration claims require bounded preparation and aligned reruns. Logged timing also remains provisional. All 12 used specimens are development-exposed and will stay outside a future fresh scientific test.
+
 Synthetic fixtures also exercise all five probe protocols and 0.25/0.5/1-second supports. They check engineering behavior, not physical accuracy. Locked test evaluation, mechanics, and simulation are later milestones.
 
 ## Install
@@ -98,4 +100,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml` with the env
 
 ## Next implementation milestone
 
-Resolve acquisition/delivery timing and complete family review, then extend the common condition grid and inspect condition/surface-level errors. Preserve both familiar-condition and omitted-speed outcomes when choosing the next development decisions. The scientific protocol must be finalized before adding a locked test split. Force rigs, friction identification, engine integration, and control remain subsequent stages.
+First correct the raw support-information boundary and verify outside-window perturbation invariance; regenerate every method in new output roots. Then justify the clock or explicitly narrow the study to logged coordinates, review QC/coverage/exposure, and add repeatability/convergence diagnostics and a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

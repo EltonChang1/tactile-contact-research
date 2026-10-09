@@ -2,6 +2,12 @@
 
 `python -m pytest -q`: **44 passed**. The ten omitted-speed checks also passed independently. `python -m compileall -q src tests scripts` completed successfully.
 
+## Reassessment of check scope — 8 October 2026
+
+The count above records the last source-code run. This documentation revision runs no new scientific experiment. Existing prefix checks verify start/end bookkeeping and nesting, not raw-sample isolation through interpolation/filtering. Source review found whole-record preparation before cropping; outside-window acceleration can influence support features. Its effect size remains unmeasured. Required next checks perturb acceleration outside each fixed support interval, verify bounded dependency provenance and boundary handling, then regenerate every method. A raw-prefix check must not demand identical processed prefixes when local padding differs.
+
+Further scientific gates are the time convention/claim decision, QC/heading/load and coverage review, exposure-aware fresh-test groups, repeatability/convergence diagnostics, exact 76/44/26 masks and a frozen scoring interface. Current configuration deliberately rejects test stage. The automated suite does not establish calibrated clocks, physical travel budgets, independent manufacturing families or online probing. See the [revised guide](implementation_guide.md).
+
 The checks exercise physical amplitude scaling and modeled-band RMS; native-time motion fitting under delivery jitter; disjoint specimen splits; support/query condition exclusions; prefix windows; target-independent prediction inputs; training-only normalization and retrieval; linear-power response averaging; invalid bootstrap groups; finite masked inputs and support-order invariance; wrong-support derangement; checkpoint restoration; tiny-fit optimization; fresh pipeline exports/provenance; immutable download hashes; and separate synthetic/measured output roots.
 
 Real-data execution: 120 recording triplets audited; 100 selected windows; 88 matched episodes; three initialization seeds completed with selected checkpoints at epoch 9. Conditions-only, copy, retrieval, model, and wrong-support predictions were saved on the same eight validation episodes. Baseline coefficients/library entries and their source-window IDs are retained alongside raw predictions.
