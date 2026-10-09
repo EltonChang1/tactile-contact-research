@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tactile-contact-research"
+version = "0.1.0"
+description = "Brief-contact vibration prediction with explicit support/query protocols."
+requires-python = ">=3.12"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "pandas>=2", "pyarrow>=15", "openpyxl>=3.1", "scikit-learn>=1.4", "matplotlib>=3.8", "PyYAML>=6", "torch>=2.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+tactile-contact = "tactile_contact.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

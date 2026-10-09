@@ -1,0 +1,20 @@
+[
+  {
+    "native_position_samples": 11,
+    "full_half_second_windows": 80,
+    "training_recordings": 100,
+    "minimum_duration_s": 0.25872799999999985
+  },
+  {
+    "native_position_samples": 21,
+    "full_half_second_windows": 100,
+    "training_recordings": 100,
+    "minimum_duration_s": 0.8501319999999999
+  },
+  {
+    "native_position_samples": 31,
+    "full_half_second_windows": 100,
+    "training_recordings": 100,
+    "minimum_duration_s": 1.290297
+  }
+]
