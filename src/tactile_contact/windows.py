@@ -8,7 +8,7 @@ import pandas as pd
 from scipy.signal import resample_poly
 
 from .audit import load_record
-from .config import PROTOCOLS, FORBIDDEN, data_root
+from .config import PROTOCOLS, FORBIDDEN, data_root, recording_permitted
 from .signal import spectral_features
 
 
@@ -37,6 +37,8 @@ def extract_windows(root, cfg, manifest):
     requested_support = {c for p in cfg["protocols"] for c in PROTOCOLS[p]}
     rows = []
     for record in manifest[manifest.qc_status == "valid"].itertuples():
+        if not recording_permitted(cfg,record.surface_id,record.speed_mm_s):
+            continue
         condition = (record.speed_mm_s,record.direction_deg,record.nominal_force_N)
         key = condition + (record.repeat_id,)
         split = "train" if record.surface_id in cfg["train_ids"] else "val"

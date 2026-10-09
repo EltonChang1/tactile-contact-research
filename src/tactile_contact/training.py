@@ -9,7 +9,7 @@ import pandas as pd
 import torch
 from torch.utils.data import TensorDataset,DataLoader,WeightedRandomSampler
 
-from .config import write_json
+from .config import write_json, validate_fit_pool
 from .models import ContactPredictor
 
 
@@ -20,8 +20,7 @@ def validation_objective(episodes, predictions, targets):
 
 
 def fit_model(root, cfg, train, val, store, scaler, seed):
-    if not (train.split == "train").all() or not (val.split == "val").all():
-        raise ValueError("Training and checkpoint selection require separate splits")
+    validate_fit_pool(train,"train"); validate_fit_pool(val,"val")
     random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
     torch.set_num_threads(1)
     settings = cfg["training"]

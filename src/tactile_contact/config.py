@@ -15,6 +15,36 @@ PROTOCOLS = {
     "direction": [(40, 0, 0.5, 0), (40, 90, 0.5, 0)],
 }
 FORBIDDEN = {c[:3] for conditions in PROTOCOLS.values() for c in conditions}
+OMITTED_SPEEDS = {30,50}
+
+
+def omitted_speed(cfg):
+    return cfg.get("experiment","familiar_conditions") == "omitted_speed"
+
+
+def recording_permitted(cfg, surface, speed):
+    return not (omitted_speed(cfg) and surface in cfg["train_ids"] and speed in OMITTED_SPEEDS)
+
+
+def speed_bracket(speed):
+    if speed == 30:
+        return 20,40
+    if speed == 50:
+        return 40,60
+    raise ValueError("Only predeclared omitted speeds 30/50 can be interpolated")
+
+
+def validate_fit_pool(episodes, split):
+    """Transfer labels cannot fit weights, preprocessing, or selection criteria."""
+    partition = "fit" if split == "train" else "selection"
+    if episodes.empty or not (episodes.split == split).all():
+        raise ValueError("Fit/selection roles require nonempty separate train/validation records")
+    if "evaluation_partition" in episodes and not (episodes.evaluation_partition == partition).all():
+        raise ValueError("Fit/selection roles exclude transfer episodes")
+    if "experiment" in episodes:
+        forbidden = (episodes.experiment == "omitted_speed") & episodes.query_speed_mm_s.isin(OMITTED_SPEEDS)
+        if forbidden.any():
+            raise ValueError("Omitted-speed labels cannot enter fitting or selection")
 
 
 def digest(value) -> str:
@@ -54,6 +84,8 @@ def load_config(path):
     cfg = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     if cfg.get("stage") != "development":
         raise ValueError("Only development runs are implemented; locked test evaluation is not enabled")
+    if cfg.get("experiment","familiar_conditions") not in ["familiar_conditions","omitted_speed"]:
+        raise ValueError("Unknown development experiment")
     train, val = set(cfg["train_ids"]), set(cfg["val_ids"])
     if not train or not val or train & val:
         raise ValueError("Need nonempty disjoint training/validation surfaces")
@@ -62,6 +94,15 @@ def load_config(path):
     for speed,direction,force in cfg["conditions"]:
         if speed not in [20,30,40,50,60] or direction not in range(0,360,45) or force not in [.5,1.]:
             raise ValueError("Condition is outside the Cluster grid")
+    if omitted_speed(cfg):
+        conditions = {tuple(c) for c in cfg["conditions"]}
+        transfer = {c for c in conditions if c[0] in OMITTED_SPEEDS}
+        if not transfer or {c[0] for c in transfer} != OMITTED_SPEEDS:
+            raise ValueError("Omitted-speed experiment needs both 30/50 query speeds")
+        for speed,direction,force in transfer:
+            if (speed,direction,force) in FORBIDDEN or any((endpoint,direction,force) not in conditions or
+                    (endpoint,direction,force) in FORBIDDEN for endpoint in speed_bracket(speed)):
+                raise ValueError("Omitted-speed queries need permitted non-support response endpoints")
     if any(p not in PROTOCOLS for p in cfg["protocols"]):
         raise ValueError("Unknown support protocol")
     if min(cfg["durations_s"]) < 0.25 or cfg["query_duration_s"] < 0.25:

@@ -6,7 +6,7 @@ from pathlib import Path
 import urllib.request
 import time
 
-from .config import file_hash, write_json, data_root
+from .config import file_hash, write_json, data_root, recording_permitted
 
 
 def download_cluster(root, cfg):
@@ -24,6 +24,8 @@ def download_cluster(root, cfg):
     files = ["README.md", "texture_list.xlsx"]
     for surface in cfg["train_ids"] + cfg["val_ids"]:
         for speed, direction, force in cfg["conditions"]:
+            if not recording_permitted(cfg,surface,speed):
+                continue
             for repeat in [0, 1]:
                 stem = f"{surface}_{direction}_{speed}_{round(force * 1000)}_{repeat}.parquet"
                 files.extend(f"sensor_data/{modality}/{surface}/{stem}" for modality in ["accel", "force", "position"])

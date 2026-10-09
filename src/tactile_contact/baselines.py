@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.linear_model import Ridge
 
 from .signal import integrate_bands
+from .config import validate_fit_pool, OMITTED_SPEEDS, speed_bracket
 
 
 def cell_weights(episodes):
@@ -34,8 +35,7 @@ class FixedFeatures:
         return np.column_stack([mean,np.sqrt(variance),count,query])
 
     def fit(self, train, val, store, scaler):
-        if not (train.split == "train").all() or not (val.split == "val").all():
-            raise ValueError("Fixed-feature fit requires train/validation roles")
+        validate_fit_pool(train,"train"); validate_fit_pool(val,"val")
         features = self.features(train,store,scaler)
         weights = cell_weights(train)
         self.mean = np.average(features,axis=0,weights=weights)
@@ -109,8 +109,7 @@ class SpeedRescaling:
         return np.log10(power*np.power(10.,ratios@exponents)[:,None]+floors[:,None])
 
     def fit(self, train, val, store, scaler):
-        if not (train.split == "train").all() or not (val.split == "val").all():
-            raise ValueError("Rescaling fit requires train/validation roles")
+        validate_fit_pool(train,"train"); validate_fit_pool(val,"val")
         power,ratios,floors,selected = self.components(train,store)
         targets = store.targets(train).astype(float)
         target_power = np.maximum(10**targets-floors[:,None],0.)
@@ -147,8 +146,7 @@ class SpeedRescaling:
 
 class ConditionsOnly:
     def fit(self, episodes, store, scaler):
-        if not (episodes.split == "train").all():
-            raise ValueError("Fit requires training records")
+        validate_fit_pool(episodes,"train")
         _,_,q = store.batch_inputs(episodes,scaler)
         # Each surface/protocol/duration cell contributes equal total weight.
         self.regression = Ridge(alpha=1.).fit(q.astype(float),store.targets(episodes).astype(float),sample_weight=cell_weights(episodes))
@@ -171,9 +169,16 @@ class CopySpectrum:
 
 
 class Retrieval:
+    def __init__(self, interpolate_speeds=False):
+        self.interpolate_speeds = interpolate_speeds
+
     def fit(self, episodes, store, scaler):
-        if not (episodes.split == "train").all():
-            raise ValueError("Retrieval library requires training surfaces")
+        validate_fit_pool(episodes,"train")
+        is_transfer = "experiment" in episodes and (episodes.experiment == "omitted_speed").any()
+        if is_transfer != self.interpolate_speeds:
+            raise ValueError("Retrieval interpolation mode must match the experiment")
+        if self.interpolate_speeds and episodes.query_speed_mm_s.isin(OMITTED_SPEEDS).any():
+            raise ValueError("Omitted-speed responses cannot enter retrieval")
         self.library = {}
         self.responses = {}
         self.library_sources = {}
@@ -197,13 +202,31 @@ class Retrieval:
             self.library[key] = (np.stack(fingerprints),np.array(ids))
         return self
 
+    def response(self, surface, speed, direction, force):
+        key = (surface,speed,direction,force)
+        if self.interpolate_speeds and speed in OMITTED_SPEEDS:
+            lower,upper = speed_bracket(speed)
+            keys = [(surface,lower,direction,force),(surface,upper,direction,force)]
+            if any(k not in self.responses for k in keys):
+                raise ValueError("Retrieval needs both permitted interpolation endpoints")
+            fraction = (speed-lower)/(upper-lower)
+            weights = [1-fraction,fraction]
+            return sum(weight*self.responses[k] for weight,k in zip(weights,keys)),keys,weights
+        if key not in self.responses:
+            raise ValueError("No permitted retrieval response; extrapolation is disabled")
+        return self.responses[key],[key],[1.]
+
     def predict(self, episodes, store, scaler):
         predictions, retrieved = [],[]
+        self.prediction_sources = []
         for row in episodes.to_dict("records"):
             support,mask,_ = store.make_prediction_inputs(row,scaler)
             fingerprint = support[mask.astype(bool),:96].reshape(-1)
             library,ids = self.library[(row["protocol"],row["duration_s"])]
             surface = int(ids[np.argmin(np.square(library-fingerprint).sum(axis=1))])
-            key = (surface,row["query_speed_mm_s"],row["query_direction_deg"],row["query_nominal_force_N"])
-            predictions.append(self.responses[key]); retrieved.append(surface)
+            prediction,keys,weights = self.response(surface,row["query_speed_mm_s"],row["query_direction_deg"],row["query_nominal_force_N"])
+            predictions.append(prediction); retrieved.append(surface)
+            self.prediction_sources.append({"episode_id":row["episode_id"],"retrieved_training_id":surface,
+                "response_keys":[list(k) for k in keys],"weights":weights,
+                "source_window_ids":[self.response_sources[k] for k in keys]})
         return np.stack(predictions),np.array(retrieved)

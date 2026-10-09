@@ -6,7 +6,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from .config import PROTOCOLS, FORBIDDEN, digest, write_json
+from .config import PROTOCOLS, FORBIDDEN, digest, write_json, omitted_speed, OMITTED_SPEEDS, speed_bracket, validate_fit_pool
 from .signal import condition_vector
 
 
@@ -32,6 +32,7 @@ def build_episodes(root, cfg, windows):
         raise ValueError("Need at least two eligible training surfaces and one validation surface")
     # Require every training response repeat for retrieval's linear-power averaging.
     common = None
+    transfer_common = None
     for surface in cohort:
         q = queries[queries.surface_id == surface]
         required_repeats = [0,1] if surface in cfg["train_ids"] else [1]
@@ -39,12 +40,24 @@ def build_episodes(root, cfg, windows):
         for repeat in required_repeats:
             subset = q[q.repeat_id == repeat]
             found = set(zip(subset.speed_mm_s,subset.direction_deg,subset.nominal_force_N))
+            if omitted_speed(cfg):
+                if surface in cfg["val_ids"]:
+                    transfer = {c for c in found if c[0] in OMITTED_SPEEDS}
+                    transfer_common = transfer if transfer_common is None else transfer_common & transfer
+                found = {c for c in found if c[0] not in OMITTED_SPEEDS}
             condition_set = found if condition_set is None else condition_set & found
         common = condition_set if common is None else common & condition_set
     if not common:
         raise ValueError("No common eligible query conditions across the cohort")
     if common & FORBIDDEN:
         raise ValueError("A primary query condition was observed by a support protocol")
+    transfer_common = transfer_common or set()
+    if omitted_speed(cfg):
+        if {c[0] for c in transfer_common} != OMITTED_SPEEDS:
+            raise ValueError("Need eligible validation queries at both omitted speeds")
+        for speed,direction,force in transfer_common:
+            if any((endpoint,direction,force) not in common for endpoint in speed_bracket(speed)):
+                raise ValueError("Omitted-speed retrieval is missing common permitted response endpoints")
     rows = []
     for surface in cohort:
         q = queries[queries.surface_id == surface]
@@ -54,11 +67,14 @@ def build_episodes(root, cfg, windows):
                 support_records = set(supports[supports.window_id.isin(ids)].recording_id)
                 for query in q.itertuples():
                     condition = (query.speed_mm_s,query.direction_deg,query.nominal_force_N)
-                    if condition not in common:
+                    if condition not in common and not (surface in cfg["val_ids"] and condition in transfer_common):
                         continue
                     if query.recording_id in support_records:
                         raise ValueError("Support/query recording overlap")
                     row = {"surface_id":surface,"family_group":surfaces.loc[surface,"family_group"],
+                           "experiment":cfg.get("experiment","familiar_conditions"),
+                           "evaluation_partition":"fit" if query.split == "train" else
+                              ("transfer" if condition in transfer_common else "selection"),
                            "split":query.split,"protocol":protocol,"duration_s":duration,
                            "support_window_ids":json.dumps(ids),"query_window_id":query.window_id,
                            "query_speed_mm_s":query.speed_mm_s,"query_direction_deg":query.direction_deg,
@@ -72,6 +88,9 @@ def build_episodes(root, cfg, windows):
     episodes.to_csv(root/"data/manifests/episodes.csv",index=False)
     write_json(root/"data/manifests/episode_summary.json",{
         "stage":"development","config_hash":cfg["config_hash"],"common_query_conditions":[list(c) for c in sorted(common)],
+        "experiment":cfg.get("experiment","familiar_conditions"),
+        "transfer_query_conditions":[list(c) for c in sorted(transfer_common)],
+        "partition_episode_counts":{str(k):int(v) for k,v in episodes.evaluation_partition.value_counts().items()},
         "eligible_train_ids":sorted(set(cohort)&set(cfg["train_ids"])),
         "eligible_val_ids":sorted(set(cohort)&set(cfg["val_ids"])),
         "episode_count":len(episodes),"specimen_groups_reviewed":bool(surfaces.loc[cohort,"grouping_reviewed"].all()),
@@ -93,8 +112,7 @@ class FeatureStore:
         return self._cache[window_id]
 
     def fit_scaler(self, train_episodes):
-        if not (train_episodes.split == "train").all():
-            raise ValueError("Scaler can fit training episodes only")
+        validate_fit_pool(train_episodes,"train")
         ids = sorted({w for encoded in train_episodes.support_window_ids for w in json.loads(encoded)})
         if not all(self.windows.loc[w,"split"] == "train" and self.windows.loc[w,"role"] == "support" for w in ids):
             raise ValueError("Scaler encountered nontraining support")

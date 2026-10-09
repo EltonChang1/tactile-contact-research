@@ -25,9 +25,22 @@ def score_predictions(episodes, prediction, target, method, seed, floor, retriev
     return out
 
 
-def summarize(root,cfg,scores):
+def summarize(root,cfg,scores,partition=None):
     root = Path(root)
     destination = root/"results/tables"
+    if partition is None and "evaluation_partition" in scores and scores.evaluation_partition.nunique() > 1:
+        destination.mkdir(parents=True,exist_ok=True)
+        scores.to_csv(destination/"per_query.csv",index=False)
+        tables,surfaces = [],[]
+        for name,part in scores.groupby("evaluation_partition",sort=True):
+            tables.append(summarize(root,cfg,part,partition=name).assign(evaluation_partition=name))
+            surfaces.append(pd.read_csv(destination/name/"per_surface.csv").assign(evaluation_partition=name))
+        table = pd.concat(tables,ignore_index=True)
+        table.to_csv(destination/"summary.csv",index=False)
+        pd.concat(surfaces,ignore_index=True).to_csv(destination/"per_surface.csv",index=False)
+        return table
+    if partition:
+        destination = destination/partition
     destination.mkdir(parents=True,exist_ok=True)
     scores.to_csv(destination/"per_query.csv",index=False)
     metrics = ["log_power_mae","modeled_band_total_rms_error"]
@@ -50,7 +63,7 @@ def summarize(root,cfg,scores):
         "interpretation":"Small provisional validation cohort; intervals are debugging output, not scientific evidence or test results."})
     diagnostic_tables(destination,cfg,scores)
     budget_contrasts(destination,seed_mean,scores)
-    make_figures(root,cfg,table)
+    make_figures(root,cfg,table,partition)
     return table
 
 
@@ -128,11 +141,17 @@ def budget_contrasts(destination,per_surface,scores):
         pd.DataFrame(rows).to_csv(destination/"budget_contrasts.csv",index=False)
 
 
-def make_figures(root,cfg,summary):
+def make_figures(root,cfg,summary,partition=None):
+    if partition is None and "evaluation_partition" in summary:
+        for name,part in summary.groupby("evaluation_partition",sort=True):
+            make_figures(root,cfg,part,partition=name)
+        return
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     destination = root/"results/figures"
+    if partition:
+        destination = destination/partition
     destination.mkdir(parents=True,exist_ok=True)
     fig,ax = plt.subplots(figsize=(9,5))
     for method,rows in summary.groupby("model"):
@@ -140,7 +159,7 @@ def make_figures(root,cfg,summary):
         if not single.empty:
             ax.plot(single.duration_s,single.log_power_mae,marker="o",label=method)
     ax.set_xlabel("Observed steady-contact time (s)"); ax.set_ylabel("Per-surface log10 band-power MAE")
-    ax.set_title(f"{cfg['source_kind']} development validation — no scientific claims")
+    ax.set_title(f"{cfg['source_kind']} development {partition or 'validation'} — no scientific claims")
     ax.legend(); fig.tight_layout(); fig.savefig(destination/"validation_errors.png",dpi=130); plt.close(fig)
     fig,axes = plt.subplots(1,len(cfg["protocols"]),figsize=(4*len(cfg["protocols"]),4),sharey=True,squeeze=False)
     for ax,protocol in zip(axes[0],cfg["protocols"]):
@@ -149,9 +168,10 @@ def make_figures(root,cfg,summary):
             ax.plot(rows.duration_s*len(PROTOCOLS[protocol]),rows.log_power_mae,marker="o",label=method)
         ax.set_title(protocol); ax.set_xlabel("Total observed contact time (s)")
     axes[0,0].set_ylabel("Per-surface log10 band-power MAE")
-    axes[0,-1].legend(fontsize=7)
-    fig.suptitle("Matched development cohort; observed contact excludes setup time")
-    fig.tight_layout(); fig.savefig(destination/"probe_budget_errors.png",dpi=130); plt.close(fig)
+    handles,labels = axes[0,-1].get_legend_handles_labels()
+    fig.legend(handles,labels,loc="lower center",ncol=4,fontsize=8)
+    fig.suptitle(f"Matched development {partition or 'cohort'}; observed contact excludes setup time")
+    fig.tight_layout(rect=(0,.12,1,1)); fig.savefig(destination/"probe_budget_errors.png",dpi=130); plt.close(fig)
 
 
 def wrong_support(episodes):

@@ -1,0 +1,172 @@
+{
+  "stage": "development",
+  "config_hash": "40470ec0d981b8e7f6f5e4e9c8d721a698afb2076900f246fd5d9ea4898f1bfb",
+  "comparisons": [
+    {
+      "protocol": "direction",
+      "duration_s": 0.25,
+      "mean_improvement": -0.12260725124290142,
+      "ci95": [
+        -0.14338729005059134,
+        -0.1018272124352115
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "direction",
+      "duration_s": 0.5,
+      "mean_improvement": -0.11355893088987026,
+      "ci95": [
+        -0.13963838803437548,
+        -0.08747947374536505
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "direction",
+      "duration_s": 1.0,
+      "mean_improvement": -0.11170306411329795,
+      "ci95": [
+        -0.13960699377126692,
+        -0.08379913445532897
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "load",
+      "duration_s": 0.25,
+      "mean_improvement": -0.11807163621263922,
+      "ci95": [
+        -0.1449105711877399,
+        -0.09123270123753854
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "load",
+      "duration_s": 0.5,
+      "mean_improvement": -0.11784871773862726,
+      "ci95": [
+        -0.14454055879845087,
+        -0.09115687667880365
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "load",
+      "duration_s": 1.0,
+      "mean_improvement": -0.121830533596647,
+      "ci95": [
+        -0.1447839667830255,
+        -0.09887710041026851
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "repeat",
+      "duration_s": 0.25,
+      "mean_improvement": -0.12262141769406418,
+      "ci95": [
+        -0.15419016584092246,
+        -0.0910526695472059
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "repeat",
+      "duration_s": 0.5,
+      "mean_improvement": -0.12544218515631778,
+      "ci95": [
+        -0.15619931423995762,
+        -0.09468505607267794
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "repeat",
+      "duration_s": 1.0,
+      "mean_improvement": -0.11901953839868859,
+      "ci95": [
+        -0.14545580302013825,
+        -0.09258327377723893
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "single",
+      "duration_s": 0.25,
+      "mean_improvement": -0.12385428761717895,
+      "ci95": [
+        -0.14615310616957342,
+        -0.10155546906478449
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "single",
+      "duration_s": 0.5,
+      "mean_improvement": -0.12358743431115041,
+      "ci95": [
+        -0.1542823518746482,
+        -0.09289251674765261
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "single",
+      "duration_s": 1.0,
+      "mean_improvement": -0.1291240961049387,
+      "ci95": [
+        -0.14297114449408851,
+        -0.11527704771578887
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "speed",
+      "duration_s": 0.25,
+      "mean_improvement": -0.13305818768286592,
+      "ci95": [
+        -0.17739381860693823,
+        -0.08872255675879362
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "speed",
+      "duration_s": 0.5,
+      "mean_improvement": -0.13845326402396518,
+      "ci95": [
+        -0.17030613178346424,
+        -0.10660039626446613
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    },
+    {
+      "protocol": "speed",
+      "duration_s": 1.0,
+      "mean_improvement": -0.13353588041607428,
+      "ci95": [
+        -0.15896674713492923,
+        -0.10810501369721934
+      ],
+      "surfaces": 2,
+      "independent_groups": 2
+    }
+  ],
+  "interpretation": "Small provisional validation cohort; intervals are debugging output, not scientific evidence or test results."
+}

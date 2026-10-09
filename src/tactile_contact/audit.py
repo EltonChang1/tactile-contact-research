@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .config import write_json, data_root, validate_source
+from .config import write_json, data_root, validate_source, recording_permitted
 from .records import parse_record_name
 
 
@@ -74,6 +74,8 @@ def build_manifest(root, cfg):
         row = parse_record_name(path)
         if row["surface_id"] not in requested or (row["speed_mm_s"], row["direction_deg"], row["nominal_force_N"]) not in conditions:
             continue
+        if not recording_permitted(cfg,row["surface_id"],row["speed_mm_s"]):
+            continue
         for channel in CHANNELS:
             row[f"{channel}_path"] = (raw/"sensor_data"/channel/str(row["surface_id"])/path.name).resolve().as_posix()
         row.update(qc_status="excluded", qc_reason="", steady_start_s=np.nan, steady_end_s=np.nan,
@@ -101,7 +103,7 @@ def build_manifest(root, cfg):
     target = root/"data/manifests"
     target.mkdir(parents=True, exist_ok=True)
     manifest.to_csv(target/"recordings.csv", index=False)
-    expected = len(requested)*len(conditions)*2
+    expected = sum(2 for surface in requested for speed,_,_ in conditions if recording_permitted(cfg,surface,speed))
     summary = {"source_kind": cfg["source_kind"], "config_hash": cfg["config_hash"],
                "expected_recordings": expected, "found_recordings": len(rows),
                "qc_valid": int((manifest.qc_status == "valid").sum()),

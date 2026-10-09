@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .config import write_json
+from .config import write_json, recording_permitted
 
 
 def generate(root,cfg):
@@ -21,6 +21,8 @@ def generate(root,cfg):
         frequency = 120+16*surface
         amplitude = 0.006+0.002*surface
         for speed,direction,force in cfg["conditions"]:
+            if not recording_permitted(cfg,surface,speed):
+                continue
             for repeat in [0,1]:
                 t = np.arange(12000)/6000
                 theta = np.deg2rad(direction)
