@@ -4,6 +4,25 @@
 import numpy as np
 from scipy.signal import welch
 
+
+def integrate_bands(frequency_hz, psd, edges=None):
+    """Shared bin-center convention for targets and warped full spectra."""
+    frequency_hz = np.asarray(frequency_hz)
+    psd = np.asarray(psd)
+    edges = np.linspace(24.,1000.,33) if edges is None else np.asarray(edges)
+    if psd.shape != (len(frequency_hz),3) or not np.isfinite(psd).all() or (psd < 0).any():
+        raise ValueError("Expected a finite nonnegative three-axis PSD")
+    delta = np.diff(frequency_hz)
+    if not len(delta) or delta[0] <= 0 or not np.allclose(delta,delta[0]):
+        raise ValueError("Expected a uniform increasing frequency grid")
+    bands, counts = [],[]
+    for j,(lo,hi) in enumerate(zip(edges[:-1],edges[1:])):
+        selected = (frequency_hz >= lo) & ((frequency_hz <= hi) if j == len(edges)-2 else (frequency_hz < hi))
+        if not selected.any():
+            raise ValueError("Empty frequency band; revise the spectral settings")
+        bands.append(psd[selected].sum(axis=0)*delta[0]); counts.append(int(selected.sum()))
+    return np.stack(bands),np.array(counts)
+
 def spectral_features(accel_g, fs=6000.0, floor=1e-10):
     """Uniformly sampled acceleration, shape (samples, 3), in g.
 
@@ -28,21 +47,14 @@ def spectral_features(accel_g, fs=6000.0, floor=1e-10):
         scaling="density", axis=0,
     )
     edges = np.linspace(24.0, 1000.0, 33)
-    df = frequency_hz[1] - frequency_hz[0]
-    band_power = np.empty((32, 3), dtype=np.float64)
-    for j, (lo, hi) in enumerate(zip(edges[:-1], edges[1:])):
-        mask = (frequency_hz >= lo) & (
-            (frequency_hz <= hi) if j == 31 else (frequency_hz < hi)
-        )
-        if not mask.any():
-            raise ValueError("Empty frequency band; revise the spectral settings")
-        band_power[j] = psd[mask].sum(axis=0) * df
+    band_power,bin_counts = integrate_bands(frequency_hz,psd,edges)
     log_band_power = np.log10(band_power + floor)
     rms_by_axis = np.sqrt(band_power.sum(axis=0))
     return {
         "frequency_hz": frequency_hz,
         "psd": psd,
         "band_edges_hz": edges,
+        "band_bin_counts": bin_counts,
         "band_power": band_power,
         "log_band_power": log_band_power,
         "rms_by_axis": rms_by_axis,

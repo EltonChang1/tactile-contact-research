@@ -1,0 +1,13 @@
+# Clock interpretation and sensitivity
+
+The [authors' dataset documentation](https://github.com/cluster-lab/Cluster-Haptic-Texture-Dataset/blob/main/documents/dataset_details.md) reports acceleration at 6 kHz and position at 100 Hz. The [dataset paper](https://arxiv.org/html/2407.16206v4) describes PC timestamps and separate acquisition threads. The pinned mirror preserves the time values as integer nanoseconds. The measured pilot's acceleration rows occur at roughly 8.63 kHz on average in those timestamps. These observations do not establish whether row intervals represent acquisition time or delivery time.
+
+The current development pipeline uses a provisional delivery-clock interpretation: interpolate onto the rounded median logged-rate grid, then use polyphase anti-aliasing to convert to 6 kHz. Motion and force determine retrospective steady intervals in the logged time coordinate. Uniform support prefixes remain nested and contain exactly the configured sample count.
+
+`python -m tactile_contact timing` compares training windows only. It selects the same raw rows inside each prepared window's logged interval, then computes a second spectrum by treating those rows as contiguous 6 kHz samples. That alternate path changes both spectral coordinates and nominal acquisition duration. It is a sensitivity check, rather than an alternate matched-budget model evaluation. No validation response errors are used to choose a clock convention.
+
+The expanded pilot comparison covers 230 training windows across ten specimens. The median alternate index duration is **1.4388 times** the logged duration. Median absolute difference across the 96 log-power bands is **0.3526**. Thus a logged 0.5-second span corresponds to approximately 0.719 seconds under the reported-rate index interpretation; it cannot simultaneously be called the same contact-time budget under both assumptions.
+
+Per-window raw indices, span durations, implied logged rates, peak frequencies, and feature differences are exported in `results/tables/timing_sensitivity.csv`. A synthetic 9 kHz delivery/6 kHz index example verifies the expected frequency and duration shift. Cached windows now retain exact raw start/end indices and actual PSD bin counts.
+
+The mismatch remains unresolved. Author acquisition code or hardware-clock/transport metadata would be needed to establish the correct interpretation. Before a scientific test, freeze a justified timing convention and rebuild all compared methods' features and episodes. Current frequency labels and physical contact budgets remain provisional; the sensitivity calculation does not validate either path.

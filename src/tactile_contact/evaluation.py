@@ -7,7 +7,7 @@ import pandas as pd
 
 from .metrics import paired_bootstrap
 from .signal import rms_from_log_power
-from .config import write_json
+from .config import write_json, PROTOCOLS
 
 
 def score_predictions(episodes, prediction, target, method, seed, floor, retrieved=None):
@@ -48,8 +48,84 @@ def summarize(root,cfg,scores):
             comparison.append({"protocol":protocol,"duration_s":duration,**result})
     write_json(destination/"paired_comparisons.json",{"stage":"development","config_hash":cfg["config_hash"],"comparisons":comparison,
         "interpretation":"Small provisional validation cohort; intervals are debugging output, not scientific evidence or test results."})
+    diagnostic_tables(destination,cfg,scores)
+    budget_contrasts(destination,seed_mean,scores)
     make_figures(root,cfg,table)
     return table
+
+
+def diagnostic_tables(destination,cfg,scores):
+    """Each named subset applies to every method and publishes its condition list."""
+    subsets = {
+        "same_direction":pd.Series(False,index=scores.index),
+        "unobserved_load":(scores.protocol != "load") & (scores.query_nominal_force_N == 1.),
+        "load_observed_both":(scores.protocol == "load") & (scores.query_nominal_force_N == 1.),
+        "unobserved_direction":pd.Series(False,index=scores.index),
+    }
+    observed_angles = {c[1] for p in cfg["protocols"] for c in PROTOCOLS[p]}
+    subsets["matched_unobserved_direction"] = ~scores.query_direction_deg.isin(observed_angles)
+    for protocol in cfg["protocols"]:
+        angles = {c[1] for c in PROTOCOLS[protocol]}
+        selected = scores.protocol == protocol
+        subsets["same_direction"] |= selected & scores.query_direction_deg.isin(angles)
+        subsets["unobserved_direction"] |= selected & ~scores.query_direction_deg.isin(angles)
+    rows,conditions = [],{}
+    for name,selected in subsets.items():
+        part = scores[selected]
+        if part.empty:
+            continue
+        per_surface = part.groupby(["model","protocol","duration_s","surface_id"],as_index=False)[
+            ["log_power_mae","modeled_band_total_rms_error"]].mean()
+        summary = per_surface.groupby(["model","protocol","duration_s"],as_index=False).agg(
+            log_power_mae=("log_power_mae","mean"),modeled_band_total_rms_error=("modeled_band_total_rms_error","mean"),
+            surfaces=("surface_id","nunique"))
+        counts = part.groupby(["model","protocol","duration_s"]).query_window_id.nunique().rename("query_windows")
+        summary = summary.merge(counts.reset_index(),on=["model","protocol","duration_s"])
+        summary["subset"] = name; rows.append(summary)
+        conditions[name] = {protocol:group[["query_speed_mm_s","query_direction_deg","query_nominal_force_N"]]
+                            .drop_duplicates().sort_values(["query_speed_mm_s","query_direction_deg","query_nominal_force_N"])
+                            .to_numpy().tolist() for protocol,group in part.groupby("protocol")}
+    if rows:
+        pd.concat(rows,ignore_index=True).to_csv(destination/"diagnostic_subsets.csv",index=False)
+    write_json(destination/"diagnostic_conditions.json",conditions)
+
+
+def budget_contrasts(destination,per_surface,scores):
+    """Match query identities before comparing probe choice or total contact time."""
+    comparisons = []
+    for protocol in ["repeat","speed","load","direction"]:
+        comparisons.extend([("equal_total_time","single",1.,protocol,.5),
+                            ("equal_total_time","single",.5,protocol,.25)])
+        if protocol != "repeat":
+            comparisons.append(("second_probe_choice","repeat",.5,protocol,.5))
+    rows = []
+    for label,a,da,b,db in comparisons:
+        left = per_surface[(per_surface.protocol == a) & (per_surface.duration_s == da)]
+        right = per_surface[(per_surface.protocol == b) & (per_surface.duration_s == db)]
+        if left.empty or right.empty:
+            continue
+        query_sets = []
+        for protocol,duration in [(a,da),(b,db)]:
+            part = scores[(scores.protocol == protocol) & (scores.duration_s == duration)]
+            query_sets.append(set(zip(part.surface_id,part.query_window_id)))
+        if query_sets[0] != query_sets[1]:
+            raise ValueError("Budget contrast has unmatched query identities")
+        paired = left.merge(right,on=["model","surface_id","family_group"],suffixes=("_a","_b"),validate="one_to_one")
+        if len(paired) != len(left) or len(paired) != len(right):
+            raise ValueError("Budget contrast has unmatched methods/surfaces")
+        for model,part in paired.groupby("model"):
+            result = paired_bootstrap(part.log_power_mae_a.to_numpy(),part.log_power_mae_b.to_numpy(),
+                                      part.family_group.to_numpy(),draws=2000)
+            rows.append({"contrast":label,"model":model,"protocol_a":a,"duration_a_s":da,
+                "protocol_b":b,"duration_b_s":db,"total_time_a_s":len(PROTOCOLS[a])*da,
+                "total_time_b_s":len(PROTOCOLS[b])*db,
+                "distance_a_mm":sum(c[0]*da for c in PROTOCOLS[a]),
+                "distance_b_mm":sum(c[0]*db for c in PROTOCOLS[b]),
+                "mean_mae_a":float(part.log_power_mae_a.mean()),"mean_mae_b":float(part.log_power_mae_b.mean()),
+                "mean_improvement_b":result["mean_improvement"],"ci95_low":result["ci95"][0],
+                "ci95_high":result["ci95"][1],"surfaces":result["surfaces"],"independent_groups":result["independent_groups"]})
+    if rows:
+        pd.DataFrame(rows).to_csv(destination/"budget_contrasts.csv",index=False)
 
 
 def make_figures(root,cfg,summary):
@@ -57,6 +133,7 @@ def make_figures(root,cfg,summary):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     destination = root/"results/figures"
+    destination.mkdir(parents=True,exist_ok=True)
     fig,ax = plt.subplots(figsize=(9,5))
     for method,rows in summary.groupby("model"):
         single = rows[rows.protocol == "single"].sort_values("duration_s")
@@ -65,6 +142,16 @@ def make_figures(root,cfg,summary):
     ax.set_xlabel("Observed steady-contact time (s)"); ax.set_ylabel("Per-surface log10 band-power MAE")
     ax.set_title(f"{cfg['source_kind']} development validation — no scientific claims")
     ax.legend(); fig.tight_layout(); fig.savefig(destination/"validation_errors.png",dpi=130); plt.close(fig)
+    fig,axes = plt.subplots(1,len(cfg["protocols"]),figsize=(4*len(cfg["protocols"]),4),sharey=True,squeeze=False)
+    for ax,protocol in zip(axes[0],cfg["protocols"]):
+        for method,rows in summary[summary.protocol == protocol].groupby("model"):
+            rows = rows.sort_values("duration_s")
+            ax.plot(rows.duration_s*len(PROTOCOLS[protocol]),rows.log_power_mae,marker="o",label=method)
+        ax.set_title(protocol); ax.set_xlabel("Total observed contact time (s)")
+    axes[0,0].set_ylabel("Per-surface log10 band-power MAE")
+    axes[0,-1].legend(fontsize=7)
+    fig.suptitle("Matched development cohort; observed contact excludes setup time")
+    fig.tight_layout(); fig.savefig(destination/"probe_budget_errors.png",dpi=130); plt.close(fig)
 
 
 def wrong_support(episodes):

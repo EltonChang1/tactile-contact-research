@@ -1,0 +1,119 @@
+{
+  "stage": "development",
+  "source": {
+    "repo_id": "tamago117/cluster-haptic-texture-dataset",
+    "revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+    "source_kind": "cluster",
+    "selected_surface_ids": [
+      0,
+      38,
+      49,
+      65,
+      74,
+      79,
+      82,
+      87,
+      102,
+      103,
+      10,
+      57
+    ]
+  },
+  "config_hash": "51383ab427be947c8e636230b15493013bf3849325b90c52e5fe4bc574766407",
+  "manifest_hashes": {
+    "recordings.csv": "ae3958644b5789ef9377830cc79900121a5dda2bc74474883c3e1f46d2f6db1b",
+    "surfaces.csv": "3cd623876f6ae7ca3b33dc6cbd35b9f2226764f5a9a0d8e3daeb124113e03cb7",
+    "split_materials.csv": "7bf4626aadae41aa91db1e486fcbdf9c59b3cb7f8ed69ec2adad51254697227a",
+    "windows.csv": "0c9a4c2bf2504e7ba71e173214b20092b14ae362d841a11b2015442b5700e0f8",
+    "episodes.csv": "2ec5d0c658ce9aa1522ec29a1c36995f5655fa6a5984f0fb275c33452f869760",
+    "eligibility.csv": "f5a158d3d1ca2db1a501a65b4491817b28efcc6e7b45a1d18165fa7f0a8c7568"
+  },
+  "software_hashes": {
+    "audit.py": "d915bccc8563af2fcae703dfb10ba8aae55b262806a399d4dfcf4ce7bdb40e1c",
+    "baselines.py": "5acfbb9b9d2a5f1548e591ee936d1b56dde92cab992e69edab3cf294ea36d540",
+    "cli.py": "1db2948930d67ec06f1cd3368017063cbf21d3a7591ebffac26aba1eecdea245",
+    "config.py": "33ca7ace647f2060fb337a13101fe95e114d4f340ae82054ff85f11732f84297",
+    "download.py": "aa96c9d1e2b11bd05a84994ba36ec5737f773c08379578e7b50587930526e3dc",
+    "episodes.py": "ed2635f84aef0c589aea7a71b676c6de2b776801d05842f05c860fd378fe66f3",
+    "evaluation.py": "ded99692e8b6257d4be9af3ffb954d1d97dc5c2e903b903a98af920d14ef7de7",
+    "metrics.py": "80197af0af640845207eed13ef6e33052d0d58600653c5765b34ec606040a1a7",
+    "models.py": "95a1ed414fd17e44220687628d82285d9208961d5c722cb47112e7cf43ff1280",
+    "pipeline.py": "e3831aeb260065eca2fbda37540424222bb097e3a4af4bbc780727831343f86f",
+    "records.py": "f8172ed0ddc35a15806ed5349b0020f406b2f99f502b5fe1ef0bf2183afc1e2d",
+    "signal.py": "e3f1d6a4dc6d8dd27ee9db2c7bda81da0303aa7d5552833a3d7dfc0096b767ad",
+    "synthetic.py": "a990deb0c4dce7161de734d9cb0ecd7fd693c0975f1b5689a67e299223640a03",
+    "timing.py": "b3a3e1a0e322977ca1f5c1dff89b41913bf7728e31f57e51f0d063a7ad1eb352",
+    "training.py": "154f5c5ec0178998df400b36ddcfcd4aaff7a1e0d2129d4169e990c6e5033476",
+    "windows.py": "a183267c2b6c48e19d80f07995feb918f87fe923ce0d2a4c9e7e58be01c9338f",
+    "__init__.py": "88726d44d8bad9997dbacc495f30c2fee923821200b92cd9cd2ee62cf5420082",
+    "__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279"
+  },
+  "specimen_groups_hash": "7c27f2eab8a6a7220f20a099ca01ee69df2500bef5b88a9f9a8c228f03ca277e",
+  "episode_summary": {
+    "stage": "development",
+    "config_hash": "51383ab427be947c8e636230b15493013bf3849325b90c52e5fe4bc574766407",
+    "common_query_conditions": [
+      [
+        30,
+        0,
+        0.5
+      ],
+      [
+        40,
+        45,
+        1.0
+      ],
+      [
+        50,
+        0,
+        0.5
+      ],
+      [
+        60,
+        90,
+        1.0
+      ]
+    ],
+    "eligible_train_ids": [
+      0,
+      38,
+      49,
+      65,
+      74,
+      79,
+      82,
+      87,
+      102,
+      103
+    ],
+    "eligible_val_ids": [
+      10,
+      57
+    ],
+    "episode_count": 1320,
+    "specimen_groups_reviewed": true,
+    "specimen_grouping_scopes": [
+      "metadata_names_only"
+    ]
+  },
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "timing_sensitivity": {
+    "config_hash": "51383ab427be947c8e636230b15493013bf3849325b90c52e5fe4bc574766407",
+    "training_windows": 230,
+    "surfaces": 10,
+    "median_index_to_logged_duration_ratio": 1.4388333333333336,
+    "median_log_power_mae_between_paths": 0.35262341036967476,
+    "comparison": "Same raw timestamp-selected span: delivery-clock resampling versus contiguous samples interpreted at reported 6000 Hz.",
+    "limitation": "Sample-index windows contain more nominal acquisition time and different frequency coordinates; this is sensitivity, not matched-budget evaluation or clock verification."
+  },
+  "exported_table_hashes": {
+    "expanded_pilot_summary.csv": "d25d7d052b0130e63387bbba08f23ec4b665840a4cf62fe92d16cf63e1fb41bf",
+    "expanded_pilot_budget_contrasts.csv": "e5ee040c5b7b6ed24c9a5836b4502a876754af31290ff15ccb98114f6cfa5f04",
+    "expanded_pilot_diagnostic_subsets.csv": "dcebc8264087f35b2078bc14b4687804e19958871b1ee423b1dfff7a798ed4ab"
+  },
+  "claim_limit": "Provisional time base; specimen grouping scope limited to available metadata; development validation only."
+}

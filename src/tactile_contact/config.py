@@ -35,6 +35,21 @@ def write_json(path, value):
     path.write_text(json.dumps(value, indent=2, allow_nan=False), encoding="utf-8")
 
 
+def data_root(root, cfg):
+    """Raw downloads may be shared; derived artifacts always use the run root."""
+    return Path(cfg.get("data_root", root))
+
+
+def validate_source(root, cfg):
+    path = data_root(root,cfg)/"data/source.json"
+    source = json.loads(path.read_text(encoding="utf-8"))
+    if source.get("source_kind") != cfg["source_kind"]:
+        raise ValueError("Raw-data source kind does not match configuration")
+    if cfg["source_kind"] == "cluster" and any(source.get(key) != cfg[key] for key in ["revision","repo_id"]):
+        raise ValueError("Raw-data revision/repository does not match configuration")
+    return source
+
+
 def load_config(path):
     cfg = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     if cfg.get("stage") != "development":
@@ -57,5 +72,11 @@ def load_config(path):
         raise ValueError("Require integer sampling rate with 1000 Hz below Nyquist")
     if not math.isfinite(cfg["power_floor"]) or cfg["power_floor"] <= 0:
         raise ValueError("Invalid spectral power floor")
+    review_path = None
+    if cfg.get("specimen_groups_path"):
+        review_path = (Path(path).resolve().parent/cfg["specimen_groups_path"]).resolve()
+        cfg["specimen_groups_hash"] = file_hash(review_path)
     cfg["config_hash"] = digest(cfg)
+    if review_path:
+        cfg["specimen_groups_path"] = str(review_path)
     return cfg

@@ -2,11 +2,11 @@
 
 A working development pipeline for the public-data stage of the [research plan](docs/research_plan.md) and [refined guide](docs/implementation_guide.md). It predicts vibration band power from brief observed contacts and requested interaction conditions.
 
-The first implementation downloads a bounded, revision-pinned Cluster subset, audits synchronized channels, extracts nested support prefixes, constructs matched support/query episodes, fits three baselines and a small masked encoder, and saves validation predictions and provenance. This is an implemented development milestone. Specimen families and sensor timing still require review before a scientific evaluation.
+The implementation downloads bounded, revision-pinned Cluster subsets, audits synchronized channels, extracts nested support prefixes, constructs matched episodes, fits five baselines and a small masked encoder, and saves validation predictions and provenance. The expanded pilot covers five probe protocols and three durations. Sensor timing and manufacturing-family relationships still require review before a scientific evaluation.
 
 ## Current result
 
-The real pilot uses ten training surfaces, two provisional validation surfaces, 0.5-second support/query windows, and four common query conditions. All three initialization seeds ran successfully. Retrieval outperformed the initial network on this development set; no learned-model advantage is established. See [development status](docs/development_status.md) for the audit decisions and limitations.
+The expanded real pilot uses ten training surfaces, two provisional validation surfaces, five protocols, 0.25/0.5/1-second supports, and the original four common query conditions. Three model seeds completed. Retrieval remains ahead of fixed-feature regression and the encoder; wrong support now substantially worsens the encoder's predictions. See the [expanded pilot report](docs/expanded_pilot_report.md), [timing audit](docs/timing_audit.md), and [specimen review](docs/specimen_group_audit.md).
 
 Synthetic fixtures also exercise all five probe protocols and 0.25/0.5/1-second supports. They check engineering behavior, not physical accuracy. Locked test evaluation, mechanics, and simulation are later milestones.
 
@@ -32,6 +32,17 @@ For a particular CPU/CUDA PyTorch build, install it in that environment using th
 
 `run` without `--reuse` regenerates preparation first. `--reuse` requires matching configuration hashes. After changing preparation or feature code, run `prepare` again rather than reusing older caches. Raw downloads are immutable; hashes are checked on subsequent downloads. The default selection is 362 files, approximately 35 MB, rather than the full dataset.
 
+## Run the expanded comparison
+
+```powershell
+.\.venv\Scripts\python.exe -m tactile_contact download --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact run --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe -m tactile_contact timing --config configs/expanded_pilot.yaml --root runs/expanded_pilot --data-root .
+.\.venv\Scripts\python.exe scripts/summarize_expanded_pilot.py --root runs/expanded_pilot
+```
+
+The expanded selection has 578 files, approximately 62.5 MB. `--data-root .` shares pinned raw downloads with the initial pilot; preparation, fitted models, and results stay under `runs/expanded_pilot`. Reuse now also checks preparation source-code hashes. The four query conditions remain fixed while three additional support conditions enable the other protocols. This is a bounded development expansion; the full 76-condition scientific grid is still pending.
+
 ## Run the synthetic check separately
 
 ```powershell
@@ -52,7 +63,7 @@ Synthetic data must use their own output root when measured data already exist. 
 | `data/manifests/windows.csv`, `episodes.csv`, `eligibility.csv` | Exact windows, budgets, common queries, missing supports |
 | `data/features/` | Full PSDs, band powers, train-only scaler, scaler fit-window IDs |
 | `runs/<configuration hash>/seed_*/` | Selected checkpoints, training histories, configurations |
-| `results/tables/` | Query/surface scores, raw predictions, baseline fits, retrieval provenance, wrong-support assignment, development bootstrap |
+| `results/tables/` | Query/surface scores, raw predictions, baseline fits/selection, retrieval provenance, wrong-support assignment, paired budget contrasts, named subsets, clock sensitivity |
 | `results/figures/` | Synchronized pilot plots and validation error figure |
 | `results/run_manifest.json`, `environment.lock.txt` | Configuration, data/software hashes, seeds/checkpoints, runtime |
 
@@ -65,8 +76,10 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml` with the env
 - Every protocol excludes the union of all support conditions from primary queries. A different repetition of an observed condition is also excluded.
 - Training may use both query repetitions; fixed validation queries use repeat 1. Retrieval averages the training responses in linear power before logging.
 - All methods use the same eligible cohort and common query set. Checkpoint selection averages within surface and then equally across protocol/duration cells.
-- Metrics average queries within surface, then surfaces; model seeds are averaged within surface for the paired retrieval comparison. Family-group bootstrap supports reviewed groups, but the current Cluster groups are placeholders.
+- Metrics average queries within surface, then surfaces; model seeds are averaged within surface before paired comparisons. The expanded specimen review covers available names; manufacturing-family independence remains unresolved.
+- Fixed-feature ridge uses mean/std of permitted support vectors, count, and query conditions, with training-only scaling and validation-selected regularization. Rescaling uses the full support PSD, train-fitted speed/load exponents, and validation selection; its angular rule ignores residual direction mismatch.
+- Regression weights total one per training specimen so repeating query labels across protocol/duration cells does not silently change ridge regularization.
 
 ## Next implementation milestone
 
-Review specimen relationships and the acquisition/delivery clock, expand the bounded pilot to the planned condition grid, and add fixed-feature regression and speed rescaling. Then run matched duration and second-probe comparisons with a separately fitted omitted-speed experiment. The scientific protocol must be finalized before adding a locked test split. Force rigs, friction identification, engine integration, and control remain subsequent stages.
+Resolve acquisition/delivery timing and complete family review, then extend the common condition grid and run a separately fitted omitted-speed experiment. Audit the remaining model gap without selecting favorable subsets. The scientific protocol must be finalized before adding a locked test split. Force rigs, friction identification, engine integration, and control remain subsequent stages.

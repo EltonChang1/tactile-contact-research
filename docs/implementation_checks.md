@@ -1,10 +1,14 @@
 # Implementation checks — 8 October 2026
 
-`python -m pytest -q`: **24 passed**. `python -m compileall -q src tests scripts` also completed successfully.
+`python -m pytest -q`: **34 passed**. `python -m compileall -q src tests scripts` also completed successfully.
 
 The checks exercise physical amplitude scaling and modeled-band RMS; native-time motion fitting under delivery jitter; disjoint specimen splits; support/query condition exclusions; prefix windows; target-independent prediction inputs; training-only normalization and retrieval; linear-power response averaging; invalid bootstrap groups; finite masked inputs and support-order invariance; wrong-support derangement; checkpoint restoration; tiny-fit optimization; fresh pipeline exports/provenance; immutable download hashes; and separate synthetic/measured output roots.
 
 Real-data execution: 120 recording triplets audited; 100 selected windows; 88 matched episodes; three initialization seeds completed with selected checkpoints at epoch 9. Conditions-only, copy, retrieval, model, and wrong-support predictions were saved on the same eight validation episodes. Baseline coefficients/library entries and their source-window IDs are retained alongside raw predictions.
+
+Expanded real execution: all 192 recording triplets passed QC; 268 windows/1,320 episodes across five protocols and three durations; all ten training and two validation specimens remained eligible. Five baselines and three encoder seeds were scored on the same 120 validation episodes. Matched budget contrasts, named subsets, baseline-selection records, and 230 training-window timing comparisons were exported. The initial results remain in their original output directory.
+
+Additional checks cover warp identity, frequency stretching and physical power scaling; extrapolation rejection; train-only fixed-feature statistics; hidden-query independence for both new baselines; canonical support selection; changed clock coordinates/budgets; metadata family conflicts; shared raw-source revision checks; prepared-code invalidation; matching query identities; and invariant ridge regularization when response labels repeat across protocol cells. A float32 regression accumulation discrepancy was corrected by fitting conditions-only ridge in float64.
 
 Synthetic execution: the fixture configuration completed across five protocols and three durations. These fixtures establish I/O and algorithm behavior, not real contact dynamics. Test fixtures use temporary roots and do not modify downloaded measurements.
 

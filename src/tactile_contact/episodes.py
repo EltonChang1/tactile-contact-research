@@ -74,7 +74,8 @@ def build_episodes(root, cfg, windows):
         "stage":"development","config_hash":cfg["config_hash"],"common_query_conditions":[list(c) for c in sorted(common)],
         "eligible_train_ids":sorted(set(cohort)&set(cfg["train_ids"])),
         "eligible_val_ids":sorted(set(cohort)&set(cfg["val_ids"])),
-        "episode_count":len(episodes),"specimen_groups_reviewed":bool(surfaces.loc[cohort,"grouping_reviewed"].all())})
+        "episode_count":len(episodes),"specimen_groups_reviewed":bool(surfaces.loc[cohort,"grouping_reviewed"].all()),
+        "specimen_grouping_scopes":sorted(surfaces.loc[cohort,"grouping_scope"].unique().tolist())})
     return episodes
 
 

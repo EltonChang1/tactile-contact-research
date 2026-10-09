@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .config import write_json
+from .config import write_json, data_root, validate_source
 from .records import parse_record_name
 
 
@@ -65,7 +65,8 @@ def steady_interval(frames, times, nominal_speed, rules):
 
 def build_manifest(root, cfg):
     root = Path(root)
-    raw = root/"data/raw"/cfg["source_kind"]
+    validate_source(root,cfg)
+    raw = data_root(root,cfg)/"data/raw"/cfg["source_kind"]
     requested = set(cfg["train_ids"] + cfg["val_ids"])
     conditions = {tuple(c) for c in cfg["conditions"]}
     rows = []
@@ -74,7 +75,7 @@ def build_manifest(root, cfg):
         if row["surface_id"] not in requested or (row["speed_mm_s"], row["direction_deg"], row["nominal_force_N"]) not in conditions:
             continue
         for channel in CHANNELS:
-            row[f"{channel}_path"] = (Path("data/raw")/cfg["source_kind"]/"sensor_data"/channel/str(row["surface_id"])/path.name).as_posix()
+            row[f"{channel}_path"] = (raw/"sensor_data"/channel/str(row["surface_id"])/path.name).resolve().as_posix()
         row.update(qc_status="excluded", qc_reason="", steady_start_s=np.nan, steady_end_s=np.nan,
                    usable_duration_s=0., config_hash=cfg["config_hash"])
         try:
@@ -118,10 +119,14 @@ def make_surfaces(root, cfg, raw):
     metadata = pd.read_excel(metadata_path).set_index("Texture_id") if metadata_path.exists() else None
     path = root/"data/manifests/surfaces.csv"
     old = pd.read_csv(path).set_index("surface_id") if path.exists() else None
+    review_path = cfg.get("specimen_groups_path")
+    reviewed = pd.read_csv(review_path).set_index("surface_id") if review_path else None
+    if reviewed is not None and (reviewed.index.duplicated().any() or not set(cfg["train_ids"]+cfg["val_ids"]).issubset(reviewed.index)):
+        raise ValueError("Specimen review needs unique entries for every requested surface")
     rows = []
     for surface in cfg["train_ids"] + cfg["val_ids"]:
         row = {"surface_id": surface, "name": f"synthetic_{surface}" if cfg["source_kind"] == "synthetic" else "unknown",
-               "category": "synthetic" if metadata is None else str(metadata.loc[surface,"Category"]),
+               "category": "synthetic" if metadata is None else str(metadata.loc[surface,"Category"]).replace("\\n"," ").strip(),
                "family_group": f"specimen_{surface}", "grouping_reason": "unreviewed specimen placeholder",
                "grouping_reviewed": cfg["source_kind"] == "synthetic",
                "split": "train" if surface in cfg["train_ids"] else "val"}
@@ -130,6 +135,13 @@ def make_surfaces(root, cfg, raw):
         if old is not None and surface in old.index:
             for field in ["family_group", "grouping_reason", "grouping_reviewed"]:
                 row[field] = old.loc[surface, field]
+        if reviewed is not None:
+            for field in ["family_group", "grouping_reason", "grouping_reviewed"]:
+                row[field] = reviewed.loc[surface,field]
+            row["grouping_scope"] = reviewed.loc[surface,"grouping_scope"]
+        if not isinstance(row["grouping_reviewed"],(bool,np.bool_)):
+            raise ValueError("Grouping review flag must be a Boolean")
+        row.setdefault("grouping_scope","synthetic_fixture" if cfg["source_kind"] == "synthetic" else "unreviewed")
         rows.append(row)
     surfaces = pd.DataFrame(rows)
     if surfaces.family_group.isna().any() or (surfaces.family_group.str.strip() == "").any():

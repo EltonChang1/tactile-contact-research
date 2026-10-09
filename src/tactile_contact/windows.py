@@ -8,7 +8,7 @@ import pandas as pd
 from scipy.signal import resample_poly
 
 from .audit import load_record
-from .config import PROTOCOLS, FORBIDDEN
+from .config import PROTOCOLS, FORBIDDEN, data_root
 from .signal import spectral_features
 
 
@@ -31,7 +31,7 @@ def uniform_acceleration(frame, t, fs):
 
 def extract_windows(root, cfg, manifest):
     root = Path(root)
-    raw = root/"data/raw"/cfg["source_kind"]
+    raw = data_root(root,cfg)/"data/raw"/cfg["source_kind"]
     cache = root/"data/features"/cfg["config_hash"]
     cache.mkdir(parents=True,exist_ok=True)
     requested_support = {c for p in cfg["protocols"] for c in PROTOCOLS[p]}
@@ -64,6 +64,8 @@ def extract_windows(root, cfg, manifest):
                          "speed_mm_s":record.speed_mm_s,"direction_deg":record.direction_deg,
                          "nominal_force_N":record.nominal_force_N,"repeat_id":record.repeat_id,
                          "feature_path":path.relative_to(root).as_posix(),"source_grid_hz":source_rate,
+                         "raw_start_index":int(np.searchsorted(times["accel"],t_grid[start_index])),
+                         "raw_end_index_exclusive":int(np.searchsorted(times["accel"],t_grid[start_index]+duration)),
                          "window_config_hash":cfg["config_hash"],"time_base_id":cfg["time_base"]})
     windows = pd.DataFrame(rows)
     if windows.empty:

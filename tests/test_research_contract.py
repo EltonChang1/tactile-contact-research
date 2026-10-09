@@ -171,9 +171,10 @@ def test_fresh_pipeline_saves_predictions_baselines_and_provenance(prepared):
     root,cfg,*_ = prepared
     from tactile_contact.pipeline import run
     result = run(root,cfg,reuse=True)
-    assert set(result.model) == {"conditions_only","copy","retrieval","encoder","encoder_wrong_support"}
+    assert set(result.model) == {"conditions_only","copy","retrieval","fixed_features","speed_rescaling","encoder","encoder_wrong_support"}
     for name in ["predictions.npz","conditions_only_fit.npz","retrieval_fit.npz",
-                 "retrieval_sources.json","wrong_support_assignments.csv","per_query.csv","per_surface.csv"]:
+                 "retrieval_sources.json","wrong_support_assignments.csv","per_query.csv","per_surface.csv",
+                 "fixed_features_fit.npz","speed_rescaling_fit.json","budget_contrasts.csv","diagnostic_subsets.csv"]:
         assert (root/"results/tables"/name).is_file()
     manifest = json.loads((root/"results/run_manifest.json").read_text())
     assert manifest["stage"] == "development" and manifest["software_hashes"]

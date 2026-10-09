@@ -1,0 +1,13 @@
+surface_id,family_group,grouping_reason,grouping_reviewed,grouping_scope
+0,specimen_0,Nyatoh; no same-name family in the selected pilot,True,metadata_names_only
+38,specimen_38,Granite; no same-name family in the selected pilot,True,metadata_names_only
+49,polyethylene,High-density polyethylene; group low-density polyethylene here if added,True,metadata_names_only
+65,specimen_65,Stainless steel; no same-name family in the selected pilot,True,metadata_names_only
+74,glass_finishes,Float glass; group frosted and haze glass here if added,True,metadata_names_only
+79,specimen_79,Linoleum; no same-name family in the selected pilot,True,metadata_names_only
+82,specimen_82,Alumina; no same-name family in the selected pilot,True,metadata_names_only
+87,specimen_87,Jute; no same-name family in the selected pilot,True,metadata_names_only
+102,specimen_102,Velvet; constituent fiber and manufacturer unspecified,True,metadata_names_only
+103,specimen_103,Corduroy; constituent fiber and manufacturer unspecified,True,metadata_names_only
+10,specimen_10,Poplar; no same-name family in the selected pilot,True,metadata_names_only
+57,specimen_57,PET; distinct named polymer from polyethylene,True,metadata_names_only

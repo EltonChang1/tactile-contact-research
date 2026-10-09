@@ -1,0 +1,30 @@
+stage: development
+source_kind: cluster
+repo_id: tamago117/cluster-haptic-texture-dataset
+revision: b7c2fb70ed2d68219389478660f35c2cd49c69fb
+train_ids: [0, 38, 49, 65, 74, 79, 82, 87, 102, 103]
+val_ids: [10, 57]
+specimen_groups_path: pilot_groups.csv
+# Four support conditions plus the unchanged four pilot queries; both repeats.
+conditions: [[40, 0, 0.5], [20, 0, 0.5], [40, 0, 1.0], [40, 90, 0.5], [30, 0, 0.5], [50, 0, 0.5], [40, 45, 1.0], [60, 90, 1.0]]
+protocols: [single, repeat, speed, load, direction]
+durations_s: [0.25, 0.5, 1.0]
+query_duration_s: 0.5
+time_base: timestamp_resample
+sampling_rate_hz: 6000
+power_floor: 1.0e-10
+qc:
+  motion_smoothing_samples: 21
+  speed_relative_tolerance: 0.10
+  speed_absolute_tolerance_mm_s: 2.0
+  min_normal_force_N: 0.05
+  max_accel_gap_s: 0.01
+  max_aux_gap_s: 0.05
+training:
+  seeds: [0, 1, 2]
+  epochs: 60
+  patience: 10
+  episodes_per_surface: 64
+  batch_size: 128
+  learning_rate: 0.001
+  latent_dim: 16

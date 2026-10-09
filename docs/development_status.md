@@ -1,5 +1,7 @@
 # First implementation milestone — 8 October 2026
 
+This section retains the initial pilot record. The subsequent expanded comparison is documented below and in [expanded_pilot_report.md](expanded_pilot_report.md).
+
 Completed: installable Python package and CLI; bounded pinned downloads with hash checking; recording/specimen manifests; synchronized audit figures; retrospective motion QC; anti-aliased acceleration preparation; PSD and band-power caching; deterministic prefix windows; matched episodes; training-only scaling; conditions/copy/retrieval baselines; masked encoder training; per-query/per-surface scoring; wrong-support control; checkpoint and result provenance.
 
 The source numerical helpers came from the user-provided refined guide. The surrounding I/O, preparation, evaluation, CLI, and checks were implemented for this project. Original plan and guide copies are stored in `docs/`.
@@ -29,3 +31,13 @@ Retain these results rather than selecting a favorable subset or changing the te
 Automated checks cover spectral amplitude/units; native-time motion derivatives; specimen/query exclusions; nested windows; target-input separation; preprocessing/library split restrictions; linear-power retrieval aggregation; grouped bootstrap IDs; mask invariance; wrong-support derangement; checkpoint restoration; tiny-fit optimization; fresh-run artifacts; immutable download hashes; and measured/synthetic source separation.
 
 Next: inspect the pilot audit figures and specimen relationships, resolve the clock interpretation, then expand the real condition grid and add fixed-feature regression/speed rescaling. Only after those development decisions should the full scientific split, practical-effect margin, and test protocol be locked. Mechanical measurements and simulator evaluation have not started.
+
+## Expanded implementation milestone — 8 October 2026
+
+Added fixed-feature ridge, full-PSD speed/load rescaling, validation-selected baseline regularization, matched total-time/second-probe contrasts, named directional/load subsets, a training-only clock sensitivity command, and metadata-scoped specimen review. Shared raw-data roots preserve the initial pilot's derived outputs. Preparation reuse checks source-code hashes, and source/revision mismatch is rejected. Download progress and partial inventories support resumable bounded selections.
+
+The expanded real run verified 578 files (62.5 MB), audited all 192 recordings successfully, and produced 268 windows/1,320 episodes across the same ten training/two validation specimens. All five protocols and all three durations retain the same four query conditions. Three encoder seeds selected epochs 55, 59, and 60. In the single 0.5-second cell, retrieval MAE is 0.1724, fixed features 0.2006, encoder 0.2492, conditions-only 0.3225, copy 0.4607, and rescaling 0.4787. Wrong support raises encoder error to 0.5837. Aggregate tables and a reproducible report are versioned in `docs/`.
+
+The same raw spans correspond to a median 1.4388 times greater nominal duration when interpreted as contiguous 6 kHz samples; median log-power difference between clock paths is 0.3526 over 230 training windows. Timing is consequential and remains unresolved. The specimen review confirms available names and records its limited scope; fabrication relationships remain unknown. These outcomes justify continued development, not a learned-model advantage or a preferred scientific probe.
+
+Remaining: justify the acquisition clock; extend specimen review and the common query grid; inspect model error/feature conditioning while preserving the negative retrieval comparison; implement a separately fitted omitted-speed experiment; then freeze a scientific split, practical effect margin, and locked evaluation protocol. Stage B mechanics, simulation, and control remain later work.

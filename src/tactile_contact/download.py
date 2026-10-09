@@ -1,16 +1,16 @@
 """Revision-pinned bounded downloads; original bytes and hashes are preserved."""
 from __future__ import annotations
 
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import urllib.request
 import time
 
-from .config import file_hash, write_json
+from .config import file_hash, write_json, data_root
 
 
 def download_cluster(root, cfg):
-    root = Path(root)
+    root = data_root(root,cfg)
     revision = cfg["revision"]
     if len(revision) != 40 or any(c not in "0123456789abcdef" for c in revision):
         raise ValueError("Download requires a pinned 40-character dataset commit")
@@ -59,9 +59,17 @@ def download_cluster(root, cfg):
 
     write_json(source_path, {"repo_id": cfg["repo_id"], "revision": revision,
                              "source_kind": "cluster", "selected_surface_ids": cfg["train_ids"] + cfg["val_ids"]})
+    inventory = []
     with ThreadPoolExecutor(max_workers=4) as pool:
-        inventory = list(pool.map(fetch, files))
-    # Preserve inventories of earlier bounded selections from the same pinned revision.
-    old.update({r["path"]: r for r in inventory})
-    write_json(inventory_path, {"revision": revision, "files": [old[k] for k in sorted(old)]})
+        futures = [pool.submit(fetch,relative) for relative in files]
+        try:
+            for future in as_completed(futures):
+                record = future.result()
+                inventory.append(record); old[record["path"]] = record
+                if len(inventory) % 50 == 0:
+                    write_json(inventory_path, {"revision":revision,"files":[old[k] for k in sorted(old)]})
+                    print(f"Verified {len(inventory)}/{len(files)} raw files",flush=True)
+        finally:
+            # A failed/interrupted selection retains hashes of completed downloads.
+            write_json(inventory_path, {"revision":revision,"files":[old[k] for k in sorted(old)]})
     print(f"Downloaded/verified {len(inventory)} files ({sum(r['bytes'] for r in inventory)/1e6:.1f} MB)", flush=True)
