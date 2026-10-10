@@ -1,0 +1,20 @@
+{
+  "review_id": "frozen_repetition_reversal_v1",
+  "review_date": "2026-10-10",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "convergence_provenance": "docs/convergence_review_provenance.json",
+  "convergence_root": "runs/convergence_120",
+  "output_root": "runs/repetition_reversal",
+  "experiments": [
+    {"name": "expanded", "historical_root": "runs/bounded_expanded_pilot"},
+    {"name": "omitted", "historical_root": "runs/bounded_omitted_speed"}
+  ],
+  "checkpoint_budget": 120,
+  "seeds": [0, 1, 2],
+  "missing_window_policy": "abort; preserve the complete original cohort without error-based exclusions",
+  "support_rule": "single/speed/load/direction: repeat 0 to 1; repeat control retains canonical [0,1] supports",
+  "query_rule": "repeat 1 to 0 at identical requested condition and duration",
+  "scope": "Frozen 120-budget models, original training-only scaler and original fitted baseline libraries/coefficients. No refit, new selection, feature/QC change, raw download or reserved specimen access. Complete original development cohorts and all 15 protocol/duration cells. Descriptive two-group sensitivity; reversal changes both support recording and target recording, so effects cannot isolate either source."
+}
