@@ -1,0 +1,12 @@
+{
+  "snapshot_id": "development_exposure_through_clock_qc_v1",
+  "snapshot_date": "2026-10-09",
+  "training_surface_ids": [0, 38, 49, 65, 74, 79, 82, 87, 102, 103],
+  "selection_surface_ids": [10, 57],
+  "metadata_review_surface_ids": {"first": 0, "last": 117},
+  "signal_exposure_rule": "All twelve previously requested real-data specimens are permanently development-exposed, including selection and transfer scores; group-linked specimens cannot become fresh test groups",
+  "metadata_scope": "Full metadata workbook was parsed previously; current review inspects ID/name/category/subcategory. The workbook includes separate friction attributes, which are not vibration targets or prediction inputs. Metadata review is not response-free ignorance of specimen identity.",
+  "evidence": ["docs/development_status.md", "docs/expanded_pilot_report.md", "docs/omitted_speed_report.md", "docs/window_boundary_provenance.json", "docs/contact_qc_provenance.json", "docs/clock_source_provenance.json"],
+  "historical_real_run_roots": [".", "runs/expanded_pilot", "runs/omitted_speed", "runs/bounded_pilot", "runs/bounded_expanded_pilot", "runs/bounded_omitted_speed"],
+  "limits": "This ledger records exposure in this repository/session, not external access by other people. Public availability is not a locked access interface. Omitted speeds were absent from fitting/selection within the omitted experiment; they were previously used in familiar development and are not project-wide untouched conditions."
+}

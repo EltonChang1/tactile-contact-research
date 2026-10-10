@@ -1,0 +1,8 @@
+variant,requested,valid,half_second_available,one_second_available
+current,960,960,960,932
+smoother_11,960,960,812,266
+smoother_31,960,960,960,960
+accel_gap_half,960,960,960,932
+accel_gap_double,960,960,960,932
+aux_gap_half,960,960,960,932
+aux_gap_double,960,960,960,932

@@ -1,0 +1,68 @@
+{
+  "requested_records": 960,
+  "current_valid": 960,
+  "half_second_records": 960,
+  "one_second_records": 932,
+  "half_second_diagnostic_records": 960,
+  "support_eligible_surfaces": 10,
+  "common_candidate_cells": 440,
+  "requested_known_query_cells": 440,
+  "common_query_conditions_all_surfaces": 44,
+  "median_force_to_nominal": 1.0290906999944776,
+  "force_ratio_p05": 0.9419501880870798,
+  "force_ratio_p95": 1.1248759196944866,
+  "median_travel_to_nominal": 0.9916382522444696,
+  "heading_absolute_p95_deg": 0.02854453918424152,
+  "heading_absolute_max_deg": 0.0660050927911015,
+  "variants": [
+    {
+      "variant": "current",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 932
+    },
+    {
+      "variant": "smoother_11",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 812,
+      "one_second_available": 266
+    },
+    {
+      "variant": "smoother_31",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 960
+    },
+    {
+      "variant": "accel_gap_half",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 932
+    },
+    {
+      "variant": "accel_gap_double",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 932
+    },
+    {
+      "variant": "aux_gap_half",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 932
+    },
+    {
+      "variant": "aux_gap_double",
+      "requested": 960,
+      "valid": 960,
+      "half_second_available": 960,
+      "one_second_available": 932
+    }
+  ]
+}

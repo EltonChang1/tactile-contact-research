@@ -21,7 +21,9 @@ These experiments use different query grids, so their errors do not isolate the 
 
 **Clock/QC review completed 9 October:** fifteen original CSVs preserve mirror timestamps/signals after declared conversion. Physical acquisition timing remains unverified, so [logged_coordinates_v1](../configs/clock_convention.json) explicitly scopes continued development to logged-time windows and frequency coordinates. Seven prespecified QC settings were reviewed on 200 known-speed training records: current settings retain every half-second interval and 199 one-second intervals; heading/load/travel diagnostics are exported. Settings and models remain unchanged. See the [decision/report](clock_qc_review.md). The current suite has 62 tests.
 
-Next complete wider metadata/QC coverage and exposure review, repeatability/convergence and floor sensitivity, then matched-grid development comparisons and a fresh test freeze. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
+**Metadata and wider training coverage completed 9 October:** all 118 specimens are reviewed in 87 conservative groups; twenty metadata-only specimens in fifteen whole groups are reserved. The [960-record known-speed audit](wider_coverage_review.md) retains every half-second interval, all required one-second supports and all 44 common query triples across ten training specimens. Current settings and fitted models are unchanged; 70 tests pass.
+
+Next review repeatability/convergence, floor/range sensitivity and practical margins, then matched-grid development comparisons and a scientific protocol/access freeze. Wider selection/transfer coverage remains pending. Numerical defaults already implemented are identified below; proposed additions remain labeled. A baseline winning is a valid scientific outcome.
 
 ## Scope and stage gates
 
@@ -41,12 +43,12 @@ Investigate rig capabilities while Stage A runs. Stage B depends on calibrated i
 The first executable pipeline and both bounded comparisons are complete. Use the steps as contracts and checkpoints, not instructions to restart the project.
 
 1. The Step 8 raw boundary and matched reruns, plus Step 6 bounded clock/QC review, are complete. Retain the declared logged-coordinate scope; physical calibration remains unresolved.
-2. Complete the exposure/coverage review in Steps 5–7; all 12 existing specimens remain in the development pool.
+2. Retain the completed all-specimen metadata/exposure review, twenty-specimen reservation and wider known-speed training coverage in Steps 5–7; verify future selection/transfer coverage without exposing reserved groups.
 3. Use Steps 11–17 for broader development diagnostics, a matched-grid familiar/omitted comparison, and a fresh locked test after modest selection and convergence review.
 4. Investigate Step 18 in parallel. Start measured mechanics only when its calibration and measurement gate is satisfied; Steps 23–25 retain their additional validation gates.
 5. Maintain Step 26 throughout. Preserve historical results and label revisions so the original negative and inconclusive findings remain visible.
 
-The 8 October reassessment changed documentation and priorities; the 9 October implementation completes the raw-window correction, matched development reruns and bounded clock/QC review. Wider coverage and a scientific test remain pending.
+The 8 October reassessment changed documentation and priorities; the 9 October implementation completes the raw-window correction, matched development reruns, clock scope, complete metadata/reservation and wider known-speed training QC. Matched broader model fitting and a scientific test remain pending.
 
 ## Step 1. Define one primary scientific question
 
@@ -193,13 +195,13 @@ Filename parsing is implemented in `records.py`; do not encode material IDs as p
 surface_id,name,category,family_group,grouping_reason,grouping_reviewed,split,grouping_scope
 ```
 
-Inspect `texture_list.xlsx` and preserve the evidence and scope of each grouping decision. The 12-specimen review has `grouping_scope=metadata_names_only`: reviewed names do not imply reviewed manufacturing provenance. Group known related variants conservatively; mark unavailable lot/source/fabrication relationships unknown. Do not merge a whole category automatically. A specimen-level study can proceed with documented limits; an unseen-manufacturing-family claim requires stronger evidence.
+The [complete metadata review](study_design_review.md) now records all 118 specimens in [87 conservative groups](../configs/all_specimen_groups.csv), with `grouping_scope=metadata_names_only`. Named variants and construction-only cloth uncertainty blocks are explicit; all manufacturing relationships remain unknown. The original 12-specimen grouping file is retained for historical provenance. A specimen-level study can proceed with documented limits; an unseen-manufacturing-family claim requires stronger evidence.
 
-**Required addition:** an exposure ledger recording which specimens/groups have contributed to training, selection, inspected predictions or reported transfer results. All existing IDs `[0,38,49,65,74,79,82,87,102,103,10,57]` are development-exposed. IDs 10 and 57 have repeatedly selected models and their transfer outcomes are known; neither may later become an untouched scientific test. Known related groups must follow this restriction.
+**Completed exposure ledger:** [all 118 rows](specimen_exposure_ledger.csv) distinguish metadata review from direct/group exposure. Six real-run histories yield 72 specimen/run events and a 304-recording union before wider QC. All existing IDs `[0,38,49,65,74,79,82,87,102,103,10,57]` are development-exposed; known/declared group links block 22 specimens from a fresh test. IDs 10 and 57 have repeatedly selected models and their transfer outcomes are known. Twenty metadata-only specimens in fifteen whole groups are reserved before broader signal review; they are not yet a scientifically frozen test.
 
 Verify coverage across 80 condition triples and two repetitions without assuming all files/windows survive. Cluster's specimen friction metadata were measured with another counterface/protocol; they are not synchronized tangential-force labels for these scans. [R3]
 
-**Output:** current recording/surface manifests; next, exposure ledger, broader metadata review and a coverage/attrition matrix.
+**Output:** recording/surface manifests, complete grouping rules/table, historical access evidence, exposure ledger, protected reservation and [condition masks](../configs/query_domains.csv); wider coverage/attrition review follows.
 
 **Checkpoint:** each channel maps to one recording key; group scope and development exposure are explicit rather than inferred from a review flag.
 
@@ -217,13 +219,17 @@ The logged acceleration rate averages about 8.63 kHz. The adopted logged-coordin
 
 **Completed bounded QC review:** `scripts/review_contact_qc.py` uses the [prespecified seven-setting review](../configs/qc_review.json) on 200 known-speed training records, ten conditions, both repeats. Current/11-point/31-point smoothing retains 200/166/200 full half-second and 199/57/200 full one-second intervals. Neighboring gap thresholds change no coverage here. A single global heading frame fits the three logged headings with maximum residual 0.0653 degrees; this is not independently tracked motion. Median time-weighted recorded force is 1.04865 × nominal and logged-position travel is 0.99062 × nominal distance. Retrospective diagnostic smoothing may use neighboring position samples; these quantities never enter predictor inputs. Retain current settings, publish deviations and continue wider category/condition/duration attrition review. No heading/load exclusion or setting selected by model error is introduced.
 
-**Output:** current `audit_summary.json`, `motion_qc_comparison.json`, timing tables and audit plots; now also [clock/contact review](clock_qc_review.md), hashed source comparisons and per-record/per-condition QC diagnostics. Wider metadata/coverage/exposure review remains next.
+**Completed wider training QC:** `scripts/review_wider_coverage.py --download` enforces reservation preflight and audits all 48 known-speed conditions, both repeats, on ten already exposed training specimens. Current/11-point/31-point smoothing retains 960/812/960 half-second and 932/266/960 one-second records. Nearby gap limits change no coverage. `scripts/summarize_wider_coverage.py` checks that all fifty required supports retain one second and every one of the 440 known-speed specimen/query cells has both half-second repetitions. Current settings therefore support the intended training budget comparison without switching to the smoother with greater retention. See the [coverage report](wider_coverage_review.md); selection, transfer and reserved-test coverage are not established by this audit.
+
+**Output:** current `audit_summary.json`, `motion_qc_comparison.json`, timing tables and audit plots; [clock/contact review](clock_qc_review.md), hashed source comparisons, [complete metadata/exposure](study_design_review.md) and [wider training coverage](wider_coverage_review.md), with per-record/per-condition decisions and common-pool eligibility. Next inspect repeatability/convergence, feature sensitivity and selection/transfer coverage.
 
 **Checkpoint:** the chosen time convention has evidence or an explicit limitation; frozen QC defines valid targets without implying causal onset detection.
 
 ## Step 7. Lock material splits and eligible evaluation surfaces
 
-Current configs use ten training IDs and development validation IDs 10/57, with no scientific test. First maintain the exposure ledger from Step 5, review known specimen relationships and full-grid coverage, then allocate fresh, unexposed test groups. Existing pilot specimens stay in development; they need not all be reassigned to model training. Approximate 80/18/20 counts are an optional capacity target after grouping/coverage, not a fixed split or guarantee of 118 eligible surfaces.
+Current model configs use ten training IDs and development validation IDs 10/57, with no scientific test. The [metadata-only reservation](../configs/test_reservation.csv) now protects twenty specimens in fifteen complete groups while coverage/protocol review continues. Existing pilot specimens stay in development; they need not all be reassigned to model training. Approximate 80/18/20 counts remain a capacity target, not a completed allocation or guarantee of 118 eligible surfaces.
+
+Run `scripts/prepare_study_design.py --check-config CONFIG_PATH` before any new measured development selection. The wider-coverage runner enforces this reservation guard before downloads; existing experiment CLI commands require the explicit preflight. Reservation validation rejects split/exposed/forged groups and unknown IDs. Locked scientific access and scoring are still unimplemented; do not present the reservation as a completed held-out test.
 
 The implemented `split_materials.csv` records IDs, group IDs and split. A future frozen split must also retain selection rationale, exposure/grouping scope and split seed. Assert disjoint IDs and known groups across train/validation/test, and split records before windows or fitted statistics. Unknown fabrication relationships limit the claim; do not relabel name-only review as family independence.
 

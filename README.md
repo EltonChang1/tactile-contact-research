@@ -14,7 +14,11 @@ The [boundary correction](docs/window_boundary_report.md) now crops raw accelera
 
 Synthetic fixtures also exercise all five probe protocols and 0.25/0.5/1-second supports. They check engineering behavior, not physical accuracy. Locked test evaluation, mechanics, and simulation are later milestones.
 
-The [clock/QC review](docs/clock_qc_review.md) compared 15 original CSVs with the mirror: rounded timestamps and float32 signals match exactly. The acquisition-rate discrepancy persists, so [logged_coordinates_v1](configs/clock_convention.json) explicitly limits duration/frequency claims. Across 200 training records, current QC retains every half-second and 199 one-second intervals; mean force is typically about 5% above nominal. Nearby smoothing changes coverage considerably. No model or eligibility rule changed. The current suite has 62 passing tests.
+The [clock/QC review](docs/clock_qc_review.md) compared 15 original CSVs with the mirror: rounded timestamps and float32 signals match exactly. The acquisition-rate discrepancy persists, so [logged_coordinates_v1](configs/clock_convention.json) explicitly limits duration/frequency claims. Across its 200 training records, current QC retains every half-second and 199 one-second intervals; mean force is typically about 5% above nominal. That milestone passed 62 tests. No model or eligibility rule changed.
+
+The [complete metadata/exposure review](docs/study_design_review.md) now covers all 118 specimens in 87 conservative groups. Twelve direct exposures block 22 specimens from a fresh test; twenty metadata-only specimens in fifteen groups are reserved before wider sensor review. [Condition masks](configs/query_domains.csv) define the 76/44/26 domains and a 70-condition familiar fitting pool for the matched omitted-speed contrast. Manufacturing independence and locked test evaluation remain unestablished.
+
+The [wider known-speed audit](docs/wider_coverage_review.md) now covers 960 training records across all eight directions. Every record retains half a second; all required one-second supports and 44 common query triples survive on all ten training specimens. Median recorded force is 2.9% above nominal. Current QC remains unchanged. **70 tests pass.** No reserved signals or new model fits are part of this milestone.
 
 ## Install
 
@@ -90,6 +94,17 @@ After the omitted-speed download above, from the repository root:
 
 The source comparison fetches selected original archive members with validated HTTP ranges under a 32 MiB cap. Contact diagnostics use only cached known-speed training records, with a [prespecified sensitivity review](configs/qc_review.json). Both export derived tables/provenance in `docs/`; original CSVs stay ignored under `runs/clock_qc_review/source`. See the report for scope, rates, global heading frame, load/travel diagnostics and limitations.
 
+## Reproduce metadata/reservation and wider coverage
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_study_design.py
+.\.venv\Scripts\python.exe scripts/prepare_study_design.py --check-config configs/omitted_speed.yaml
+.\.venv\Scripts\python.exe scripts/review_wider_coverage.py --download
+.\.venv\Scripts\python.exe scripts/summarize_wider_coverage.py
+```
+
+The design script reviews pinned metadata and uses the committed historical exposure snapshot on a clean clone. `--audit-local` additionally audits six historical run roots/cache names. The wider runner enforces the whole-group reservation before downloads and accesses only the ten existing training specimens at 20/40/60 mm/s. New selections through the original experiment CLI need the explicit reservation preflight; locked test access/scoring is still future work. Outputs are derived tables/hash provenance, with raw files ignored.
+
 ## Outputs
 
 | Location | Contents |
@@ -120,4 +135,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml --root runs/b
 
 ## Next implementation milestone
 
-The raw acceleration boundary and bounded clock/QC review are complete. The study now explicitly uses logged coordinates while physical clock calibration remains unresolved. Next complete metadata/exposure and wider QC/coverage review, add repeatability/convergence and floor sensitivity diagnostics, then a matched-grid familiar/omitted development comparison. Full-grid domains are 76 familiar queries, 44 known-speed fitting/selection queries and 26 endpoint-safe omitted-speed queries before QC. Freeze fresh test groups and implement locked scoring only after those decisions. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.
+The raw acceleration boundary, logged-coordinate scope, complete metadata/exposure review, twenty-specimen reservation and known-speed training coverage audit are complete. Next review repeatability/convergence and feature floor/range sensitivity, then implement the matched-grid familiar/omitted comparison. Protect reserved groups while freezing scientific protocol/access/scoring. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

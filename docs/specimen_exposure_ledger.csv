@@ -1,0 +1,119 @@
+surface_id,name,category,family_group,metadata_reviewed,signal_development_exposed,group_development_exposed,historical_recordings_before_wider_qc,role_at_snapshot,fresh_test_group_candidate,reserved_future_test
+0,Nyatoh,Wood,specimen_0,True,True,True,24,development_training,False,False
+1,Castor aralia,Wood,specimen_1,True,False,False,0,metadata_only_unassigned,True,False
+2,Elm,Wood,specimen_2,True,False,False,0,metadata_only_unassigned,True,False
+3,Red oak,Wood,oak_names,True,False,False,0,metadata_only_unassigned,True,False
+4,Oak,Wood,oak_names,True,False,False,0,metadata_only_unassigned,True,False
+5,Ash,Wood,ash_names,True,False,False,0,reserved_future_test,True,True
+6,Black cherry,Wood,cherry_names,True,False,False,0,metadata_only_unassigned,True,False
+7,Hard maple,Wood,specimen_7,True,False,False,0,metadata_only_unassigned,True,False
+8,White ash,Wood,ash_names,True,False,False,0,reserved_future_test,True,True
+9,Birch,Wood,specimen_9,True,False,False,0,metadata_only_unassigned,True,False
+10,Poplar,Wood,specimen_10,True,True,True,32,development_selection_and_scores,False,False
+11,Basswood,Wood,specimen_11,True,False,False,0,metadata_only_unassigned,True,False
+12,Beech,Wood,specimen_12,True,False,False,0,metadata_only_unassigned,True,False
+13,White ash,Wood,ash_names,True,False,False,0,reserved_future_test,True,True
+14,Zelkova,Wood,specimen_14,True,False,False,0,metadata_only_unassigned,True,False
+15,Wild cherry tree,Wood,cherry_names,True,False,False,0,metadata_only_unassigned,True,False
+16,Silver cherry,Wood,cherry_names,True,False,False,0,metadata_only_unassigned,True,False
+17,"Japanese cypress, Hinoki",Wood,hinoki_names,True,False,False,0,metadata_only_unassigned,True,False
+18,Chestnut,Wood,specimen_18,True,False,False,0,metadata_only_unassigned,True,False
+19,Cedar,Wood,cedar_names,True,False,False,0,metadata_only_unassigned,True,False
+20,Zebra,Wood,specimen_20,True,False,False,0,metadata_only_unassigned,True,False
+21,Wenge,Wood,specimen_21,True,False,False,0,reserved_future_test,True,True
+22,Eucalyptus,Wood,specimen_22,True,False,False,0,metadata_only_unassigned,True,False
+23,Teak,Wood,specimen_23,True,False,False,0,metadata_only_unassigned,True,False
+24,Mahogany,Wood,specimen_24,True,False,False,0,metadata_only_unassigned,True,False
+25,Sapele,Wood,specimen_25,True,False,False,0,metadata_only_unassigned,True,False
+26,Western hemlock,Wood,specimen_26,True,False,False,0,metadata_only_unassigned,True,False
+27,Douglas fir,Wood,specimen_27,True,False,False,0,metadata_only_unassigned,True,False
+28,Radiata pine,Wood,pine_names,True,False,False,0,metadata_only_unassigned,True,False
+29,Walnut,Wood,specimen_29,True,False,False,0,metadata_only_unassigned,True,False
+30,Acacia,Wood,specimen_30,True,False,False,0,metadata_only_unassigned,True,False
+31,North pipe,Wood,specimen_31,True,False,False,0,metadata_only_unassigned,True,False
+32,Gumwood,Wood,specimen_32,True,False,False,0,metadata_only_unassigned,True,False
+33,White oak,Wood,oak_names,True,False,False,0,metadata_only_unassigned,True,False
+34,Ash (laminated timber),Wood,ash_names,True,False,False,0,reserved_future_test,True,True
+35,Merkusii pine,Wood,pine_names,True,False,False,0,metadata_only_unassigned,True,False
+36,"Japanese cypress, Hinoki (laminated timber)",Wood,hinoki_names,True,False,False,0,metadata_only_unassigned,True,False
+37,Cedar (laminated timber),Wood,cedar_names,True,False,False,0,metadata_only_unassigned,True,False
+38,Granite,Stones,specimen_38,True,True,True,24,development_training,False,False
+39,Basalt,Stones,specimen_39,True,False,False,0,metadata_only_unassigned,True,False
+40,Oya stone,Stones,specimen_40,True,False,False,0,metadata_only_unassigned,True,False
+41,Plutonic rock,Stones,specimen_41,True,False,False,0,metadata_only_unassigned,True,False
+42,Towada stone,Stones,specimen_42,True,False,False,0,metadata_only_unassigned,True,False
+43,Andesite,Stones,specimen_43,True,False,False,0,metadata_only_unassigned,True,False
+44,Limestone,Stones,specimen_44,True,False,False,0,metadata_only_unassigned,True,False
+45,Travertine,Stones,specimen_45,True,False,False,0,metadata_only_unassigned,True,False
+46,Natural slate,Stones,specimen_46,True,False,False,0,reserved_future_test,True,True
+47,Marble,Stones,specimen_47,True,False,False,0,metadata_only_unassigned,True,False
+48,Concrete,Stones,specimen_48,True,False,False,0,reserved_future_test,True,True
+49,Polyethylene (high density),Polymers,polyethylene,True,True,True,24,development_training,False,False
+50,Polyethylene (low density),Polymers,polyethylene,True,False,True,0,related_to_development_group,False,False
+51,Polypropylene,Polymers,specimen_51,True,False,False,0,metadata_only_unassigned,True,False
+52,Styrofoam,Polymers,specimen_52,True,False,False,0,metadata_only_unassigned,True,False
+53,ABS(Acrylonitrile Butadiene Styrene),Polymers,specimen_53,True,False,False,0,metadata_only_unassigned,True,False
+54,Vinyl chloride,Polymers,specimen_54,True,False,False,0,metadata_only_unassigned,True,False
+55,Polymethyl methacrylate,Polymers,specimen_55,True,False,False,0,metadata_only_unassigned,True,False
+56,Polytetrafluoroethylene,Polymers,specimen_56,True,False,False,0,metadata_only_unassigned,True,False
+57,Polyethylene terephthalate,Polymers,specimen_57,True,True,True,32,development_selection_and_scores,False,False
+58,Ppolylactic acid,Polymers,specimen_58,True,False,False,0,metadata_only_unassigned,True,False
+59,Paper phenol,Polymers,phenol_names,True,False,False,0,reserved_future_test,True,True
+60,Linen phenol,Polymers,phenol_names,True,False,False,0,reserved_future_test,True,True
+61,Melamine sponge,Polymers,specimen_61,True,False,False,0,metadata_only_unassigned,True,False
+62,Polyurethane sponge,Polymers,specimen_62,True,False,False,0,metadata_only_unassigned,True,False
+63,Silicon,Polymers,specimen_63,True,False,False,0,metadata_only_unassigned,True,False
+64,Carbon fiber,Polymers,specimen_64,True,False,False,0,metadata_only_unassigned,True,False
+65,Stainless steel,Metals,steel_names,True,True,True,24,development_training,False,False
+66,Steel,Metals,steel_names,True,False,True,0,related_to_development_group,False,False
+67,Cast iron,Metals,specimen_67,True,False,False,0,metadata_only_unassigned,True,False
+68,Aluminum,Metals,specimen_68,True,False,False,0,metadata_only_unassigned,True,False
+69,Lead,Metals,specimen_69,True,False,False,0,metadata_only_unassigned,True,False
+70,Copper,Metals,specimen_70,True,False,False,0,metadata_only_unassigned,True,False
+71,Brass,Metals,specimen_71,True,False,False,0,metadata_only_unassigned,True,False
+72,Bronze,Metals,specimen_72,True,False,False,0,reserved_future_test,True,True
+73,Titanium,Metals,specimen_73,True,False,False,0,reserved_future_test,True,True
+74,Float glass,Glass,glass_finishes,True,True,True,24,development_training,False,False
+75,Frosted glass,Glass,glass_finishes,True,False,True,0,related_to_development_group,False,False
+76,Frosted glass,Glass,glass_finishes,True,False,True,0,related_to_development_group,False,False
+77,Glass (haze),Glass,glass_finishes,True,False,True,0,related_to_development_group,False,False
+78,Obsidian,Glass,specimen_78,True,False,False,0,reserved_future_test,True,True
+79,Linoleum,Composites,specimen_79,True,True,True,24,development_training,False,False
+80,Tar paper,Composites,specimen_80,True,False,False,0,reserved_future_test,True,True
+81,Sandpaper,Composites,specimen_81,True,False,False,0,reserved_future_test,True,True
+82,Alumina,Ceramics,specimen_82,True,True,True,24,development_training,False,False
+83,Porcelain,Ceramics,porcelain_names,True,False,False,0,reserved_future_test,True,True
+84,Terracotta,Ceramics,specimen_84,True,False,False,0,metadata_only_unassigned,True,False
+85,Brick,Ceramics,specimen_85,True,False,False,0,metadata_only_unassigned,True,False
+86,Earth style porcelain,Ceramics,porcelain_names,True,False,False,0,reserved_future_test,True,True
+87,Jute,Biodegradable,specimen_87,True,True,True,24,development_training,False,False
+88,Cotton,Biodegradable,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False
+89,Wool felt,Biodegradable,wool_textiles,True,False,False,0,metadata_only_unassigned,True,False
+90,Sheep fur,Biodegradable,specimen_90,True,False,False,0,metadata_only_unassigned,True,False
+91,Rabbit fur,Biodegradable,specimen_91,True,False,False,0,metadata_only_unassigned,True,False
+92,Cow fur,Biodegradable,cow_names,True,False,False,0,metadata_only_unassigned,True,False
+93,Goat skin,Biodegradable,specimen_93,True,False,False,0,reserved_future_test,True,True
+94,Horse skin,Biodegradable,specimen_94,True,False,False,0,reserved_future_test,True,True
+95,Crocodile skin,Biodegradable,specimen_95,True,False,False,0,metadata_only_unassigned,True,False
+96,Cow skin,Biodegradable,cow_names,True,False,False,0,metadata_only_unassigned,True,False
+97,Cow leather,Biodegradable,cow_names,True,False,False,0,metadata_only_unassigned,True,False
+98,Snake skin,Biodegradable,specimen_98,True,False,False,0,metadata_only_unassigned,True,False
+99,Ray skin,Biodegradable,specimen_99,True,False,False,0,metadata_only_unassigned,True,False
+100,Lizard skin,Biodegradable,specimen_100,True,False,False,0,metadata_only_unassigned,True,False
+101,Seal skin,Biodegradable,specimen_101,True,False,False,0,metadata_only_unassigned,True,False
+102,Velvet,Cloths,unknown_fiber_cloth,True,True,True,24,development_training,False,False
+103,Corduroy,Cloths,unknown_fiber_cloth,True,True,True,24,development_training,False,False
+104,Cotton,Cloths,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False
+105,Cotton broadcloth,Cloths,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False
+106,Cotton gauze,Cloths,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False
+107,Chiffon,Cloths,unknown_fiber_cloth,True,False,True,0,related_to_development_group,False,False
+108,Lace,Cloths,unknown_fiber_cloth,True,False,True,0,related_to_development_group,False,False
+109,Georgette,Cloths,unknown_fiber_cloth,True,False,True,0,related_to_development_group,False,False
+110,Organdy,Cloths,unknown_fiber_cloth,True,False,True,0,related_to_development_group,False,False
+111,Mesh,Cloths,unknown_fiber_cloth,True,False,True,0,related_to_development_group,False,False
+112,Wool,Cloths,wool_textiles,True,False,False,0,metadata_only_unassigned,True,False
+113,Nylon,Cloths,specimen_113,True,False,False,0,reserved_future_test,True,True
+114,Polyester,Cloths,specimen_114,True,False,False,0,reserved_future_test,True,True
+115,Silk,Cloths,specimen_115,True,False,False,0,metadata_only_unassigned,True,False
+116,Linen,Cloths,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False
+117,Cotton linen,Cloths,cotton_linen_textiles,True,False,False,0,metadata_only_unassigned,True,False

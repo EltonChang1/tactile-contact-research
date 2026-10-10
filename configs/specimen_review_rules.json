@@ -1,0 +1,41 @@
+{
+  "review_id": "complete_metadata_names_v1",
+  "review_date": "2026-10-09",
+  "repo_id": "tamago117/cluster-haptic-texture-dataset",
+  "revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+  "metadata_sha256": "6cd7dfc06e61852d49a2256d7fe8d44d222f3619f48fe9a4031f677d1b0eb4ff",
+  "expected_surface_ids": {"first": 0, "last": 117},
+  "grouping_scope": "metadata_names_only",
+  "groups": [
+    {"name": "oak_names", "ids": [3, 4, 33], "reason": "Oak, red oak and white oak: conservative name-related block; species/lot independence unverified"},
+    {"name": "ash_names", "ids": [5, 8, 13, 34], "reason": "Ash, duplicated white ash and laminated ash: conservative name-related block"},
+    {"name": "cherry_names", "ids": [6, 15, 16], "reason": "Three cherry names: conservative block, not a taxonomic or manufacturing assertion"},
+    {"name": "hinoki_names", "ids": [17, 36], "reason": "Hinoki and laminated Hinoki"},
+    {"name": "cedar_names", "ids": [19, 37], "reason": "Cedar and laminated cedar"},
+    {"name": "pine_names", "ids": [28, 35], "reason": "Two explicit pine names; ambiguous North pipe is not silently renamed"},
+    {"name": "polyethylene", "ids": [49, 50], "reason": "High- and low-density polyethylene; extends the pilot's declared grouping"},
+    {"name": "phenol_names", "ids": [59, 60], "reason": "Paper phenol and linen phenol: conservative shared-name block; matrix/filler details unknown"},
+    {"name": "steel_names", "ids": [65, 66], "reason": "Stainless steel and steel: conservative named-variant block; alloy/lot details unknown"},
+    {"name": "glass_finishes", "ids": [74, 75, 76, 77], "reason": "Float, duplicated frosted and haze glass; extends the pilot's declared grouping"},
+    {"name": "porcelain_names", "ids": [83, 86], "reason": "Porcelain and earth style porcelain: conservative shared-name block"},
+    {"name": "cotton_linen_textiles", "ids": [88, 104, 105, 106, 116, 117], "reason": "Duplicate cotton, cotton constructions, linen and cotton-linen mixture; connected textile-name block across metadata categories"},
+    {"name": "wool_textiles", "ids": [89, 112], "reason": "Wool felt and wool: shared fiber name across metadata categories"},
+    {"name": "cow_names", "ids": [92, 96, 97], "reason": "Cow fur, cow skin and cow leather: conservative source-name block, not verified same animal/lot"},
+    {"name": "unknown_fiber_cloth", "ids": [102, 103, 107, 108, 109, 110, 111], "reason": "Construction-only cloth names have unspecified fibers/suppliers; conservative uncertainty block with exposed velvet/corduroy"}
+  ],
+  "notes": {
+    "31": "Source label North pipe is ambiguous; preserve verbatim rather than infer pine",
+    "58": "Source spelling Ppolylactic acid preserved; chemical identity not independently verified",
+    "63": "Source label Silicon is ambiguous in an elastomer subcategory; do not silently infer silicone",
+    "78": "Obsidian is the sole fresh eligible Glass specimen after the exposed manufactured-glass block is excluded"
+  },
+  "default_reason": "No explicit shared name or declared uncertainty block found in complete metadata; singleton does not establish manufacturing independence",
+  "manufacturing_relationships": "unknown for all specimens",
+  "reservation": {
+    "id": "metadata_only_reservation_v1",
+    "seed": 20261009,
+    "category_specimen_targets": {"Wood": 5, "Stones": 2, "Polymers": 2, "Metals": 2, "Glass": 1, "Composites": 2, "Ceramics": 2, "Biodegradable": 2, "Cloths": 2},
+    "rule": "Deterministic SHA256 group ordering and exact category-count subset selection; complete groups, no exposed group, no signal/QC/score selection",
+    "status": "Reserved before wider signal review; scientific protocol/coverage freeze and locked scoring still pending"
+  }
+}

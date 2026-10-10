@@ -1,0 +1,16 @@
+{
+  "review_id": "known_speed_full_direction_training_qc_v1",
+  "source_config": "configs/omitted_speed.yaml",
+  "domain_table": "configs/query_domains.csv",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "clock_convention": "configs/clock_convention.json",
+  "surface_ids": [0, 38, 49, 65, 74, 79, 82, 87, 102, 103],
+  "allowed_speeds_mm_s": [20, 40, 60],
+  "diagnostic_duration_logged_s": 0.5,
+  "variants_spec": "configs/qc_review.json",
+  "expected_recording_triplets": 960,
+  "output_prefix": "wider_contact_qc",
+  "scope": "All 48 permitted-speed conditions, both repeats, ten already exposed training specimens. No validation, reserved or training omitted-speed records. Same seven prespecified sensitivity settings. No prediction scores or model fitting."
+}

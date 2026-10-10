@@ -1,0 +1,15 @@
+{
+  "script_sha256": "87fa34929c8e7da500791f69ca6b84798dac6db71a561a74d70810bb4b2244b8",
+  "input_hashes": {
+    "docs/wider_contact_qc_records.csv": "a6d4eef7194ee9e5cb6b265533889d724ac32afc057139bdd37a0e2211f1ab2d",
+    "docs/wider_contact_qc_sensitivity.csv": "682d1bc79471f8c277b9a55b9227892532b8cec866c277114c8fafa4379de924",
+    "docs/wider_contact_qc_provenance.json": "851536dee2190e40fa34dfd4b497e0185fee6380a5571585df14bad02f748d06",
+    "configs/query_domains.csv": "bbba8122527058b541f5e8dd59b08c460fb85d42d97db814ba45eb54fc2f5db9",
+    "src/tactile_contact/config.py": "22888163eff52395aa73c848ab906d227fd4caff3117410ed7ee17b1af458a22"
+  },
+  "output_hashes": {
+    "docs/wider_contact_qc_common_eligibility.csv": "9c603eeadfc48d1bdbd7cf7494734be6677b5240c6fc254b090fb5d503851d70",
+    "docs/wider_contact_qc_summary.json": "98078b285ff460b4d6d7ac48701f02f4a5ecc9ceb2b6342510091292573156ec"
+  },
+  "scope": "Prospective known-speed training eligibility only. Five protocol-prescribed support recordings must all retain 1 logged second; both query repeats need 0.5. This does not freeze a scientific cohort, cover validation/test/omitted grids, or score predictions."
+}

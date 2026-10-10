@@ -1,0 +1,10 @@
+category,specimens,groups,signal_exposed,group_blocked,reserved
+Biodegradable,15,13,1,1,2
+Ceramics,5,4,1,1,2
+Cloths,16,6,2,7,2
+Composites,3,3,1,1,2
+Glass,5,2,1,4,1
+Metals,9,8,1,2,2
+Polymers,16,14,2,3,2
+Stones,11,11,1,1,2
+Wood,38,28,2,2,5

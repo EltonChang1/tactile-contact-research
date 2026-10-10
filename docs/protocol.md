@@ -12,7 +12,15 @@ Current QC retains all 200 half-second and 199 one-second intervals. Shorter smo
 
 Question: How much brief sliding-contact information supports vibration-response prediction on unseen specimens, and does a second direction, speed, or load help more than repeating the contact at the same time budget?
 
-The primary target is 32 log10 spectral band powers on each of three acceleration axes. The starter range is 24–1000 Hz, with 0.125-second Welch segments and 50% overlap. Acceleration is converted from g to SI before estimation. The `log10(power + 1e-10)` floor is numerical and has not been established as a sensor noise floor. Bin-center integration and modeled-band RMS follow the supplied guide.
+## Complete metadata/exposure and reserved groups — 9 October 2026
+
+The [design review](study_design_review.md) now records all 118 specimens in 87 conservative metadata-name/uncertainty groups. Twelve direct development exposures propagate to 22 specimens blocked from fresh test groups. Twenty metadata-only specimens in fifteen complete groups are [reserved](../configs/test_reservation.csv) before wider signal review; manufacturing independence and locked scientific evaluation remain unestablished. Historical run/group manifests remain preserved.
+
+The [80-row domain table](../configs/query_domains.csv) defines 76 familiar queries, 44 known-speed fit/selection queries, 32 omitted candidates and 26 endpoint-safe transfer queries. A separate matched comparison uses familiar fitting on known 44 plus safe transfer 26 (70), omitted fitting on known 44, identical known-speed selection and the same 26 score triples. This specifies roles without running the comparison. Use explicit development reservation preflight before new selections; the wider-coverage runner enforces it before source loading/downloads. Existing experiment CLI commands do not automatically enforce this new reservation, and no locked test scoring is implemented.
+
+The [wider training coverage review](wider_coverage_review.md) subsequently verifies 960 known-speed records, all eight directions and both loads/repeats. All retain half a second; every required one-second support and all 44 query triples survive across ten training specimens. The 440 prospective common training cells are exported. Current QC and models remain unchanged, with 70 tests passing. This does not establish wider selection/transfer or reserved-test coverage.
+
+The primary target is 32 log10 spectral band powers on each of three acceleration axes. The starter range is 24–1000 Hz, with 0.125-second Welch segments and 50% overlap, interpreted in the declared logged coordinates. Acceleration is converted from g to SI before estimation. The `log10(power + 1e-10)` floor is numerical and has not been established as a sensor noise floor. Bin-center integration and modeled-band RMS follow the supplied guide.
 
 ## Historical reassessment and gates — 8 October 2026
 

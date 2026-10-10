@@ -1,0 +1,69 @@
+{
+  "design_id": "wider_development_domains_v1",
+  "status": "Domain/access planning; models and locked scoring not implemented here",
+  "clock_convention": "logged_coordinates_v1",
+  "query_domain_counts": {
+    "support_condition": 4,
+    "familiar_query": 76,
+    "known_speed_query": 44,
+    "omitted_candidate": 32,
+    "omitted_transfer": 26,
+    "matched_familiar_fit_query": 70
+  },
+  "familiar_primary": {
+    "fit_query_domain": "familiar_query",
+    "score_query_domain": "familiar_query",
+    "before_qc": 76
+  },
+  "matched_omitted_comparison": {
+    "shared_selection_query_domain": "known_speed_query",
+    "shared_score_query_domain": "omitted_transfer",
+    "familiar_fit_query_domain": "matched_familiar_fit_query",
+    "omitted_fit_query_domain": "known_speed_query",
+    "familiar_fit_queries": 70,
+    "omitted_fit_queries": 44,
+    "score_queries": 26,
+    "rule": "Identical specimens, support/query windows, QC intersection, methods, tuning and known-speed selection; only add the 26 transfer-speed training response triples in familiar fit. Both transfer score pools stay unread until selections finish."
+  },
+  "known_speed_qc_review": {
+    "surface_ids": [
+      0,
+      38,
+      49,
+      65,
+      74,
+      79,
+      82,
+      87,
+      102,
+      103
+    ],
+    "speeds_mm_s": [
+      20,
+      40,
+      60
+    ],
+    "directions_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "nominal_loads_N": [
+      0.5,
+      1.0
+    ],
+    "repeats": [
+      0,
+      1
+    ],
+    "requested_recording_triplets": 960,
+    "rule": "Known-speed training-only coverage first; mandatory reservation preflight in the wider runner. No reserved signals or model fits; downloads restricted to ten already exposed training specimens."
+  },
+  "reservation_preflight": "python scripts/prepare_study_design.py --check-config CONFIG_PATH",
+  "access_limit": "Explicit preflight only; the existing pipeline does not automatically invoke it. Locked test access/scoring still requires implementation before scientific evaluation."
+}

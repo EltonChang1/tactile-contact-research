@@ -1,0 +1,72 @@
+{
+  "review_id": "complete_metadata_names_v1",
+  "source_revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+  "metadata_sha256": "6cd7dfc06e61852d49a2256d7fe8d44d222f3619f48fe9a4031f677d1b0eb4ff",
+  "input_hashes": {
+    "configs/specimen_review_rules.json": "0891dcab926abf35fe5aef8b533e5813efae4758f4955549a7cd484e8330a930",
+    "configs/development_exposure.json": "ee0eabcb86ffec4aadae72f4021e5ce51259c137086edd9a6ddbb15f2bc6e3ea"
+  },
+  "source_hashes": {
+    "scripts/prepare_study_design.py": "9387a7d07b2a5a9271fade4b9872ceb1364907ac3fb6e73ae4b4f0c62a090dba",
+    "src/tactile_contact/study_design.py": "adccd215b6d76d9a1519609b086a786d98d1247b5e81ed15c5e7963b61d12a4d",
+    "src/tactile_contact/config.py": "22888163eff52395aa73c848ab906d227fd4caff3117410ed7ee17b1af458a22",
+    "src/tactile_contact/records.py": "f8172ed0ddc35a15806ed5349b0020f406b2f99f502b5fe1ef0bf2183afc1e2d"
+  },
+  "evidence_hashes": {
+    "docs/development_status.md": "a3ddca12e05644a379be8c0c1c7073d83adb89529a688467238a831fef001514",
+    "docs/expanded_pilot_report.md": "fcf27f7b3f9d34328147cae926f8ba12efc07a09c76361d37fed5159c8249eed",
+    "docs/omitted_speed_report.md": "8e103110dcc1ef737765940b58cbd3534b0e4aea05f86e48a11216a30db0bf5f",
+    "docs/window_boundary_provenance.json": "5f88fffbe228645a5ee6966ada74a3c42befc99fb116bdfa111672a1010c4cd1",
+    "docs/contact_qc_provenance.json": "547537421335b99d2f38b59bf441415f0631eac4bd8149c3a5bcf42e379e6c4c",
+    "docs/clock_source_provenance.json": "2aa531b57c2c427bd1a4e6f55c89074ba5b68bdf1bc7560de3e88a9fc5a18ad8"
+  },
+  "output_hashes": {
+    "configs/all_specimen_groups.csv": "c4a0620022b9128a872df42515164fac09d747264372bc7e2273647abf276ee4",
+    "configs/test_reservation.csv": "8acc8a481d39d01b091e2a883e7818302ebf2928cb8ce5204c8a4b2971fd9f1b",
+    "configs/query_domains.csv": "bbba8122527058b541f5e8dd59b08c460fb85d42d97db814ba45eb54fc2f5db9",
+    "configs/study_design.json": "4282472fda635d9ab3886bbc3fc0cf338a3a7cead7d1cce1a1bd61b67066eebc",
+    "docs/specimen_exposure_ledger.csv": "4423c2fe5f7a0f3478493eae57b72370d372efc326f71de4d7883fbe3e0532b1",
+    "docs/specimen_category_review.csv": "a11e678bf8f058453ae27602982cc9ab4065586fe19c3c81827668c8bc05e8a8",
+    "docs/development_exposure_events.csv": "3263c9ef42d3a401551fd343019d16cd1d231dbf4813107c1ba1561ba910af75",
+    "docs/development_record_access.csv": "10e042f7e75c77ab853c29b1f100a426c74f50d94fd0035a76b17e755139f545",
+    "docs/local_exposure_snapshot.json": "4e03d14b8e7c44c9dad257bc84fc63ccb4b8cd08b76893e9b4ab6beb1ae77f73"
+  },
+  "specimens": 118,
+  "reviewed_groups": 87,
+  "direct_exposed_specimens": 12,
+  "group_blocked_specimens": 22,
+  "fresh_group_candidate_specimens": 96,
+  "reserved_specimens": 20,
+  "reserved_groups": 15,
+  "reserved_surface_ids": [
+    5,
+    8,
+    13,
+    21,
+    34,
+    46,
+    48,
+    59,
+    60,
+    72,
+    73,
+    78,
+    80,
+    81,
+    83,
+    86,
+    93,
+    94,
+    113,
+    114
+  ],
+  "domain_counts": {
+    "support_condition": 4,
+    "familiar_query": 76,
+    "known_speed_query": 44,
+    "omitted_candidate": 32,
+    "omitted_transfer": 26,
+    "matched_familiar_fit_query": 70
+  },
+  "limitations": "Metadata-name/analyst uncertainty blocks only; no verified manufacture independence. Reservation precedes wider sensor/QC review and does not constitute a frozen scientific test. Historical manifests are locally auditable; their committed snapshot can be used on a clean clone."
+}

@@ -1,0 +1,32 @@
+{
+  "source_revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+  "manifest_hashes": {
+    "results/run_manifest.json": "1126abcc941f874c0f49cd6a57f0ed1753222ddbe5354594dc992355bf723561",
+    "data/manifests/recordings.csv": "d0f6327d08e9b0b0e8760e4bf18b3dfac210083133326c9ad8ceafe73aa1bd42",
+    "data/manifests/windows.csv": "23fa93c9580db93c3bd613abd6ed3d2f1e9ec927135596f1758dd54895e49af1",
+    "data/manifests/episodes.csv": "ca4fa81911b10d6ff38afe949f5d23e5eb5c673ec439d97139e52e1a5ab3280a",
+    "runs/expanded_pilot/results/run_manifest.json": "83c8af8909512366d1dea7d6a7436642b9d7604f7bbf9d470e0e576b3d8b6e0f",
+    "runs/expanded_pilot/data/manifests/recordings.csv": "ae3958644b5789ef9377830cc79900121a5dda2bc74474883c3e1f46d2f6db1b",
+    "runs/expanded_pilot/data/manifests/windows.csv": "0c9a4c2bf2504e7ba71e173214b20092b14ae362d841a11b2015442b5700e0f8",
+    "runs/expanded_pilot/data/manifests/episodes.csv": "2ec5d0c658ce9aa1522ec29a1c36995f5655fa6a5984f0fb275c33452f869760",
+    "runs/omitted_speed/results/run_manifest.json": "7af0b0f392175ee57010240abadd5ef9ac3818ef5bb94bcec3309abae80dbfd3",
+    "runs/omitted_speed/data/manifests/recordings.csv": "59065c977fe2c9da496df912c7eeb4bbd2373aa82db299f38fff8d62ccd74afc",
+    "runs/omitted_speed/data/manifests/windows.csv": "24f8e04c467850d606fa716f91d1457fa7b85b6c395d183d89951ee2ed71770d",
+    "runs/omitted_speed/data/manifests/episodes.csv": "86eb705168cffb9ab5f6737f33cd9d66ea41cdbefe4203e54891e6b1ba4a22fe",
+    "runs/bounded_pilot/results/run_manifest.json": "9e251c33966e80a9a001b6ec449f95c2ad8171ed73b440baa28a06818a029167",
+    "runs/bounded_pilot/data/manifests/recordings.csv": "67329e4d246cc456f18daf78f97139906fafadf8c27c7e6105f50397d34a8672",
+    "runs/bounded_pilot/data/manifests/windows.csv": "ed368841b4e049f4dc46a3c011f2f3fba4bc30d0c25ef37168b290d2158ccfad",
+    "runs/bounded_pilot/data/manifests/episodes.csv": "c718159b00e41cd6b0bfa3d509ab6fbd3a8d8b3cbcd37274efcaff2b4605e948",
+    "runs/bounded_expanded_pilot/results/run_manifest.json": "0455cb33aefc01d04354f44f2c7a7cf3d88006c78a88a079243ec225bd975a73",
+    "runs/bounded_expanded_pilot/data/manifests/recordings.csv": "ae3958644b5789ef9377830cc79900121a5dda2bc74474883c3e1f46d2f6db1b",
+    "runs/bounded_expanded_pilot/data/manifests/windows.csv": "9db64505a17f02979e2ee4060ae6b4d9d6a48769bf9ba2474ec822a34f3d053a",
+    "runs/bounded_expanded_pilot/data/manifests/episodes.csv": "0d1408d0c08640df93526f90d2bf3d3095c82af445fc43513830d47cc2213467",
+    "runs/bounded_omitted_speed/results/run_manifest.json": "a3ac3a5f1397d5e45e862b60b41173a33f223d3fca459bef6dfd8b7b0741cd91",
+    "runs/bounded_omitted_speed/data/manifests/recordings.csv": "59065c977fe2c9da496df912c7eeb4bbd2373aa82db299f38fff8d62ccd74afc",
+    "runs/bounded_omitted_speed/data/manifests/windows.csv": "32eb2e389da85552ff84e6089b5bc2283d1be0792b01822d6867a1a438c78f99",
+    "runs/bounded_omitted_speed/data/manifests/episodes.csv": "86eb705168cffb9ab5f6737f33cd9d66ea41cdbefe4203e54891e6b1ba4a22fe"
+  },
+  "inventory_sha256": "e291573e82f85b6b635c5d32e1010d1f6b49c72737da3111d06a4b0944502994",
+  "cached_recording_triplets": 304,
+  "scope": "Historical configuration/manifests/cache filenames audited. No additional sensor values read. Twelve specimens permanently development-exposed."
+}
