@@ -1,0 +1,18 @@
+{
+  "review_id": "training_repeat_feature_history_v1",
+  "coverage_review": "configs/wider_qc_review.json",
+  "qc_records": "docs/wider_contact_qc_records.csv",
+  "qc_provenance": "docs/wider_contact_qc_provenance.json",
+  "duration_logged_s": 0.5,
+  "floors": [1e-12, 1e-10, 1e-8],
+  "reference_floor": 1e-10,
+  "ranges": [
+    {"name": "narrow", "lower": 24, "upper": 500, "bands": 32},
+    {"name": "current", "lower": 24, "upper": 1000, "bands": 32},
+    {"name": "wide", "lower": 24, "upper": 1500, "bands": 32}
+  ],
+  "history_roots": ["runs/bounded_pilot", "runs/bounded_expanded_pilot", "runs/bounded_omitted_speed"],
+  "history_tail_epochs": 10,
+  "output_prefix": "development_diagnostics",
+  "scope": "Training signals only: all 960 previously audited known-speed records and their 480 repeat pairs, including 440 query pairs. Retain current QC/windows/features; sensitivity settings are diagnostic alternatives, not selected using prediction errors. Historical convergence reads nine saved histories/checkpoint metadata only. No reserved, selection or omitted-speed signals; no new fit or scientific margin freeze."
+}

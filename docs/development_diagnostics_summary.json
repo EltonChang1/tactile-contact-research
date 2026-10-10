@@ -1,0 +1,18 @@
+{
+  "review_id": "training_repeat_feature_history_v1",
+  "recordings": 960,
+  "repeat_pairs": 480,
+  "known_query_pairs": 440,
+  "query_equal_surface_repeat_mae": 0.1729722168819633,
+  "query_pair_median": 0.13600962324806593,
+  "query_rms_symmetric_relative_difference": 0.10779264247845415,
+  "current_floor_values_below": 0,
+  "largest_alternative_floor_log_change": 0.00022132636563299002,
+  "histories_reaching_cap": 6,
+  "histories_reviewed": 9,
+  "histories_selected_within_tail": 6,
+  "primary_history_available": false,
+  "feature_qc_model_changed": false,
+  "scientific_practical_margin_frozen": false,
+  "scope": "Training signals only: all 960 previously audited known-speed records and their 480 repeat pairs, including 440 query pairs. Retain current QC/windows/features; sensitivity settings are diagnostic alternatives, not selected using prediction errors. Historical convergence reads nine saved histories/checkpoint metadata only. No reserved, selection or omitted-speed signals; no new fit or scientific margin freeze."
+}

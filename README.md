@@ -20,6 +20,8 @@ The [complete metadata/exposure review](docs/study_design_review.md) now covers 
 
 The [wider known-speed audit](docs/wider_coverage_review.md) now covers 960 training records across all eight directions. Every record retains half a second; all required one-second supports and 44 common query triples survive on all ten training specimens. Median recorded force is 2.9% above nominal. Current QC remains unchanged. **70 tests pass.** No reserved signals or new model fits are part of this milestone.
 
+The [training diagnostic review](docs/development_diagnostics_review.md) now checks 480 repeat pairs, including 440 known-query pairs. Mean query repeat difference is **0.173 log-power units**, with much higher variability on specimens 102/103. The numerical floor has negligible influence; retain current features and QC. All six expanded/omitted model histories reach 60 epochs while still improving, and primary-cell histories were not saved. A controlled convergence extension comes next. **78 tests pass** at this milestone; reserved signals remain untouched.
+
 ## Install
 
 Python 3.12. In PowerShell, from this directory:
@@ -105,6 +107,16 @@ The source comparison fetches selected original archive members with validated H
 
 The design script reviews pinned metadata and uses the committed historical exposure snapshot on a clean clone. `--audit-local` additionally audits six historical run roots/cache names. The wider runner enforces the whole-group reservation before downloads and accesses only the ten existing training specimens at 20/40/60 mm/s. New selections through the original experiment CLI need the explicit reservation preflight; locked test access/scoring is still future work. Outputs are derived tables/hash provenance, with raw files ignored.
 
+## Reproduce training diagnostics
+
+After the wider QC audit and the three corrected bounded runs:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/review_development_diagnostics.py
+```
+
+The runner checks reservation, complete recording identities, audited QC and raw hashes before signal use. It exports repeat pairs, floor/range sensitivity, saved learning curves, figures and provenance under `docs/development_diagnostics_*`. It fits no model and reads no reserved, selection or training omitted-speed signals. See the [review](docs/development_diagnostics_review.md) for interpretation and the controlled convergence follow-up.
+
 ## Outputs
 
 | Location | Contents |
@@ -135,4 +147,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml --root runs/b
 
 ## Next implementation milestone
 
-The raw acceleration boundary, logged-coordinate scope, complete metadata/exposure review, twenty-specimen reservation and known-speed training coverage audit are complete. Next review repeatability/convergence and feature floor/range sensitivity, then implement the matched-grid familiar/omitted comparison. Protect reserved groups while freezing scientific protocol/access/scoring. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.
+The raw acceleration boundary, logged-coordinate scope, metadata/exposure/reservation, known-speed training coverage and repeat/floor/range/history reviews are complete. Next run the controlled 120-epoch convergence check with primary logging and first-60 reproduction, then repetition reversal, residual analysis, wider selection/transfer coverage and matched-grid familiar/omitted fitting. Protect reserved groups while freezing scientific margins, protocol/access/scoring. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

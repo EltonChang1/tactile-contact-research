@@ -72,7 +72,9 @@ The review identified three limits. The acceleration-boundary correction and bou
 2. **Clock interpretation, scoped 9 October:** fifteen original CSVs match the mirror exactly after nanosecond rounding and float32 conversion. Their original acceleration/force rows still average roughly 8.6 kHz against documented roughly 6 kHz acquisition/transmission. Acquisition timing remains unverified. Use `logged_coordinates_v1` for the limited observational study: logged-time windows and inverse-logged-time frequency coordinates, without calibrated physical-duration/frequency claims. A training-only 200-record contact review reports heading, force, travel and smoothing/gap sensitivity; it changes no QC/model setting. See the [clock/QC decision](clock_qc_review.md) and preserved [timing sensitivity](timing_audit.md).
 3. **Scope and exposure:** all twelve current specimens are development-exposed. The complete 118-specimen review has scope `metadata_names_only`; fabrication-family independence is unknown. Twenty metadata-only specimens in fifteen groups are reserved before wider signal review, with scientific freeze/scoring still pending. No full-grid model comparison or fresh scientific test has run.
 
-Retain the verified budget guards and declared logged-coordinate scope; complete wider coverage, exposure, repeatability and feature/convergence review before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
+The [training diagnostic review](development_diagnostics_review.md) now covers all 960 known-speed training records: 480 repeat pairs, including 440 query pairs, with equal-specimen mean repeat MAE 0.172972. Specimens 102/103 vary substantially more and remain included. Floor/range checks support retaining current features and QC. All six expanded/omitted histories reach 60 epochs while improving, with no saved primary-cell history. A finite controlled convergence extension with primary logging is next; repetition reversal, wider selection/transfer coverage and matched residual/model review remain pending. The diagnostic fits no model and reads no reserved signals; 78 tests pass.
+
+Retain the verified budget guards, complete metadata/reservation and declared logged-coordinate scope; complete the remaining development checks before locking scientific evaluation. A negative result against strong baselines can complete Stage A; a functioning pipeline alone cannot.
 
 ### 4.1 Dataset and access
 
@@ -201,7 +203,7 @@ Secondary metrics: amplitude error, per-axis spectral error, category-level erro
 
 Report paired differences between methods on the same held-out surfaces, confidence intervals obtained by resampling surfaces or specimen groups, and variation across initialization seeds. Thousands of windows are not thousands of independent materials. Compare errors with differences between the two repeated recordings as context, while acknowledging that two repeats provide a limited estimate of variability.
 
-Current intervals based on two development validation groups are engineering diagnostics, not scientific uncertainty estimates. Average seeds within each specimen for the primary paired comparison; preserve seed variation separately. Complete repeatability, support/query repetition reversal, convergence, and numerical-floor checks before choosing a practical effect margin. Keep every required method and declared cell in the final tables.
+Current intervals based on two development validation groups are engineering diagnostics, not scientific uncertainty estimates. Average seeds within each specimen for the primary paired comparison; preserve seed variation separately. The completed training repeat/floor/range review gives numerical context, not a calibrated noise ceiling or practical margin. Complete support/query repetition reversal, controlled convergence and matched residual checks before freezing that margin. Keep every required method and declared cell in the final tables.
 
 If uncertainty is added, evaluate interval coverage and width on held-out surfaces. Ensemble disagreement alone is not evidence of calibrated uncertainty.
 
@@ -331,7 +333,7 @@ Immediate next actions:
 
 1. Retain the completed raw-boundary guards and matched reruns; use the new bounded roots for development and preserve historical pilots.
 2. Retain the completed clock evidence and explicitly limited logged-coordinate scope; reopen through versioned comparisons only if new authoritative timing evidence appears.
-3. Retain the completed metadata/exposure ledger, twenty-specimen reservation and 960-record training coverage audit. Inspect repeat variability, floor sensitivity, convergence and specimen/condition errors before changing the model; wider selection/transfer coverage remains pending.
+3. Retain the completed metadata/exposure ledger, twenty-specimen reservation, 960-record training coverage and repeat/floor/range/history diagnostics. Freshly extend the unchanged bounded expanded/omitted cohorts to a finite 120-epoch cap with unchanged patience/selection, primary-cell logging and first-60 reproduction checks; preserve old roots. Then complete repetition reversal and specimen/condition residuals; wider selection/transfer coverage remains pending.
 4. Use the explicit 76/44/26 masks and matched 70-versus-44 fitting design; implement matched model/selection/scoring roles only after coverage and diagnostics, with prespecified QC intersections.
 5. Protect the already reserved fresh groups while freezing the scientific protocol and implementing locked access/scoring. Prepare the technical report and hardware capability/outreach drafts in parallel; do not imply that outreach has been authorized or sent.
 
