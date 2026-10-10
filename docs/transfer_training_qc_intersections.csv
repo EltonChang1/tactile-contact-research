@@ -1,0 +1,7 @@
+support_duration_logged_s,query_domain,requested_conditions,conditions_all_specimens,requested_specimen_query_cells,eligible_specimen_query_cells
+0.25,selection,44,44,440,440
+0.25,transfer,26,26,260,260
+0.5,selection,44,44,440,440
+0.5,transfer,26,26,260,260
+1.0,selection,44,44,440,440
+1.0,transfer,26,26,260,260

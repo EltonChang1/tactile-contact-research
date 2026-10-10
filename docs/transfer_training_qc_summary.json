@@ -1,0 +1,63 @@
+{
+  "requested_recording_triplets": 520,
+  "current_valid": 520,
+  "half_second_available": 520,
+  "one_second_available": 497,
+  "median_force_to_nominal": 1.0197646201021668,
+  "force_ratio_p05": 0.9302440247028053,
+  "force_ratio_p95": 1.11440833542735,
+  "median_travel_to_nominal": 0.9935087985133437,
+  "heading_absolute_max_deg": 0.045485408933359395,
+  "maximum_canonical_shift_s": 0.0001664009999999827,
+  "all_matched_cells_eligible": true,
+  "intersections": [
+    {
+      "support_duration_logged_s": 0.25,
+      "query_domain": "selection",
+      "requested_conditions": 44,
+      "conditions_all_specimens": 44,
+      "requested_specimen_query_cells": 440,
+      "eligible_specimen_query_cells": 440
+    },
+    {
+      "support_duration_logged_s": 0.25,
+      "query_domain": "transfer",
+      "requested_conditions": 26,
+      "conditions_all_specimens": 26,
+      "requested_specimen_query_cells": 260,
+      "eligible_specimen_query_cells": 260
+    },
+    {
+      "support_duration_logged_s": 0.5,
+      "query_domain": "selection",
+      "requested_conditions": 44,
+      "conditions_all_specimens": 44,
+      "requested_specimen_query_cells": 440,
+      "eligible_specimen_query_cells": 440
+    },
+    {
+      "support_duration_logged_s": 0.5,
+      "query_domain": "transfer",
+      "requested_conditions": 26,
+      "conditions_all_specimens": 26,
+      "requested_specimen_query_cells": 260,
+      "eligible_specimen_query_cells": 260
+    },
+    {
+      "support_duration_logged_s": 1.0,
+      "query_domain": "selection",
+      "requested_conditions": 44,
+      "conditions_all_specimens": 44,
+      "requested_specimen_query_cells": 440,
+      "eligible_specimen_query_cells": 440
+    },
+    {
+      "support_duration_logged_s": 1.0,
+      "query_domain": "transfer",
+      "requested_conditions": 26,
+      "conditions_all_specimens": 26,
+      "requested_specimen_query_cells": 260,
+      "eligible_specimen_query_cells": 260
+    }
+  ]
+}

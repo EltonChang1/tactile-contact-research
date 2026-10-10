@@ -1,0 +1,14 @@
+{
+  "review_id": "matched_familiar_omitted_fit_v1",
+  "review_date": "2026-10-10",
+  "design": "configs/matched_development_review.json",
+  "transfer_training_provenance": "docs/transfer_training_qc_provenance.json",
+  "validation_provenance": "docs/selection_transfer_qc_provenance.json",
+  "training_transfer_records": "docs/transfer_training_qc_records.csv",
+  "training_known_records": "docs/transfer_training_qc_known_canonical.csv",
+  "validation_records": "docs/selection_transfer_qc_records.csv",
+  "training_common_eligibility": "docs/transfer_training_qc_common_eligibility.csv",
+  "validation_common_eligibility": "docs/selection_transfer_qc_common_eligibility.csv",
+  "output_root": "runs/matched_70_44",
+  "scope": "Ten exposed training specimens, two exposed selection/scoring specimens; common 44-query known-speed selection and 26-query transfer scoring, familiar 70 versus omitted 44 training queries. Finite 120 policy, all methods, both scoring orientations, no new architecture/QC/feature change or cap chase. Seal all ten baseline and six encoder selections before preparing/reading either transfer score target pool. Development only; reserved specimens untouched."
+}

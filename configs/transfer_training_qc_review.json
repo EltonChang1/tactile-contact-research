@@ -1,0 +1,21 @@
+{
+  "review_id": "matched_transfer_training_coverage_v1",
+  "review_date": "2026-10-10",
+  "source_config": "configs/omitted_speed.yaml",
+  "domain_table": "configs/query_domains.csv",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "clock_convention": "configs/clock_convention.json",
+  "variants_spec": "configs/qc_review.json",
+  "known_training_records": "docs/wider_contact_qc_records.csv",
+  "known_training_provenance": "docs/wider_contact_qc_provenance.json",
+  "surface_ids": [0, 38, 49, 65, 74, 79, 82, 87, 102, 103],
+  "repeats": [0, 1],
+  "durations_logged_s": [0.25, 0.5, 1.0],
+  "query_duration_logged_s": 0.5,
+  "expected_recording_triplets": 520,
+  "output_root": "runs/transfer_training_coverage",
+  "output_prefix": "transfer_training_qc",
+  "scope": "26 endpoint-safe transfer-speed training query triples, both repetitions, ten already exposed training specimens. Acquisition explicitly uses familiar-condition permission in an isolated raw root. Same seven QC settings; no prediction scores, fitting or reserved access. Recheck canonical known-speed training availability from preserved QC intervals and hashed raw timestamps. Combine with known 960 records to verify common 70/44 training pools."
+}
