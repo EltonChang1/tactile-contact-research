@@ -181,4 +181,6 @@ The [execution configuration](configs/matched_fit_review.json) references the pr
 
 ## Next implementation milestone
 
+The [independent validation](docs/matched_validation_review.md) reproduces all 22 frozen prediction arrays exactly and independently confirms all 92,400 score rows and 476 contrasts. Full raw reconstruction confirms every one of the 1,878 feature windows with zero discrepancy. Repeat these checks with `scripts/verify_matched_results.py` and `scripts/verify_matched_raw_features.py`; the full suite still passes 110 tests. No research fit or score changed.
+
 Training/validation coverage and the restricted matched 70/44 comparison are complete. Retain current methods, QC, features, specimens and finite 120 cap. Record the practical-effect margin and secondary policy, freeze scientific cohort/full-76 familiar coverage and the access/scoring contract, then implement and verify scoring with frozen fits before reserved test access. No locked scientific test has run. Physical timing and manufacturing independence remain unresolved; calibrated force measurements gate mechanics.

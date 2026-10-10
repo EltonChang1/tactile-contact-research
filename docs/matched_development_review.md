@@ -60,4 +60,6 @@ Reconstruction requires explicit copied configurations with new output roots and
 
 ## Next decision
 
+The subsequent [independent validation](matched_validation_review.md) reproduces every frozen prediction array, raw feature and published score/contrast, with no numerical result change. It adds repeatable verification scripts and separate proofs while preserving this execution and all reserved specimens.
+
 Keep all methods, specimens, QC, features and declared primary comparisons. Record a justified practical-effect margin and descriptive secondary-analysis policy, then freeze the intended scientific cohort, full 76-query familiar coverage and test access/scoring contract. Implement and verify scoring with frozen fits before accessing reserved test signals. The completed 70/44 comparison is a restricted developmental treatment comparison; it does not complete the broader 76-query familiar primary study. The two validation groups cannot establish manufacturing-family independence, population significance, calibrated timing or mechanical identification.

@@ -1,0 +1,155 @@
+{
+  "review_id": "matched_frozen_replay_validation_v2",
+  "review_date": "2026-10-10",
+  "original_execution_provenance": {
+    "path": "docs/matched_review_provenance.json",
+    "sha256": "286b55572535dc5fed63b093c681e97e722b98b72b0c85bb7633bd159b199eaf"
+  },
+  "source_sha256": "98c42eade78d4e888a62c2279b2b1b5ff9bcffb19ecb89d31b443e27b1c85c31",
+  "replay": [
+    {
+      "experiment": "familiar",
+      "prediction": "conditions_only",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "copy",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "fixed_features",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "speed_rescaling",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "retrieval",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_0",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_wrong_support_0",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_1",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_wrong_support_1",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_2",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "familiar",
+      "prediction": "encoder_wrong_support_2",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "conditions_only",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "copy",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "fixed_features",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "speed_rescaling",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "retrieval",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_0",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_wrong_support_0",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_1",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_wrong_support_1",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_2",
+      "rows": 4200,
+      "bit_exact": true
+    },
+    {
+      "experiment": "omitted",
+      "prediction": "encoder_wrong_support_2",
+      "rows": 4200,
+      "bit_exact": true
+    }
+  ],
+  "per_query_rows": 92400,
+  "scalar_metric_checks": 462000,
+  "independently_reconstructed_summary_rows": 840,
+  "independently_reconstructed_specimen_rows": 1680,
+  "independently_reconstructed_primary_residual_rows": 11760,
+  "selection_histories": 6,
+  "baseline_selections_checked": 4,
+  "contrasts_checked": 476,
+  "query_features_denied_during_prediction": true,
+  "refitting": false,
+  "reserved_signals_accessed": false,
+  "limits": "Frozen artifact replay and independent numerical validation; not fresh scientific testing, physical calibration or population inference."
+}

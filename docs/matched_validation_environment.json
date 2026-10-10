@@ -1,0 +1,43 @@
+{
+  "review_date": "2026-10-10",
+  "python": "3.12.6",
+  "numerical_packages_before": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.1",
+    "pandas": "2.2.2",
+    "scikit-learn": "1.6.1",
+    "torch": "2.6.0+cu118",
+    "pyarrow": "17.0.0",
+    "matplotlib": "3.9.2"
+  },
+  "numerical_packages_after": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.1",
+    "pandas": "2.2.2",
+    "scikit-learn": "1.6.1",
+    "torch": "2.6.0+cu118",
+    "pyarrow": "17.0.0",
+    "matplotlib": "3.9.2"
+  },
+  "numerical_versions_unchanged": true,
+  "dependency_check": {
+    "command": ".venv/Scripts/python.exe -m pip check",
+    "exit_code": 0,
+    "output": "No broken requirements found."
+  },
+  "local_environment_repair": {
+    "initial_conflict": "Inherited twine 5.1.1 requires pkginfo <1.11, while inherited poetry 2.1.3 requires pkginfo >=1.12.",
+    "action": "Installed twine 6.2.0 and id 1.6.1 only in the project .venv using --no-deps; kept pkginfo 1.12.1.2 and all numerical versions.",
+    "command": ".venv/Scripts/python.exe -m pip install --no-deps twine==6.2.0 id==1.6.1",
+    "global_installations_modified": false,
+    "project_dependency_declarations_changed": false,
+    "installed": {
+      "twine": "6.2.0",
+      "id": "1.6.1",
+      "pkginfo": "1.12.1.2",
+      "poetry": "2.1.3"
+    }
+  },
+  "original_training_environment_locks_modified": false,
+  "scope": "Current local verification environment; recorded experiment environments and numerical artifacts remain preserved."
+}

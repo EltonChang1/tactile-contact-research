@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "review_id": "matched_raw_feature_validation_v1",
+  "success": true,
+  "matched_provenance": {
+    "path": "docs/matched_review_provenance.json",
+    "sha256": "286b55572535dc5fed63b093c681e97e722b98b72b0c85bb7633bd159b199eaf"
+  },
+  "verifier_source": {
+    "path": "scripts/verify_matched_raw_features.py",
+    "sha256": "b1d887808ae30641ec92f19afc909326cc2dd65a07dfb874977555cd4b8875df"
+  },
+  "window_manifest": {
+    "path": "runs/matched_70_44/windows.csv",
+    "sha256": "48ef24d5cf7019f82e7ac888023c9d52553c57eefa1447b059f8f03da72dfeb2",
+    "regenerated_exact": true
+  },
+  "feature_audit": {
+    "path": "docs/matched_review_windows.csv",
+    "sha256": "6d579d8c968aeb59e37fc5f9fd8181671aafbb5fa8828b16eff9a84f98e727d0"
+  },
+  "windows": 1878,
+  "recordings": 1746,
+  "feature_array_checks": 15024,
+  "key_counts": {
+    "frequency_hz": 1878,
+    "psd": 1878,
+    "band_edges_hz": 1878,
+    "band_bin_counts": 1878,
+    "band_power": 1878,
+    "log_band_power": 1878,
+    "rms_by_axis": 1878,
+    "floor": 1878
+  },
+  "maximum_absolute_feature_discrepancy": 0.0,
+  "dependency_records_exact": true,
+  "all_outside_interval_raw_value_perturbations_invariant": true,
+  "frozen_source_files_verified": 28,
+  "pinned_raw_files_verified": 5328,
+  "cohort_ids": [
+    0,
+    10,
+    38,
+    49,
+    57,
+    65,
+    74,
+    79,
+    82,
+    87,
+    102,
+    103
+  ],
+  "reserved_signals_accessed": false,
+  "scope": "Read-only reconstruction of frozen development features; no fitting, downloading, reserved signals or physical-clock calibration."
+}
