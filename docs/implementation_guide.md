@@ -2,24 +2,24 @@
 
 ## Brief contact probes for predicting texture and sliding contact
 
-Prepared for Elton Chang — original plan dated 7 October 2026; guide refined 8 October and updated after the boundary/clock/QC review 9 October 2026, America/Los_Angeles.
+Prepared for Elton Chang — original plan dated 7 October 2026; guide updated 10 October 2026 after reviewing the completed 9 October development findings, America/Los_Angeles.
 
 **Purpose:** an implementation guide for the maintained [research plan](research_plan.md), originally supplied as `Tactile_Contact_Research_Plan_2026-10-07.md`. Use the stage gates below to decide which steps are ready to begin. The first completed study uses public data; later milestones add measured contact forces, simulation, and control.
 
 The public study develops the **tactile observation model**: what a robot should sense under a requested contact. The mechanical study develops the **contact law**: forces that influence motion. A useful world model ultimately needs both. Starting with public data lets you test whether brief observations contain transferable information and establish reliable evaluation methods before investing in a force rig. Vibration prediction alone does not identify an intrinsic material law.
 
-**Status as of 9 October 2026:** an executable [public repository](https://github.com/EltonChang1/tactile-contact-research) now supports bounded real-data and synthetic development experiments. The initial pilot, expanded five-protocol/three-duration comparison, and separately fitted omitted-speed experiment have completed. Numerical results and provenance are in [development status](development_status.md), [expanded results](expanded_pilot_report.md), and [omitted-speed results](omitted_speed_report.md). No locked scientific test, force identification, simulator validation, or control experiment has run.
+**Status as of 10 October 2026:** an executable [public repository](https://github.com/EltonChang1/tactile-contact-research) supports bounded real-data and synthetic development experiments. The initial pilot, expanded five-protocol/three-duration comparison, and separately fitted omitted-speed experiment have completed and were rerun with corrected raw-window preparation. Use the [boundary report](window_boundary_report.md) for current scores; the original [development status](development_status.md), [expanded results](expanded_pilot_report.md), and [omitted-speed results](omitted_speed_report.md) remain historical. The latest executed suite has 78 passing tests. No locked scientific test, force identification, simulator validation, or control experiment has run. This revision changes documentation only.
 
-| Historical development result, single 0.5-second support | Retrieval MAE | Fixed-feature MAE | Encoder MAE | Interpretation |
+| Current bounded development result, single 0.5 logged-second support | Retrieval MAE | Fixed-feature MAE | Encoder MAE | Interpretation |
 | --- | --- | --- | --- | --- |
-| Expanded familiar-condition pilot | 0.1724 | 0.2006 | 0.2492 | Retrieval leads; wrong support worsens encoder MAE to 0.5837 |
-| Separately fitted omitted-speed pilot | 0.3298 | 0.3098 | 0.3158 | Encoder/retrieval difference is inconclusive on two specimens |
+| Expanded familiar-condition pilot | **0.1726** | 0.2016 | 0.2513 | Retrieval leads; wrong support worsens encoder MAE to 0.5936 |
+| Separately fitted omitted-speed pilot | 0.3300 | **0.3096** | 0.3141 | Fixed features lead MAE; encoder/retrieval difference remains inconclusive on two specimens |
 
 These experiments use different query grids, so their errors do not isolate the effect of omitting speeds. The repeatedly used specimens are development data. The [name-based specimen review](specimen_group_audit.md) does not verify manufacturing-family independence. Current timing sensitivity demonstrates a consequential clock ambiguity, rather than resolving it.
 
 **Boundary correction completed 9 October:** `windows.py` now crops raw acceleration before interpolation/filtering and derives padding only from allowed samples. Nine new checks passed in a 53-test suite, and outside-sample perturbations left all 688 real prepared windows bit-for-bit unchanged. All methods/seeds were rerun in new roots. Expanded retrieval/encoder MAE is now 0.1726/0.2513; omitted fixed-feature/encoder/retrieval MAE is 0.3096/0.3141/0.3300, with the encoder/retrieval difference still inconclusive. See the [boundary report](window_boundary_report.md) for exact dependency provenance, feature changes, before/after scores and limitations. Historical reports remain intact.
 
-**Clock/QC review completed 9 October:** fifteen original CSVs preserve mirror timestamps/signals after declared conversion. Physical acquisition timing remains unverified, so [logged_coordinates_v1](../configs/clock_convention.json) explicitly scopes continued development to logged-time windows and frequency coordinates. Seven prespecified QC settings were reviewed on 200 known-speed training records: current settings retain every half-second interval and 199 one-second intervals; heading/load/travel diagnostics are exported. Settings and models remain unchanged. See the [decision/report](clock_qc_review.md). The current suite has 62 tests.
+**Clock/QC review completed 9 October:** fifteen original CSVs preserve mirror timestamps/signals after declared conversion. Physical acquisition timing remains unverified, so [logged_coordinates_v1](../configs/clock_convention.json) explicitly scopes continued development to logged-time windows and frequency coordinates. Seven prespecified QC settings were reviewed on 200 known-speed training records: current settings retain every half-second interval and 199 one-second intervals; heading/load/travel diagnostics are exported. Settings and models remain unchanged. See the [decision/report](clock_qc_review.md). That milestone passed 62 tests.
 
 **Metadata and wider training coverage completed 9 October:** all 118 specimens are reviewed in 87 conservative groups; twenty metadata-only specimens in fifteen whole groups are reserved. The [960-record known-speed audit](wider_coverage_review.md) retains every half-second interval, all required one-second supports and all 44 common query triples across ten training specimens. Current settings and fitted models are unchanged; 70 tests pass.
 
@@ -50,7 +50,7 @@ The first executable pipeline and both bounded comparisons are complete. Use the
 4. Investigate Step 18 in parallel. Start measured mechanics only when its calibration and measurement gate is satisfied; Steps 23–25 retain their additional validation gates.
 5. Maintain Step 26 throughout. Preserve historical results and label revisions so the original negative and inconclusive findings remain visible.
 
-The 8 October reassessment changed documentation and priorities; the 9 October implementation completes the raw-window correction, matched development reruns, clock scope, complete metadata/reservation and wider known-speed training QC. Matched broader model fitting and a scientific test remain pending.
+The 9 October implementation completed raw-window correction, bounded development reruns, clock scope, metadata/reservation, wider known-speed training QC and repeat/floor/range/history diagnostics. This 10 October revision aligns the guide with those findings. The controlled 120-epoch extension, repetition reversal, broader matched fitting and a scientific test remain pending.
 
 ## Step 1. Define one primary scientific question
 
@@ -273,7 +273,7 @@ Spectral extraction is implemented in `src/tactile_contact/signal.py`; use that 
 
 Convert g to SI with 9.80665, demean each local window and preserve amplitude; do not normalize each contact to unit variance. Cache full PSD, actual frequency grid, band edges and bin counts, linear powers, `log10(power + 1e-10)` and modeled-band RMS. Integrate with rectangular sums of PSD-bin centers times bin width, assigning every modeled bin once and including the final 1000 Hz bin. Use this same convention for targets and rescaled PSDs. Changes require matched regeneration of all methods.
 
-Flatten in band-major X/Y/Z order to 96 features/targets. The numerical floor is not a measured sensor-noise floor. The [training feature audit](development_diagnostics_review.md) checks all 92,160 current values: none are below `1e-8`, and the largest feature change among the three floors is 0.000221326. Retain `1e-10`. The 24–500/1000/1500 alternatives change band widths/targets; lower repeat differences do not establish better prediction, so retain 24–1000. A dense encoder or a force-summary variant remains optional and unimplemented; the full PSD already supports the rescaling baseline at the same raw-contact budget.
+Flatten in band-major X/Y/Z order to 96 features/targets. The numerical floor is not a measured sensor-noise floor. The [training feature audit](development_diagnostics_review.md) checks all 92,160 current values: none are below `1e-8`, and the largest feature change from the current `1e-10` floor is 0.000221326. Retain `1e-10`. The 24–500/1000/1500 inverse logged-time alternatives change band widths/targets; lower repeat differences do not establish better prediction, so retain 24–1000. A dense encoder or a force-summary variant remains optional and unimplemented; the full PSD already supports the rescaling baseline at the same raw-contact budget.
 
 Existing numerical checks verify spectral peaks, amplitude doubling (fourfold power; log10 change about 0.60206), offset removal, duration handling and modeled-band RMS. They verify the spectral helper, not acquisition timing or Step 8's processing boundary.
 
@@ -494,7 +494,11 @@ class ContactPredictor(nn.Module):
 
 Use finite zero padding; multiplying an encoded NaN by a zero mask would still propagate NaN. Mean pooling makes the support-set representation invariant to probe order. The encoder sees each observation's condition, so speed/load-dependent changes can be interpreted. Probe count is explicit rather than hidden in zero padding.
 
-Starter training choices: Adam at `1e-3`, batch size 128, at most 60 epochs, gradient-norm clipping at 1, and early stopping after 10 epochs without improved **validation per-surface raw log-power MAE**. Use training-only sampling, the same three initialization seeds, and a fixed validation episode manifest. For checkpoint selection, first average queries per surface in each protocol/duration cell, then average surfaces, then give each declared cell equal weight. The current history saves the equal-cell aggregate only. A large query subset must not dominate selection merely because it has more rows. These are the implemented choices. Corrected expanded checkpoints select epochs 58/59/60 and corrected omitted-speed checkpoints 59/60/58. The [saved-history review](development_diagnostics_review.md) finds final-ten-epoch best-score improvements of 1.4–3.2% and 5.3–9.4%, respectively. Next freshly train the unchanged cohorts/seeds with a finite 120-epoch cap and unchanged patience, adding primary single-0.5 selection history and checkpoints selected by 60/120. Verify first-60 reproduction; preserve historical roots and do not resume weights without optimizer/sampler state. If the cap still binds, report it rather than repeatedly increasing it to pursue a victory. Do not select from now-known transfer outcomes and describe that as a fresh test.
+Implemented training choices: Adam at `1e-3`, batch size 128, at most 60 epochs, gradient-norm clipping at 1, and early stopping after 10 epochs without improved **validation per-surface raw log-power MAE**. Use training-only sampling, the same three initialization seeds, and a fixed validation episode manifest. For checkpoint selection, first average queries per surface in each protocol/duration cell, then average surfaces, then give each declared cell equal weight. The current history saves the equal-cell aggregate only. A large query subset must not dominate selection merely because it has more rows.
+
+Corrected expanded checkpoints select epochs 58/59/60 and corrected omitted-speed checkpoints 59/60/58. The [saved-history review](development_diagnostics_review.md) finds final-ten-epoch best-score improvements of 1.4–3.2% and 5.3–9.4%, respectively. Convergence remains unresolved.
+
+**Proposed next check, not executed:** freshly train unchanged cohorts/seeds with a finite 120-epoch cap and unchanged optimizer/sampler/patience. Preserve each experiment's original fitting and selection domains: expanded familiar selection keeps its four query triples including 30/50 mm/s; omitted selection keeps only its six 20/40/60 triples. Add primary single-0.5 selection history as a diagnostic; keep the equal-cell checkpoint-selection rule. Save best-by-60/120 checkpoints and actual stop reasons, and verify first-60 reproduction. Preserve historical roots and do not resume weights without optimizer/sampler state. If the cap still binds, report it rather than repeatedly increasing it to pursue a victory. Final selections precede any new transfer scoring. The later matched 70/44 comparison uses common known-speed selection and is a separate experiment.
 
 Minimal training-step example:
 
@@ -518,14 +522,14 @@ Before real training, set Python, NumPy, and PyTorch seeds. If using CUDA, docum
 
 ## Step 14. Perform engineering checks before scientific evaluation
 
-The latest source-code verification completed **53 tests** plus compilation, including nine new boundary checks. See [implementation checks](implementation_checks.md). Tests cover spectra/units, motion fitting, split and query exclusions, cached prefix bookkeeping, masked/order-invariant prediction inputs, train-only fitting, retrieval aggregation, wrong support, bootstrap guards, checkpoint restoration, tiny-fit optimization, provenance/reuse and omitted-speed isolation. Synthetic behavior is an engineering check, not physical contact validation.
+The latest executed source-code verification completed **78 tests** plus compilation. The earlier [implementation checks](implementation_checks.md) remain historical; later [boundary](window_boundary_report.md), [design/coverage](study_design_review.md) and [diagnostic](development_diagnostics_review.md) reports record added guards. Tests cover spectra/units, motion fitting, split/query exclusions, cached prefix bookkeeping, masked/order-invariant inputs, train-only fitting, retrieval aggregation, wrong support, bootstrap guards, checkpoint restoration, tiny-fit optimization, provenance/reuse, omitted-speed isolation, reservation/domain checks and repeat/floor/history diagnostics. Synthetic behavior is an engineering check, not physical contact validation.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m compileall -q src tests scripts
 ```
 
-**Remaining required checks:** exposure-aware fresh-test exclusion; full-grid condition-mask coverage and matched-grid identity; and a frozen scoring path that cannot select/refit from test labels. Step 8's targeted tests and real outside-window audit now pass. Current configuration deliberately rejects `stage: test`. The locked-test interface has not been implemented. Existing tests do not certify calibrated acquisition timing, measured distance, heading/force control or manufacturing-family independence.
+**Implemented guards:** whole-group reservation/exposure preflight, complete metadata/domain masks, exact known-speed diagnostic identities/denominators, and Step 8's outside-window checks. New review runners enforce reservation preflight; the original experiment CLI still needs the separate preflight. **Remaining required checks:** convergence-extension history/checkpoint identity, integrated matched fitting/selection/scoring roles and QC intersections, reversal consistency, and a frozen scoring path that cannot select/refit from test labels. Current configuration deliberately rejects `stage: test`; locked scoring is unimplemented. These guards do not certify physical timing, measured distance, force/motion control or manufacturing-family independence.
 
 Keep tiny-fit/debugging results separate from scientific comparisons. Inspect gradient flow, raw loss scale and support variation if mean predictions persist; a functioning model is not evidence it outperforms retrieval.
 
@@ -667,7 +671,7 @@ The [training repeat tables](development_diagnostics_review.md) now provide 480 
 
 ## Step 17. Make figures, interpret failures, and finish the public study
 
-Existing public figures include duration curves and reference audit examples. The complete figure set below, including condition/specimen failures and repeatability, is still required:
+Existing development figures include duration/probe curves, reference audits, [training repeat context and learning curves](development_diagnostics_review.md). Extend them with condition/specimen failures and the eventual frozen-study results; the final report should contain:
 
 1. Paired support/query panels, each with synchronized acceleration, force, and motion channels and the selected window marked.
 2. Predicted and measured spectra for successes and failures, using the same selection rule for all models.
@@ -676,7 +680,7 @@ Existing public figures include duration curves and reference audit examples. Th
 5. Error by query speed, nominal load, and direction.
 6. Paired per-surface improvement over retrieval; show the full distribution.
 7. Correct-support versus wrong-support performance.
-8. Repeated-recording differences as limited repeatability context.
+8. Repeated-recording differences as limited repeatability context; the training version is complete, while matched prediction repetition reversal remains pending.
 
 Use plots generated from saved tables, rather than manually selected notebook states. Include specimen counts and confidence-interval units in captions. Example selection should be reproducible, such as median, best, and worst surface by a predeclared metric—not a collection of attractive predictions.
 
@@ -1027,10 +1031,13 @@ The credible evidence is your scientific question, experimental ownership, valid
 | Next gate | Concrete action | Exit evidence |
 | --- | --- | --- |
 | Completed 9 October: strict acceleration boundary | Raw-window-first preparation, outside-sample tests/audit, every method rerun in new roots | 53 passing tests, 688 invariant real windows, [aligned before/after report](window_boundary_report.md) |
-| 2. Timing and QC scope | Compare original/mirror evidence, freeze justified or limited time convention, review motion/heading/load and attrition | Timing decision, QC sensitivity and coverage matrix |
-| 3. Development diagnostics | Exposure/name-group review, repeat differences, primary/equal-cell convergence, floor/range checks, broader cohort and exact masks | Recorded modest choices; matched-grid familiar/omitted comparison |
-| 4. Fresh-test freeze | Reserve unexposed groups, implement frozen scoring, set primary margin/secondary policy and planned robustness | Versioned freeze bundle and test-interface checks |
-| 5. Complete Stage A | Score frozen models, run declared checks, produce failure figures and scoped report | Honest completed study and reproducible release |
+| Completed 9 October: logged-coordinate and QC scope | Original/mirror evidence, motion/heading/load and seven-setting sensitivity | [Clock/QC decision](clock_qc_review.md); physical timing remains uncalibrated |
+| Completed 9 October: exposure, reservation and wider training coverage | Complete metadata groups/domain masks; protected twenty-specimen reservation; 960-record training audit | [Design](study_design_review.md) and [coverage](wider_coverage_review.md); all required supports and 44 query triples survive |
+| Completed 9 October: training repeat/feature/history review | 480 repeat pairs, floor/range sensitivity and nine saved histories | [Diagnostics](development_diagnostics_review.md); keep current features/QC and all specimens; 78 passing tests; convergence unresolved |
+| Next: controlled convergence | Fresh unchanged bounded cohorts/seeds, finite 120-epoch cap, original selection domains, unchanged patience, primary/equal-cell logging | First-60 reproduction, best-by-60/120 checkpoints and actual stop reasons; no repeated cap chase |
+| Then: remaining diagnostics and matched development | Repetition reversal, residuals, wider selection/transfer coverage and integrated 70/44 fitting with common known-speed selection /26 scoring | Aligned model/probe comparisons and documented practical-effect rationale |
+| Fresh-test freeze | Protect existing reserved groups, implement frozen scoring, set primary margin/secondary policy and planned robustness | Versioned freeze bundle and test-interface checks |
+| Complete Stage A | Score frozen models, run declared checks, produce failure figures and scoped report | Honest completed study and reproducible release |
 | Parallel: Stage B access | Prepare capability inquiry and verify actual available measurements | Calibrated independent force/motion gate; outreach only when authorized |
 | Later stages | Measured mechanics, responsive motion validation, engine integration, matched control | The distinct gates in Steps 18–25 |
 
@@ -1084,6 +1091,8 @@ The development slice and bounded expanded/omitted matrix have now been rerun wi
 
 The initial 8 October refinement checked source acquisition/schema statements, prior retrieval work, illustrative numerical/model/mechanics behavior, the 76-condition grid and 26 guide steps. Those syntax/synthetic checks were guide verification, not research findings. The implemented repository subsequently completed the initial, expanded and omitted-speed development runs; the 8 October source-code suite passed 44 tests and compilation. Actual historical runtimes/results are recorded in [implementation checks](implementation_checks.md) and the three milestone reports.
 
-This reassessment reads the current package, configurations, manifests and saved results. It replaces hypothetical scripts with executed CLI/module contracts; fixes the 0.5-second query specification, nominal-distance terminology and 76/44/26 condition domains; reserves all exposed specimens for development; preserves negative/inconclusive comparisons; and makes strict processing boundaries, timing/claim scope, coverage/repeatability/convergence and frozen-test infrastructure the next gates. Mechanical/calibration stages remain future work and do not depend on a learned-model victory.
+The maintained guide uses executed CLI/module contracts, the fixed 0.5-second query specification, nominal-distance terminology and exact 76/44/26 domains. Raw boundaries, logged-coordinate scope, metadata/reservation, known-speed training coverage and repeat/floor/range/history diagnostics are complete. Controlled convergence, repetition reversal, wider selection/transfer coverage, matched fitting, practical/secondary policies and locked scientific scoring remain pending. Negative/inconclusive comparisons are preserved. Mechanical/calibration stages remain future work and do not depend on a learned-model victory.
 
 The 8 October inspection identified whole-record interpolation/filtering dependence. On 9 October, raw-window-first processing and dependency metadata were implemented, nine targeted tests passed within a 53-test suite, and all three development pipelines were refitted in separate roots. The real audit verifies 688 invariant windows and unchanged raw intervals/episode inputs. Local preparation changes are measured in the boundary report; historical run provenance remains preserved. Clock calibration, fresh-test evaluation and mechanics remain uncompleted. Documentation structure, CLI references, local links and example syntax are checked before publication.
+
+The 10 October documentation revision promotes corrected scores to the current-result tables, separates completed diagnostics from pending experiments, clarifies each convergence run's original selection domain, and retains current features/QC and difficult specimens. It adds no fits or response exposures. Updated portable plan/guide copies are saved separately from the original supplied documents and earlier revisions.
