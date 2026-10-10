@@ -1,0 +1,19 @@
+{
+  "review_id": "matched_selection_transfer_coverage_v1",
+  "review_date": "2026-10-10",
+  "source_config": "configs/omitted_speed.yaml",
+  "domain_table": "configs/query_domains.csv",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "clock_convention": "configs/clock_convention.json",
+  "variants_spec": "configs/qc_review.json",
+  "surface_ids": [10, 57],
+  "repeats": [0, 1],
+  "durations_logged_s": [0.25, 0.5, 1.0],
+  "query_duration_logged_s": 0.5,
+  "expected_recording_triplets": 296,
+  "output_root": "runs/selection_transfer_coverage",
+  "output_prefix": "selection_transfer_qc",
+  "scope": "Existing two development selection specimens only; four support conditions, 44 known-speed queries and 26 endpoint-safe transfer queries, both repetitions. Exact canonical window availability and the unchanged seven QC settings; geometry/loading on current half-second intervals. No prediction scores, feature targets, refitting, reserved signals or error-based exclusions. Preserve shared raw/source/inventory bytes in a separate raw root."
+}

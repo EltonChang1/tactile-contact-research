@@ -1,0 +1,7 @@
+surface_id,condition_role,requested,half_second,one_second,minimum_duration_logged_s
+10,selection,88,88,85,0.8019029999999999
+10,support,8,8,8,1.04056
+10,transfer,52,52,50,0.978517
+57,selection,88,88,85,0.678811
+57,support,8,8,8,1.909104
+57,transfer,52,52,50,0.9090520000000001

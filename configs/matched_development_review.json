@@ -1,0 +1,67 @@
+{
+  "design_id": "matched_70_44_development_v1",
+  "prepared_date": "2026-10-10",
+  "stage": "development_only",
+  "execution_status": "Prepared role/budget specification; transfer-speed training QC and guarded matched fitting runner remain required",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "domain_table": "configs/query_domains.csv",
+  "clock_convention": "configs/clock_convention.json",
+  "training_policy": "configs/development_training_policy.json",
+  "train_ids": [0, 38, 49, 65, 74, 79, 82, 87, 102, 103],
+  "selection_and_score_ids": [10, 57],
+  "source_revision": "b7c2fb70ed2d68219389478660f35c2cd49c69fb",
+  "conditions": {
+    "familiar_fit_mask": "matched_familiar_fit_query",
+    "familiar_fit_query_triples": 70,
+    "omitted_fit_mask": "known_speed_query",
+    "omitted_fit_query_triples": 44,
+    "shared_selection_mask": "known_speed_query",
+    "shared_selection_query_triples": 44,
+    "shared_scoring_mask": "omitted_transfer",
+    "shared_scoring_query_triples": 26,
+    "training_query_repeats": [0, 1],
+    "primary_validation_query_repeat": 1,
+    "reversal_sensitivity_query_repeat": 0,
+    "rule": "Identical cohorts, support windows, computational policy, known-speed selection and scoring triples; familiar adds 26 transfer-speed training-response triples. Omitted cannot read those training targets. All selections in both experiments finish before either transfer score pool is unlocked."
+  },
+  "budgets": {
+    "protocols": ["single", "repeat", "speed", "load", "direction"],
+    "support_durations_logged_s": [0.25, 0.5, 1.0],
+    "query_duration_logged_s": 0.5,
+    "sampling_grid_hz": 6000,
+    "feature_range_logged_frequency": [24, 1000],
+    "spectral_bands_per_axis": 32,
+    "power_floor": 1e-10,
+    "reversal_rule": "Keep repeat-control supports in canonical [0,1] order; reverse all other support repetitions. Keep the training supports/library fixed and score both orientations without refitting."
+  },
+  "training": {
+    "epochs": 120,
+    "patience": 10,
+    "seeds": [0, 1, 2],
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "episodes_per_surface": 64,
+    "latent_dim": 16,
+    "gradient_norm_clip": 1.0,
+    "selection": "Equal protocol/duration cells and equal specimen mean; single-0.5 known-speed history is diagnostic only; no transfer-based checkpoint choice or cap chase"
+  },
+  "coverage": {
+    "known_speed_training_evidence": "docs/wider_contact_qc_summary_provenance.json",
+    "selection_transfer_evidence": "docs/selection_transfer_qc_provenance.json",
+    "selection_transfer_common_cells": "docs/selection_transfer_qc_common_eligibility.csv",
+    "remaining_transfer_training_triplets": 520,
+    "remaining_transfer_training_domain": "26 endpoint-safe query triples x 2 repetitions x 10 exposed training specimens",
+    "eligibility_rule": "Training: original protocol supports at the longest budget plus both query repetitions. Validation: every protocol support in both scoring orientations plus both query repetitions. Use the same prespecified QC intersection for every method and both experiments; never exclude by prediction error."
+  },
+  "methods": ["conditions_only", "copy", "speed_rescaling", "retrieval", "fixed_features", "encoder", "encoder_wrong_support"],
+  "prospective_episode_counts_before_qc": {
+    "familiar_train": 21000,
+    "omitted_train": 13200,
+    "shared_known_speed_selection_per_experiment": 1320,
+    "shared_transfer_scoring_per_orientation_per_experiment": 780
+  },
+  "claim_limit": "Role preparation, not an executed fit or scientific freeze. Two exposed validation groups only; physical clock unverified. The restricted matched 26-query score domain does not replace the broader 76-query familiar-condition primary study. No locked test, calibrated mechanics or manufacturing-family generalization."
+}

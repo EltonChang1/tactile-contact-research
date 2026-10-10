@@ -1,0 +1,4551 @@
+{
+  "review_id": "matched_selection_transfer_coverage_v1",
+  "review_date": "2026-10-10",
+  "public_input_hashes": {
+    "configs/selection_transfer_qc_review.json": "7a9ea93d39b45377c632757498e83a3aca8cac9712557d900aab9ac97025721c",
+    "configs/omitted_speed.yaml": "5d27e76eb3ffb0fc4725d94a3384f94b94525346b357ebff6cab44b1b0732653",
+    "configs/query_domains.csv": "bbba8122527058b541f5e8dd59b08c460fb85d42d97db814ba45eb54fc2f5db9",
+    "configs/all_specimen_groups.csv": "c4a0620022b9128a872df42515164fac09d747264372bc7e2273647abf276ee4",
+    "configs/test_reservation.csv": "8acc8a481d39d01b091e2a883e7818302ebf2928cb8ce5204c8a4b2971fd9f1b",
+    "configs/development_exposure.json": "ee0eabcb86ffec4aadae72f4021e5ce51259c137086edd9a6ddbb15f2bc6e3ea",
+    "configs/clock_convention.json": "a77234e6f5737720301d3087e29299cd5aea40f6d8d8c69760d15cde7e3fe21c",
+    "configs/qc_review.json": "990ab114900d824c078719a72a90fae3329163f7aa26d06ccfb5eaa31660afad"
+  },
+  "source_hashes": {
+    "scripts/review_selection_transfer_coverage.py": "144bae82e3176f6f4b7e8fe2469c3c9005396f0d6f5352731c9732817d2591f8",
+    "src/tactile_contact/coverage_review.py": "535a3100cf7118910f324a1fdcd6ae4770e803a2987ce8e22c71bd35bc46ec0a",
+    "src/tactile_contact/audit.py": "a85a5b21cf678d3e77eff120e6222fe516ce39574f54b64a40ffc6be2f945818",
+    "src/tactile_contact/qc_review.py": "025b238beede825746f2ab4cbdcc3f3db918d4d73cf695f06e994f84bb028bcd",
+    "src/tactile_contact/download.py": "bd2c1ea33a6cccf34d45a45e97e4ba1fb0b68e3142b585d4e298398e49cddee8",
+    "src/tactile_contact/study_design.py": "adccd215b6d76d9a1519609b086a786d98d1247b5e81ed15c5e7963b61d12a4d",
+    "src/tactile_contact/config.py": "22888163eff52395aa73c848ab906d227fd4caff3117410ed7ee17b1af458a22",
+    "src/tactile_contact/records.py": "f8172ed0ddc35a15806ed5349b0020f406b2f99f502b5fe1ef0bf2183afc1e2d"
+  },
+  "shared_input_hashes": {
+    "data/raw_inventory.json": "e6f7a0544052eb19b8e1f0e98a3fe4d57940a3e0d1cdc37bb559562cb2d3a734",
+    "data/source.json": "3b03dd27b97b7716fba47522081cafc195612be72ded50a911e51f3a815feaf3"
+  },
+  "seal": {
+    "path": "runs/selection_transfer_coverage/review_seal.json",
+    "sha256": "2bd70ceefbde67b125217ad12d3a9c73ed268d2b9ce9c07143e8d72027be74c5"
+  },
+  "local_inventory": {
+    "path": "runs/selection_transfer_coverage/data/raw_inventory.json",
+    "sha256": "622be1aecaf99d28be0a8ebf98015f5042dbb972168659f8797bb5b05f5599a6"
+  },
+  "raw_root": "runs/selection_transfer_coverage/data/raw/cluster",
+  "raw_hashes": [
+    {
+      "path": "README.md",
+      "bytes": 4094,
+      "sha256": "bdaa28fec3d41d72364c5854e5b8a1c57f7ea162d4d20d6419c74ec5a2b6e904"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_20_1000_0.parquet",
+      "bytes": 325535,
+      "sha256": "9f362289d74adbf0a3a2ddc5070a030683717cf7bb3eb87d942bef61d30f03f3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_20_1000_1.parquet",
+      "bytes": 344900,
+      "sha256": "224f375794af55be362656429ddf279928093769fb917eaa8fe5722cf949514f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_20_500_0.parquet",
+      "bytes": 324378,
+      "sha256": "452a3c065e7fe65ea6ae98bbe241a6eca4e65f4e8f2b7fe48db4663ac233dcfc"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_20_500_1.parquet",
+      "bytes": 324628,
+      "sha256": "9109448206592222da651ad05a4ba13c01906e1a6b2608ee701c63233389a584"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_40_1000_0.parquet",
+      "bytes": 187358,
+      "sha256": "812e708df02f8260ccda6a666f5c1fbe0ad31c8e17832093d143d29917be1b44"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_40_1000_1.parquet",
+      "bytes": 190730,
+      "sha256": "05765fda906e3b629a57105fc7ca20ad20d0b1e303aa711e2b8f9b1c709e6574"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_40_500_0.parquet",
+      "bytes": 186697,
+      "sha256": "9071f632e8bf591284fcff14f4e08b34335c57562a9c9c9dc8beb9aaebc196ed"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_40_500_1.parquet",
+      "bytes": 188563,
+      "sha256": "9b1b059a2916b3fe5c57cd8135f6ccfb023bc0cb8b1a4e3c84a0db07e132785a"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_60_1000_0.parquet",
+      "bytes": 136361,
+      "sha256": "c314dc6532ecaf65d7bea6908a383d6ce8d158122980b80faa5f1038faa02dec"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_60_1000_1.parquet",
+      "bytes": 143724,
+      "sha256": "e67ca2a867ef850bdc69c97e57d02f396ed077b1290a8f184a8a3a38b7b5046d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_60_500_0.parquet",
+      "bytes": 132534,
+      "sha256": "33be05f2ef4ee30f0b9dd11ebd572cd7676205b2c8caddc81b93f06db4c031da"
+    },
+    {
+      "path": "sensor_data/accel/10/10_0_60_500_1.parquet",
+      "bytes": 141194,
+      "sha256": "56e7e7985e9f56909fa2861222ad44d4faf88da4773c929da90d98f06acd0587"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_20_1000_0.parquet",
+      "bytes": 334009,
+      "sha256": "6c41dbd62016afe976e46381dfff77f12f9c30ee0ef8607ad34e5d3bc6a2a99e"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_20_1000_1.parquet",
+      "bytes": 332936,
+      "sha256": "e23ed0c41462693390fbda0d5129cea875f05c059017dbbcd5e467ebf8778626"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_20_500_0.parquet",
+      "bytes": 341058,
+      "sha256": "35b97ac9180720d9c618ed9b6eda1655ba5f2e8b6baee9f140f92c5858dae55f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_20_500_1.parquet",
+      "bytes": 338520,
+      "sha256": "568929b3444db45e7af414c721b8f9c79ea0e3e1e2446dbb48cd1022601ece5d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_30_1000_0.parquet",
+      "bytes": 243194,
+      "sha256": "d7c789710244d42cf7cc4cf96f2017ebc8b344dbee25bd9adbd6c7b2d559f5e5"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_30_1000_1.parquet",
+      "bytes": 243671,
+      "sha256": "bf71d8e663e940aa03c159f141ab2e2db3e198d2ac0d0c1333aba45b211d5744"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_30_500_0.parquet",
+      "bytes": 232797,
+      "sha256": "d158bdab0a23e95b25530552fc63aafea1e10676e09fcc9e431f4e1c791a3976"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_30_500_1.parquet",
+      "bytes": 236701,
+      "sha256": "a203905d551c5221c4c0bea20580c802a7055162d07a7facc14fde3ca6bfe3a4"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_40_1000_0.parquet",
+      "bytes": 192422,
+      "sha256": "9bc8f7ef69f6b6307202631be11ee21d40cd55cc6b70c9de1d0ae23e6c5d03b8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_40_1000_1.parquet",
+      "bytes": 191364,
+      "sha256": "182acf6d23f32fa28b7bc56c887f2499348fa5d3760f12bbc0c960a3ed181d71"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_40_500_0.parquet",
+      "bytes": 190382,
+      "sha256": "674a4d56cbee597b1e194ef2be5b82e83c4112043b61e2fbc467b20f959f9c7b"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_40_500_1.parquet",
+      "bytes": 192524,
+      "sha256": "d087360aeaa862ebba3d33002d38c43433d3f202e3d6179d0c9373bf0ed80b00"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_50_1000_0.parquet",
+      "bytes": 168576,
+      "sha256": "c6fb69698a8ac1b7eed34bdddb288e75309a63387c4f6477cbf12681f680b94f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_50_1000_1.parquet",
+      "bytes": 174718,
+      "sha256": "bcb660f102dfc936239aeb9fbb25d3c13def35177954f5b583d20620d15a8c66"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_50_500_0.parquet",
+      "bytes": 170176,
+      "sha256": "46030f873f0c886250d28896a549a31d294978b5b9c058e209f191009b0bfdca"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_50_500_1.parquet",
+      "bytes": 169957,
+      "sha256": "035d82037477f0fa74889c193727885c031a2efd73697101279dcab34aa51d7f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_60_1000_0.parquet",
+      "bytes": 144936,
+      "sha256": "da29f0627c0bee49977724d10981fb72febce1486395db2e9d7795889be9b387"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_60_1000_1.parquet",
+      "bytes": 146517,
+      "sha256": "1c80189bc53895cf699422488cdd8ea8cab918e10b0bdd6eb1043ae215cc7793"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_60_500_0.parquet",
+      "bytes": 137841,
+      "sha256": "d1306eea512691c419b550f1035c1146265cc681f7a7542c15323cf51b8b5a18"
+    },
+    {
+      "path": "sensor_data/accel/10/10_135_60_500_1.parquet",
+      "bytes": 144879,
+      "sha256": "491ed187f43955f44554f856dc1d66d188b3cc2cb51db23c3bdf327f8c14ec0e"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_20_1000_0.parquet",
+      "bytes": 331943,
+      "sha256": "98bbd9190fc7c998711e8ef748665256e6f7961b88d633af68a2952b17b8d56e"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_20_1000_1.parquet",
+      "bytes": 323344,
+      "sha256": "06d922c71d1ece4efa606f23f06189328225bd3c88ccc293578290c5e74298e8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_20_500_0.parquet",
+      "bytes": 326552,
+      "sha256": "d40f0ec984c7ea953baaf9a93c1de2735bad497c39b6c4ba8d54835368671d18"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_20_500_1.parquet",
+      "bytes": 328513,
+      "sha256": "f4e4206532e2076ed130eefef583b566590d772f581e3f5eacab8213778a57b7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_30_1000_0.parquet",
+      "bytes": 231227,
+      "sha256": "349ddafaec724dfbf93e13834104426192d5f23d231a3ded962fbb42dc8d6214"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_30_1000_1.parquet",
+      "bytes": 237292,
+      "sha256": "dc4b4a7aa61a78d4d7ce8b3093dc1b477478cb1fd3f66dcee5a0fee87fb86d7f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_30_500_0.parquet",
+      "bytes": 227981,
+      "sha256": "52289174105687431f3f63ab811a5f9151671230f2b6022bdd07e0da3c2ce622"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_30_500_1.parquet",
+      "bytes": 228181,
+      "sha256": "1f2ad8d390756d29466538e7d9803d6147d1a34d3122941f2cd17ad25254801c"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_40_1000_0.parquet",
+      "bytes": 191895,
+      "sha256": "3e1876eeddf7de385886e92963f0a9e02a811a5799de98098d34b5a8dcc2aaaa"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_40_1000_1.parquet",
+      "bytes": 191353,
+      "sha256": "ae6db751f1feb97d064e735e79420aec0ab3e489be8d6577440d3104ed119952"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_40_500_0.parquet",
+      "bytes": 180088,
+      "sha256": "a5de8afe65c3a267c9fc20709fbc65f9d493309d505a7aaf2c643a2afd47d316"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_40_500_1.parquet",
+      "bytes": 187037,
+      "sha256": "f92afcb08a8ca19dcded8e8593e0911091d2f94e3599d2cfdccc4ad2928a4ee1"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_50_1000_0.parquet",
+      "bytes": 167685,
+      "sha256": "0ff476ae2bb99bf45b0b708f5a5a568d9764e7146497ba7376e5a88276590209"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_50_1000_1.parquet",
+      "bytes": 160218,
+      "sha256": "59077d771c23986702cdf1793ff2fce9704d22a017d7f419174c6999f1855b92"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_50_500_0.parquet",
+      "bytes": 158424,
+      "sha256": "55fe56e6aaee1ee9d2429d43e419d89529f5282b2d802c23bdc4961df2a7f940"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_50_500_1.parquet",
+      "bytes": 158324,
+      "sha256": "7dd44e4ddfce0f8c968aaafdfaed763094273166ab719454f28355ac0ac7e40d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_60_1000_0.parquet",
+      "bytes": 138260,
+      "sha256": "922d0c8b82d82859fcbf3b2d00a7be393a98f0d34bfc72ceeb82e56bce5a0a3a"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_60_1000_1.parquet",
+      "bytes": 140143,
+      "sha256": "b5990484b78d0def4468d467d95849e137ad2395bd37157e2cfcb8bda3ea54c3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_60_500_0.parquet",
+      "bytes": 131164,
+      "sha256": "32f5324f7f9a27f1ce015f4f69efb0d4d4ba53f36aedbc6dfbe76b995b3ca7c8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_180_60_500_1.parquet",
+      "bytes": 136538,
+      "sha256": "7a58ec2e94c445f2ec739c8293df63e89cdcb37682f3490b3f741cff9f5d96e3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_20_1000_0.parquet",
+      "bytes": 337681,
+      "sha256": "f8a110dff6adb9350817e688e101df13bac2f160345493c9f7c205237099bb0d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_20_1000_1.parquet",
+      "bytes": 344009,
+      "sha256": "345886147e105a6d63c06955f7d960f8bea995419473c5995da628f499214882"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_20_500_0.parquet",
+      "bytes": 344325,
+      "sha256": "650570553f9e18d7d919ca65d1e31fbb24e109f7330de3c98b295daf589fc652"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_20_500_1.parquet",
+      "bytes": 347354,
+      "sha256": "c855593ede3e562f62fe81137469923572d13cae1167b4de821637dfa42862dc"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_30_1000_0.parquet",
+      "bytes": 249450,
+      "sha256": "6506e711fd639867a8bb1404ebb4ef6889c15490b87789cc736914dad04535d0"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_30_1000_1.parquet",
+      "bytes": 241657,
+      "sha256": "ebeb5e07c5d0fac584b3b20b070e772520b1888a421f263edecc11b58f09e9cc"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_30_500_0.parquet",
+      "bytes": 237038,
+      "sha256": "c7dd67e06fef9c7bc7018d82a41cb98856830c3c7ee5028cbeb68b969082e6ed"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_30_500_1.parquet",
+      "bytes": 234570,
+      "sha256": "22869e2f9e44da6c6a1dea86e740f746c91de83d1c0dbf13b478b730b6ae03f7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_40_1000_0.parquet",
+      "bytes": 188859,
+      "sha256": "3eb94b968da84f61efad8a0a4cbb87914bfa8c11abb6d7df3a18e88bf7e66d31"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_40_1000_1.parquet",
+      "bytes": 187715,
+      "sha256": "edb95234410ba9daba1ead82f19cf47ba03c9203f590a5aee78675857764b3e3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_40_500_0.parquet",
+      "bytes": 190020,
+      "sha256": "95f128cd49883e46f5d7bf86c82c62cf0f971681e640c2d884dfa76a750fa5f3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_40_500_1.parquet",
+      "bytes": 189547,
+      "sha256": "841ed2a2cbeb0d387be66a9b5b40c9ce4f3a0798c9940a8a2daa13da59afe66c"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_50_1000_0.parquet",
+      "bytes": 165405,
+      "sha256": "bd4c6b9da10bc80cae437feba3fa092d457b361b056bf91bd1ffb3819d8e111f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_50_1000_1.parquet",
+      "bytes": 166379,
+      "sha256": "5012bcc748c641777affed35f2c6fb88c04d5fc6faa8632e761c43178e6878d7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_50_500_0.parquet",
+      "bytes": 165072,
+      "sha256": "4755237d494208e4af6a6d140f653fdb86e4758bbddc8eee6d5e3535f471ea53"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_50_500_1.parquet",
+      "bytes": 165224,
+      "sha256": "e8628b7bf8ef2f8cfbd1743d0537aeb61a5847fa2537c3ec674c6c2e5cd86ad5"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_60_1000_0.parquet",
+      "bytes": 135189,
+      "sha256": "0bd3895f33813056da905fdadbf770cce3b7fb4687e8c5930bcd0f74e3d09e65"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_60_1000_1.parquet",
+      "bytes": 136221,
+      "sha256": "d3b106ebf1b351668858d411a359cf4fc88f0ea039dcb454b9db447a1ad56cc7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_60_500_0.parquet",
+      "bytes": 132209,
+      "sha256": "d4b8370a1cef0284381452e97aeefe493341d56774c5b02e67ef891da7b27b1a"
+    },
+    {
+      "path": "sensor_data/accel/10/10_225_60_500_1.parquet",
+      "bytes": 142601,
+      "sha256": "25cd787917c9041e413824145a0d23f6c97ef3fedfb383af5707835c8bca7c3d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_20_1000_0.parquet",
+      "bytes": 325938,
+      "sha256": "9bcf480cf19cda8a735de7a7eb728443137b3c46675524b1bb539fb04db37244"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_20_1000_1.parquet",
+      "bytes": 339821,
+      "sha256": "61cee7f80bb65bb23052c23e17a832efffe1f2b73d0d3851e42590852c26c238"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_20_500_0.parquet",
+      "bytes": 333582,
+      "sha256": "c53ac1f03f4116468343ff75381d048be3014d9b6696c152dd8faec20d3d0f78"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_20_500_1.parquet",
+      "bytes": 335816,
+      "sha256": "505f643d32251af2652d3aa2113653734f395e7a61cf3df8fd39c7f34a8b9466"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_30_1000_0.parquet",
+      "bytes": 243962,
+      "sha256": "9dde85d0031a3eee5aa814434580fc19bd563eadb0f4b779a21708d45650a185"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_30_1000_1.parquet",
+      "bytes": 241412,
+      "sha256": "dcc8f0f4510a6835bfd97e3c3ac04fba1b0d188eacdb54b5979f9e3d05ac0d39"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_30_500_0.parquet",
+      "bytes": 247059,
+      "sha256": "521f2c4e616a3b350d4f24370c518da47248a63e7c172b0c221a3b6661aeba97"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_30_500_1.parquet",
+      "bytes": 245805,
+      "sha256": "4d40b81e63861fb66ccf4746a56dcb19317e700bac19b8b79246b22ae70a4945"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_40_1000_0.parquet",
+      "bytes": 191081,
+      "sha256": "a3c19c027b6dff3b38dae52d972db15f823f8619b478cde1f811e5a8dad0e1f5"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_40_1000_1.parquet",
+      "bytes": 198670,
+      "sha256": "ff910ba12f9dda683e29caa823a2099a6b1163b38e89d179b8a2cc153959f901"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_40_500_0.parquet",
+      "bytes": 193642,
+      "sha256": "65a4ce5ee6744cc8ca0a9bcbc2b4e3c1152d305ef663d978da92eef6813c87ab"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_40_500_1.parquet",
+      "bytes": 194143,
+      "sha256": "3f6544a73f0f812901eb85d605931eb1a20dc259c6c2d8dab23f98397e2411b8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_50_1000_0.parquet",
+      "bytes": 166122,
+      "sha256": "ea15dba6415dee352f2db891bad5a196dd2e5c530bd2eda8b8565595572f076f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_50_1000_1.parquet",
+      "bytes": 155667,
+      "sha256": "45834e10426998796ca6454b91b577872789d8945260382157a03e9581d5a7db"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_50_500_0.parquet",
+      "bytes": 157098,
+      "sha256": "206811131dc7d87332b76114519b5492b1fcf728cea8d7afe8c220bfd1af3041"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_50_500_1.parquet",
+      "bytes": 156208,
+      "sha256": "b55028d080f5b8661e80c053af272699c4e9a7cfef38be81a710859bd016febd"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_60_1000_0.parquet",
+      "bytes": 145020,
+      "sha256": "97dcaa7dc2c5a4d1989461d91d33e628eb6af390feffffac806a433a65a4a79f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_60_1000_1.parquet",
+      "bytes": 136884,
+      "sha256": "3fb7717d52c04a3f668ec48e45028d4eae8f819436820469803515e6158097d7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_60_500_0.parquet",
+      "bytes": 140599,
+      "sha256": "272ab321efe6bf5d6dd3b8fae8250c0e7abc104c3291564edca88974f9e0ad16"
+    },
+    {
+      "path": "sensor_data/accel/10/10_270_60_500_1.parquet",
+      "bytes": 143824,
+      "sha256": "17fddfa0d52d58f12f90dc9b3b7168dfc8a9a5ed2ba6d469ebe14ac6c0515624"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_20_1000_0.parquet",
+      "bytes": 341199,
+      "sha256": "cac2f5b24136bc52dd4f32f0e91a7b040e254bf517c14dc875ded7f27741434e"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_20_1000_1.parquet",
+      "bytes": 350321,
+      "sha256": "938784ef1a76857c36c900a1617147b11c9f61f4b3c75fcf48603beabf5704b8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_20_500_0.parquet",
+      "bytes": 354386,
+      "sha256": "13ff954f10ded8c7926d304956611533270be627261c81e923a9672738214a92"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_20_500_1.parquet",
+      "bytes": 340044,
+      "sha256": "5bd7c44854650edf872d8c75b925e9d75580aa191dbc5fb0e8c7d78abf6bb7e7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_30_1000_0.parquet",
+      "bytes": 239790,
+      "sha256": "0ffa7ba5256a41d764a4dfcd6e2b05e5f7b4a4be8fad98187855cf462a4864d1"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_30_1000_1.parquet",
+      "bytes": 241750,
+      "sha256": "041ac7357a55847eb759ab1bd570baa5cc069c189792b8db62c2b102587eba66"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_30_500_0.parquet",
+      "bytes": 242125,
+      "sha256": "e6382181dfc7eaa80a5db27379d7f7ac703059bd75b4ba5a1971042ab8bd6557"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_30_500_1.parquet",
+      "bytes": 241461,
+      "sha256": "1a00c8b4da1cbe087ce56b3d07c762bbb8720861f6ac0070159d1ceb5cc8db77"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_40_1000_0.parquet",
+      "bytes": 196507,
+      "sha256": "a772ceb8d7e14477f2aaf4d33e52637a7ab17830e528aa5eaf3e2d2caaa09e9d"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_40_1000_1.parquet",
+      "bytes": 191007,
+      "sha256": "18c465c68a60bdebaf9063deef4157306d49706b422befbebda1265ef0828d55"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_40_500_0.parquet",
+      "bytes": 193367,
+      "sha256": "58469e13ac0cbccd8d07c1d739739815dfc872f3306e2c49a10c3697bbe70be4"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_40_500_1.parquet",
+      "bytes": 199437,
+      "sha256": "5b8191e5d99ebff6adec9f11d50833396a90c981989f035942f36f12299dfb10"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_50_1000_0.parquet",
+      "bytes": 168371,
+      "sha256": "27e2d659630675220ff65e3e5f1ce55773a8bee1bbb35524ed1b54a950adcbea"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_50_1000_1.parquet",
+      "bytes": 165019,
+      "sha256": "e9f1823c560439a118ad14027039e705c60330a1234ac552c84dc568ede7bef3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_50_500_0.parquet",
+      "bytes": 171209,
+      "sha256": "03cd2c2a3ba311dcb4e09b17271e84bcfcf3d17eade6ca5205804f11ed37e1bc"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_50_500_1.parquet",
+      "bytes": 163444,
+      "sha256": "a868aca63c9c2bb50ddf52d1875f1362611afb0bb10979f417a70974731164c6"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_60_1000_0.parquet",
+      "bytes": 136706,
+      "sha256": "b8bd294f0009cadeeb7131ca07fb06696b7be6ace9cd24b8221066c2b2432db1"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_60_1000_1.parquet",
+      "bytes": 137392,
+      "sha256": "e02aa8ac9a73a9c31f69d4cfaa3f83546078335f5f875425e59ce9e0bb7d3e4b"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_60_500_0.parquet",
+      "bytes": 141043,
+      "sha256": "1a2ed4fa045c024212e0c19d979b059efaaac455d0aabb0a0d6bbf2ae00f867e"
+    },
+    {
+      "path": "sensor_data/accel/10/10_315_60_500_1.parquet",
+      "bytes": 136259,
+      "sha256": "087e9027034c7e87f587b02f102a05b9ffad693fe29f2f3f11364a82378488b8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_20_1000_0.parquet",
+      "bytes": 349832,
+      "sha256": "4d206338fcdf0c5c07e5866b24dcfd91a784b47fd6a45c7a9734e16a7c111928"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_20_1000_1.parquet",
+      "bytes": 336263,
+      "sha256": "13e6ce1f89bb1eca49667f41eb9c8d173d282fd89af549d6d7601ea7d644a7c2"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_20_500_0.parquet",
+      "bytes": 345480,
+      "sha256": "84e2a0a41bef0a762069491eff661ffa0855d2e158e976bb9f46da2250118b1f"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_20_500_1.parquet",
+      "bytes": 339320,
+      "sha256": "79e4d597034bd8ae8840e449b15ab27182602797cbeb88128a4841d672b45bd8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_30_1000_0.parquet",
+      "bytes": 234748,
+      "sha256": "dedaba63d446a5db1a48cff96f808a8bcba415f2725ccf7808639b3c14f4ec61"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_30_1000_1.parquet",
+      "bytes": 243715,
+      "sha256": "8a42155dea10a27b620226cf9c3c3a8bbdbf6ee1d30f75e78fd0d8ef6897ef67"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_30_500_0.parquet",
+      "bytes": 245158,
+      "sha256": "f2db87e2a359c31dd66eac97e89400cda9ae5d8abd76e5d2d3290520f7bea0f3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_30_500_1.parquet",
+      "bytes": 240920,
+      "sha256": "798bbbcafb3ce8e01e16c5677e926934c520b6a8e01b8aa1fb602c4cc12a566c"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_40_1000_0.parquet",
+      "bytes": 189087,
+      "sha256": "a72082d146d33bc03f144e184f7c736252c2274b9529a1b4dbbeea7ad5a00ba8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_40_1000_1.parquet",
+      "bytes": 190369,
+      "sha256": "cc8e3db1467e998bda4ba5b6887d564d0b7aa68500d8436c638f69f22713412a"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_40_500_0.parquet",
+      "bytes": 192926,
+      "sha256": "8dfed68444ba7688b0d76ca23b57652f63d3427ff514c7d3f5fdb0d324865934"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_40_500_1.parquet",
+      "bytes": 189941,
+      "sha256": "6aac9604f4539f02c43eb76372c3f1bf4494241ef404e77216e5cad3521671ad"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_50_1000_0.parquet",
+      "bytes": 174299,
+      "sha256": "44e4599c198f1532f24847fae13eec75ad1c9d311de1d32a0799ce31f842bf84"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_50_1000_1.parquet",
+      "bytes": 176174,
+      "sha256": "94486977edda9974901cadf794dfcdf4c807390d6f65877ab1d5db0b08fa80f0"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_50_500_0.parquet",
+      "bytes": 174898,
+      "sha256": "1f381dfcc6455332e723c7bfa74115eb542f975666f346610868c9e7fb91e352"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_50_500_1.parquet",
+      "bytes": 174752,
+      "sha256": "aabe913541613b313d047d7b9adf92d94cd5f5c9de1d434a0c05483d40c74965"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_60_1000_0.parquet",
+      "bytes": 144523,
+      "sha256": "0379be93b8252fac35168be0984be54227b7e589b0695fec3cfe7307f9b8c8ee"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_60_1000_1.parquet",
+      "bytes": 144421,
+      "sha256": "eef196ae13593a674e04f032778605a9dc24cd297fdb2db7250124ef979d56c0"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_60_500_0.parquet",
+      "bytes": 143374,
+      "sha256": "2687f943c63e168b5adc222ea7808c7fa37e71f653d2f8bed893112f01b0fdc8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_45_60_500_1.parquet",
+      "bytes": 135649,
+      "sha256": "6736693eeeb5d221f46917cb1da5af580f0cebb9555184e42aa65d7d1bbf8224"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_20_1000_0.parquet",
+      "bytes": 336754,
+      "sha256": "fed47596653fe2a360704daad7b6caccb40322ed19323913017d317d77db8eb7"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_20_1000_1.parquet",
+      "bytes": 333254,
+      "sha256": "7d86d65b0650a93fa30bdbfa79bcd26c446f012cd25f8cd4385be8f55cad7be3"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_20_500_0.parquet",
+      "bytes": 347275,
+      "sha256": "02657115c46906430c21fd0e5d9e29befb1b28ee5042dfae871ac44a42064671"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_20_500_1.parquet",
+      "bytes": 339494,
+      "sha256": "3cee3efc637ed5f94e3d9e377ebb179179043661733b132d2ab804569bb3a670"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_30_1000_0.parquet",
+      "bytes": 244391,
+      "sha256": "591c97c3994a03e13501d72e0f778fbcc227f976e550b948c164bfed40012cc8"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_30_1000_1.parquet",
+      "bytes": 245891,
+      "sha256": "c92ddeff3b839c3ef059c6bed2caac806a2de41094cbc76dda5234289b585fbd"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_40_1000_0.parquet",
+      "bytes": 197632,
+      "sha256": "a88ddb7031b391e8a277b9f2a4ffc6413b938848846941fc24a59a3745454bcb"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_40_1000_1.parquet",
+      "bytes": 194656,
+      "sha256": "96b6be73006b0f0450838af78de6cf82b4018f7d4f3237f1c63b4576157a3147"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_40_500_0.parquet",
+      "bytes": 197304,
+      "sha256": "e8235ca361296dda49e2b86c0bb2b7d12421ace443a67df73a02c3aa85797bba"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_40_500_1.parquet",
+      "bytes": 197682,
+      "sha256": "bd4a0af78a14a8f894e7552004a5312f024fa37fda9086e7a48221a90f6f5e0b"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_50_1000_0.parquet",
+      "bytes": 177521,
+      "sha256": "605f850a85c016fc456cb1d413bb026c9f23ec03952ca5c90d2e92702cbc2c46"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_50_1000_1.parquet",
+      "bytes": 168585,
+      "sha256": "74eada55758ce52ca707f1cc80bc64159f4ad20433cc607d3d675f49d6e4d061"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_60_1000_0.parquet",
+      "bytes": 140327,
+      "sha256": "6e89d3e140cc56d90ce30423ed8299c2159e5305cf573c6d783255f1d83ff789"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_60_1000_1.parquet",
+      "bytes": 142142,
+      "sha256": "b0436e60523458ddf0c128db6b7a9cde9c7f59f574adcdbdac16b8e778aaefbd"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_60_500_0.parquet",
+      "bytes": 139984,
+      "sha256": "e59d7ce58545fc1f4d70b0df2300a8143860d54c1306bf9c8373c91be9490638"
+    },
+    {
+      "path": "sensor_data/accel/10/10_90_60_500_1.parquet",
+      "bytes": 135107,
+      "sha256": "65b406f109c7483896645b94d093661aba9b703df05d5dca583242974bdf823e"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_20_1000_0.parquet",
+      "bytes": 311800,
+      "sha256": "5346543a69c6e76cd842aa1157f67ef35675dc0e4bcbb5007ae4b6e1d36740a5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_20_1000_1.parquet",
+      "bytes": 316300,
+      "sha256": "781667b8af736fe89fd90dca6f8345b3d9d42bc504fc1f064ed80670563056cc"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_20_500_0.parquet",
+      "bytes": 311438,
+      "sha256": "93f9c9220745f718d5fff2b49f7e2466b6a53ac48654e20e77785150e62d00f5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_20_500_1.parquet",
+      "bytes": 305512,
+      "sha256": "a1d6d7788072d1acb125f77ae57f3dcf1309b74f1156e19bdc341371d4c83c33"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_40_1000_0.parquet",
+      "bytes": 172700,
+      "sha256": "db742f9e10c69136169f89f32df132f67c74d4ad5889f8dffb4a802d41f2d133"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_40_1000_1.parquet",
+      "bytes": 172179,
+      "sha256": "eed0566327bac58327024461d855cd31f650a0c2b863eb2e39590a72c1faf919"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_40_500_0.parquet",
+      "bytes": 170934,
+      "sha256": "9fa78ac141dee601e9e98bc71c48f1b8aabb23cbfedd4dcaed5d4c4ef439b84f"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_40_500_1.parquet",
+      "bytes": 171165,
+      "sha256": "8175e1318946842ef005fc37eca1b9051f76c46bb7cceab5df090b1258bbf768"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_60_1000_0.parquet",
+      "bytes": 127667,
+      "sha256": "6ad5fbb8036b74f031a9a8edd870839a07862a3107dbcdcce8012de364a8061f"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_60_1000_1.parquet",
+      "bytes": 126554,
+      "sha256": "4d8bf89c4d33c7a9f6efeb07dfb89bc30f28136d055b5c23b250e3db23e702e1"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_60_500_0.parquet",
+      "bytes": 124050,
+      "sha256": "d3530634de8431bca078316598f902745381a8072d58ff1c9f7629ed83993999"
+    },
+    {
+      "path": "sensor_data/accel/57/57_0_60_500_1.parquet",
+      "bytes": 127980,
+      "sha256": "62c2cf1c31a2297e664e9d393cd4a420fa20adca55f88caa2813e499eeff5146"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_20_1000_0.parquet",
+      "bytes": 335152,
+      "sha256": "c700f91b1dca91327ed0607aecd9d2e3cd351d495843c001d921a9cdfef985da"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_20_1000_1.parquet",
+      "bytes": 330393,
+      "sha256": "f5ca0d5a75a08c2a4c017f260de1557a2dc8ee5c55b6693b052d11b36efd6ba1"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_20_500_0.parquet",
+      "bytes": 322130,
+      "sha256": "1734c1c7bb7c1d34128cb115da68738abefe300cda6fac25ed28b324196d02a2"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_20_500_1.parquet",
+      "bytes": 335948,
+      "sha256": "035c9ffc91cd6a9390a95454245bd61c3ae58933c4186108230ab838e9f6edc0"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_30_1000_0.parquet",
+      "bytes": 241939,
+      "sha256": "66381b51e83ffe1678960317433bc46ab5d1740d9481adc3f6e878ce026729e1"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_30_1000_1.parquet",
+      "bytes": 236025,
+      "sha256": "9f4462144ffa27c438667fe0525ae2b3059da585713f2d2c2487abf3267eb9f6"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_30_500_0.parquet",
+      "bytes": 237384,
+      "sha256": "b36e71857d70ca4af2736d2a5e6e8e3a9be62ffc526cccd2ec96d2ee8f93af2b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_30_500_1.parquet",
+      "bytes": 235764,
+      "sha256": "ed6599c2d8029b32476f1007fa4c3eeaef94489c0e7213aa26d0eef37e2cf991"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_40_1000_0.parquet",
+      "bytes": 190532,
+      "sha256": "626b26db187b8cbb808056773237b7bb8dc496586949d3887e3d73cbaaca62dd"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_40_1000_1.parquet",
+      "bytes": 191895,
+      "sha256": "0c3d03714377e4cb68da242451dca26b1f445d1b5665b31ad88e05e9856f647b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_40_500_0.parquet",
+      "bytes": 192120,
+      "sha256": "220a7f49d1e6831c5dd84bfa75063304f55eb25fceb8802c87ebe205cb3f56b8"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_40_500_1.parquet",
+      "bytes": 192015,
+      "sha256": "270272aeaa8a9e4c01a61b6b03665c416ac0407a31eba7feda44d3613439cc96"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_50_1000_0.parquet",
+      "bytes": 166250,
+      "sha256": "6d8cf10b43c492734663f2252dd25bed587e921e7abb1a86786f539be89eb123"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_50_1000_1.parquet",
+      "bytes": 166165,
+      "sha256": "c515a80098c7fea1e44046bfd95ce88d0b6dfe604381e8dfc34bde954ba05bce"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_50_500_0.parquet",
+      "bytes": 167708,
+      "sha256": "3da4465be4dee1493ab34c6b2e9d280f62dc7bbebe8864de96bb216bcca2319c"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_50_500_1.parquet",
+      "bytes": 160390,
+      "sha256": "241de36512000ed7bf9aab4e4aab0040f45804fb5a45255c8577efa9bc718f11"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_60_1000_0.parquet",
+      "bytes": 136033,
+      "sha256": "46b561d29dc6cd5738ca78b9a5518f0be3bd3560233aac8bb6fa6d1d7b3f4d92"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_60_1000_1.parquet",
+      "bytes": 135931,
+      "sha256": "372689118e920490e2269393f787bdd9fc659381d037075281aa13775861b341"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_60_500_0.parquet",
+      "bytes": 138196,
+      "sha256": "eff89e115b652c1b20f92c52a55ac1f73aacdfbcf9623e12c5aa246becb50cd8"
+    },
+    {
+      "path": "sensor_data/accel/57/57_135_60_500_1.parquet",
+      "bytes": 137229,
+      "sha256": "4fb903b5c1250cb4b6cb48006c060c9a221cb53987f90b6e362b755432c7d504"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_20_1000_0.parquet",
+      "bytes": 305732,
+      "sha256": "21e328c015437d5fbf23d3900ff2581bc7340f9ae236ea2b881a32755b6b5f59"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_20_1000_1.parquet",
+      "bytes": 313987,
+      "sha256": "d825f52f23945048c24d43ff0ab961bb4e030636b0c80c43d6fc14b18d9d8ef4"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_20_500_0.parquet",
+      "bytes": 310274,
+      "sha256": "94ed9b0bfd857052c27dcc1db7b0cd6a69dee4537aaf067c1d2413bd39c08929"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_20_500_1.parquet",
+      "bytes": 308675,
+      "sha256": "b69a2c855e1c920b243378fc4a77a8717e4128ece9533a01f0974ffb61d06a80"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_30_1000_0.parquet",
+      "bytes": 214714,
+      "sha256": "df4040f77d54efca0ae90cad06736b87fd08527a385d497eec5de3a30bcc035a"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_30_1000_1.parquet",
+      "bytes": 216428,
+      "sha256": "b0bc62d638a188486a2e435f254c350b0e93c6a201798bfddb732044c714eb3b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_30_500_0.parquet",
+      "bytes": 213992,
+      "sha256": "f4003257fd23e32371f6f9d0c5a55092047491d49c0c61b6c76a28f6c1048b34"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_30_500_1.parquet",
+      "bytes": 214834,
+      "sha256": "64ef2a505e08f2cb8ea90dea6687430a7dac296e87b8da2af5d314d39ca42e43"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_40_1000_0.parquet",
+      "bytes": 178268,
+      "sha256": "5c87d99ae8b6398901cc2a523e70656551fef907a015384aea3060c3a884baa5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_40_1000_1.parquet",
+      "bytes": 175586,
+      "sha256": "6306a61fd9205e1dd50c2c60ab3131fd61046c0174c163e004f60136f2268171"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_40_500_0.parquet",
+      "bytes": 173633,
+      "sha256": "1d1a969b0829c2fd386865920618e91913da93df134993bcadf2bd38b54489ef"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_40_500_1.parquet",
+      "bytes": 175739,
+      "sha256": "87b2479ae30f48482d697e2b95fa16930cb8ac05d358299f3b4fb39daee35811"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_50_1000_0.parquet",
+      "bytes": 153777,
+      "sha256": "dd17cb04c955f9c98b22eea225883447faed3130be3fce847ae900de2985e436"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_50_1000_1.parquet",
+      "bytes": 146447,
+      "sha256": "38db5b0f2fc25815f4d17ca5fa64dfa59bb204f14ed4ddc44c043e19e1fbfa2d"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_50_500_0.parquet",
+      "bytes": 150481,
+      "sha256": "269eff94875172dd051e31be04d6cc1a1e78609214846f482f5a7e3118bde161"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_50_500_1.parquet",
+      "bytes": 145479,
+      "sha256": "6df02b9aeb52328d23342efe4b209866b9a664d120e44f9e6152a381b7b40b44"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_60_1000_0.parquet",
+      "bytes": 117461,
+      "sha256": "d1181ce115091f0b5815988d43aca28bb21cbd68ed9132a7ce9c0b6967121680"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_60_1000_1.parquet",
+      "bytes": 120401,
+      "sha256": "fdb8388d8eb63c893540fe7af19702b668f7f9d8ba635339010a9daa3ef88533"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_60_500_0.parquet",
+      "bytes": 113675,
+      "sha256": "a00867bccd43d14df2fcfe338d429288e15e2bffbcbcfa6af180079678108b70"
+    },
+    {
+      "path": "sensor_data/accel/57/57_180_60_500_1.parquet",
+      "bytes": 116408,
+      "sha256": "d0732277fdadc067c616e26ae8f4b2ef1f60880b08b2822e0d1f98106e1c9274"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_20_1000_0.parquet",
+      "bytes": 330694,
+      "sha256": "74de8e02ea21b84b93edc8f2b540a1064f2aa28c79e9b651611d1d0ad887bc0b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_20_1000_1.parquet",
+      "bytes": 346643,
+      "sha256": "41816122702467bbd1339341c58c5210bc6536da5e6460671ed336269dfff9dd"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_20_500_0.parquet",
+      "bytes": 323891,
+      "sha256": "a3abf1cdc4a69dfb6f59d19414cc134f6323c2cb6fd8b5c30b65f9784fa4685b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_20_500_1.parquet",
+      "bytes": 324418,
+      "sha256": "039bcc866522876b5455fb4af3d66e90cccc8671644092196aeed580211ec0f8"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_30_1000_0.parquet",
+      "bytes": 235448,
+      "sha256": "a9356d5c1c157a67a1643ced8f29c8690debd34d04b7dd1c5ce691e9ecc536b5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_30_1000_1.parquet",
+      "bytes": 234847,
+      "sha256": "dab6d36d90ec31dc1773a8d0e4aee16486839af12313bea9d56484d8f908acac"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_30_500_0.parquet",
+      "bytes": 237136,
+      "sha256": "ad0da15d9878e69e14e39ce18715a462aa4a9316a715a348289cd17c919ea5bf"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_30_500_1.parquet",
+      "bytes": 235031,
+      "sha256": "0cf0ae8dc221bb8177a55125a915384113149c68be4f8078bce66846d6690578"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_40_1000_0.parquet",
+      "bytes": 184892,
+      "sha256": "23c7c51f61e8c874e0079e54b494da75c2b444b837cb52fb6be9b5d2c54068de"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_40_1000_1.parquet",
+      "bytes": 189197,
+      "sha256": "34b9c0e90097262566ceb07c1319bdc19c99f28a82001b1a2c5c7615aa704be0"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_40_500_0.parquet",
+      "bytes": 190907,
+      "sha256": "bdba506858b4904f816d0579d75f609aa5826159b7ed25964b7b88a3af1458a9"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_40_500_1.parquet",
+      "bytes": 186561,
+      "sha256": "823dd189a33237f81decda90bc4fbf56a6caaae82458140bf3bfa38216710a97"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_50_1000_0.parquet",
+      "bytes": 172431,
+      "sha256": "e9ec424fda1a428697f2b0cd23326625ffa6ac2728598afbb96e78b863ff7ee9"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_50_1000_1.parquet",
+      "bytes": 165080,
+      "sha256": "67ab7edaaec36ecce32667411479e82557e3629998c1fb7d5ea95816ef553e11"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_50_500_0.parquet",
+      "bytes": 164558,
+      "sha256": "e01de4c752a341dcc8a8d38a0f92d226573d3692186cdaa1dd6629f47ff84b7a"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_50_500_1.parquet",
+      "bytes": 171146,
+      "sha256": "8375a14efb41b36588f4e5a7a086b0bb7b1174f55b8cbfec2110d5feafe6643b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_60_1000_0.parquet",
+      "bytes": 142846,
+      "sha256": "8c646241413f8884b6babe4594718b065881eaaf2d606fc8856dd9bb3c43d2ff"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_60_1000_1.parquet",
+      "bytes": 135262,
+      "sha256": "c27327d5b9a56189889e6dccbe15ce732c745b4ffd0c8338f6d0edf0f4b5eae3"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_60_500_0.parquet",
+      "bytes": 134942,
+      "sha256": "830c8c207e42f22ae3e507031a2c763d900ddc5695508c99a4b77d9f35dfe407"
+    },
+    {
+      "path": "sensor_data/accel/57/57_225_60_500_1.parquet",
+      "bytes": 143974,
+      "sha256": "97d434cc94a924f11cd218b18560a1c803073580a12f0f5ad05c759d283074b5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_20_1000_0.parquet",
+      "bytes": 343794,
+      "sha256": "44f1c0e1e9c03b3d4d3ad016791de8ed6f4f67f5a50953caee1c7683a4b7d3d6"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_20_1000_1.parquet",
+      "bytes": 333643,
+      "sha256": "b51c06adbbc685d3bf0c3b621d28a56544e0de63554721aba1ff2b987b2408fe"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_20_500_0.parquet",
+      "bytes": 322973,
+      "sha256": "00978ea93f1e00d6481d3b5cad8b7d57683991384f0b48b2023904a0abbb7f3d"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_20_500_1.parquet",
+      "bytes": 343520,
+      "sha256": "fb7255d4bfc071e10478b3eccec672646bf48faa7eaa5d08f0bf2804f7adb1e3"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_30_1000_0.parquet",
+      "bytes": 242029,
+      "sha256": "56b4b850b7f3a5dd434444ac903adbb67606339d38b85352948a8374a43564ef"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_30_1000_1.parquet",
+      "bytes": 248183,
+      "sha256": "100fd9e121a32768d9fc84ec5af266201f10045da253e3f87067f3ee9a443bdf"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_30_500_0.parquet",
+      "bytes": 250769,
+      "sha256": "776b00aae4155673a35b367e49da485674204973e25992113cd3167314c12d51"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_30_500_1.parquet",
+      "bytes": 250676,
+      "sha256": "fe37eb66042a0f1767fe664164053d5102bf80bd417ce0798f103dc7abe6ef69"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_40_1000_0.parquet",
+      "bytes": 202390,
+      "sha256": "70697c22be2b72f7961c0dff257d4dfdb105f208384d0c0cbde49798dca73cfd"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_40_1000_1.parquet",
+      "bytes": 192744,
+      "sha256": "58ecba444524acc60ad15cd13a2439e5f76d486acff6ea3e93675975fb02d710"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_40_500_0.parquet",
+      "bytes": 194804,
+      "sha256": "94fe76add07e5519cb92df41d73ec87427d2caada6e05afc7370a9fff1a17158"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_40_500_1.parquet",
+      "bytes": 193700,
+      "sha256": "34606c99b2b2896012e24348645d974f4c8dacbeb7d90768f01c7bb3701a613c"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_50_1000_0.parquet",
+      "bytes": 165025,
+      "sha256": "89b3ceaa7d4a4b6054bcc87330e95249756e43cd8400bffaa9dd73fa12fa5942"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_50_1000_1.parquet",
+      "bytes": 173487,
+      "sha256": "ae2c4de816d789ce3f66cdc1fc4eb12bf0eab833465bc4c32b439a4c8bcb50b7"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_50_500_0.parquet",
+      "bytes": 175681,
+      "sha256": "e8dd55bfbeb4b50aa109b67a91e30f3caea5629445ad42237331eb306607bc8a"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_50_500_1.parquet",
+      "bytes": 166487,
+      "sha256": "ce13f7e06be3224c3d30932ab507f9078c64427b047408cae7ae236e9779f44b"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_60_1000_0.parquet",
+      "bytes": 134143,
+      "sha256": "752399307f5787e47fb64475f0e5a4009696173e24478bb492559a4dcbfd015a"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_60_1000_1.parquet",
+      "bytes": 136091,
+      "sha256": "fef59297302e20175d592bf5ba353da022cf63f5927e490ec57fa41488ab7159"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_60_500_0.parquet",
+      "bytes": 143820,
+      "sha256": "9c5fda2221f566a8d711b567efe99b2556f3b275606f6f4bced56657cf54a8bb"
+    },
+    {
+      "path": "sensor_data/accel/57/57_270_60_500_1.parquet",
+      "bytes": 134380,
+      "sha256": "62e7b555d3f8bcecbff3c061a11b25fdfbc863da03ad155f4935f3dc8a270f5f"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_20_1000_0.parquet",
+      "bytes": 329285,
+      "sha256": "a440dcb73c509a44ff98794059db04ef4d6b005db5aa195a3c0c0eca2831bcca"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_20_1000_1.parquet",
+      "bytes": 323418,
+      "sha256": "b883b78e52098d7ab31f4f2deba2461605970a140d68950bfd0ee18ca5a11281"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_20_500_0.parquet",
+      "bytes": 335612,
+      "sha256": "2ddf83fb65a1f87451dc7b0eff04ae1ad9f51d456f951f08f47885df9f96bb52"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_20_500_1.parquet",
+      "bytes": 324890,
+      "sha256": "3a571c37dcf6d435ede87ac4285571e0963b63ae1e34bc486272e2459cecbd22"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_30_1000_0.parquet",
+      "bytes": 235386,
+      "sha256": "d3906e2e7182701769e04e6179a4b9165c3f3c9c8a5e5721f01d5d76ed3a4705"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_30_1000_1.parquet",
+      "bytes": 234641,
+      "sha256": "eb531ea4a98f5e9773150dbe018f832bfb5b213838e2b62ebcc03b67818000ba"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_30_500_0.parquet",
+      "bytes": 233415,
+      "sha256": "826ecfe2e192852ed245ddc048c6876c2e584ba2ae756f4e997c499bd9017813"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_30_500_1.parquet",
+      "bytes": 234844,
+      "sha256": "7f06e4373381f7be3c0e9559e020676b0527096cdee346916bd0875d5c4f3e48"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_40_1000_0.parquet",
+      "bytes": 192134,
+      "sha256": "ce085033b0c69a79f590b011e7b3755af84d970fe04eeb7d02213a29f5441eb9"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_40_1000_1.parquet",
+      "bytes": 193875,
+      "sha256": "83fb103465ec312e4ab98f3c0d05c1e86befe291bf1cdf1e959a688c1f1aab0e"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_40_500_0.parquet",
+      "bytes": 193876,
+      "sha256": "e9ffef49a647daad6a12581cd5ad61f576348b1cdc8855f6b43085d2eacdd2f4"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_40_500_1.parquet",
+      "bytes": 191543,
+      "sha256": "25ec7d75ac0dcc5703ccb231b0ada20a21bd6526f7358cd133b7c30288ff9724"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_50_1000_0.parquet",
+      "bytes": 171311,
+      "sha256": "d13ea01326b498a28080e261e9e94a219dcfc14e29e255af76b8150244872031"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_50_1000_1.parquet",
+      "bytes": 170772,
+      "sha256": "1f6b222e35ca5b3c6b2e9e4547400fccf5824edb69545049bd7136ee10c99883"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_50_500_0.parquet",
+      "bytes": 172170,
+      "sha256": "12bf31a1904df1a32f5f8b14ef2fc2f11f4e5fbd3b518b3452bfba723d8023ed"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_50_500_1.parquet",
+      "bytes": 170284,
+      "sha256": "885fc91f8b30c4036f34b5a52fa4c5b8d3399ca83a09bc3e177556d8a2c3edad"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_60_1000_0.parquet",
+      "bytes": 144835,
+      "sha256": "acacd088b609b99f9526c04e90ccb6851f5c589b5d02c375660b6bc59b82052e"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_60_1000_1.parquet",
+      "bytes": 147226,
+      "sha256": "ef615c529e93e9552ebeee87c337d1071ce4589c8aa642238f86b6277b350634"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_60_500_0.parquet",
+      "bytes": 145035,
+      "sha256": "4f2133798d0167679f6dadf21911014c94a0bf913710474396d8995dc227bdb6"
+    },
+    {
+      "path": "sensor_data/accel/57/57_315_60_500_1.parquet",
+      "bytes": 144020,
+      "sha256": "3fb92b99f4fede535b6367058d0ee22e6b230804c5fe4af525bf8cf7d790989a"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_20_1000_0.parquet",
+      "bytes": 335723,
+      "sha256": "01471de8393e1ac9ad63005c94231e982a44b5a2e9c3035a391acfe4246ef420"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_20_1000_1.parquet",
+      "bytes": 331918,
+      "sha256": "df16b43a30073faff10b7db1f14b0c2fdcb9054dbf88e48717a35390e20845ef"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_20_500_0.parquet",
+      "bytes": 329355,
+      "sha256": "6c1b0b96fb19d60316346b5e6625e3651c7b651e7a42abe17b350440f74af129"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_20_500_1.parquet",
+      "bytes": 329953,
+      "sha256": "2e9abadd7e9c32ac010111fd2f51da915c1517e7d6e683f89d93466e2e9b9f7f"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_30_1000_0.parquet",
+      "bytes": 235477,
+      "sha256": "dcde1ee3d6dacbe754cf7124024e1ad1c623db57ff334723e6c41119d94e3eca"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_30_1000_1.parquet",
+      "bytes": 229813,
+      "sha256": "9e90659974e18442ba36c97844ebebd09438b4f8f292edb11f0035c377d23d13"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_30_500_0.parquet",
+      "bytes": 234799,
+      "sha256": "2ee91dcc7975cf28bc3d216ad16b5f7dc0d91814569b2791f08426f8ac7a6a91"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_30_500_1.parquet",
+      "bytes": 239670,
+      "sha256": "f78d7baff9131f8572584ad43ea03284b095df8e3b7ebb7249640f868db4c941"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_40_1000_0.parquet",
+      "bytes": 185602,
+      "sha256": "e64ed0f3d17f4f60d7619c65a4bd92a2a1fe61a2f3654b3cc686978ad49e50c2"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_40_1000_1.parquet",
+      "bytes": 186056,
+      "sha256": "07de1db7400fa7d39eff24b86788b29264734ed66ff526a49ee2b62828ca5852"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_40_500_0.parquet",
+      "bytes": 184395,
+      "sha256": "eda61591145e6f29c5cdc679179694cf3fa7b39730bb3b57ae7c06a068e76e4c"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_40_500_1.parquet",
+      "bytes": 185374,
+      "sha256": "63ca90bfc543d6d917a2f260e84a498bf344890e0a52a1f6a4bc1861f29c3b0c"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_50_1000_0.parquet",
+      "bytes": 167389,
+      "sha256": "93fbe992118e379bb79fb0ecd233ea466795a99b328c58bf409e1d2a27af9953"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_50_1000_1.parquet",
+      "bytes": 168140,
+      "sha256": "a2bc0b0246586bb0f6cef74e1b49fbdf2fd373a878e45dd02084f6880f3300ed"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_50_500_0.parquet",
+      "bytes": 170581,
+      "sha256": "db12538acc71fc1a492da39c9325b1620d567ab761224781fa570fe3115b82d2"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_50_500_1.parquet",
+      "bytes": 170993,
+      "sha256": "8529131014973a98a8898d6e828059461e2e662fece6a3be0c88d35dcdc38c17"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_60_1000_0.parquet",
+      "bytes": 136998,
+      "sha256": "1b2af3611fad4b0e843621b114fddd8f719f7af3bd83a25fc0e26920ebc1d0c0"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_60_1000_1.parquet",
+      "bytes": 143845,
+      "sha256": "c1ce311327116cdb4559dbc98f765657505dbbcb489c0f9896338a47e668e685"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_60_500_0.parquet",
+      "bytes": 144504,
+      "sha256": "3854bdacd240f472b689444edc1549a0435b0a537028b1e19301ffc1fd812086"
+    },
+    {
+      "path": "sensor_data/accel/57/57_45_60_500_1.parquet",
+      "bytes": 138273,
+      "sha256": "4412eb633812805e93c9616fce771c36725d9a963ad38facb31d63c3575db10c"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_20_1000_0.parquet",
+      "bytes": 333481,
+      "sha256": "6fde57c97d9addd67318212555bef5fe0c598a698ce29876ceef0a5543cea182"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_20_1000_1.parquet",
+      "bytes": 341811,
+      "sha256": "154bf688a18324c4f642b23747b6fb44b3dbebff37b803e20150be667db7bd69"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_20_500_0.parquet",
+      "bytes": 335232,
+      "sha256": "be8f0382bcd5649dec3700b6bcd7b56e5c21ba45f3d4355a36c77464eaa988e5"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_20_500_1.parquet",
+      "bytes": 343092,
+      "sha256": "874864d56b141e899072a126433968799f8ae1186fede07a3d223f635b8a0924"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_30_1000_0.parquet",
+      "bytes": 248698,
+      "sha256": "7db924bab5df1a87a82b5861ad94bffe8474c97c447986ce0569da087ae31822"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_30_1000_1.parquet",
+      "bytes": 248581,
+      "sha256": "298e18b1a340133fd5bf0ca320141cc977940a19a8767841baa6c557b8018658"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_40_1000_0.parquet",
+      "bytes": 195064,
+      "sha256": "69b59b714bab44543f8c97267923aaa9fe0c340eea465dbdbe3f6ffcb17e2211"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_40_1000_1.parquet",
+      "bytes": 195351,
+      "sha256": "a994e65f87e62382390b5167fc663d16e6d3163c96fc01ae08bb84c3f7d568bb"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_40_500_0.parquet",
+      "bytes": 196610,
+      "sha256": "12c784f985cf8e0213cf6c440e2b189fa869d0da0c1970ad986bc72efa5f5149"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_40_500_1.parquet",
+      "bytes": 197336,
+      "sha256": "503d98029645f7ccaa603b5248b8a8acaf9f2e76d78f218f1f2cb863a9472f88"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_50_1000_0.parquet",
+      "bytes": 170910,
+      "sha256": "e5f563fb5cc32bc4599b7887a830528ab9f91a3bcb999b6ac71b9688a2899b88"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_50_1000_1.parquet",
+      "bytes": 170172,
+      "sha256": "c872befd17c882adf45fb90a62686bbc0f5c13aa65dd7eaad6b2fa1938ad2307"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_60_1000_0.parquet",
+      "bytes": 145053,
+      "sha256": "91d807f0b13b1c84928af3293de7d7f70238299b408ce2d841b1562f6bce6903"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_60_1000_1.parquet",
+      "bytes": 152574,
+      "sha256": "e787ca30d10ff29d5dde8258246a22fe06c982250bc336a1f551ac32cdd7f3b6"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_60_500_0.parquet",
+      "bytes": 138903,
+      "sha256": "a9f58ae288fb1c101544828c970df958c9132d0195a64b1a4baf38f72b64f1ec"
+    },
+    {
+      "path": "sensor_data/accel/57/57_90_60_500_1.parquet",
+      "bytes": 147039,
+      "sha256": "98650dd83a007e21909e298539f1edf832a72c50e4ce2b843528fa0a3348135d"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_20_1000_0.parquet",
+      "bytes": 204116,
+      "sha256": "286e5dc3977e2121bb5b5b881220c917a69ef34edc2999c60f96a2cc28b61b6b"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_20_1000_1.parquet",
+      "bytes": 208081,
+      "sha256": "d7ef919327c442249be78f919366fae9acad7ced69b0a956334a8ac77fffb574"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_20_500_0.parquet",
+      "bytes": 205998,
+      "sha256": "be8084a0db8d099d80d4c79c3593e349cfe5ac858386520595a8d072b2938377"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_20_500_1.parquet",
+      "bytes": 206355,
+      "sha256": "d9d6452bf0a99ae37d6beaaf694f7cf5afbcbbf38c7f5c3d5c392a90e46d61c8"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_40_1000_0.parquet",
+      "bytes": 107719,
+      "sha256": "49bd3b58800571a7cecccb95033c4334410bc4a1c021819c43bdc5819a70e765"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_40_1000_1.parquet",
+      "bytes": 109292,
+      "sha256": "4bf6e4bf90418c23e505899830276cefa80e876e66855c8900bf30b2a973a7a2"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_40_500_0.parquet",
+      "bytes": 108229,
+      "sha256": "d8a36a96d83cc30ce6ecf5aec9e706949533257105da2008a3fec7aeef4e3317"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_40_500_1.parquet",
+      "bytes": 109072,
+      "sha256": "fdd29643b37c61a76093af414df9f3eb404114c0c87c3d868e33b95360c546ca"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_60_1000_0.parquet",
+      "bytes": 74747,
+      "sha256": "74f547f62da6c40b20d7d1451de16a1fd9db71559b0f78ae4e70de3526fbf99f"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_60_1000_1.parquet",
+      "bytes": 79535,
+      "sha256": "85990bcb48b8e12996faeb7b1d8d19e1e4dde3ebb61f5cca1b837c6cd2cc998c"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_60_500_0.parquet",
+      "bytes": 73836,
+      "sha256": "03be2bb261645f06d1d593077aa5d1a69cb3374c90b023f00558d41a1f3b142a"
+    },
+    {
+      "path": "sensor_data/force/10/10_0_60_500_1.parquet",
+      "bytes": 79672,
+      "sha256": "04d2096134a2c21fc1a89e523766f31ec4d69c302a0f7946c17bd22d6a7f38df"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_20_1000_0.parquet",
+      "bytes": 203248,
+      "sha256": "694e28a970d9b5ceb0ef03df3811932eb487d86a6ced188860e1e5bc73c01789"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_20_1000_1.parquet",
+      "bytes": 201402,
+      "sha256": "2bb83a4c719d54c7994cf887b850fc6cedf93bab20852faf7ccb6c9f440a8b48"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_20_500_0.parquet",
+      "bytes": 207409,
+      "sha256": "9213ebb786fd4c7d388fa07693f97239ba359c93df5ab1073192325b2e409866"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_20_500_1.parquet",
+      "bytes": 205851,
+      "sha256": "a078e6ccb4c4da472af54e04ab618b1a650107b088d5e5f9dd8cf481db939054"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_30_1000_0.parquet",
+      "bytes": 141938,
+      "sha256": "1b754d4ac0235fea27ea3dde01d8838749b0aaa85b5b8da7d04fb113a4842fea"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_30_1000_1.parquet",
+      "bytes": 142021,
+      "sha256": "ee408336e1e6f744951e2ab206453568d66be4cb3c7def7fcd21d1a8951b748a"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_30_500_0.parquet",
+      "bytes": 135746,
+      "sha256": "fb5498b2fabe19db4e125395fa02759e8482bae39545c9cdd153c81cff0aa7b3"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_30_500_1.parquet",
+      "bytes": 137951,
+      "sha256": "e690e82e456c0160fda7fdb44a82d39c6338fb79bae628364146c1da51142951"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_40_1000_0.parquet",
+      "bytes": 108944,
+      "sha256": "7c00e5cd71b405ded51c85520cba5a7159ab9eca892ae33145230ae4639a5f7e"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_40_1000_1.parquet",
+      "bytes": 108052,
+      "sha256": "58962cd5a049ddbe49ba3bfdcd603e490725ad589f009125537c2995eb93b5d3"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_40_500_0.parquet",
+      "bytes": 107894,
+      "sha256": "25b4f5ab0f14d285e7a5a17eacce8a6c8fb6241805304d797eebc3771ec2161e"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_40_500_1.parquet",
+      "bytes": 108889,
+      "sha256": "1bc579051fe79e9f49df5717d831a615d3fd4b5fd57795fc7d21ad3b7c76de67"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_50_1000_0.parquet",
+      "bytes": 92081,
+      "sha256": "bba6a608e49e6e2112e04c90c6ef71ffe6df048cbbb25f995cea40b1b98e29af"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_50_1000_1.parquet",
+      "bytes": 96181,
+      "sha256": "1c19a79e41297aa363324f41ef9e74c13cfa7cd061acb5f0109d4bf507f37d3c"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_50_500_0.parquet",
+      "bytes": 92505,
+      "sha256": "99f4aa72c756ed82fd007c307c1489ce9678b252cbd832ab8c78532b4a55a8a8"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_50_500_1.parquet",
+      "bytes": 91936,
+      "sha256": "084171042a28cad51d4ef1b437e88342aed3015cd7f2f8af636ef9f5e54d3cc1"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_60_1000_0.parquet",
+      "bytes": 78388,
+      "sha256": "3ec83de77d63f62d4a7dbc2c2c6e39a22caaa8c50c790a6bd7120a3be3b0d30f"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_60_1000_1.parquet",
+      "bytes": 79810,
+      "sha256": "5053eab93fcebc38f3124776c6cd126d80e038e97caf054bac14aa142d887206"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_60_500_0.parquet",
+      "bytes": 73928,
+      "sha256": "112a334507f4747e2157bf45679180b524cba59b1712edc0497ed8dee76aacc6"
+    },
+    {
+      "path": "sensor_data/force/10/10_135_60_500_1.parquet",
+      "bytes": 78013,
+      "sha256": "308c0e1904e76a3e41fce9bee8259fcc559e9fa61277e936fa78e8fe337e16e9"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_20_1000_0.parquet",
+      "bytes": 208966,
+      "sha256": "09be92bfb3be417fbe6a5cead1a6133418f7ef2fe8b20c160c012443bd623b47"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_20_1000_1.parquet",
+      "bytes": 206275,
+      "sha256": "976f2a192b4f9ea40f24d7f1a1259d8a7f79eb14642e0fa3da55bbc771301453"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_20_500_0.parquet",
+      "bytes": 208698,
+      "sha256": "61f6673994faf7f10b2c1c5fc8a5fed17614a8210859d1fa6ff0cd2e3c14d433"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_20_500_1.parquet",
+      "bytes": 209563,
+      "sha256": "95f4c86e39c6452f6c0117c8cbd8446bf3a1a2879ff674a8f0a7e704745a2a60"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_30_1000_0.parquet",
+      "bytes": 140795,
+      "sha256": "22a7facb8bde6ad5817e1fad71172ca3661452f785711089aac79cb54e13c6b9"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_30_1000_1.parquet",
+      "bytes": 140667,
+      "sha256": "add6a7dce4d4983cb15ab6abc1dd143fd8222fbaf9ef58431c06a37935ba1a3e"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_30_500_0.parquet",
+      "bytes": 142136,
+      "sha256": "4d994f5c0528ca90c47651e8d97b73e12a04fee07ac567ef0044c27599d0bdec"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_30_500_1.parquet",
+      "bytes": 142135,
+      "sha256": "ca287fddc43ca25237773d8f16f23c686fe6c823878ed7c52b12f0e972b4108f"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_40_1000_0.parquet",
+      "bytes": 112410,
+      "sha256": "f88a7211ff056dcf1cf0436eeaf3183e98d2e5629698bbfd492fa25b5dddcb72"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_40_1000_1.parquet",
+      "bytes": 111973,
+      "sha256": "652c66e4483c33cb6ac48e819b3bcb3859bba76f8af57c8f828b6dc0e5aada82"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_40_500_0.parquet",
+      "bytes": 108929,
+      "sha256": "cc4a7d2014bd2dbeadabdc6921de2479ca1bbd221e9c0f9fa3f78e008157d491"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_40_500_1.parquet",
+      "bytes": 113094,
+      "sha256": "f94207966251b9bd46b6849616cbc25c7dfc2c711472bac9b3ba5a3ee770f637"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_50_1000_0.parquet",
+      "bytes": 96170,
+      "sha256": "72d2f3901be11b20bb04d94d27a62f8b54e6bd0024a6d113084ae2ea05f29057"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_50_1000_1.parquet",
+      "bytes": 90911,
+      "sha256": "affcd76052b9a208063937cf7eaa501d3057a91992ddce2db10c323540e72703"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_50_500_0.parquet",
+      "bytes": 92054,
+      "sha256": "7e46d9b2b9b63bbb6e3cf357f506974bcad8b812d8e7929cd63bc9841f73422e"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_50_500_1.parquet",
+      "bytes": 91565,
+      "sha256": "a7770533a6aefd5d5a2e0c01423a4f344cd7c3aec528f76742ecf7d27c98a46e"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_60_1000_0.parquet",
+      "bytes": 77578,
+      "sha256": "30f1ed9254076eff064fac676cf9b0cd0044df8974bbe38bc1f7dde3d4bdbb0b"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_60_1000_1.parquet",
+      "bytes": 78347,
+      "sha256": "4ffe8cd30ee652ef834b649dee871f69eba6349a39a03a16b67b92e2dcf31837"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_60_500_0.parquet",
+      "bytes": 78029,
+      "sha256": "8972cd7017e2d3fe8e030639ff0827c2aa2bf763ec17f5e399589b32cc183da0"
+    },
+    {
+      "path": "sensor_data/force/10/10_180_60_500_1.parquet",
+      "bytes": 79715,
+      "sha256": "fdc647c42f3c4996b5283a65b3c9e594e1182891dca0cd7abc761ef90340d1b4"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_20_1000_0.parquet",
+      "bytes": 201441,
+      "sha256": "b13e633b868505ed7ef5e6d54edbb6c7922a3f41a4d4cf7517c8f10a05837dbc"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_20_1000_1.parquet",
+      "bytes": 205133,
+      "sha256": "5dbab8c489306f12737b696875ef6ce94f40d89c3d8b561655f66dc7ab739105"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_20_500_0.parquet",
+      "bytes": 208436,
+      "sha256": "9cf073d32c235e3b812f225f057eb49366ce83ef941f1fd1595aed07a790ae1e"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_20_500_1.parquet",
+      "bytes": 210235,
+      "sha256": "1f913da9a6c6e94b75fd1a03dd5e847e66b841c8c259ad404da41fb308232dea"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_30_1000_0.parquet",
+      "bytes": 147019,
+      "sha256": "700db144b3295d4edd76ce64852f05afe3c82d56712568347e4779933f05fae0"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_30_1000_1.parquet",
+      "bytes": 141883,
+      "sha256": "03d67d1d0288d3cfea65bcd4745f8c208aa00c9fa615b72c570c9c96170f3122"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_30_500_0.parquet",
+      "bytes": 141604,
+      "sha256": "1563e423255a1a303888e93387d9a4c81f50c07d50cfa9cf0a29fee60d93f631"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_30_500_1.parquet",
+      "bytes": 141113,
+      "sha256": "baa14660a355d8be620ca86042b2dc27c979eeb7457ce076c461f0f948ca0668"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_40_1000_0.parquet",
+      "bytes": 108709,
+      "sha256": "ecd5b8eaab0ee0ee008abfbbabdff668db8cd0eb7460fd86a0e5cf0bace33bce"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_40_1000_1.parquet",
+      "bytes": 107990,
+      "sha256": "b29ff33ff767f3f3ccd940f2be3fd010426e271b99dd15b634c97c8e21196da6"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_40_500_0.parquet",
+      "bytes": 109416,
+      "sha256": "95fe6234aff80531032a5cef4d962810f50810414b21a88bb4317c37aa9fa139"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_40_500_1.parquet",
+      "bytes": 109266,
+      "sha256": "741082632dffdb9fd4003f2b65a150802d5af0203601affd24bb717a0006be91"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_50_1000_0.parquet",
+      "bytes": 92037,
+      "sha256": "0f2b201405877a244d067a5a60a50e974a6e77967b7ee0de45970949ffb778e4"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_50_1000_1.parquet",
+      "bytes": 92447,
+      "sha256": "cedc1fb22f3e7b152af1011039926e0913778abaa1d9ff15171e2328465ad53d"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_50_500_0.parquet",
+      "bytes": 93242,
+      "sha256": "003b8ff87410421b09434bd43b616094ee71d93994a09163bcb8909a6100cbba"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_50_500_1.parquet",
+      "bytes": 92290,
+      "sha256": "b7044ff4ffa89ce72fb5f3717e64adf8268ef5d15459242113651a7c8dbfa0c3"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_60_1000_0.parquet",
+      "bytes": 73426,
+      "sha256": "64ea1e372da89c77c61977d49ea1d19810848dfe9b9d09b8de48bdf34076b16f"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_60_1000_1.parquet",
+      "bytes": 73262,
+      "sha256": "86e398c9bebd9e3d739300ba8d003e2e9794574f66f3c6fda7210bdcb2325aef"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_60_500_0.parquet",
+      "bytes": 73255,
+      "sha256": "400b52f4f28fe982e8d509faa61179e46ef5e10c4e94bae41754f00c5597ecd3"
+    },
+    {
+      "path": "sensor_data/force/10/10_225_60_500_1.parquet",
+      "bytes": 78402,
+      "sha256": "a5bcc6237fd5cc777d0061101b333103922a13d2de352e95a864ded5d4252834"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_20_1000_0.parquet",
+      "bytes": 204892,
+      "sha256": "dd30c1e4f42725e3cbbe06ec56907a71d94c8ee9a394c5e48bb24ff911b66311"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_20_1000_1.parquet",
+      "bytes": 208366,
+      "sha256": "69d2645237c98d743290127b0a802a8cea9afa5056ccb7fd9f7247f02a8ebd30"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_20_500_0.parquet",
+      "bytes": 204310,
+      "sha256": "59bb957ce60e7a0ed84e127e5c384a502dd4446fb64df5d40ad7ba51b1f64528"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_20_500_1.parquet",
+      "bytes": 210429,
+      "sha256": "80d8cf2e77c8b6747a503bbbb498610d06db95708c2a553685121656e7c566ef"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_30_1000_0.parquet",
+      "bytes": 141548,
+      "sha256": "b56b4105c40ae190d08d9a0fc695328c87537403ea1573478cef07b0dcbb05df"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_30_1000_1.parquet",
+      "bytes": 139942,
+      "sha256": "64dc62f2976a6250d858faf9073c2dc9ebcbec751c2095e31cc520090db1e407"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_30_500_0.parquet",
+      "bytes": 141924,
+      "sha256": "ef0488e7c2b3ea6360fcf9b104da4613387d6a261de4c32f5fb52a84f6545fd9"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_30_500_1.parquet",
+      "bytes": 140968,
+      "sha256": "ef1e2a8103b86234c679909ee2ad41b41a897560aff70a87b46ab8065643cc8c"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_40_1000_0.parquet",
+      "bytes": 107936,
+      "sha256": "9117a19799f8fb11ad6ecb8779796f08371824b6d08e5f6a9ed26c5416f0c30a"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_40_1000_1.parquet",
+      "bytes": 112348,
+      "sha256": "abf986aa6246a6312384a5e666e5c4ccbac8219922fedb8c5157f4ff7dcdaaee"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_40_500_0.parquet",
+      "bytes": 108934,
+      "sha256": "9f62e4f9a0092a4cd83969a0f5b82d7575a35fb9422bbf143da876dabf5d04ec"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_40_500_1.parquet",
+      "bytes": 109082,
+      "sha256": "15d45e62398be5bfef0c77821a5c4473eb2db861a43dd9601ff29b02c15b2041"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_50_1000_0.parquet",
+      "bytes": 92037,
+      "sha256": "495f206f4554c9fddeec1e4f0787252132c71685b59157a66624468d4bc8302f"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_50_1000_1.parquet",
+      "bytes": 87002,
+      "sha256": "71e2d249f4d11f65c5807aabeb9bbeb8d319e0bb08e81cdb7d14584edba3966e"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_50_500_0.parquet",
+      "bytes": 88022,
+      "sha256": "ab4c38ef8af92bf67549ad2ee681fa02d63800758a72492cfbd9392ec54be965"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_50_500_1.parquet",
+      "bytes": 87433,
+      "sha256": "c8fcecdb12292d988bb3acc57d425a961437e899730744f57964ee8c04be2bcf"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_60_1000_0.parquet",
+      "bytes": 79605,
+      "sha256": "734bd21ed9819251aff52ca741679da9db4b94c089b001a6e5c7548bfe378189"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_60_1000_1.parquet",
+      "bytes": 74430,
+      "sha256": "b28eb47b5f94e07545e5cbe06d1156b6551a59fb3568bef129530124866ef8f1"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_60_500_0.parquet",
+      "bytes": 77860,
+      "sha256": "a08e6764259c29c82dfce422572aebefa5473080ab3a773d08fe4b52edda26f1"
+    },
+    {
+      "path": "sensor_data/force/10/10_270_60_500_1.parquet",
+      "bytes": 80167,
+      "sha256": "afa97a4e80613f1d3d621652e8c9f8e45d62668fe08474cdab871e7e29b379fb"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_20_1000_0.parquet",
+      "bytes": 199128,
+      "sha256": "b400320c1fb6d60ebd1279128606fe8ab38c6061de4a342e2d2181daba974f13"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_20_1000_1.parquet",
+      "bytes": 204727,
+      "sha256": "d071009005f9a93bb8cd328adab7e1e1f829eb6a181b028b17508aae069a0b0d"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_20_500_0.parquet",
+      "bytes": 207695,
+      "sha256": "efd0cc38026df73b29a9f3da008a8cd9efaccd3b9fcb5fb2dc8740352dd94686"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_20_500_1.parquet",
+      "bytes": 200454,
+      "sha256": "ef047aa9fb4ee19b81124dc82208a3b72ea028c73f71d966132072623ebc5114"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_30_1000_0.parquet",
+      "bytes": 140038,
+      "sha256": "a7662341da38e5ad41e5ce27696cfbe1732d967c92c77ddfea67fce5970b7bd6"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_30_1000_1.parquet",
+      "bytes": 141318,
+      "sha256": "1f46bc02cca0d8f412a55551ec1d469a5a893976e78ca4fdeada1204e1c9faba"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_30_500_0.parquet",
+      "bytes": 140915,
+      "sha256": "a70de43023e248e4a5df0df96d06a45c5a80a1bce4d90c11fef909249832f18b"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_30_500_1.parquet",
+      "bytes": 140342,
+      "sha256": "8955ac2052f2329f340ba57885ae9192e2836362f73e37b21ac2e24bc3fc0b2c"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_40_1000_0.parquet",
+      "bytes": 111829,
+      "sha256": "ffb8b562a1a9dcc7801f493f0b9097e66e385da878750f5b04bc2722de2d7e59"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_40_1000_1.parquet",
+      "bytes": 108107,
+      "sha256": "adbc6d55e6555cfabd25e2cb03a5005aa7abf6106adc05cd86d1db2173a9f401"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_40_500_0.parquet",
+      "bytes": 108382,
+      "sha256": "866e73b01784ff2b1a0ac5dcc1ea43a82dda7c8a7b818f9bc321a83869019d04"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_40_500_1.parquet",
+      "bytes": 112275,
+      "sha256": "4c4a46ecce325d25d7077d9aea1b96a1ee092abfb9a47889e192fb2cad5af562"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_50_1000_0.parquet",
+      "bytes": 92806,
+      "sha256": "f749e22dabd3e636725b73f99e633d901e2bc2099ad9f8f0e17fc6f5616078b4"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_50_1000_1.parquet",
+      "bytes": 91001,
+      "sha256": "3e6621799a426b213587a48a46d6f5f8212e981eb379f6647a6e89a031bf9dc6"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_50_500_0.parquet",
+      "bytes": 96333,
+      "sha256": "07e52c015cd7bd5a362720c827254e402f7994dd840dff61062ee2f29b2cc8e6"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_50_500_1.parquet",
+      "bytes": 91864,
+      "sha256": "c711cd17d7b0343816411448013ce8fb63456c2ce0b4d51df67b5116576877a0"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_60_1000_0.parquet",
+      "bytes": 73500,
+      "sha256": "7a548b2576df633eb8c4ca6fb8c5371a5dd00627255bcb4392fc86178cd8eecd"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_60_1000_1.parquet",
+      "bytes": 73288,
+      "sha256": "1ca649cc7eba6179f8e6922fc09e2baed953cfa0192004b47b74cd47bb159ca7"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_60_500_0.parquet",
+      "bytes": 77444,
+      "sha256": "fbfe72ade03221508401018a923ee9fec6b6d8938c9f49c9d9f2cccd7d7661cd"
+    },
+    {
+      "path": "sensor_data/force/10/10_315_60_500_1.parquet",
+      "bytes": 74354,
+      "sha256": "e7337d0393992e291e2704337a4c57a71ebfadd29a0cc40b79de6d4dd204abaf"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_20_1000_0.parquet",
+      "bytes": 205524,
+      "sha256": "8d808aab39c712782f247d1d3b5f61b57d79d93f8358e625389cb6f548e63183"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_20_1000_1.parquet",
+      "bytes": 199676,
+      "sha256": "2107431bf0033f6918f691d2fb51ab2d273c801c40777c760c5421d063deac6d"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_20_500_0.parquet",
+      "bytes": 204629,
+      "sha256": "16761b67120dd226b8f9d2d1ce055e648be5575adf647e35d24bb9c20aef6ebf"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_20_500_1.parquet",
+      "bytes": 205352,
+      "sha256": "5224ef337da181f42ae9d8e523eb2981e0f8889893cba704e06cbd2c31a8bc5e"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_30_1000_0.parquet",
+      "bytes": 134882,
+      "sha256": "4b5dec8c17958df7a3777f653c0727cb579ffb009177c2c4832f22f86680e61c"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_30_1000_1.parquet",
+      "bytes": 139968,
+      "sha256": "e2da94cd66d4863fec4047ee68f84447e8a9fa6efc9614cf408df3a554a8d696"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_30_500_0.parquet",
+      "bytes": 142037,
+      "sha256": "382148a5210de6e72af6ccc7c811dbd8e6616f501c0e09b26b9736b86bebf506"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_30_500_1.parquet",
+      "bytes": 141524,
+      "sha256": "07428d013fed36e5e97110313fb309a860216c0edaad2647c6f37d819b200b5b"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_40_1000_0.parquet",
+      "bytes": 107384,
+      "sha256": "50f7424aab2991d1d46b2101880cf95d047a1f19fff0733e3e72394d201b688e"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_40_1000_1.parquet",
+      "bytes": 108353,
+      "sha256": "2c05090cef9e728cf0dabfc7e39d35f7126d66f930c89aced04e8e65a7605a58"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_40_500_0.parquet",
+      "bytes": 110101,
+      "sha256": "b1b589398b992ee169c1094edc35e6005884374a3bf53bc7e1d8d141b789c478"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_40_500_1.parquet",
+      "bytes": 108499,
+      "sha256": "7c16e4f789d0ec6440e55b194d4059379dbec28a47892e93c03eaf340fcc0f05"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_50_1000_0.parquet",
+      "bytes": 96107,
+      "sha256": "7c6b61906880a6c60687554684912cb2aa4a841d7bd7721ddf8299539b06da29"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_50_1000_1.parquet",
+      "bytes": 96238,
+      "sha256": "6af848dfb667af504d572b4bad6b0047d0b612ef68c4ad09465f1d4db822b935"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_50_500_0.parquet",
+      "bytes": 96398,
+      "sha256": "6a4c8d5dcfb27364422ca83923a45c6962814608ceba80ff5e1aa02044bf615a"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_50_500_1.parquet",
+      "bytes": 96386,
+      "sha256": "a56ecc92c82daa5558b9c870b1102520dacbac3e5342cd0e4f5668e89bc5a686"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_60_1000_0.parquet",
+      "bytes": 77251,
+      "sha256": "c1794711d1284854b320799a5703df8b37932d11a74688c57ceb62f92f2b7937"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_60_1000_1.parquet",
+      "bytes": 78338,
+      "sha256": "ebad9e40aae5c29768ff4e26ac359e3fa2ffea3c8c322f5e7318ffc6b1cd0f4a"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_60_500_0.parquet",
+      "bytes": 78425,
+      "sha256": "3ab54214f1da7de2f48524ee23876c79d77d0c2e8a2c5c8dd6b280bb6d820c41"
+    },
+    {
+      "path": "sensor_data/force/10/10_45_60_500_1.parquet",
+      "bytes": 73718,
+      "sha256": "e59016e5195a6723563d05ed1ebcebca6c9f6cd677e21f52a3b243b6c06d0345"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_20_1000_0.parquet",
+      "bytes": 207871,
+      "sha256": "db0a98e539bd82a6c228938a1ec57e54b69c9a409674c23632cd9df6524a4ae8"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_20_1000_1.parquet",
+      "bytes": 204765,
+      "sha256": "c56708062375b9e57c286d5b16c070366fc2b5945308da7e2cae0f935f45508f"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_20_500_0.parquet",
+      "bytes": 210285,
+      "sha256": "6227ea0af6129633470ca722de6e82c618c1569121261e310df386def4cae505"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_20_500_1.parquet",
+      "bytes": 206011,
+      "sha256": "472c591675b321a838b1e3516b4f7c26c4f118ca02ddfd2a9a3234f98ed40c62"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_30_1000_0.parquet",
+      "bytes": 140681,
+      "sha256": "2546d46353b55b24a9ccf836539452db43062c6fe999bdd89711f7ab904c515b"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_30_1000_1.parquet",
+      "bytes": 141183,
+      "sha256": "2589239247cb10a56df394d88dabffd0668e2f2ae53222435db9d98a767c8f9a"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_40_1000_0.parquet",
+      "bytes": 108859,
+      "sha256": "a4115b2cf95dd5c1daeebd9be3507c840c1c7ed89dd4f74227eec08c1249c531"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_40_1000_1.parquet",
+      "bytes": 107723,
+      "sha256": "5fba7918e9d642f202114340a648dba971ab649cf7d7011e18bad75d5ca2c2ff"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_40_500_0.parquet",
+      "bytes": 107849,
+      "sha256": "793db1838cfd4cbc1794daf104b59610ab8a69c4e265dbd0a7b4cab26ee7c6fd"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_40_500_1.parquet",
+      "bytes": 109089,
+      "sha256": "e991468f4ae2cbd1850f118d8fdc5d8eca62bdf73c63f2d0c772e899c67e8582"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_50_1000_0.parquet",
+      "bytes": 95495,
+      "sha256": "8e8a7e644ec6b187d1a51c841697f2ef7ca8a205eebb5ed25d496267acfdbe30"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_50_1000_1.parquet",
+      "bytes": 91895,
+      "sha256": "fe6462f4ad67617aee90f012b618b90231d567afbfaa8b0aec79a33e6b28b91a"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_60_1000_0.parquet",
+      "bytes": 74005,
+      "sha256": "c609ce567d66d27af6ef6728993b661740236755cf482aee0520d031cb084f36"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_60_1000_1.parquet",
+      "bytes": 77112,
+      "sha256": "bda0032e0f72ced0a2e64c25d4e2e15ff35be78105b7cd23effa90dc599cb8e5"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_60_500_0.parquet",
+      "bytes": 73964,
+      "sha256": "fddaeab3c09c4de04c977fa541d9d0e11bb4e594374d9f245c5bc987b180aac0"
+    },
+    {
+      "path": "sensor_data/force/10/10_90_60_500_1.parquet",
+      "bytes": 73924,
+      "sha256": "7569f4446689f90f440bd90daafb787d15635595e2003735ccfb5cd0fdfefee1"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_20_1000_0.parquet",
+      "bytes": 210180,
+      "sha256": "498ce6f982fd67f4d03e86de57eb9b7d18ad1cc84a85f5d0ef43a585ec35ff3f"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_20_1000_1.parquet",
+      "bytes": 205894,
+      "sha256": "d123123696c64ff73a57ef69df8524e5211da90dd7805bfa357be29c7c6bf07d"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_20_500_0.parquet",
+      "bytes": 210127,
+      "sha256": "e9c1bb476c7ca808d82eaeebfd4f16b69696f8a2babbe05144cdccaf49511466"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_20_500_1.parquet",
+      "bytes": 205178,
+      "sha256": "3faefa8122a8af673aa84532488e90d0f72df6f4435fa3003146eaf99535ed6b"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_40_1000_0.parquet",
+      "bytes": 109736,
+      "sha256": "29b16af3eac1910b1dc1f37f580b42984c4b65e69c96c430d5c1a2b0bd81e90e"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_40_1000_1.parquet",
+      "bytes": 109237,
+      "sha256": "0882c227e2d95cd23894a0fe31f98ea6bc31b6393b916059ababb12a77be95ef"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_40_500_0.parquet",
+      "bytes": 108905,
+      "sha256": "285b5faae1574172467ee9dc68fde1cd7a19025793d965cb3452c92acd9878a6"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_40_500_1.parquet",
+      "bytes": 108945,
+      "sha256": "5f380d0668c0eecf9d8da57cbc16655a117965527fa337fb470cd61333b57dfa"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_60_1000_0.parquet",
+      "bytes": 80047,
+      "sha256": "bcb0a238c784b4a9c6210cc207e28ddb57f534affc84dcba87a37dba3629d944"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_60_1000_1.parquet",
+      "bytes": 79619,
+      "sha256": "c65f4f77dc7ac830a21195282bc530b931f924f8ed08a977127b3d6363e0fb00"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_60_500_0.parquet",
+      "bytes": 80192,
+      "sha256": "6df6befe94d47c66f43b7694c88959d66041723b1bf645b6031aacf237531861"
+    },
+    {
+      "path": "sensor_data/force/57/57_0_60_500_1.parquet",
+      "bytes": 80524,
+      "sha256": "4ca02719149d8f909612731aba5a702745f9b945e0a030b81b2c6a19504ca7c6"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_20_1000_0.parquet",
+      "bytes": 209997,
+      "sha256": "80ef0ee2ec7042702faef04d5bce6a727fc5238da3ac2fa47d46ffb9122f419d"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_20_1000_1.parquet",
+      "bytes": 206070,
+      "sha256": "04c9981f4469e2d6de212df323adedd06da676aba181ff0d411dbb9474986837"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_20_500_0.parquet",
+      "bytes": 200744,
+      "sha256": "b7c0b5976cdaee87c14187bec0a8b26293992ab3c54a6211d4f13a483da1ec82"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_20_500_1.parquet",
+      "bytes": 209855,
+      "sha256": "f5acfe97cd9cd9ecaccb32556adb9d4aa1ae01089c69aefccbfc97a9ff107ace"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_30_1000_0.parquet",
+      "bytes": 142098,
+      "sha256": "58e1166eb86e3565f6f7f582a33c4b1c93a2269682c3880a4bbd5b77196bdc34"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_30_1000_1.parquet",
+      "bytes": 141989,
+      "sha256": "78ed68608b2e3cc836ed0b343877655490ab2e8fcff5a02d2e49deb49df57c96"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_30_500_0.parquet",
+      "bytes": 142029,
+      "sha256": "eacd0ce2fe942d922002cf45f7565164cd5d90d3ade1944accb6fa14c035c351"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_30_500_1.parquet",
+      "bytes": 141349,
+      "sha256": "0cafecb156e28fa602ad574594d8aee2a5d1bf291998a492e6fcab56431c5a81"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_40_1000_0.parquet",
+      "bytes": 108538,
+      "sha256": "e41ca867fdc3ad1c3855b9bb4681be4ab0c361a5b49b0e79575a7a9bdf181a62"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_40_1000_1.parquet",
+      "bytes": 109383,
+      "sha256": "6c8359e99ae01f8c453813feca3d9d8e0081dabf37fa0190e8a7a50f14bcf95d"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_40_500_0.parquet",
+      "bytes": 109191,
+      "sha256": "ee46f234d9b743e0bc0c4eacfceb80d85010aa1036a8136d71f21b47339a9049"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_40_500_1.parquet",
+      "bytes": 109141,
+      "sha256": "2f4453c8fec63c16a6e410d96ec7d8e9b9ed68ada365cb82d05726ec4b975889"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_50_1000_0.parquet",
+      "bytes": 92501,
+      "sha256": "1e64c03fa707c0abbbfecbcb6144c94a16e78af30f2e04dce3f5487dcb5c086b"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_50_1000_1.parquet",
+      "bytes": 92611,
+      "sha256": "d5399b6c22b49a72af1f7a98efd3a6c266d06601a180d2fccf638b0e6b141c0f"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_50_500_0.parquet",
+      "bytes": 92223,
+      "sha256": "bee38579b6ca0fd68831c528789f51e6bf3941bcbd78ee9ab8cacc21fc277001"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_50_500_1.parquet",
+      "bytes": 87693,
+      "sha256": "698431c4fbeb77267d7e089c506500f42fd5e49ccba1238cfd6211aa0c18bd0a"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_60_1000_0.parquet",
+      "bytes": 74362,
+      "sha256": "5d24cb480710bc7867b92350d6d17f2201e9ea2823670e741a784c81cfed4d73"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_60_1000_1.parquet",
+      "bytes": 74235,
+      "sha256": "43e2c1752c9c84ed82dab829b79ed82e2450ca1e70579abdc93f7af78c4b9532"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_60_500_0.parquet",
+      "bytes": 74737,
+      "sha256": "834311a15686280fbf38632944e0df0b2e2195e6d2b4a5839ecdcbcbb6d907ef"
+    },
+    {
+      "path": "sensor_data/force/57/57_135_60_500_1.parquet",
+      "bytes": 74197,
+      "sha256": "f6304a98cddb718bf1d13dbc5e591ad11fa4ad9b67fc1ea251d72d7f0d4f3aa8"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_20_1000_0.parquet",
+      "bytes": 205509,
+      "sha256": "756e7d7af7b1880b2395b4a284631475131537b60676fefe4f9f4b9da5d9d085"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_20_1000_1.parquet",
+      "bytes": 209807,
+      "sha256": "c676514184956629651f84d97d83e57e4c8722ab730003d1a0e917987d9e159a"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_20_500_0.parquet",
+      "bytes": 209374,
+      "sha256": "e378957f9fccf8d630177e5c4fc91c305d5edda6278fcaeb1348771af4d7075d"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_20_500_1.parquet",
+      "bytes": 207478,
+      "sha256": "2122e547ac529788d6b9e1a1f3261739c5953a39e9e653733e56b1e0a9ee76a8"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_30_1000_0.parquet",
+      "bytes": 142161,
+      "sha256": "553901f4e3d8c35112244a28b95ef814485fe7636f5d4d247d729546955826d9"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_30_1000_1.parquet",
+      "bytes": 142750,
+      "sha256": "8ad4319187516e4b53d132b946127a4c6157362dd6e978f42c3cfef9f233069b"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_30_500_0.parquet",
+      "bytes": 142353,
+      "sha256": "5cd933366343dbf6dd8a8d79919d949a13448d974408054c230112f629133589"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_30_500_1.parquet",
+      "bytes": 142784,
+      "sha256": "9fe3d6b5bd33abbfb39b242d9287877c819fc669badd5d49ac97f44b80bccb4c"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_40_1000_0.parquet",
+      "bytes": 111991,
+      "sha256": "6eda32b2167aa574f31e738e937a62974a159f059e14ed5d60158036825c5a44"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_40_1000_1.parquet",
+      "bytes": 110361,
+      "sha256": "ed9a4b3505fdca9f2c0781cae5e05c85339b51b04cfa869e8ffb3f0cab5a8702"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_40_500_0.parquet",
+      "bytes": 112410,
+      "sha256": "fa55a054bc9f74256788b5b917e7f1b05b5e4e49ee613c70b63df53fd83fe256"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_40_500_1.parquet",
+      "bytes": 113827,
+      "sha256": "a61c4e84d4739b4814fd9ec06e6928aa4c6dac004dd458d183b24fdd43d26053"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_50_1000_0.parquet",
+      "bytes": 92811,
+      "sha256": "5c06324fab59acbbd24bb3f244f6d85d15d522f1b1db4b8fa534dd87de680e04"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_50_1000_1.parquet",
+      "bytes": 88285,
+      "sha256": "4f202ecd1240b9a7474b7d1713a0c33d4ee3ef3bce081ceca9b6ebe772721048"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_50_500_0.parquet",
+      "bytes": 93430,
+      "sha256": "42ec4f71f6741ea6210add405afb48ff615ec72eee0ce79d74a39d97460d3274"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_50_500_1.parquet",
+      "bytes": 90370,
+      "sha256": "1b609fc3415dac8c5f68c1e24d2a0679df46736082d331c4843353ed69ee32eb"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_60_1000_0.parquet",
+      "bytes": 74976,
+      "sha256": "11c5e89f26f099ce02370630a2aef874737e90c1552179e4af4a7372ce19b53e"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_60_1000_1.parquet",
+      "bytes": 74661,
+      "sha256": "a3cb807d83a1151626ecbb1da19b334cf6dac80c26018c0f2b350ee96a14aae2"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_60_500_0.parquet",
+      "bytes": 72896,
+      "sha256": "14c5ffd5d3e79a17cc6f7e7ebfe362bbac51302a49375266744f1830add1f87f"
+    },
+    {
+      "path": "sensor_data/force/57/57_180_60_500_1.parquet",
+      "bytes": 74895,
+      "sha256": "44cae14cbb7836913e389144e3a219b3a07decd5a8d2469c82718dd7eadaa0d1"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_20_1000_0.parquet",
+      "bytes": 200845,
+      "sha256": "8cea89e759fdcda2789ac6fa0bd65375aa2cc2f7984695bd830e2c1302763eb3"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_20_1000_1.parquet",
+      "bytes": 211245,
+      "sha256": "d82f6a2172837046ddfb6c1be4af65f2ab2e8922c99cf5ceb113ffe4cac634ae"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_20_500_0.parquet",
+      "bytes": 201274,
+      "sha256": "24750c29d44361e93301987fed94ed337339dc89211442f710cb5b9ffb06c02f"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_20_500_1.parquet",
+      "bytes": 201496,
+      "sha256": "aaf0d82259a21b3223edeb35ebc33ed67b3598deb73d898695351bd6c211791f"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_30_1000_0.parquet",
+      "bytes": 142003,
+      "sha256": "508c43dbab5b6438747c4d100c2af4bfdc756eee9df5e5b7d99a96b4b687d71c"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_30_1000_1.parquet",
+      "bytes": 141934,
+      "sha256": "8adbd4a414e61c49656142114230d860c34d4dce836cd7c68464bd548cfc15ed"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_30_500_0.parquet",
+      "bytes": 143004,
+      "sha256": "8beccf5245a8504f0964279d503fdecce974a95b4431c713eb4e91fdc43d0e9d"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_30_500_1.parquet",
+      "bytes": 141742,
+      "sha256": "003e395958879a0eafce81bf540ad3dbe6960635dbc7b7f52228f017be8b07a3"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_40_1000_0.parquet",
+      "bytes": 109327,
+      "sha256": "6324fb2e82162425fb305542f658c94d351be4550a5d3f6b958f7b78a8ff9460"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_40_1000_1.parquet",
+      "bytes": 112510,
+      "sha256": "cb7a30be1ba8110b1d34a4872c2414bc6678be091c606dc6491d2ae2d44a267f"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_40_500_0.parquet",
+      "bytes": 112430,
+      "sha256": "2b75dff42187edb6d451eea2b573d79d438077a00d2b58aa38d273f49160d2d4"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_40_500_1.parquet",
+      "bytes": 109034,
+      "sha256": "4b13f45856d86fd7718e8d4b1b3a1dd884dd033891ad552e3f68d104080564b3"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_50_1000_0.parquet",
+      "bytes": 97496,
+      "sha256": "2adfc8e7fb49b5193c47f2fa3080ab7d726a905541abc736dc47d475cf5a0f49"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_50_1000_1.parquet",
+      "bytes": 93016,
+      "sha256": "d6d980262924bcb29b6b9c4a91eb79e0449f1c961722161424d56feb91951e18"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_50_500_0.parquet",
+      "bytes": 92460,
+      "sha256": "31453a59d5e94714cb10205075bc8980a6d3b190b6fe81112c0a58b1af79f796"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_50_500_1.parquet",
+      "bytes": 96554,
+      "sha256": "920ba0f13605c9c2040490c2d220e2d89b99f7716352af41a0f5e85142b94a22"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_60_1000_0.parquet",
+      "bytes": 80253,
+      "sha256": "510080978b189edbbe7b45b0ff2d3f54b7c356ea8bd775cd74d576c21557387e"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_60_1000_1.parquet",
+      "bytes": 75064,
+      "sha256": "47ed66af1c13382d3182f7488ee1629ec32cfed0d36fc2c989c4ceba06e0df37"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_60_500_0.parquet",
+      "bytes": 74259,
+      "sha256": "8fe256ac103610b437c4d818e60e8e03031f46a3cac28877a1405eaec3cb5a50"
+    },
+    {
+      "path": "sensor_data/force/57/57_225_60_500_1.parquet",
+      "bytes": 80422,
+      "sha256": "68a19008eef3cad63e274cf8042658d4159efdc5dea9aa763321d97b651fd837"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_20_1000_0.parquet",
+      "bytes": 210731,
+      "sha256": "553b4e1f14d3e84386f30d914104c8f3001897af0e0d194db9aafbec65f952b6"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_20_1000_1.parquet",
+      "bytes": 209845,
+      "sha256": "51e3bdc705b98ea5e8a31cef5165b9da5ac39223e478108c99a5e1a59133ef6e"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_20_500_0.parquet",
+      "bytes": 202138,
+      "sha256": "cc05a89831b87b98a88ddedcfeebb706f53839783f4eac0a9b12f82ad1d2f46e"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_20_500_1.parquet",
+      "bytes": 210490,
+      "sha256": "1c04b772747d5379a22e42fad5aa26c91bd50ea7cbe72643d2aba31c9ffc506f"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_30_1000_0.parquet",
+      "bytes": 137708,
+      "sha256": "5c90f3b77b01d4cc244f239fd8782d9ed996e90dcb402cd5cc815f6fdfa9ae54"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_30_1000_1.parquet",
+      "bytes": 141393,
+      "sha256": "c97813d3988c6b59cebc88e0152716a9ef550e84f80e705abc9bfc36ec1ed246"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_30_500_0.parquet",
+      "bytes": 142264,
+      "sha256": "4cf9311bc30a179db7b259d7e7a06ab92b415a2ed49a323de034247d2ab0c007"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_30_500_1.parquet",
+      "bytes": 142117,
+      "sha256": "ae4dd59454af564e418b1f5b889b1e343df30309d79f941bbbc5883c68e97ca4"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_40_1000_0.parquet",
+      "bytes": 113827,
+      "sha256": "451a937eec9957dc3898dc4810e668595d9c366399f069aee83574c59d6e9e8b"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_40_1000_1.parquet",
+      "bytes": 108099,
+      "sha256": "1f5bbcabd379de1ac93c3e0216bf647106d34276114992cdb8e96891d60bba83"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_40_500_0.parquet",
+      "bytes": 108819,
+      "sha256": "fa08eaaf4579f0ab8d4a9face5f3d88f1f90f4a4df41451d0c0a508cfd84f829"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_40_500_1.parquet",
+      "bytes": 108230,
+      "sha256": "da720b1534853ac037f0dcbc72f2d43e7f65009a14cda7ea5ad63bcdd461a86b"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_50_1000_0.parquet",
+      "bytes": 92752,
+      "sha256": "91453fd0e78bad65ee26d966eeb26615ad5a561778b0323f7df48e24e806b09f"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_50_1000_1.parquet",
+      "bytes": 97757,
+      "sha256": "f348eb8c4cab36f16bec16ab20d3f9dac767444cca52bed9c999ca7ab7989ec3"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_50_500_0.parquet",
+      "bytes": 97352,
+      "sha256": "ec5c8fbfa9cb22c7d0ef6636386d84ad7989193a9cdee72f0ce93b2ad077129f"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_50_500_1.parquet",
+      "bytes": 93017,
+      "sha256": "08c14f8d86a8489742c22b4a5666a8b113a5fc6a32e48f19d9a4aeac1fe918cf"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_60_1000_0.parquet",
+      "bytes": 74208,
+      "sha256": "2d00fd105feaa84c313af30e538a6e198bcdc877a68b4766cef67715f1cab274"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_60_1000_1.parquet",
+      "bytes": 75104,
+      "sha256": "9b12559f3b707dbbff2806944e3a75be4706ce9ec777bbdf0bd8131b0d5ae7a9"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_60_500_0.parquet",
+      "bytes": 80372,
+      "sha256": "09e60b0189885b618f02f39c1deaa9d2e80389bd6163ca2b08bcf0aa51fe6be5"
+    },
+    {
+      "path": "sensor_data/force/57/57_270_60_500_1.parquet",
+      "bytes": 73710,
+      "sha256": "43d93755631da74e200ca2c29b0e28f44e4d6b4e39d9ca8e4a2de51512b65d40"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_20_1000_0.parquet",
+      "bytes": 205076,
+      "sha256": "2fceed8be499aa5bc99dc6af730caf653a6817d4aac0f1de2e1f0a7e2746e1c1"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_20_1000_1.parquet",
+      "bytes": 201046,
+      "sha256": "99dde189faac366ef68eab7cff7c0573d223356a192eb1c1e663294004df4484"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_20_500_0.parquet",
+      "bytes": 208083,
+      "sha256": "60a2ca90a3e9c9d3f53668f56747f14025799ba4e1e36cfa5434c3ee597341d5"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_20_500_1.parquet",
+      "bytes": 201728,
+      "sha256": "f3dd85713588393fcc54bb648310941f2c9f0d990b7a86ef3ae4873c140d0b11"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_30_1000_0.parquet",
+      "bytes": 142339,
+      "sha256": "4159824c481c92a2fa49fa7ef2ce9d608f7cc8f94f64620feb7dce62ab65ae23"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_30_1000_1.parquet",
+      "bytes": 141823,
+      "sha256": "d241f9fdcf46ab5525ae75c17712054b75ab6af329800f2bcce1da7389000219"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_30_500_0.parquet",
+      "bytes": 140970,
+      "sha256": "d3f3c903b8d2796b8377abd6be506005ddc46c5596df6594a1b3d4472398456c"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_30_500_1.parquet",
+      "bytes": 141848,
+      "sha256": "48bbc6127d16e61e06d954e16f38541b6a19230ec82889836e7cfe8c387bd936"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_40_1000_0.parquet",
+      "bytes": 108633,
+      "sha256": "9cbd4e4047e78858319eca9baaeae012ae058052ea2d202293094c5ce31af81e"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_40_1000_1.parquet",
+      "bytes": 109161,
+      "sha256": "51d218df04e204bf5fbe92c1f5cef9e6c93fa8d4a539d7a5f00c29226cd4f9bf"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_40_500_0.parquet",
+      "bytes": 108633,
+      "sha256": "1d846c9947db8cba64641497b348d5eb155e1fd11e6684e523291a1e05e24bb2"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_40_500_1.parquet",
+      "bytes": 107235,
+      "sha256": "ce913dbe396d5194c952c371284fb5879b207cfccb2c4cfa13fbf8ed229b01a5"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_50_1000_0.parquet",
+      "bytes": 96978,
+      "sha256": "a6b8d4ff63a6750d29993b1191a30986fd7aba1a6b5840c9a0304788d1ca2372"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_50_1000_1.parquet",
+      "bytes": 96712,
+      "sha256": "ac3b8808226695e4cd3d7c21828b7768e62c618628c2c24f3b0b4a35f940e88f"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_50_500_0.parquet",
+      "bytes": 97216,
+      "sha256": "8edc6940fcc70f555004a053cea0364a3c7fc19e2ebcb33313dc3848f5c393c3"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_50_500_1.parquet",
+      "bytes": 96293,
+      "sha256": "72dddbd9b19d7aa2a4619d708f076fdfc11c199dfbaa0bfb8e4024b100071339"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_60_1000_0.parquet",
+      "bytes": 80185,
+      "sha256": "2b350feaad87739e553629c7004090a9e1f0b1b70c71f1ac1e347fefed5b998b"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_60_1000_1.parquet",
+      "bytes": 80537,
+      "sha256": "4bd9db7c107aa6f52953e2094201e825072f2795f508fd0222c81dc5cc1814d8"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_60_500_0.parquet",
+      "bytes": 80474,
+      "sha256": "006bd3a3857387f226821ab29a8547dcb7fd6d432ee10d9fe9ab551456627718"
+    },
+    {
+      "path": "sensor_data/force/57/57_315_60_500_1.parquet",
+      "bytes": 79699,
+      "sha256": "fa6d8fc7baf17e55f09cafab7636f274c2ce3f7dcd3d3d355d4bdb030babccbc"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_20_1000_0.parquet",
+      "bytes": 210016,
+      "sha256": "e04380c3e3e4ae5eddcb3ab6f652e170c9fe7e2476926472a9f5048b74805ac5"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_20_1000_1.parquet",
+      "bytes": 206474,
+      "sha256": "76d403efe0897f397560e35d2a4bc238875a7ddbcc65a6fc70463fe7a297547f"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_20_500_0.parquet",
+      "bytes": 205878,
+      "sha256": "66e049250a2b0c132b2a12b89078ef7ab20ab54caa228675c90c781685fcb6cc"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_20_500_1.parquet",
+      "bytes": 205608,
+      "sha256": "71cd3e2ab75486f379b4694c32523042294cf47b4bf8e13342d83f4bbd1560f2"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_30_1000_0.parquet",
+      "bytes": 141422,
+      "sha256": "239c3ad22f98d08155bd8b6d07ae829bb6b9015608d6952613c8f17595637a25"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_30_1000_1.parquet",
+      "bytes": 138126,
+      "sha256": "83438f66e17b989cca6abb506279e296d729153f44e8627cf61f3d8e22ba65ae"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_30_500_0.parquet",
+      "bytes": 140460,
+      "sha256": "dfb943283a027c34f3e4eb34e3cab8bb93af712fcbcc2acfb0535970ed08f161"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_30_500_1.parquet",
+      "bytes": 142210,
+      "sha256": "c0299cead25d3b9ad5779f9a79643858b59f8662096b15f62513a7bae4f7c9bd"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_40_1000_0.parquet",
+      "bytes": 109321,
+      "sha256": "2fba8702c5f9ff421ca8c5eb85d0160f0dc5a9750653a646f6099006ff6cb4eb"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_40_1000_1.parquet",
+      "bytes": 110037,
+      "sha256": "c741e295750c0d8fd3225123c8faa889cfc52845db5b5e8ee0cf420c71a3b524"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_40_500_0.parquet",
+      "bytes": 108797,
+      "sha256": "00a0e806d67f1e8cb063a7de714793d392e35167786a272d33bf4386144beaa4"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_40_500_1.parquet",
+      "bytes": 108994,
+      "sha256": "aadf942de47c9a017ae4340d90daf9679d9b7c2eafd549fda3cfcccbac5a0f04"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_50_1000_0.parquet",
+      "bytes": 92185,
+      "sha256": "bd71d0970108549cf4a35556e1a0dba735befefe0555d1a4249ea10565758830"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_50_1000_1.parquet",
+      "bytes": 92506,
+      "sha256": "5dd4433d2f98d5708d2eb88e9c01476589b9fba72c3034273679a69579e717d0"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_50_500_0.parquet",
+      "bytes": 92707,
+      "sha256": "1027fe2bab3aa1fca00b70697e4ab0f14e24d993a014c74e9983a2439a61c59b"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_50_500_1.parquet",
+      "bytes": 93253,
+      "sha256": "e8042807fc360007107e636c4b9262c35f1b4ad6d32f1d5d2116d81ae0eb4ff1"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_60_1000_0.parquet",
+      "bytes": 74915,
+      "sha256": "4b456f197afc4d062142ce74d64dfb289ea0afba6b24aa3b9041b92c68bc0c1b"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_60_1000_1.parquet",
+      "bytes": 80676,
+      "sha256": "f23d0e980866c6c5564ffe69dd13bcc6838dcdeeb5af5addfa3a50638847201f"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_60_500_0.parquet",
+      "bytes": 79956,
+      "sha256": "88212e9f3c65defbfb09c210cb716ac12c64f3c0bb202658e71550692d33beb3"
+    },
+    {
+      "path": "sensor_data/force/57/57_45_60_500_1.parquet",
+      "bytes": 75311,
+      "sha256": "6c41d8c0082798101f7d295da8dec753bbf7a5b02146d6d2f5c10fabc90d56c5"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_20_1000_0.parquet",
+      "bytes": 206669,
+      "sha256": "d17af84e87c6fe856ca5e2962d1e80e62534d10ffe9ef8e9a1b3839033cf0d8d"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_20_1000_1.parquet",
+      "bytes": 209973,
+      "sha256": "35a4132f76bc25d04cd5b8be1034bf884a9674e7ae4d1d07ee67b03d6ca6d18f"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_20_500_0.parquet",
+      "bytes": 205160,
+      "sha256": "f9bb3d15aa96b1a34662190a6d2027fb4ddd907614f7332c3d0ca67fb631be69"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_20_500_1.parquet",
+      "bytes": 208043,
+      "sha256": "456738272af5f1d7daa249aa4ac76c02c02b2c669df9a325479d6b949c518a57"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_30_1000_0.parquet",
+      "bytes": 141917,
+      "sha256": "e17ab5076d053d16a1ff1d60d92a68702f15afd77266513ca48f8dd1ebd7ed56"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_30_1000_1.parquet",
+      "bytes": 141569,
+      "sha256": "d66129858fecc5be04cef7c7150555a3587875436e3695a117f94c983c4b2567"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_40_1000_0.parquet",
+      "bytes": 108972,
+      "sha256": "6332c035c9198bf8e9a4724350f9945e59dc96567f4d7a1445b5e4e808627ecb"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_40_1000_1.parquet",
+      "bytes": 109039,
+      "sha256": "2ae236146baedb3150ec294827a06dc5cc319f4e090b95a67a9122bbeaacd620"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_40_500_0.parquet",
+      "bytes": 109695,
+      "sha256": "9e2e8b80fc64c8a52a39059c1d07b6c949c64c96d8afe5f77ae22370d6ba00d6"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_40_500_1.parquet",
+      "bytes": 108957,
+      "sha256": "c2ff078568a34dc3cf8c0d714ffe64f83cf0c37ce03f0106ebfc5bfe30e01f77"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_50_1000_0.parquet",
+      "bytes": 92661,
+      "sha256": "b28bf99bf7aee274b99ed4d7e0d8da2033d80b5ddd0e4d9df7853bfa8e7d1884"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_50_1000_1.parquet",
+      "bytes": 92191,
+      "sha256": "822175bed51bc29002444dd8584d7b433e905afa391c0eb1c071737eca80bc44"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_60_1000_0.parquet",
+      "bytes": 78217,
+      "sha256": "396e55c99332b4811224ef784017cb79a7bee32f1193e784929ca71651d58348"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_60_1000_1.parquet",
+      "bytes": 84070,
+      "sha256": "d450c2758ee72da6a45e8c836585367b8098bfeaeefc6907eae65d73cead72cf"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_60_500_0.parquet",
+      "bytes": 74586,
+      "sha256": "dfec098dd194acfc8dd7112053a18b48d9b95069257cec6883fe14931634f01a"
+    },
+    {
+      "path": "sensor_data/force/57/57_90_60_500_1.parquet",
+      "bytes": 79748,
+      "sha256": "f1b68e0ee14e8927e704a149e60da44996d5f3b76688c81496bf54f868f3f457"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_20_1000_0.parquet",
+      "bytes": 6752,
+      "sha256": "fbf0e2c3650681646105c8e207d2f6c74ba80d7c13e5f420b39aa2446c1f06ee"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_20_1000_1.parquet",
+      "bytes": 6769,
+      "sha256": "9274159bac1cebbc6174b0f66634cbffb6c4c17b7973f1883ea0ffe6ed97eb03"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_20_500_0.parquet",
+      "bytes": 6741,
+      "sha256": "10df7871c9ffab5b7be29eced5c3a80c033feaccd51e709941695ecc1a7de74b"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_20_500_1.parquet",
+      "bytes": 6739,
+      "sha256": "d2cb75f27ed7d436ea4066dadf0b049f75c78bb35f2a9809930fc8067deb81c1"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_40_1000_0.parquet",
+      "bytes": 4566,
+      "sha256": "164947e732c595ab1fb0bec5f955fe7688ce3a753a32733b3650447b050f24f9"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_40_1000_1.parquet",
+      "bytes": 4565,
+      "sha256": "70bbe0d5b931e5f4eb5e239e3a2bcd68884a785da2f7bf83c137b6fd7e7768da"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_40_500_0.parquet",
+      "bytes": 4575,
+      "sha256": "170adf6a9b7c33b06cc7b3de6f914d2da0e63f79ede9635363e80b6f2f0cf9eb"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_40_500_1.parquet",
+      "bytes": 4569,
+      "sha256": "ec269cec31ab0939d6e7feb036b41370058e1e1e9acf09ed4a403c9eff7cc9d8"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_60_1000_0.parquet",
+      "bytes": 3847,
+      "sha256": "9795b49e2921e74d72620cdc5aeda05db695a16e0af573238619f79ba556c11f"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_60_1000_1.parquet",
+      "bytes": 3882,
+      "sha256": "2ff29fab0cddb613d44bc77675b0aa1a865281cd41dea70b980d95751d7acd57"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_60_500_0.parquet",
+      "bytes": 3826,
+      "sha256": "c3099357e3da620882b9e6dfd76c8eadb838871cfef88c268a36953f13120f16"
+    },
+    {
+      "path": "sensor_data/position/10/10_0_60_500_1.parquet",
+      "bytes": 3905,
+      "sha256": "6f4f209f55ebe2de30f82681808031a1e16b694da726015ee9d57213545eff45"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_20_1000_0.parquet",
+      "bytes": 8681,
+      "sha256": "428672b48f8db27f979c7f8aeb8bdde5ac2e2780cf9f937867077748d212fadf"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_20_1000_1.parquet",
+      "bytes": 8637,
+      "sha256": "c17ebc8abd07d5857d7f40cb4975b0fe3707a0ff630e775ec131101e8f411d5d"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_20_500_0.parquet",
+      "bytes": 8773,
+      "sha256": "eb3960d0e1056e9c98cb4f810b24ab5df81eb939865120fdf5011a3c106e3a6d"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_20_500_1.parquet",
+      "bytes": 8668,
+      "sha256": "efae37794f0a9e9ac8a320ff051743332b59fe5cbf425431ee7cf87040a88729"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_30_1000_0.parquet",
+      "bytes": 6624,
+      "sha256": "55e88f2e72619040ae8e5998b2c5b1d78eb0aa6b0d1e5404d6a8e2885ff66908"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_30_1000_1.parquet",
+      "bytes": 6680,
+      "sha256": "d82672d845328a8dd9347e6c7706c3f3de13a2295f65366615e076ebd75243ef"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_30_500_0.parquet",
+      "bytes": 6629,
+      "sha256": "2adf3430ded8253b7502f3037eec93c1c7fba46bf341e35742e6ab4051efdc58"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_30_500_1.parquet",
+      "bytes": 6632,
+      "sha256": "02d11e3b6a8a59e6ba4715e33aa63a64acada97a61666b4aa485b25e5e72a9a2"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_40_1000_0.parquet",
+      "bytes": 5555,
+      "sha256": "e64eef85783e602a97ab1bf4d434caaeae233eebc306c1d374260e33dda67e0f"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_40_1000_1.parquet",
+      "bytes": 5555,
+      "sha256": "730b9b81a622a19276d9b943772d6993612accfb49af9815d1a83943ac2efc56"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_40_500_0.parquet",
+      "bytes": 5607,
+      "sha256": "d0418c7542535b980f5e0b26ce75344b2ad837c36901ee54db014b238f538dfe"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_40_500_1.parquet",
+      "bytes": 5578,
+      "sha256": "8fc8cc73272e22042ee5b5323d2942fcd3ff4bc43b2f8b78810e746e6993f719"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_50_1000_0.parquet",
+      "bytes": 4961,
+      "sha256": "fdeb0ea820ef74ce7c3af1c31e5c1295d464feeae279edb53ea3b5b8c01da8b1"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_50_1000_1.parquet",
+      "bytes": 5035,
+      "sha256": "bf929029c8812fe0478a2c397e78a4d22ed689829d135cd2f3c4a10b1af71b66"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_50_500_0.parquet",
+      "bytes": 4990,
+      "sha256": "f162a059f0c03a8ffa556ea0f7f79ce9c2ce41f9c9710a8a367693d68dea2829"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_50_500_1.parquet",
+      "bytes": 4949,
+      "sha256": "1e2452dc68b20fd80fe6a541cb620def75b290f8abc029a840571405cb019861"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_60_1000_0.parquet",
+      "bytes": 4618,
+      "sha256": "9d14116999698c76cfc7fea378f82d566bd7fc8dc5549c10e19c420287dbc1ea"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_60_1000_1.parquet",
+      "bytes": 4611,
+      "sha256": "300054e5c87345efd5c1adcfaf2d05a0e6535e360694a889ecbe9ef252bb92e8"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_60_500_0.parquet",
+      "bytes": 4555,
+      "sha256": "9595be0fa5519995de02e1112e97608d37a2485638e57df1b140a24e2d77630d"
+    },
+    {
+      "path": "sensor_data/position/10/10_135_60_500_1.parquet",
+      "bytes": 4595,
+      "sha256": "4aa82f5b4ccb4751aced1b075e72e8867a923659d6cedb3b693cd92a5ea51fde"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_20_1000_0.parquet",
+      "bytes": 6783,
+      "sha256": "1a743649654130fee248e8d7e60931ecb67a6ea6a2dfa19188037acb264193ec"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_20_1000_1.parquet",
+      "bytes": 6760,
+      "sha256": "dbc07fe7b95f6ac3c162c6d89e6348219d2a0b3ce4caa2693845765d88ff4704"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_20_500_0.parquet",
+      "bytes": 6793,
+      "sha256": "03aed9f4cfbcd04e1a9bf51d20e0bc53f41ba0cc86010d0308bc2bde9290a27d"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_20_500_1.parquet",
+      "bytes": 6759,
+      "sha256": "5f59758c24706e45990a4052b2999b9dac7fdd4a9eeaeed9db4e162cbf703086"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_30_1000_0.parquet",
+      "bytes": 5339,
+      "sha256": "38f9293e049d09ed665daa2de485e3d4af2c438ddb72881b845fc7045026a3d1"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_30_1000_1.parquet",
+      "bytes": 5297,
+      "sha256": "a47157938ce53b5b069e2ecec51c71203e7a8cf86adc2b0fc2e31f9e95b90970"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_30_500_0.parquet",
+      "bytes": 5327,
+      "sha256": "3e74a8340304e1326e0663512b1affe888e76b53198d4b17ee29738836a734d7"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_30_500_1.parquet",
+      "bytes": 5339,
+      "sha256": "7bf70ff937cac5d1b49ea8d1054a1308123851e40a7e59ddc7516db24b900409"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_40_1000_0.parquet",
+      "bytes": 4636,
+      "sha256": "ddabd17efc63eb4d29827bebd9dfa5d055aed2742a228b2040f588725081f2f0"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_40_1000_1.parquet",
+      "bytes": 4600,
+      "sha256": "bbf14f1c4b230a1bc6d0f35de20554928aac2d8f36860f9d26e13ca88e531661"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_40_500_0.parquet",
+      "bytes": 4575,
+      "sha256": "aa9f16a893ffc68f23e550192687f9c4e2f7ea2db760e4e2115d2100530228cd"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_40_500_1.parquet",
+      "bytes": 4584,
+      "sha256": "d0de613afc9bda2fa5ce20abf2b5ef0dc2554cccd47fece6697824364af4dd80"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_50_1000_0.parquet",
+      "bytes": 4200,
+      "sha256": "0ac4adc42a8ec8eb28767c17c65fe558f507a966923dd607dba69171dc1d35d9"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_50_1000_1.parquet",
+      "bytes": 4154,
+      "sha256": "111a26f274bfc1dab91264ce5017a623d879ddb4693851f9db8538652fe236e7"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_50_500_0.parquet",
+      "bytes": 4154,
+      "sha256": "5521c3911f7797aac22bcfd59ed09d2b2fe6e7716c85dcd364b29dfdca28ac13"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_50_500_1.parquet",
+      "bytes": 4157,
+      "sha256": "46b66654d3db27edafeaa0cb10b4a92083989accd511f4bb9a33e0bbe7747957"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_60_1000_0.parquet",
+      "bytes": 3875,
+      "sha256": "a33904fd228deee6eaba2c8629d56f4a9783a259f35d8b57d15e625393b91e2f"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_60_1000_1.parquet",
+      "bytes": 3894,
+      "sha256": "9788d764556b09b8b37e69a18deffee598f361a3c5b803ba5993191dd82a9bb5"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_60_500_0.parquet",
+      "bytes": 3897,
+      "sha256": "63f801a76e7da46bc16a5fd5ae3caa7f086bf92345726b05dc4d415991027519"
+    },
+    {
+      "path": "sensor_data/position/10/10_180_60_500_1.parquet",
+      "bytes": 3874,
+      "sha256": "aaa12f45db961c17f749b5938dbbd35fc8c6888927f15ff010df7a3b53d4020e"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_20_1000_0.parquet",
+      "bytes": 8719,
+      "sha256": "38fd95631f32c025ab85ca2c4e04bbb7aa7d66663f39417c44aa43abe99194a5"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_20_1000_1.parquet",
+      "bytes": 8682,
+      "sha256": "e0f796fa8c3e3016fee9c78ea945eb0844848fd230fc7dfea790982e2bf5d2b8"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_20_500_0.parquet",
+      "bytes": 8763,
+      "sha256": "b372db5514f34d264df91017ef6aeffec3e339964b0d841590237a727fed0e37"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_20_500_1.parquet",
+      "bytes": 8736,
+      "sha256": "d56d5db4f0b434a29dcb8123775c5e7bd877739b3c22e79cb773a089bfef0e21"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_30_1000_0.parquet",
+      "bytes": 6712,
+      "sha256": "dd62951b3a94cbb8bdf0aa476f7be800b2c806b68f89703c464e6ac3422f0165"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_30_1000_1.parquet",
+      "bytes": 6665,
+      "sha256": "78ff56084b19ad979fcf0f3cd8d7349a351cce01eba6b63e67c47399de625d7b"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_30_500_0.parquet",
+      "bytes": 6649,
+      "sha256": "8dcd66a364aa97e43af8ec231e1ebb44c849ddd5fc5fa328bfb1aa84eb992b06"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_30_500_1.parquet",
+      "bytes": 6675,
+      "sha256": "52a9f89a0fa869a9ac89f55827875a45976e4ca391ffb9a6ab00836b8dd29497"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_40_1000_0.parquet",
+      "bytes": 5587,
+      "sha256": "8c4dbebb3ad5f93849bb2310ef7576aff55e9b76c60008e3cea06c91b8477081"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_40_1000_1.parquet",
+      "bytes": 5569,
+      "sha256": "1c41f79502e86b9942b9a36c282ebc6f66249f7e62762118f5c410de2e4e7a1a"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_40_500_0.parquet",
+      "bytes": 5604,
+      "sha256": "aa23bdcbfaf801f3149ba540a49f69f6eee60b308f7143de4556818c290e4239"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_40_500_1.parquet",
+      "bytes": 5543,
+      "sha256": "35eb0102caf7305b35a9796e70f2f54e1d2e898e7a9caee13f93714a24a1836b"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_50_1000_0.parquet",
+      "bytes": 4950,
+      "sha256": "b3a9f1d39a63bad512659c8835b5d00169a783fdfa0e3440b3233aa3c4724ecc"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_50_1000_1.parquet",
+      "bytes": 4946,
+      "sha256": "b97f69c1d600d08b38069f68621dd5d9eb76dafbd8502b338c95e4c74eec846c"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_50_500_0.parquet",
+      "bytes": 4980,
+      "sha256": "c990ad7500682dc94948ebedfad89ef62e0ce8b54060f42822bdc782114c821b"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_50_500_1.parquet",
+      "bytes": 5029,
+      "sha256": "25974fdcfcc261503f0897d083ec5f49e697733f4c1413e0d3922d79b827ed43"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_60_1000_0.parquet",
+      "bytes": 4527,
+      "sha256": "75be17e0ee9c71a55f6ddd88ca28edb86ab3b677de34095658e8f047daffbbb8"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_60_1000_1.parquet",
+      "bytes": 4561,
+      "sha256": "8778da0df365f7a88f7a05de7f85d36eacb665a29a5814ab2a9ea5b9b2ccde2c"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_60_500_0.parquet",
+      "bytes": 4530,
+      "sha256": "dfbf2b60c03dc258dc40e3bc3f425e2191cbe463d4878586a8181c8c53c1db52"
+    },
+    {
+      "path": "sensor_data/position/10/10_225_60_500_1.parquet",
+      "bytes": 4593,
+      "sha256": "6a30056d9d9238209da11f18f5417f21e9c1d89ba61de18dccf04a743e8ef2ae"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_20_1000_0.parquet",
+      "bytes": 6738,
+      "sha256": "2846c58add723e02ea0f1150e4d4b8cd7a16073f499f6a7ba42e059449a99acd"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_20_1000_1.parquet",
+      "bytes": 6809,
+      "sha256": "ea3b8aea0a638a9b7fd51e56b339d41c544abf1d582421fec671566c25a0e476"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_20_500_0.parquet",
+      "bytes": 6732,
+      "sha256": "17d6f394e394509e049993515dc6177676fdcbc723ab5822d205bbb267df4c56"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_20_500_1.parquet",
+      "bytes": 6804,
+      "sha256": "ada69c4e665335e9e52c5c16c5a54f8b91b3b2f4a1352ecde4053f2271971287"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_30_1000_0.parquet",
+      "bytes": 5324,
+      "sha256": "ef7e8d2973d42c6e5795165538f1da1f172ae4e30c5966e6c5db36792bc12233"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_30_1000_1.parquet",
+      "bytes": 5326,
+      "sha256": "7e5cadb01833fae0c43716a2e1b4955185bffc3eb293a9ac07724e024f26345d"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_30_500_0.parquet",
+      "bytes": 5330,
+      "sha256": "664f8a69dd219f90dd294f476f434ab24fbb773d120444bfd59bf71a6dce6f17"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_30_500_1.parquet",
+      "bytes": 5318,
+      "sha256": "c948b0100c19cd75d9172a3bd5b077ca2b21293df0ee2085fc055413c3a013ba"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_40_1000_0.parquet",
+      "bytes": 4566,
+      "sha256": "dddf63fe2540d63a76200825eb0ba68ab489aa4e26bcf4cccc19253f89792769"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_40_1000_1.parquet",
+      "bytes": 4634,
+      "sha256": "eec2a5abb7530022f6ece3032cd81e9bc798c1d2038e1a5f795f6c5dccbfb31a"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_40_500_0.parquet",
+      "bytes": 4591,
+      "sha256": "72658902a69d36e6f878bcc4fb924b1fa1b6fcd3bcd9341d33cd1672e583ca0a"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_40_500_1.parquet",
+      "bytes": 4559,
+      "sha256": "b0c61479b1fc2e7f510667e72119d3fe796dd9860cd37646beaa695a0342f313"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_50_1000_0.parquet",
+      "bytes": 4153,
+      "sha256": "1e8783cd1cb6d2117e684fcd0dcc16711df6e9eb97ae20eeed083d80b03014ad"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_50_1000_1.parquet",
+      "bytes": 4100,
+      "sha256": "3fba21e6ebec25fae5793500476e774630aa69dbe68a984e647b07bdd26ceca7"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_50_500_0.parquet",
+      "bytes": 4110,
+      "sha256": "22da1418e2163914b67e07ad84de6278a21f773a5b0000e7b06c3d841289e2a3"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_50_500_1.parquet",
+      "bytes": 4102,
+      "sha256": "ff3df899c5aabd93b9a167a61b2c8da41a73048edc82a7c862e9ffb4eff4ad68"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_60_1000_0.parquet",
+      "bytes": 3904,
+      "sha256": "c66a3d5e4bc2f048555c303a7d4e2af16ea9b9535ae6bee25403f606a7d4efd9"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_60_1000_1.parquet",
+      "bytes": 3856,
+      "sha256": "23f63c27d329cfa4fe2650d3fd39a2d484bd7f66c97da540aa9fa4519e452a17"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_60_500_0.parquet",
+      "bytes": 3874,
+      "sha256": "9b12a172b1f061c334240956e652a7cbc64b94514faf32489fd6aa0a082a2b4d"
+    },
+    {
+      "path": "sensor_data/position/10/10_270_60_500_1.parquet",
+      "bytes": 3888,
+      "sha256": "6fa52518d23db578d3de6f13cd9015d62e62f7a21d998bd0ae9ce7f1608e66e9"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_20_1000_0.parquet",
+      "bytes": 8588,
+      "sha256": "51fbbc7a667137ea93b9e17be2097cadc789ab0d292cc4439be909a0a15599b2"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_20_1000_1.parquet",
+      "bytes": 8719,
+      "sha256": "ba29823affb59e57bc1623c6ca81982348dccd6af17eb7941845b7c4771fc35d"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_20_500_0.parquet",
+      "bytes": 8749,
+      "sha256": "2bbabb3063b26ed666be7d28188870af2e68e28b9c4549d815bba4e637aa53dd"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_20_500_1.parquet",
+      "bytes": 8657,
+      "sha256": "12ff5dfee9ec64112be2393dcd5c112434204289caf41cbbb6ad230dd598df07"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_30_1000_0.parquet",
+      "bytes": 6651,
+      "sha256": "c3c625fc43a37b6aa540fc57884b39486eafd9e7e851f5f310cb02da60337448"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_30_1000_1.parquet",
+      "bytes": 6676,
+      "sha256": "73511ae9a11c1e58e470b9a295bff9c4e134bb9ee8413cd1b0ea6f7ed80cc8b3"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_30_500_0.parquet",
+      "bytes": 6626,
+      "sha256": "0d6601a700cc9b7d1d01af7db698920f8ba2b4f67316203fdd0943a7f164adb1"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_30_500_1.parquet",
+      "bytes": 6673,
+      "sha256": "ac58def3abf0317170f73993bff793b8119dbb92a0a8185b90c60f0dbeba52c1"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_40_1000_0.parquet",
+      "bytes": 5593,
+      "sha256": "29a1b09c6d1bae369c56f520dd13476c625ff7759d2291d121e23779bc7dbffd"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_40_1000_1.parquet",
+      "bytes": 5561,
+      "sha256": "5000e78aa9101236d4dc8db848d4bb6bb8cab1c6974a68fb78f7db72cc7b9bdb"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_40_500_0.parquet",
+      "bytes": 5598,
+      "sha256": "64f0e9d62263a0a796ef7a0c141bbabd67665cacaec2ffb7b4d269e29ef92b63"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_40_500_1.parquet",
+      "bytes": 5635,
+      "sha256": "edeff31b98608fd8e18c341cf4e1e3658ad281e61aa69109f59677c997b6658c"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_50_1000_0.parquet",
+      "bytes": 5026,
+      "sha256": "47d8516ffacf70152f76f195b1e6028873b76f3f5e20a05ac964335e096d721d"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_50_1000_1.parquet",
+      "bytes": 5011,
+      "sha256": "2ef6534c87a76908c384927dd009531e8e8aedbf6e4be6009f95ea3067ac4440"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_50_500_0.parquet",
+      "bytes": 5004,
+      "sha256": "3d282fcc70081162eac64ca8c9c04271ae929db6fe83be1fa739f9834d8b6836"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_50_500_1.parquet",
+      "bytes": 4978,
+      "sha256": "40045558394b4a6b3b0e6d0a07a4074c43e7a673020bed62923a24e64a10411f"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_60_1000_0.parquet",
+      "bytes": 4556,
+      "sha256": "dea8f4e0a483bed89ec2283717329be833668778ca49be1428dfca55adf96348"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_60_1000_1.parquet",
+      "bytes": 4541,
+      "sha256": "f43293305a76c71cd0b58f04bc9769a792b42c53f590e7bcaf14f1a4d79b81e2"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_60_500_0.parquet",
+      "bytes": 4597,
+      "sha256": "c865c9614b47989efd36d8db17c1b7433e2581a0b2a9c1ba5d2bc8c91540515d"
+    },
+    {
+      "path": "sensor_data/position/10/10_315_60_500_1.parquet",
+      "bytes": 4569,
+      "sha256": "f6d6b26c49a7616daa909d6f2df3a4b64cd7aa194a010ee33ce5b122b372a362"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_20_1000_0.parquet",
+      "bytes": 8672,
+      "sha256": "a74fe1814376dab28e9d6eacf48e9161f795c731e05d56213f7bfdfd0de5877f"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_20_1000_1.parquet",
+      "bytes": 8669,
+      "sha256": "3137548209dbf0f7f7fc2570816f75785ffab261e6a3d57c9f3ccd5d9345ddea"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_20_500_0.parquet",
+      "bytes": 8624,
+      "sha256": "79b7c5ef9a10a966a9077391e49cc92cc99afc3d15dbfa33bda98e7eae895230"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_20_500_1.parquet",
+      "bytes": 8668,
+      "sha256": "49a16ae9cb720baea06dac110cf85d484071c99953894b622893a173c51bcd52"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_30_1000_0.parquet",
+      "bytes": 6557,
+      "sha256": "18bf736b11b010afe17fba2fa20392c9616740cce690df883a8ee468ee73c910"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_30_1000_1.parquet",
+      "bytes": 6606,
+      "sha256": "86519b8b74c572326b7e45a67e33580152c34d7f6250c1fa16488728d9abf71a"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_30_500_0.parquet",
+      "bytes": 6685,
+      "sha256": "d167ed8c2dee0fdc0e614f4c3a05cc0517fff68592a1b98f6593fa10bfe65841"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_30_500_1.parquet",
+      "bytes": 6678,
+      "sha256": "5c41dda0172290d5f1740325317d346cae854d53603a27cbbb26982526516eeb"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_40_1000_0.parquet",
+      "bytes": 5563,
+      "sha256": "de5a5ffc12b2d96472e534b74ac6f32b12bf1236edcff826a8b776a24dbafa99"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_40_1000_1.parquet",
+      "bytes": 5591,
+      "sha256": "0275c337a3f388b4327390ab63e98c72e8df2a32246a195117c031700ecde55f"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_40_500_0.parquet",
+      "bytes": 5585,
+      "sha256": "aaf995e9729219e21ca639725551973c664e67e0631025c15124196db981f1c8"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_40_500_1.parquet",
+      "bytes": 5551,
+      "sha256": "cc582837313e0bc7f125df3b398a0752a2f25679e1e00198d4b4691b4779e579"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_50_1000_0.parquet",
+      "bytes": 4999,
+      "sha256": "0f88c3a11ea0903959d1a3d24e6b1e881e3a3d15f40c69494bf36779725be837"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_50_1000_1.parquet",
+      "bytes": 5027,
+      "sha256": "9a22e72155f4613032e3f45fad1811d408b0d072661d6c9956fe67512e3f7f39"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_50_500_0.parquet",
+      "bytes": 5037,
+      "sha256": "34a1ff43a789a4306abf8f2fa2160ce96ae042675a1db67a029e9b2787ff53a0"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_50_500_1.parquet",
+      "bytes": 5040,
+      "sha256": "0d47d0005f82ac19b717f7e6199115d8fcf5a90bad30128cbfe98dcbe3b907b9"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_60_1000_0.parquet",
+      "bytes": 4611,
+      "sha256": "0d83a9e1c4982408a370fafb359c5117dedc16c683f0003252f4debcf31a6473"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_60_1000_1.parquet",
+      "bytes": 4609,
+      "sha256": "51580202b1e9e68912ca0da56d1af11bfd3d66eef7a05b34325a78b494d56553"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_60_500_0.parquet",
+      "bytes": 4601,
+      "sha256": "a94fa755af043cf7c8fbd9647238b9968552922065cb551b1c7be60cd4245bd7"
+    },
+    {
+      "path": "sensor_data/position/10/10_45_60_500_1.parquet",
+      "bytes": 4550,
+      "sha256": "8e781e8b2d98cc69cbc30d85d5f54be56baff23dd34dd641003a5e88e99cdf26"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_20_1000_0.parquet",
+      "bytes": 6781,
+      "sha256": "c64815275893987cb6b2f6b24e6c61d2c05a8002a6e6874d2be27d17160d057e"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_20_1000_1.parquet",
+      "bytes": 6728,
+      "sha256": "c801d78c7d9a2923f6f8c0c98fcd5e2fcf498cb12a10a5cfcdf32672159cfbae"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_20_500_0.parquet",
+      "bytes": 6794,
+      "sha256": "ea14eb6d9329b1297deded2e67c6eb1c28c58a214b8b9bfc6582d401a96fb02f"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_20_500_1.parquet",
+      "bytes": 6744,
+      "sha256": "e4e7040a7d87675c46eea1c9101dfd80fbcdb73ab0ee7fde6eaf42a4b721e7b2"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_30_1000_0.parquet",
+      "bytes": 5320,
+      "sha256": "9e8d6d7ba2c8dc59675836b7866f33c4fed6f5e93a51cd23c6e5c4296726da43"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_30_1000_1.parquet",
+      "bytes": 5327,
+      "sha256": "87f04be70db197696244b7bcf3e2eb4ba67f988c518ff15fe3624ecb4a0f3c0d"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_40_1000_0.parquet",
+      "bytes": 4570,
+      "sha256": "0f171ca87a92e5e42196ded4e955603ac443353efd26cec46257eb15af346fda"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_40_1000_1.parquet",
+      "bytes": 4572,
+      "sha256": "e9d01a8b0b9453b60eefe43f5bd077a86ec6fe934293cdf71b3505f54e105a4c"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_40_500_0.parquet",
+      "bytes": 4592,
+      "sha256": "13cea4dfadc448d1499f9b1b97e325230fe11c116970dde549c64320110072d9"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_40_500_1.parquet",
+      "bytes": 4580,
+      "sha256": "88c2a8a55a59730c2ab4057681545ea5971d7f8e1395641f8aae7b7d498339e5"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_50_1000_0.parquet",
+      "bytes": 4189,
+      "sha256": "84691fd06c0f9618ec838662bd6dccbf72ce9a01d5c547457f6a1293291e4752"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_50_1000_1.parquet",
+      "bytes": 4154,
+      "sha256": "585c741f9ea39861514311bb46b1d45569a9246bbd1e9656e048f012e317088d"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_60_1000_0.parquet",
+      "bytes": 3847,
+      "sha256": "512d83e84549502c1fc91ee6fa33c6e5e2171525cd29fe0f9afaa55452b677a5"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_60_1000_1.parquet",
+      "bytes": 3874,
+      "sha256": "0369675ed5a2ad427101fe51ee7cb87e01ab533686410a046bc6ff65eb71f891"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_60_500_0.parquet",
+      "bytes": 3833,
+      "sha256": "ad758641a6b1a660c6570e422584d6177c464d033c26705786c1e5a7c726f34e"
+    },
+    {
+      "path": "sensor_data/position/10/10_90_60_500_1.parquet",
+      "bytes": 3846,
+      "sha256": "b70c9749a507fd51e5b8dc20bfb1b31cb86ad5ee58c56dfbb12b6febeea0b42a"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_20_1000_0.parquet",
+      "bytes": 6763,
+      "sha256": "41fb08f094cd45d9165281ef8406f64e6e1adb4c56e5a7460e3b64aa6f0d1c42"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_20_1000_1.parquet",
+      "bytes": 6767,
+      "sha256": "9400f114dfd3e6384037ece59e7228b544ac1f2ad2293dbf47a323afcb831712"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_20_500_0.parquet",
+      "bytes": 6755,
+      "sha256": "87a963338d8e4384d7a9624799b9bb387d3d7187bd145e442e56b7f4c8d0eb60"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_20_500_1.parquet",
+      "bytes": 6764,
+      "sha256": "a194db102e3425468d006f2c67feae507af0a46cde1b1498b71990f26495d8b9"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_40_1000_0.parquet",
+      "bytes": 4561,
+      "sha256": "3b7d3094efa609d3fdfd9c4e10199ad8af0a69d665e618813bec409a22664528"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_40_1000_1.parquet",
+      "bytes": 4568,
+      "sha256": "adc036fb1c5804e97bde740ff7484313caa3af1f010752b09aa9ab2a98148828"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_40_500_0.parquet",
+      "bytes": 4555,
+      "sha256": "b586341231b5e99ea70ee277e095e89d4839a565008c694303082e1fe2258c96"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_40_500_1.parquet",
+      "bytes": 4573,
+      "sha256": "4db2f9c9643ac04c9fca7d2a7cc02e561ff52f73d39bdf08e1465a93448c26ab"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_60_1000_0.parquet",
+      "bytes": 3888,
+      "sha256": "eba23650ca0d71af150875c47ea041143ef9d6aeeed16c28ab2fd5842279b1a7"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_60_1000_1.parquet",
+      "bytes": 3902,
+      "sha256": "18028d4c9437819dbd72da9ce3e12bb8df10244915ecea54020d8971e4d7565d"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_60_500_0.parquet",
+      "bytes": 3891,
+      "sha256": "a9a6b1774df666acdebf8da6254156423b571260fb10807806d568cff753d70c"
+    },
+    {
+      "path": "sensor_data/position/57/57_0_60_500_1.parquet",
+      "bytes": 3891,
+      "sha256": "dd68235a89772784d2b18a63a44cc53f74349e72231411826a0aa7ab35f9de14"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_20_1000_0.parquet",
+      "bytes": 8798,
+      "sha256": "0ffcd53a3e3681bc2054de5d8a74fb3c815bd2453efaa8021bf992fed54b8e16"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_20_1000_1.parquet",
+      "bytes": 8693,
+      "sha256": "6a4d0e4337c8be24eb61c9e2a426f9c1710ccaf200b2ee8a22e1249a0afe53b7"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_20_500_0.parquet",
+      "bytes": 8658,
+      "sha256": "7e711c7b2f1a3f556856cf5ce097a18185365be6c2845d2e7c4d059ddcf72a83"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_20_500_1.parquet",
+      "bytes": 8751,
+      "sha256": "df6888aac01d3568f3dc3e6ce9fe3b9ffe97068e0694717489182c781b49707c"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_30_1000_0.parquet",
+      "bytes": 6648,
+      "sha256": "85751de165d68ec894dba1c31861d1d4fce70f5ba33bd83bd80a91c8414c8cb1"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_30_1000_1.parquet",
+      "bytes": 6664,
+      "sha256": "8bd3623d9096629acaae8cf2311be29f0b0fa113365e6456d4cd152a5c0601c9"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_30_500_0.parquet",
+      "bytes": 6665,
+      "sha256": "5a1e381dc21c69023f3d58cdf3615205ed0ff95e5bd4792d97f987a425191bd4"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_30_500_1.parquet",
+      "bytes": 6652,
+      "sha256": "6cd12f5222ef9595f8d3d1d49403b052130c826883fe94cd8a4b8e9f2bc7252d"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_40_1000_0.parquet",
+      "bytes": 5577,
+      "sha256": "bf84f6ae996e86f0fea111ddd2516e19881fb53b520f7e0ca79ee7bfc5f44433"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_40_1000_1.parquet",
+      "bytes": 5565,
+      "sha256": "0450a9a5fd03d55ba509eee9956151803cb9af4120bcfe811b39fe21d9c18b92"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_40_500_0.parquet",
+      "bytes": 5556,
+      "sha256": "195315f47950aee2fc4680178ea7d3fbb39fc121816920f486ad783fadc1bcc0"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_40_500_1.parquet",
+      "bytes": 5573,
+      "sha256": "e8302118da0af9ee37717390c6c1e9685c62c22b0b7b062f1368c6e3acbac3b3"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_50_1000_0.parquet",
+      "bytes": 4991,
+      "sha256": "69828f864ffac9f7a6c3c5abc361078d32946a0be41404ff8e991aae374be90f"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_50_1000_1.parquet",
+      "bytes": 4927,
+      "sha256": "d09d7bad0de37603dee339f00d24dc3ae35df24fbe4745eee3dc4573df430b03"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_50_500_0.parquet",
+      "bytes": 4985,
+      "sha256": "a60582e9df328c8b87f37a147d4d59d22751f12b516936ba49f8a6ea23a70df3"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_50_500_1.parquet",
+      "bytes": 4910,
+      "sha256": "01811814fb6d72426f75c52a27e8dfa0d20ecf6fe29a3738932dcd8b2ae82944"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_60_1000_0.parquet",
+      "bytes": 4555,
+      "sha256": "8c4a002b1095870f17443e769f526550bb68e026ba3aa869dc47c406e1f3a94c"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_60_1000_1.parquet",
+      "bytes": 4550,
+      "sha256": "67139b340e405cf9ea5eb45b73088478e40599ba725476dcad767a7530ba84f1"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_60_500_0.parquet",
+      "bytes": 4523,
+      "sha256": "2207d4cd2176687ab7b2b452534725e44377d24d2618e64f3414dec8435a186e"
+    },
+    {
+      "path": "sensor_data/position/57/57_135_60_500_1.parquet",
+      "bytes": 4518,
+      "sha256": "828e8ca96efb3af25dd9ff065a780d761d994adb640d210e45aa0d4cd32f8a73"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_20_1000_0.parquet",
+      "bytes": 6747,
+      "sha256": "b16dce6bdd522242a4f94dd70823204dcfa6d068a4b1efae746e16dea0a57c1c"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_20_1000_1.parquet",
+      "bytes": 6777,
+      "sha256": "1a8b82b97952b1c6daa6cfe6fcd6e2a5abf22f509ee1b1d9b117a2da8c539d77"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_20_500_0.parquet",
+      "bytes": 6773,
+      "sha256": "fd66cae900b25a25c1a98d1166aa22d6aa1609707e430a4ceabb37719fc97d71"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_20_500_1.parquet",
+      "bytes": 6773,
+      "sha256": "8b267e15214f55cd943147f4b2cd9a7d92b257b40202026e5d9179154b24c076"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_30_1000_0.parquet",
+      "bytes": 5295,
+      "sha256": "a2eac6b62441f261fcf740c40f94be04a11a7ad66ad54244c046c87d0d19e1b2"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_30_1000_1.parquet",
+      "bytes": 5307,
+      "sha256": "5ced07a3b28ad5a61d949a36367dffcf72879c65364468a08adf84fc60ae4e29"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_30_500_0.parquet",
+      "bytes": 5310,
+      "sha256": "e70a6d38ebb94026a565af2e19c577407309b322f5788be7c49341020707792c"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_30_500_1.parquet",
+      "bytes": 5338,
+      "sha256": "aba8d437e5a56e4c387c419e3bdf734284073c9e3debff29b1a151f93e65bc74"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_40_1000_0.parquet",
+      "bytes": 4620,
+      "sha256": "dd24dd8675e05c4019c80337bd7bc8e9743f5e511c440ecf55dc80759141fbec"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_40_1000_1.parquet",
+      "bytes": 4589,
+      "sha256": "fecb9bf3f886f32cdea193bb1f6d09d329508772b4a7ab8bff0a6dd500bd17f9"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_40_500_0.parquet",
+      "bytes": 4608,
+      "sha256": "4a78796ed6142f9c53ba7d8d0153859d8334504ec5253b32ea62e0d3d76e414a"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_40_500_1.parquet",
+      "bytes": 4626,
+      "sha256": "77bd727977e94692afb31a71e02894e380552e2a0b6b185d86c4114cad2ba3f7"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_50_1000_0.parquet",
+      "bytes": 4181,
+      "sha256": "9b20bb95cf2f307abb6661d444d19843e49d60ac5dc07885c9db3b2631f19108"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_50_1000_1.parquet",
+      "bytes": 4132,
+      "sha256": "3fdbe4e4c8826560966d70271c880ebc630b688a1cd7c8a425bb9b5caef34527"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_50_500_0.parquet",
+      "bytes": 4150,
+      "sha256": "d33cc230dc8e1256844e56e32b4e5ed946dd7202231bb697cef78cfbe40cbff7"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_50_500_1.parquet",
+      "bytes": 4133,
+      "sha256": "98e53bf9999a7a054e2c5f53c458ff3e83a73494df08f993a503654c2faf26c0"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_60_1000_0.parquet",
+      "bytes": 3852,
+      "sha256": "317bfd2dc05e6fe404acc0774183fd146334d8efbb4a6530a4265d202980e574"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_60_1000_1.parquet",
+      "bytes": 3854,
+      "sha256": "c5cc95de884b653e2d952485dbed5a066b46001a47252e011cc520df6e482c83"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_60_500_0.parquet",
+      "bytes": 3794,
+      "sha256": "8f743f12e05726fdf6460d5c39e6d7e9104ac41baddeb20af01fd21e7f0834cc"
+    },
+    {
+      "path": "sensor_data/position/57/57_180_60_500_1.parquet",
+      "bytes": 3865,
+      "sha256": "3638a3ddf6662d29c7116406748d2a8d321b037397307f48b10c968fd8da844f"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_20_1000_0.parquet",
+      "bytes": 8633,
+      "sha256": "b6bc0ebf8b09f1c203a701eaaa877e99ec54b2065f93f1035398ad5720fd4106"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_20_1000_1.parquet",
+      "bytes": 8700,
+      "sha256": "308658987b2a520f7fe10ca564604e28afca3f507a54adc9c0c3c1940782b64c"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_20_500_0.parquet",
+      "bytes": 8648,
+      "sha256": "046f548862cfaac73bbadab7083140ecf666af35e08ec25d560700cd5300f1cf"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_20_500_1.parquet",
+      "bytes": 8689,
+      "sha256": "982813c6144e617792dcad9504e0523fe8ccfa96fd2ceac3ef7f73a0e24c78e4"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_30_1000_0.parquet",
+      "bytes": 6669,
+      "sha256": "b43f9cbeb026b4fe4185b207e86b31f78e9c0a51cb66c00fb05f5893b2db5de2"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_30_1000_1.parquet",
+      "bytes": 6670,
+      "sha256": "da7332cca5ca1e704fb587323966a02048f292352616b0ee126d0c28fd23b0f1"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_30_500_0.parquet",
+      "bytes": 6676,
+      "sha256": "4c2a8cf3dc340a8c3fdc462b73f9dc8cb713d9013ce62ecd091225269b9ff835"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_30_500_1.parquet",
+      "bytes": 6635,
+      "sha256": "2bf2bb7eb5c7ddac3d35ea72afbbac77194dc079f5fa10138b4c3e9825bf8959"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_40_1000_0.parquet",
+      "bytes": 5594,
+      "sha256": "40f8224d0c27ee05cf37e5f7d22e1c86dc79b9d030eb8c0784bb2beabd9e0850"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_40_1000_1.parquet",
+      "bytes": 5648,
+      "sha256": "53217a2e1bec3b071bb50d9361ae8baaa82903340e0dca378288147ff400430f"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_40_500_0.parquet",
+      "bytes": 5661,
+      "sha256": "647f349fdcb5b91c34af88e81434feb8e7ebea1068db8811e6e1be62d6d98369"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_40_500_1.parquet",
+      "bytes": 5594,
+      "sha256": "2926129f79f372e04ba7f6e33bf765330a9b587fcedb302f012c302149094385"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_50_1000_0.parquet",
+      "bytes": 5021,
+      "sha256": "ee4d525ae171c424acafa055ddc43589b91d523af3ae77a905a5d09f8adcb35e"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_50_1000_1.parquet",
+      "bytes": 4974,
+      "sha256": "11e3a07f749c20f9612187f14e4f3bffc27df86fb06cfffdc703618232caf09c"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_50_500_0.parquet",
+      "bytes": 4945,
+      "sha256": "01cfef8fc41514e8b0dfd7a90bf568e9217894a2221136ef1f5aced38b0c2bab"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_50_500_1.parquet",
+      "bytes": 5051,
+      "sha256": "c014865eb3915da87674b389f41e5f531f6bf12cfc9d208f5ef0218e074cd584"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_60_1000_0.parquet",
+      "bytes": 4612,
+      "sha256": "9fcaa0eb40275af066a98f312f24aabac67e5fcb65acc6d7acfb6265d31a83c8"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_60_1000_1.parquet",
+      "bytes": 4558,
+      "sha256": "c9f3ab754db2e5e4e1350c897ada1c6aec45a6a24c03c23787c49d78eef9db36"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_60_500_0.parquet",
+      "bytes": 4538,
+      "sha256": "950abaa7873b4b41afd742a7fade598cc2bd0a4394c06967a754d58445605ce6"
+    },
+    {
+      "path": "sensor_data/position/57/57_225_60_500_1.parquet",
+      "bytes": 4607,
+      "sha256": "93266585f5ffb0f6390dfa51fa13035010f928043df200b28fc0eb2cf81f68d1"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_20_1000_0.parquet",
+      "bytes": 6792,
+      "sha256": "ee1b79b233bbc6e91fa58fa241629c4f74e125b664bd0f26aecb31090460008f"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_20_1000_1.parquet",
+      "bytes": 6777,
+      "sha256": "ec290c46af903b11b5e8637cfebce9d242ae2e5e826fdf4d06feb08231ebd281"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_20_500_0.parquet",
+      "bytes": 6692,
+      "sha256": "32fcd0c00f45df7dee18530b29887cffb839fdf6405dd0891bcc3d042359629e"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_20_500_1.parquet",
+      "bytes": 6786,
+      "sha256": "edeea00ad4414bf799ad9327bf545222f69f3b2b5b8cf1695720a7307ead28f2"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_30_1000_0.parquet",
+      "bytes": 5267,
+      "sha256": "a96e0cdc8905557419abf17aa69cd2580e87c288c0c788a1d031e9fcd180edbf"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_30_1000_1.parquet",
+      "bytes": 5329,
+      "sha256": "1ed364e2e8b80be1f221e4a805558720cad0d1b89ece71d4871b807223619fed"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_30_500_0.parquet",
+      "bytes": 5341,
+      "sha256": "9b484e3c11637f0414eb54628d227ed3069d85657188fe409c643af6d6628531"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_30_500_1.parquet",
+      "bytes": 5333,
+      "sha256": "0a4fb55a76c57afa0b6c1fc5ee83b858b8c8bd2402c65a6118ea2e8db4451012"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_40_1000_0.parquet",
+      "bytes": 4624,
+      "sha256": "a009ec7cc41f0e16efaeca9c29b15e05cc9c40c2be0b442b29a17883f2fd57e3"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_40_1000_1.parquet",
+      "bytes": 4579,
+      "sha256": "610b5a7e912fe2af18b87eab92902ff0878461a4700c51a8cc3ebbd834de12b9"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_40_500_0.parquet",
+      "bytes": 4586,
+      "sha256": "11e1d240f9c6e0b2a4070b88530310083a76cbaf8a78b941614f82c6a6d5be7d"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_40_500_1.parquet",
+      "bytes": 4587,
+      "sha256": "6945b3b575e230aafce60394eda9b3e1ad602c69637e1f69dec35ce9f61a3eca"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_50_1000_0.parquet",
+      "bytes": 4153,
+      "sha256": "4b267f7e8f3a32474633b7a6b88984673bc39230768aaf92cb7a9a9dc9e379cc"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_50_1000_1.parquet",
+      "bytes": 4208,
+      "sha256": "c9ad4df0c9a6ee1b002350cf62a0c0a7a1794a710aa873006742a7b60065867f"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_50_500_0.parquet",
+      "bytes": 4183,
+      "sha256": "d34c4552ecb0cb7922ce971bde8a2c4ebe88784da54f0ec61e7778ffcc78f58b"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_50_500_1.parquet",
+      "bytes": 4175,
+      "sha256": "ace48b674f774d4b23101702f413081bc36021bfae324e481c5a2befbd081382"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_60_1000_0.parquet",
+      "bytes": 3842,
+      "sha256": "67b1bfaaf17f80a4ac249c16933742d0c7fdc36aaf33176ca6bb64c566110955"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_60_1000_1.parquet",
+      "bytes": 3845,
+      "sha256": "d6568e55dee4562edf365fb818dbff57399ebf1839d7e47f83cca24cec66c3fb"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_60_500_0.parquet",
+      "bytes": 3895,
+      "sha256": "7e45784116c913b55b44e4075670a9627800551a9b6bc479040f5918b31b0726"
+    },
+    {
+      "path": "sensor_data/position/57/57_270_60_500_1.parquet",
+      "bytes": 3837,
+      "sha256": "ecce9eaf55f560ffbf03c7faad4d6613346847527f96ba86785b22e41366b076"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_20_1000_0.parquet",
+      "bytes": 8732,
+      "sha256": "fd31fd42447e5bf0bbb2a52b6de1f7f8cf5cabed73e53d486298d93430c717a8"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_20_1000_1.parquet",
+      "bytes": 8672,
+      "sha256": "5373456ec08e5246dcde06421906b30ebccced724481f12ba2f203a4cd567eb1"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_20_500_0.parquet",
+      "bytes": 8738,
+      "sha256": "0542eeeaba554f371a11703401a13225b69e497f5440d35d75d7a153fa2bf358"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_20_500_1.parquet",
+      "bytes": 8662,
+      "sha256": "7a9b84d511e64c837b84fb6e6132fa42d08b4e8203212aaed98ed5577ec1f0d4"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_30_1000_0.parquet",
+      "bytes": 6676,
+      "sha256": "7c947d8ae198fc3c2d942e7f6816b736e56a967b6ac148dbbd45aa2aea89edfb"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_30_1000_1.parquet",
+      "bytes": 6660,
+      "sha256": "017a358dac9e196a6f72a36447f6b09ef511c0a236c63db5675da9ed4809ad5d"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_30_500_0.parquet",
+      "bytes": 6666,
+      "sha256": "eb65408fb9509654733f08401dd349f5afc74e88a02341173a29da74d87f36ec"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_30_500_1.parquet",
+      "bytes": 6662,
+      "sha256": "ed38b0458cb6b81bf93fb2eb94a1bc9b210b8143e11c3fb94dec6654735999ce"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_40_1000_0.parquet",
+      "bytes": 5535,
+      "sha256": "5a0855c008071794d37429a9cba689bbd44be505483bbd8ecd71697fb4a79186"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_40_1000_1.parquet",
+      "bytes": 5581,
+      "sha256": "028bef150aa478f4208f2f324d646343b58d411ff11e9af8dc8d659c402993f1"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_40_500_0.parquet",
+      "bytes": 5568,
+      "sha256": "310feafdc204260d3d5edd04d873fcbd319e6b4f3a6abb56e0a037ae5b3d6ab2"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_40_500_1.parquet",
+      "bytes": 5594,
+      "sha256": "1ecf6c33c3c48808acfa38e2c87f6f51b4187d7e2dc2983d4628b4a7dd265d7c"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_50_1000_0.parquet",
+      "bytes": 5049,
+      "sha256": "fca4767e684b6e7e1b9ffbead6d3239893981e738a415f21ef1abd85e0b5b4a8"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_50_1000_1.parquet",
+      "bytes": 5024,
+      "sha256": "5bc1658280616c2e0220280ae47fefe365ae4b477b53359499e284dbb75c8074"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_50_500_0.parquet",
+      "bytes": 5000,
+      "sha256": "cdaf4cbf50acd8776cc381f5d007dbf6a0fb51ed90bbf9e4b1e6a5e31f81d315"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_50_500_1.parquet",
+      "bytes": 5036,
+      "sha256": "e943a0c38d213cb73e05d3594d33f6a86b4de06d7521934b5dbb1f1a197706ac"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_60_1000_0.parquet",
+      "bytes": 4604,
+      "sha256": "7356c1c4fffe46781d024f9fe3083076f950d8f887b2a19932037f260cb8251f"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_60_1000_1.parquet",
+      "bytes": 4616,
+      "sha256": "20d2e185a534a81e20892f448aa664abebfefc7ade4abd80388dbc281f760733"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_60_500_0.parquet",
+      "bytes": 4611,
+      "sha256": "b507636972d9419eb45f2d11b9212ea8e91a22bdac3d13191b12557fbaca4f24"
+    },
+    {
+      "path": "sensor_data/position/57/57_315_60_500_1.parquet",
+      "bytes": 4597,
+      "sha256": "675150bfbd4c5bb95f97e99d2c9a390011f9710a77fe82ed6d34a2d6c468b5e1"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_20_1000_0.parquet",
+      "bytes": 8720,
+      "sha256": "2bf8b0de2839efc253af3ea73f1ef7c0ab34ec2af824e59b0e5d3a2f220a78cd"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_20_1000_1.parquet",
+      "bytes": 8619,
+      "sha256": "813d9a4e3490b86e797faf4de3ae10fa798eb4a3efe370a46b284bfbbe600bf8"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_20_500_0.parquet",
+      "bytes": 8711,
+      "sha256": "b4cb76d14fa327781081eb19e2fc78d6761241cb393211d6e3d447aa996a96bb"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_20_500_1.parquet",
+      "bytes": 8703,
+      "sha256": "fafd0df5fd3fa692ca4d89725ce0f943ab6edca84d04f5d45caa376d489d0ad7"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_30_1000_0.parquet",
+      "bytes": 6684,
+      "sha256": "5fe7856afc84784ea929688885c02448948b1c769c1d9d5a56ade8f266419bcb"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_30_1000_1.parquet",
+      "bytes": 6629,
+      "sha256": "92bfba80f6324a7426717a6f9807623408b1e5830306047c4ece9d77e4080be6"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_30_500_0.parquet",
+      "bytes": 6688,
+      "sha256": "62cd385b344dfc8403e2bb8c8bed2237d2a4a628256be148f4d5733dedef9360"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_30_500_1.parquet",
+      "bytes": 6631,
+      "sha256": "ebffd6555697813ec77e85049836c13919ea8ac82812dabe814761d8271d9822"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_40_1000_0.parquet",
+      "bytes": 5603,
+      "sha256": "49ed241cdd53f4fb8cdae4166bee848ac81d1aacf9268568f0d97b14fe1a4902"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_40_1000_1.parquet",
+      "bytes": 5569,
+      "sha256": "c985a4d4de2aff605d7dac7cfd9aaef03a88a130f8199c1386248fe3926130b2"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_40_500_0.parquet",
+      "bytes": 5582,
+      "sha256": "e79c6a59e208c8e5b140c5ddf19cc5dc828117aa545f84c072339bd0250762c8"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_40_500_1.parquet",
+      "bytes": 5579,
+      "sha256": "6fec4b79a14b6cbdd9a606846d6d845bb0436afb4a898ae307f433cd19808828"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_50_1000_0.parquet",
+      "bytes": 4999,
+      "sha256": "2e0d671d83933392190e45a482bc7a34764580323476b0db5c6ece52afece3f1"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_50_1000_1.parquet",
+      "bytes": 4938,
+      "sha256": "005592ee39f5da983eee9d55e5901958498df0f2494f335c761d0ecb541a414b"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_50_500_0.parquet",
+      "bytes": 4961,
+      "sha256": "6f134b7346c83cb26cf2c55c94ffaa4a887a7f5cd09a507d479b7af3ad6cec59"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_50_500_1.parquet",
+      "bytes": 4983,
+      "sha256": "cd58f6b6430d462f65cb3344d9756071017bf5fa9620529f5dd7272c6a46a20c"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_60_1000_0.parquet",
+      "bytes": 4543,
+      "sha256": "f48b3f30ed9395521daab67c088c7af5422443e7168f207a68d8135cf62061bf"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_60_1000_1.parquet",
+      "bytes": 4625,
+      "sha256": "2eac7637031563410dccb463cbddb6c5bb30404d1a4dee6e15c4736b26754d39"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_60_500_0.parquet",
+      "bytes": 4573,
+      "sha256": "1fda8ff677745acaff01a73c7b6c47c8439e5df4a240e35898d6f9b89e928649"
+    },
+    {
+      "path": "sensor_data/position/57/57_45_60_500_1.parquet",
+      "bytes": 4560,
+      "sha256": "1bf65a0001566b5414d22dd3694d679947d9d91c0ca804c698f8fe833f9208a9"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_20_1000_0.parquet",
+      "bytes": 6716,
+      "sha256": "b132dfe63e61d3045e9a1f2abb471ac92be94fad6c9a126faf5484538aefed74"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_20_1000_1.parquet",
+      "bytes": 6752,
+      "sha256": "13b48c428744932fb8913d761f6b8dd5e47f9b8983ce25877e9d5fda6a782eae"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_20_500_0.parquet",
+      "bytes": 6730,
+      "sha256": "1287948c43ded91e4598845b720a177d5809ba455862c657927b5e09880e2779"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_20_500_1.parquet",
+      "bytes": 6764,
+      "sha256": "364bcd08b5a01478dd81aa7ee57592d257199c9980d31ec71bea50cef7de3c29"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_30_1000_0.parquet",
+      "bytes": 5328,
+      "sha256": "768a83ca2454418b3b92949909e3d19bc439321f1b990237137b3da1cc6c7a7e"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_30_1000_1.parquet",
+      "bytes": 5320,
+      "sha256": "e10b53ab042d161e37f53d4c159c7fffe01bda1c00d02afc6fec47025e60615b"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_40_1000_0.parquet",
+      "bytes": 4571,
+      "sha256": "1bcacedbb4428a4f2de6de0f3839cab569685e060f97df9d477a1db38afd8cb6"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_40_1000_1.parquet",
+      "bytes": 4579,
+      "sha256": "9872b04a8b2e2f53a80769e3e82daea8e5910c763cbb0539fd3bb6aa3848818c"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_40_500_0.parquet",
+      "bytes": 4580,
+      "sha256": "c858c1d9291517f0bf71ce0c5bf86e86a00cbf4a38aa7d4e17fdb80efc56e588"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_40_500_1.parquet",
+      "bytes": 4589,
+      "sha256": "a4e1fe8b7cf0283e910770f06092e22ad8d26db1744b5e1a13a016584c9e95e5"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_50_1000_0.parquet",
+      "bytes": 4160,
+      "sha256": "210f2566f712219708d7e23b034b996a3f42646f2abe5c408ee861768d953d18"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_50_1000_1.parquet",
+      "bytes": 4131,
+      "sha256": "eed4b1e1488756f3b6d8704567090739dfc8fccff2e14701d73444b84c14d3a8"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_60_1000_0.parquet",
+      "bytes": 3888,
+      "sha256": "794662dcaa02581a6dcb22bb9dd075cf63dd5fb3b6a9a1aad46666ed6cf2e084"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_60_1000_1.parquet",
+      "bytes": 3955,
+      "sha256": "55d4ed2d6e9fdf45e918bd4c0851de0d0684537f27339a64036e36ed4ab39f64"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_60_500_0.parquet",
+      "bytes": 3845,
+      "sha256": "492e723d197909ce938d11d2c4df8d9b2cda21d193114071b8a462c46c4cd9f3"
+    },
+    {
+      "path": "sensor_data/position/57/57_90_60_500_1.parquet",
+      "bytes": 3892,
+      "sha256": "e3c8df388f1383cf9112879a49a560267c611f51ee140cc871ce2d4d36401699"
+    },
+    {
+      "path": "texture_list.xlsx",
+      "bytes": 19016,
+      "sha256": "6cd7dfc06e61852d49a2256d7fe8d44d222f3619f48fe9a4031f677d1b0eb4ff"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/selection_transfer_qc_records.csv",
+      "sha256": "12c1e14d9dbc7639b6764b9c3566efda64cfa23fadcef7bdc44e32f4e0ca3406"
+    },
+    {
+      "path": "docs/selection_transfer_qc_sensitivity_records.csv",
+      "sha256": "d4f9eaf7dbbb59bced1619c94680f72b065d46b851cc48e50e2a077e0ab77334"
+    },
+    {
+      "path": "docs/selection_transfer_qc_sensitivity.csv",
+      "sha256": "ebf6a911b1ec31020d767a94933a789253cc8c2737cfbf0a9d065e8fd01caa59"
+    },
+    {
+      "path": "docs/selection_transfer_qc_common_eligibility.csv",
+      "sha256": "c9772edcffc5bc2f64927f40011934259b85c359d928d8ad378e1dd229428c72"
+    },
+    {
+      "path": "docs/selection_transfer_qc_intersections.csv",
+      "sha256": "09cb45e275463dce1b8add19a921c4fd4f9bf4e606edb75633731f7f270b424b"
+    },
+    {
+      "path": "docs/selection_transfer_qc_conditions.csv",
+      "sha256": "c7c69175b7ca998262fb7891fe6c809dc871b283e58053ce856ad7948a36b6cf"
+    },
+    {
+      "path": "docs/selection_transfer_qc_surfaces.csv",
+      "sha256": "b70385f57d6bf1cb9963295746f1b08a1495f60efb2583d28ea82fdb4a0a4623"
+    },
+    {
+      "path": "docs/selection_transfer_qc_summary.json",
+      "sha256": "d4fa01efaabbc548d0c03ac206a73f057af09a18d11e4a5163cdae46be7f2d33"
+    }
+  ],
+  "accessed_surface_ids": [
+    10,
+    57
+  ],
+  "requested_recording_triplets": 296,
+  "variant_rows": 2072,
+  "heading_frame": {
+    "sign": -1,
+    "offset_deg": -89.99905652325076,
+    "mean_absolute_residual_deg": 0.006083707831510924
+  },
+  "heading_frame_candidates": [
+    {
+      "sign": -1,
+      "offset_deg": -89.99905652325076,
+      "mean_absolute_residual_deg": 0.006083707831510924
+    },
+    {
+      "sign": 1,
+      "offset_deg": 90.00000248588748,
+      "mean_absolute_residual_deg": 87.56774689722597
+    }
+  ],
+  "reserved_signals_accessed": false,
+  "prediction_scores_accessed": false,
+  "settings_changed": false,
+  "scope": "Existing two development selection specimens only; four support conditions, 44 known-speed queries and 26 endpoint-safe transfer queries, both repetitions. Exact canonical window availability and the unchanged seven QC settings; geometry/loading on current half-second intervals. No prediction scores, feature targets, refitting, reserved signals or error-based exclusions. Preserve shared raw/source/inventory bytes in a separate raw root.",
+  "claim_limit": "Development coverage only; no calibrated acquisition timing, predictor result, scientific test or manufacturing-family independence."
+}

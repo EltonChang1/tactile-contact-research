@@ -1,0 +1,8 @@
+variant,requested,valid,quarter_second,half_second,one_second
+current,296,296,296,296,286
+smoother_11,296,296,296,258,92
+smoother_31,296,296,296,296,296
+accel_gap_half,296,296,296,296,286
+accel_gap_double,296,296,296,296,286
+aux_gap_half,296,296,296,296,286
+aux_gap_double,296,296,296,296,286
