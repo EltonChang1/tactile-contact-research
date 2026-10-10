@@ -20,7 +20,9 @@ The [complete metadata/exposure review](docs/study_design_review.md) now covers 
 
 The [wider known-speed audit](docs/wider_coverage_review.md) now covers 960 training records across all eight directions. Every record retains half a second; all required one-second supports and 44 common query triples survive on all ten training specimens. Median recorded force is 2.9% above nominal. Current QC remains unchanged. **70 tests pass.** No reserved signals or new model fits are part of this milestone.
 
-The [training diagnostic review](docs/development_diagnostics_review.md) now checks 480 repeat pairs, including 440 known-query pairs. Mean query repeat difference is **0.173 log-power units**, with much higher variability on specimens 102/103. The numerical floor has negligible influence; retain current features and QC. All six expanded/omitted model histories reach 60 epochs while still improving, and primary-cell histories were not saved. A controlled convergence extension comes next. **78 tests pass** at this milestone; reserved signals remain untouched.
+The [training diagnostic review](docs/development_diagnostics_review.md) now checks 480 repeat pairs, including 440 known-query pairs. Mean query repeat difference is **0.173 log-power units**, with much higher variability on specimens 102/103. The numerical floor has negligible influence; retain current features and QC. All six expanded/omitted model histories reach 60 epochs while still improving, and primary-cell histories were not saved. That 9 October milestone passed **78 tests** and motivated the finite extension completed below; reserved signals remained untouched.
+
+The [controlled extension](docs/convergence_review_report.md) is now complete: all six runs exactly reproduce their first-60 histories, checkpoint tensors and predictions, then continue under a finite 120 cap. Familiar encoder MAE improves **0.2513 → 0.2049**, with retrieval still leading at **0.1726**. Omitted transfer encoder MAE becomes **0.3245** (previously 0.3141), while RMS error improves; fixed features still lead MAE at 0.3096. Four runs hit the cap, two stop through patience. Adopt the [finite development policy](configs/development_training_policy.json) without a cap chase. **85 tests pass.** Reserved specimens remain untouched; no scientific test has run.
 
 ## Install
 
@@ -117,6 +119,16 @@ After the wider QC audit and the three corrected bounded runs:
 
 The runner checks reservation, complete recording identities, audited QC and raw hashes before signal use. It exports repeat pairs, floor/range sensitivity, saved learning curves, figures and provenance under `docs/development_diagnostics_*`. It fits no model and reads no reserved, selection or training omitted-speed signals. See the [review](docs/development_diagnostics_review.md) for interpretation and the controlled convergence follow-up.
 
+## Reproduce the controlled convergence extension
+
+After the corrected expanded/omitted runs exist with their recorded histories, checkpoints and environment:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/review_convergence.py
+```
+
+The new default root `runs/convergence_120` must not exist. The runner rejects overwrite, checks exact first-60 reproduction, saves primary/equal-cell histories and both checkpoint budgets, and seals every selection before reading transfer targets or historical score arrays. Baseline fits remain unchanged. Public tables and a figure are under `docs/convergence_review_*`; full predictions/checkpoints stay ignored. A repeated reconstruction requires an explicit copied review config with a new `output_root`. See the report for limitations and source/input hashes.
+
 ## Outputs
 
 | Location | Contents |
@@ -147,4 +159,4 @@ Run `python -m tactile_contact figures --config configs/pilot.yaml --root runs/b
 
 ## Next implementation milestone
 
-The raw acceleration boundary, logged-coordinate scope, metadata/exposure/reservation, known-speed training coverage and repeat/floor/range/history reviews are complete. Next run the controlled 120-epoch convergence check with primary logging and first-60 reproduction, then repetition reversal, residual analysis, wider selection/transfer coverage and matched-grid familiar/omitted fitting. Protect reserved groups while freezing scientific margins, protocol/access/scoring. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.
+The raw acceleration boundary, logged-coordinate scope, metadata/exposure/reservation, training coverage, repeat/feature diagnostics and finite convergence check are complete. Four trajectories remain cap-limited; the finite 120 policy does not claim asymptotic convergence. Next complete repetition reversal, residual analysis, wider selection/transfer coverage and matched-grid familiar/omitted fitting. Protect reserved groups while freezing scientific margins, protocol/access/scoring. Mechanics requires independently calibrated force measurements; an encoder victory is not its gate.

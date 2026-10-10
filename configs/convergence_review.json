@@ -1,0 +1,22 @@
+{
+  "review_id": "bounded_convergence_120_v1",
+  "review_date": "2026-10-10",
+  "group_manifest": "configs/all_specimen_groups.csv",
+  "reservation_manifest": "configs/test_reservation.csv",
+  "exposure_snapshot": "configs/development_exposure.json",
+  "clock_convention": "configs/clock_convention.json",
+  "epoch_cap": 120,
+  "reference_horizon": 60,
+  "seeds": [0, 1, 2],
+  "tail_epochs": 10,
+  "history_absolute_tolerance": 0.0,
+  "require_reference_checkpoint_tensor_equality": true,
+  "output_root": "runs/convergence_120",
+  "output_prefix": "convergence_review",
+  "experiments": [
+    {"name": "expanded", "historical_root": "runs/bounded_expanded_pilot", "selection_speeds": [30, 40, 50, 60], "selection_triples": 4},
+    {"name": "omitted", "historical_root": "runs/bounded_omitted_speed", "selection_speeds": [20, 40, 60], "selection_triples": 6}
+  ],
+  "selection_rule": "Unchanged equal protocol/duration-cell, equal-specimen mean log-power MAE; primary single-0.5 selection history is diagnostic only.",
+  "scope": "Fresh unchanged bounded cohorts, optimizer, sampler, learning rate and patience; original experiment-specific fit/selection domains. Finite 120 cap, no cap chase or architecture change. Reproduce first 60 histories and checkpoint tensors before interpretation. Select all six trajectories before any new transfer targets, historical prediction arrays or baseline scores are read. Development only; reserved specimens remain protected."
+}

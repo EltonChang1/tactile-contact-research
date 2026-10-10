@@ -1,0 +1,19 @@
+{
+  "policy_id": "finite_120_epoch_development_v1",
+  "decision_date": "2026-10-10",
+  "stage": "development_only",
+  "evidence": "docs/convergence_review_report.md",
+  "epoch_cap": 120,
+  "patience": 10,
+  "seeds": [0, 1, 2],
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "batch_size": 128,
+  "episodes_per_surface": 64,
+  "latent_dim": 16,
+  "gradient_norm_clip": 1.0,
+  "selection_objective": "Equal protocol/duration cells; mean queries within specimen, then equal specimen mean, then equal cell mean",
+  "primary_selection_history": "single protocol, 0.5 logged-second support; diagnostic only",
+  "selection_domains": "Original domains for historical extensions; common known-speed domain for the prospective matched familiar/omitted experiment",
+  "claim_limit": "Finite computational policy, not verified asymptotic convergence. Four of six bounded trajectories still hit 120. No further cap chase, no architecture/QC/feature change, no choice based on transfer advantage. Existing historical CLI configurations remain unchanged at 60 epochs; the next matched configs must explicitly adopt this policy. Not a scientific freeze or locked-test interface."
+}
