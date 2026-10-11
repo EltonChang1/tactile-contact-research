@@ -1,5 +1,7 @@
 # Can a Short Touch Predict a Slide?
 
+This experiment is now maintained in the dedicated [brief-touch-mechanics repository](https://github.com/EltonChang1/brief-touch-mechanics). This page preserves the initial design; use the new repository for current work.
+
 Could one short touch tell a robot how hard it is to slide across a new surface, or how far a moving object will travel before stopping? This experiment will test that idea.
 
 **Status: proposed experiment, researched on 10 October 2026. We have no force or motion results from this experiment yet.**

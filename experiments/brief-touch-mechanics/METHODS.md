@@ -1,5 +1,7 @@
 # Brief-Touch Mechanics: Methods and Research Review
 
+The current design is maintained in [brief-touch-mechanics](https://github.com/EltonChang1/brief-touch-mechanics/blob/main/docs/methods.md). This document preserves the initial research review.
+
 **Reviewed: 10 October 2026. Status: proposed design; no mechanical dataset has passed the access/calibration gate and no experiment results are claimed.**
 
 This document supports the [plain-language README](README.md). Published findings below are distinguished from our design choices. The proposed protocol refines the existing [Stage B/C plan](../../docs/research_plan.md) and [implementation guide](../../docs/implementation_guide.md); it does not establish that collection, calibration or mechanics software is complete.
