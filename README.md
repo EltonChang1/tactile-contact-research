@@ -45,6 +45,7 @@ The recordings' timing still needs confirmation before we can make precise claim
 ## Explore or run the project
 
 - [Research plan](docs/research_plan.md): the goals and stages of the project.
+- [Proposed brief-touch mechanics experiment](experiments/brief-touch-mechanics/README.md): a simple explanation of the next force and movement study, with researched methods.
 - [Implementation guide](docs/implementation_guide.md): how each stage is carried out.
 - [Latest results](docs/matched_development_review.md): the measurements behind the findings above.
 - [Validation report](docs/matched_validation_review.md): how we checked the results.
