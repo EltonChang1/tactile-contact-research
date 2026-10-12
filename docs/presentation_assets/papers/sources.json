@@ -1,0 +1,72 @@
+[
+  {
+    "file": "tactile_dreamfusion_figure1.png",
+    "source_image_url": "https://arxiv.org/html/2412.06785v1/teaser_v4.png",
+    "paper_url": "https://arxiv.org/abs/2412.06785",
+    "credits": "Ruihan Gao et al., Tactile DreamFusion: Exploiting Tactile Sensing for 3D Generation, NeurIPS 2024, Figure 1.",
+    "relative_path": "docs/presentation_assets/papers/tactile_dreamfusion_figure1.png",
+    "width": 992,
+    "height": 522,
+    "image_format": "Png",
+    "content_type": "image/png",
+    "bytes": 423462,
+    "verified_on": "2026-10-11",
+    "usage": "Primary-source figure acquired for authorized offline presentation authoring; retain attribution."
+  },
+  {
+    "file": "visual_tactile_synthesis_figure1.png",
+    "source_image_url": "https://arxiv.org/html/2305.03051v1/figure1_teaser.png",
+    "paper_url": "https://arxiv.org/abs/2305.03051",
+    "credits": "Ruihan Gao, Wenzhen Yuan and Jun-Yan Zhu, Controllable Visual-Tactile Synthesis, ICCV 2023, Figure 1.",
+    "relative_path": "docs/presentation_assets/papers/visual_tactile_synthesis_figure1.png",
+    "width": 1849,
+    "height": 567,
+    "image_format": "Png",
+    "content_type": "image/png",
+    "bytes": 929990,
+    "verified_on": "2026-10-11",
+    "usage": "Primary-source figure acquired for authorized offline presentation authoring; retain attribution."
+  },
+  {
+    "file": "pat3d_project_teaser.png",
+    "source_image_url": "https://simulation-intelligence.github.io/PAT3D/static/images/teaser.png",
+    "paper_url": "https://arxiv.org/abs/2511.21978",
+    "credits": "Guying Lin et al., PAT3D: Physics-Augmented Text-to-3D Scene Generation, ICLR 2026, official project teaser. Ruihan Gao is a coauthor.",
+    "relative_path": "docs/presentation_assets/papers/pat3d_project_teaser.png",
+    "width": 2596,
+    "height": 900,
+    "image_format": "Png",
+    "content_type": "image/png",
+    "bytes": 1234449,
+    "verified_on": "2026-10-11",
+    "usage": "Primary-source figure acquired for authorized offline presentation authoring; retain attribution."
+  },
+  {
+    "file": "tacto_project_teaser.jpg",
+    "source_image_url": "https://raw.githubusercontent.com/facebookresearch/tacto/main/website/static/img/teaser.jpg",
+    "paper_url": "https://arxiv.org/abs/2012.08456",
+    "credits": "Shaoxiong Wang, Mike Lambeta, Po-Wei Chou and Roberto Calandra, TACTO: A Fast, Flexible, and Open-source Simulator for High-Resolution Vision-based Tactile Sensors, RA-L/ICRA 2022, official project teaser.",
+    "relative_path": "docs/presentation_assets/papers/tacto_project_teaser.jpg",
+    "width": 2048,
+    "height": 480,
+    "image_format": "Jpeg",
+    "content_type": "image/jpeg",
+    "bytes": 67219,
+    "verified_on": "2026-10-11",
+    "usage": "Primary-source figure acquired for authorized offline presentation authoring; retain attribution."
+  },
+  {
+    "file": "objectfolder2_concept.png",
+    "source_image_url": "https://ai.stanford.edu/~rhgao/objectfolder2.0/concept.png",
+    "paper_url": "https://arxiv.org/abs/2204.02389",
+    "credits": "Ruohan Gao et al., ObjectFolder 2.0: A Multisensory Object Dataset for Sim2Real Transfer, CVPR 2022, official project concept figure.",
+    "relative_path": "docs/presentation_assets/papers/objectfolder2_concept.png",
+    "width": 653,
+    "height": 444,
+    "image_format": "Png",
+    "content_type": "image/png",
+    "bytes": 182175,
+    "verified_on": "2026-10-11",
+    "usage": "Primary-source figure acquired for authorized offline presentation authoring; retain attribution."
+  }
+]

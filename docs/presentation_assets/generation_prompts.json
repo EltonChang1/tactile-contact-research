@@ -1,0 +1,25 @@
+{
+  "created": "2026-10-11",
+  "mode": "built-in image_gen.imagegen",
+  "purpose": "Concept illustrations for the Ruihan Gao 11-slide partnership pitch",
+  "prompts": [
+    {
+      "key": "tactile-room-vision",
+      "prompt": "Use case: stylized-concept. Asset type: 16:9 widescreen presentation hero illustration for a scientific cofounder pitch, no embedded slide text. Primary request: an elegant architectural cutaway illustration of a small simulated room whose everyday objects have tactile surfaces, showing the ambition of a world an embodied robot can touch. Scene: a modest furnished study with an oak table, a ceramic mug, a cushion with visible woven fabric, a rubber-coated everyday object and a brushed-metal tray. One plausible compact robotic arm with a simple fingertip probe gently contacting the wooden tabletop. Materials show rich, natural, distinctive fine texture. Add very subtle mesh or surface-grid accents on a few objects to suggest digital assets, without numeric data or fake sensor heatmaps. Style: polished editorial 3D scientific concept illustration, warm neutral materials, soft diffuse light, off-white background, restrained and credible, no futuristic sci-fi spectacle. Composition: landscape 16:9; clear readable room and contact, ample clean negative space above for an editable slide title. Text: none. Constraints: conceptual proposed simulation, not a photograph of an existing lab or a claimed working product; physically plausible arm and objects; no logos, no equations, no graphs, no dashboard, no watermarks, no people, no whole-body electronic skin.",
+      "saved_file": "01-tactile-room-vision.png",
+      "transparent_background": false
+    },
+    {
+      "key": "tactile-surface-asset",
+      "prompt": "Use case: scientific-educational. Asset type: a clean widescreen presentation illustration of a proposed reusable spatial tactile surface asset. Primary request: one realistic, plainly shaped ceramic mug with spatially distinct surface regions: smooth glazed ceramic body, ribbed dark rubber grip band and rough unglazed ceramic base. Show a restrained faint mesh grid registered to a small portion of the mug surface to suggest object coordinates. Beside the mug show three clearly separated large macro closeups of the actual three surface regions, aligned neatly and visually connected through matching material appearances, without arrows or labels. Make the rubber ribs, ceramic smoothness and granular base visibly different. Style: polished editorial 3D technical illustration, natural material colors, soft shadows, off-white seamless studio background, realistic proportions. Composition: landscape 16:9 with generous whitespace for editable labels to be added in PowerPoint, simple strong silhouette, detail large enough for an audience to see. Text: none. Constraints: this is a conceptual representation illustration, no fake experimental measurements, no force heatmaps, no friction numbers, no scale bars, no graphs, no sensor outputs, no logos, no watermark, no neon sci-fi effects.",
+      "saved_file": "06-tactile-surface-asset.png",
+      "transparent_background": false
+    },
+    {
+      "key": "tactile-sliding-experiment",
+      "prompt": "Use case: scientific-educational. Asset type: clean 16:9 widescreen conceptual illustration for a proposed tactile measurement experiment slide. Primary request: a physically plausible compact benchtop sliding-contact test setup, shown in a clear three-quarter technical view. A stationary rectangular rigid coupon contains three adjacent measured-material candidate patches with distinct wood grain, fine ribbed rubber and brushed aluminum. The coupon is supported by a compact force-sensor block on a stable base. A small fixed-geometry fingertip pad mounted to a horizontal linear carriage makes contact with one patch under a simple vertical loading fixture. Show the straight translation rail and carriage, a small acceleration sensor attached close to the probe, and a few unobtrusive cables. All major parts visible without clutter. No robotic hand or humanoid needed. Style: accurate-looking editorial 3D engineering concept render, matte metal hardware and natural material samples, soft neutral lighting on an off-white studio backdrop, crisp details, restrained presentation quality. Composition: landscape 16:9, generous whitespace for editable labels, no text baked into image. Constraints: proposed rig illustration, not a photo of an existing instrument; do not fabricate numeric sensor readings, plots, certificates, logos, equations, arrows, branded components or result panels; no human hands, no implausible floating apparatus.",
+      "saved_file": "07-proposed-sliding-experiment.png",
+      "transparent_background": false
+    }
+  ]
+}
